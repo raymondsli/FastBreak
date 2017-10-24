@@ -30,7 +30,7 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("Calling")
-        seasonStats.text = "Loading..."
+        seasonStats.text = "Testing..."
         getSeasonJSON(gameLogURL: "http://stats.nba.com/stats/playercareerstats?LeagueID=00&PerMode=PerGame&PlayerID=1627759")
     }
     

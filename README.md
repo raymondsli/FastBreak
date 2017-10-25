@@ -1,11 +1,10 @@
-# JaylenBrownGT
-August 2016. Created using XCode 7.3.1 and Swift 2.2.
-This is an iOS app compatible for iPhone 4,5,6,6+ and most iPads. 
-The app uses a tabbed interface with five tabs.
-Tab 1 is the homescreen.
+# PlayerGT
+October 2017. Created using XCode 8.3 and Swift 3.
+This is an iOS app that allows users to select the NBA player who's game log they would like to view. 
+The app uses a tabbed interface with four tabs.
+Tab 1 is the homescreen and also displays the Player's next game.
 Tab 2 has the game log. Clicking on a game takes you to a detailed view of the game.
-Tab 3 lists the season statistics.
-Tab 4 provides career achievements information.
-Tab 5 is Jaylen's twitter feed.
+Tab 3 lists the season statistics for that player.
+Tab 5 is Player's twitter feed.
 
 The game log is updated after every game.

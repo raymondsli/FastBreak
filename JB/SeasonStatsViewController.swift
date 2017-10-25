@@ -1,14 +1,16 @@
 //
 //  SeasonStatsViewController.swift
-//  JB
 //
-//  Created by Raymond Li on 8/19/16.
-//  Copyright © 2016 Raymond Li. All rights reserved.
+//  Created by Raymond Li on 10/24/17.
+//  Copyright © 2017 Raymond Li. All rights reserved.
 //
 
 import UIKit
 
 class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
+    
+    var curPlayer: String! = ""
+    var playerDict: [String: [String]] = [:]
     
     @IBOutlet weak var seasonStats: UILabel!
 
@@ -29,11 +31,32 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Calling")
-        seasonStats.text = "Testing..."
-        getSeasonJSON(gameLogURL: "http://stats.nba.com/stats/playercareerstats?LeagueID=00&PerMode=PerGame&PlayerID=1627759")
+        
+        let homeVC = self.tabBarController?.viewControllers?[0] as! HomeViewController
+        playerDict = homeVC.playerDict
+        
+        let userDefaults = UserDefaults.standard
+        if let decoded = userDefaults.object(forKey: "curPlayer") as? Data {
+            curPlayer = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! String
+        } else {
+            curPlayer = "Jaylen Brown"
+            let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: curPlayer)
+            userDefaults.set(encodedData, forKey: "curPlayer")
+            userDefaults.synchronize()
+        }
+        
+        seasonStats.text = "Loading..."
+        getSeasonJSON(gameLogURL: playerDict[curPlayer]![2])
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        let userDefaults = UserDefaults.standard
+        if let decoded = userDefaults.object(forKey: "curPlayer") as? Data {
+            if NSKeyedUnarchiver.unarchiveObject(with: decoded) as? String != curPlayer {
+                self.viewDidLoad()
+            }
+        }
+    }
     
     //Function that gets JSON data from the URL
     func getSeasonJSON(gameLogURL: String) {
@@ -48,7 +71,7 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
                     //resultSets is a dictionary
                     let rowSet: NSArray = resultSets["rowSet"] as! NSArray
                     //rowSet is an array of arrays, where each subarray is a season
-                    let season: NSArray = rowSet[1] as! NSArray
+                    let season: NSArray = rowSet[Int(self.playerDict[self.curPlayer]![3])!] as! NSArray
                     
                     self.turnRowSetIntoSeasonStats(rowSet: season)
                     

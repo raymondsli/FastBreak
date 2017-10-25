@@ -1,9 +1,8 @@
 //
 //  DetailedGame.swift
-//  JB
 //
-//  Created by Raymond Li on 8/20/16.
-//  Copyright © 2016 Raymond Li. All rights reserved.
+//  Created by Raymond Li on 10/24/17.
+//  Copyright © 2017 Raymond Li. All rights reserved.
 //
 
 import UIKit

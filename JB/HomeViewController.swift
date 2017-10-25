@@ -1,9 +1,8 @@
 //
 //  FirstViewController.swift
-//  JB
 //
-//  Created by Raymond Li on 8/17/16.
-//  Copyright © 2016 Raymond Li. All rights reserved.
+//  Created by Raymond Li on 10/24/17.
+//  Copyright © 2017 Raymond Li. All rights reserved.
 //
 
 import UIKit
@@ -13,14 +12,30 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, MFMailCompo
     
     @IBOutlet weak var nextGame: UILabel!
     
+    var curPlayer: String! = ""
     var nextGameString: String! = "0"
     var nextGameDate: String! = "0"
     var nextGameTime: String! = "0"
+    var playerDict: [String: [String]] = [
+        "Jaylen Brown": ["https://api.seatgeek.com/2/events?performers.id=2088&per_page=25&client_id=MTIwNzV8MTM2NTQ1MDQyMg", "http://stats.nba.com/stats/playergamelog?DateFrom=&DateTo=&LeagueID=00&PlayerID=1627759&Season=2017-18&SeasonType=Regular+Season", "http://stats.nba.com/stats/playercareerstats?LeagueID=00&PerMode=PerGame&PlayerID=1627759", "1", "FCHWPO"],
+        "Jabari Bird": ["https://api.seatgeek.com/2/events?performers.id=2088&per_page=25&client_id=MTIwNzV8MTM2NTQ1MDQyMg", "http://stats.nba.com/stats/playergamelog?DateFrom=&DateTo=&LeagueID=00&PlayerID=1628444&Season=2017-18&SeasonType=Regular+Season", "http://stats.nba.com/stats/playercareerstats?LeagueID=00&PerMode=PerGame&PlayerID=1628444", "0", "JabariBird"]
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let userDefaults = UserDefaults.standard
+        if let decoded = userDefaults.object(forKey: "curPlayer") as? Data {
+            curPlayer = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! String
+        } else {
+            curPlayer = "Jaylen Brown"
+            let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: curPlayer)
+            userDefaults.set(encodedData, forKey: "curPlayer")
+            userDefaults.synchronize()
+        }
+        
         nextGame.text = " "
-        getNextGameJSON(gameLogURL: "https://api.seatgeek.com/2/events?performers.id=2088&per_page=25&client_id=MTIwNzV8MTM2NTQ1MDQyMg")
+        getNextGameJSON(gameLogURL: playerDict[curPlayer]![0])
     }
     
     
@@ -129,6 +144,24 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, MFMailCompo
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func jabariTest(_ sender: Any) {
+        let userDefaults = UserDefaults.standard
+        curPlayer = "Jabari Bird"
+        let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: curPlayer)
+        userDefaults.set(encodedData, forKey: "curPlayer")
+        userDefaults.synchronize()
+        self.viewDidLoad()
+    }
+    
+    @IBAction func jaylenTest(_ sender: Any) {
+        let userDefaults = UserDefaults.standard
+        curPlayer = "Jaylen Brown"
+        let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: curPlayer)
+        userDefaults.set(encodedData, forKey: "curPlayer")
+        userDefaults.synchronize()
+        self.viewDidLoad()
     }
     
 }

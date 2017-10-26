@@ -12,7 +12,6 @@
 		5019B5D31D67EB6700423579 /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5019B5CF1D67EB6700423579 /* TwitterKitResources.bundle */; };
 		5019B5D41D67EB6700423579 /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5019B5D01D67EB6700423579 /* TwitterCore.framework */; };
 		5019B5D61D67EC7700423579 /* TwitterTimeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5019B5D51D67EC7700423579 /* TwitterTimeline.swift */; };
-		5019B5D81D68082C00423579 /* AchievementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5019B5D71D68082C00423579 /* AchievementsViewController.swift */; };
 		5019B5DA1D68085F00423579 /* SeasonStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5019B5D91D68085F00423579 /* SeasonStatsViewController.swift */; };
 		5019B5DC1D68F4CB00423579 /* DetailedGameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5019B5DB1D68F4CB00423579 /* DetailedGameVC.swift */; };
 		5019B5DD1D6D639000423579 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5026C25E1D65716B0057D046 /* Assets.xcassets */; };
@@ -34,7 +33,6 @@
 		5019B5CF1D67EB6700423579 /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle; sourceTree = SOURCE_ROOT; };
 		5019B5D01D67EB6700423579 /* TwitterCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterCore.framework; sourceTree = SOURCE_ROOT; };
 		5019B5D51D67EC7700423579 /* TwitterTimeline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterTimeline.swift; sourceTree = "<group>"; };
-		5019B5D71D68082C00423579 /* AchievementsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchievementsViewController.swift; sourceTree = "<group>"; };
 		5019B5D91D68085F00423579 /* SeasonStatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeasonStatsViewController.swift; sourceTree = "<group>"; };
 		5019B5DB1D68F4CB00423579 /* DetailedGameVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailedGameVC.swift; sourceTree = "<group>"; };
 		5026C2521D65716B0057D046 /* PlayerGT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlayerGT.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -94,7 +92,6 @@
 				5026C26F1D65B4D80057D046 /* GameLogViewController.swift */,
 				5019B5DB1D68F4CB00423579 /* DetailedGameVC.swift */,
 				5019B5D91D68085F00423579 /* SeasonStatsViewController.swift */,
-				5019B5D71D68082C00423579 /* AchievementsViewController.swift */,
 				5019B5D51D67EC7700423579 /* TwitterTimeline.swift */,
 				5026C2551D65716B0057D046 /* AppDelegate.swift */,
 			);
@@ -245,7 +242,6 @@
 				5019B5DC1D68F4CB00423579 /* DetailedGameVC.swift in Sources */,
 				5092B14A1F2D90630049EA26 /* SeasonStats.swift in Sources */,
 				5026C2581D65716B0057D046 /* HomeViewController.swift in Sources */,
-				5019B5D81D68082C00423579 /* AchievementsViewController.swift in Sources */,
 				5026C26E1D65AF460057D046 /* GameStats.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -122,7 +122,7 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, MFMailCompo
         
         mailComposerVC.setToRecipients(["raymond.s.li@berkeley.edu"])
         mailComposerVC.setSubject("App Feedback")
-        mailComposerVC.setMessageBody("Report any bugs or tweets needing to be removed.", isHTML: false)
+        mailComposerVC.setMessageBody("Report any bugs or tweets, or request a player to be added.", isHTML: false)
         
         return mailComposerVC
     }

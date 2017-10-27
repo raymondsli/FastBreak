@@ -195,7 +195,7 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
             }
             
             //Sets cell background color
-            cell.backgroundColor = UIColor(red: games[indexPath.row].backgroundRed, green: games[indexPath.row].backgroundGreen, blue: games[indexPath.row].backgroundBlue, alpha: games[indexPath.row].backgroundAlpha)
+            //cell.backgroundColor = UIColor(red: games[indexPath.row].backgroundRed, green: games[indexPath.row].backgroundGreen, blue: games[indexPath.row].backgroundBlue, alpha: games[indexPath.row].backgroundAlpha)
             
             return cell
         } else {

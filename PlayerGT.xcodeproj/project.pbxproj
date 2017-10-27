@@ -24,6 +24,7 @@
 		5026C2721D65B6590057D046 /* GameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5026C2711D65B6590057D046 /* GameCell.swift */; };
 		5092B1461F2D8B5A0049EA26 /* SeasonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5092B1451F2D8B5A0049EA26 /* SeasonCell.swift */; };
 		5092B14A1F2D90630049EA26 /* SeasonStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5092B1491F2D90630049EA26 /* SeasonStats.swift */; };
+		50B1A6711FA33C8300BC4A62 /* DropMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1A6701FA33C8300BC4A62 /* DropMenu.swift */; };
 		50DBBB861DD17523000EE4E4 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50DBBB851DD17523000EE4E4 /* MessageUI.framework */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +48,7 @@
 		5026C2711D65B6590057D046 /* GameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCell.swift; sourceTree = "<group>"; };
 		5092B1451F2D8B5A0049EA26 /* SeasonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeasonCell.swift; sourceTree = "<group>"; };
 		5092B1491F2D90630049EA26 /* SeasonStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeasonStats.swift; sourceTree = "<group>"; };
+		50B1A6701FA33C8300BC4A62 /* DropMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropMenu.swift; sourceTree = "<group>"; };
 		50DBBB851DD17523000EE4E4 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -72,6 +74,7 @@
 				5026C2711D65B6590057D046 /* GameCell.swift */,
 				5092B1451F2D8B5A0049EA26 /* SeasonCell.swift */,
 				5092B1491F2D90630049EA26 /* SeasonStats.swift */,
+				50B1A6701FA33C8300BC4A62 /* DropMenu.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -241,6 +244,7 @@
 				5026C2561D65716B0057D046 /* AppDelegate.swift in Sources */,
 				5019B5DC1D68F4CB00423579 /* DetailedGameVC.swift in Sources */,
 				5092B14A1F2D90630049EA26 /* SeasonStats.swift in Sources */,
+				50B1A6711FA33C8300BC4A62 /* DropMenu.swift in Sources */,
 				5026C2581D65716B0057D046 /* HomeViewController.swift in Sources */,
 				5026C26E1D65AF460057D046 /* GameStats.swift in Sources */,
 			);

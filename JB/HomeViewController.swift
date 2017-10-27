@@ -11,6 +11,7 @@ import MessageUI
 class HomeViewController: UIViewController, NSURLConnectionDelegate, MFMailComposeViewControllerDelegate {
     
     @IBOutlet weak var nextGame: UILabel!
+    @IBOutlet weak var drop: DropMenuButton!
     
     var curPlayer: String! = ""
     var nextGameString: String! = "0"
@@ -29,13 +30,35 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, MFMailCompo
             curPlayer = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! String
         } else {
             curPlayer = "Jaylen Brown"
-            let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: curPlayer)
-            userDefaults.set(encodedData, forKey: "curPlayer")
-            userDefaults.synchronize()
+            encodeCurPlayer(player: curPlayer)
         }
         
+        drop.setTitle(curPlayer, for: .normal)
         nextGame.text = " "
         getNextGameJSON(gameLogURL: playerDict[curPlayer]![0])
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        drop.initMenu(["Bird, Jabari", "Brown, Jaylen"], actions: [({ () -> (Void) in
+            self.curPlayer = "Jabari Bird"
+            self.dropMenuPressed()
+        }), ({ () -> (Void) in
+            self.curPlayer = "Jaylen Brown"
+            self.dropMenuPressed()
+        })])
+    }
+    
+    func dropMenuPressed() {
+        encodeCurPlayer(player: curPlayer)
+        getNextGameJSON(gameLogURL: playerDict[curPlayer]![0])
+        drop.setTitle(curPlayer, for: .normal)
+    }
+    
+    func encodeCurPlayer(player: String) {
+        let userDefaults = UserDefaults.standard
+        let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: player)
+        userDefaults.set(encodedData, forKey: "curPlayer")
+        userDefaults.synchronize()
     }
     
     
@@ -144,24 +167,6 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, MFMailCompo
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         self.dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction func jabariTest(_ sender: Any) {
-        let userDefaults = UserDefaults.standard
-        curPlayer = "Jabari Bird"
-        let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: curPlayer)
-        userDefaults.set(encodedData, forKey: "curPlayer")
-        userDefaults.synchronize()
-        self.viewDidLoad()
-    }
-    
-    @IBAction func jaylenTest(_ sender: Any) {
-        let userDefaults = UserDefaults.standard
-        curPlayer = "Jaylen Brown"
-        let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: curPlayer)
-        userDefaults.set(encodedData, forKey: "curPlayer")
-        userDefaults.synchronize()
-        self.viewDidLoad()
     }
     
 }

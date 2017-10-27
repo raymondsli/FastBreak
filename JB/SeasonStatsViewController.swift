@@ -122,7 +122,9 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
         
         teamString = abvToTeam(team: String(describing: rowSet[4]))
         gamesString = String(describing: rowSet[6])
-        MPGString = String(describing: rowSet[8])
+        var mpgDouble: Double = rowSet[8] as! Double
+        mpgDouble = Double(round(1000 * mpgDouble) / 1000)
+        MPGString = String(describing: mpgDouble)
         reboundsString = String(describing: rowSet[20])
         assistsString = String(describing: rowSet[21])
         stealsString = String(describing: rowSet[22])
@@ -146,7 +148,9 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
         
         lteamString = abvToTeam(team: String(describing: rowSet[4]))
         lgamesString = String(describing: rowSet[6])
-        lMPGString = String(describing: rowSet[8])
+        var mpgDouble: Double = rowSet[8] as! Double
+        mpgDouble = Double(round(1000 * mpgDouble) / 1000)
+        lMPGString = String(describing: mpgDouble)
         lreboundsString = String(describing: rowSet[20])
         lassistsString = String(describing: rowSet[21])
         lstealsString = String(describing: rowSet[22])

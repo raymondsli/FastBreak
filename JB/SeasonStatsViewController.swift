@@ -125,19 +125,41 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
         var mpgDouble: Double = rowSet[8] as! Double
         mpgDouble = Double(round(1000 * mpgDouble) / 1000)
         MPGString = String(describing: mpgDouble)
-        reboundsString = String(describing: rowSet[20])
-        assistsString = String(describing: rowSet[21])
-        stealsString = String(describing: rowSet[22])
-        blocksString = String(describing: rowSet[23])
-        turnoversString = String(describing: rowSet[24])
-        totalFGString = String(describing: rowSet[9]) + "/" + String(describing: rowSet[10])
-        //totalFGPerString = String(describing: rowSet[11])
+        var rebDouble: Double = rowSet[20] as! Double
+        rebDouble = Double(round(1000 * rebDouble) / 1000)
+        reboundsString = String(describing: rebDouble)
+        var assistsDouble: Double = rowSet[21] as! Double
+        assistsDouble = Double(round(1000 * assistsDouble) / 1000)
+        assistsString = String(describing: assistsDouble)
+        var stealsDouble: Double = rowSet[22] as! Double
+        stealsDouble = Double(round(1000 * stealsDouble) / 1000)
+        stealsString = String(describing: stealsDouble)
+        var blocksDouble: Double = rowSet[23] as! Double
+        blocksDouble = Double(round(1000 * blocksDouble) / 1000)
+        blocksString = String(describing: blocksDouble)
+        var toDouble: Double = rowSet[24] as! Double
+        toDouble = Double(round(1000 * toDouble) / 1000)
+        turnoversString = String(describing: toDouble)
+        
+        var fgMDouble: Double = rowSet[9] as! Double
+        fgMDouble = Double(round(1000 * fgMDouble) / 1000)
+        var fgADouble: Double = rowSet[10] as! Double
+        fgADouble = Double(round(1000 * fgADouble) / 1000)
+        totalFGString = String(describing: fgMDouble) + "/" + String(describing: fgADouble)
         totalFGPerString = String(100*(rowSet[11] as! Double)) + "%"
-        threePTString = String(describing: rowSet[12]) + "/" + String(describing: rowSet[13])
-        //threePTPerString = String(describing: rowSet[14])
+        
+        var tPDouble: Double = rowSet[12] as! Double
+        tPDouble = Double(round(1000 * tPDouble) / 1000)
+        var tpADouble: Double = rowSet[13] as! Double
+        tpADouble = Double(round(1000 * tpADouble) / 1000)
+        threePTString = String(describing: tPDouble) + "/" + String(describing: tpADouble)
         threePTPerString = String(100*(rowSet[14] as! Double)) + "%"
-        ftString = String(describing: rowSet[15]) + "/" + String(describing: rowSet[16])
-        //ftPerString = String(describing: rowSet[17])
+        
+        var ftmDouble: Double = rowSet[15] as! Double
+        ftmDouble = Double(round(1000 * ftmDouble) / 1000)
+        var ftaDouble: Double = rowSet[16] as! Double
+        ftaDouble = Double(round(1000 * ftaDouble) / 1000)
+        ftString = String(describing: ftmDouble) + "/" + String(describing: ftaDouble)
         ftPerString = String(100*(rowSet[17] as! Double)) + "%"
     }
     
@@ -151,19 +173,41 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
         var mpgDouble: Double = rowSet[8] as! Double
         mpgDouble = Double(round(1000 * mpgDouble) / 1000)
         lMPGString = String(describing: mpgDouble)
-        lreboundsString = String(describing: rowSet[20])
-        lassistsString = String(describing: rowSet[21])
-        lstealsString = String(describing: rowSet[22])
-        lblocksString = String(describing: rowSet[23])
-        lturnoversString = String(describing: rowSet[24])
-        ltotalFGString = String(describing: rowSet[9]) + "/" + String(describing: rowSet[10])
-        //totalFGPerString = String(describing: rowSet[11])
+        var rebDouble: Double = rowSet[20] as! Double
+        rebDouble = Double(round(1000 * rebDouble) / 1000)
+        lreboundsString = String(describing: rebDouble)
+        var assistsDouble: Double = rowSet[21] as! Double
+        assistsDouble = Double(round(1000 * assistsDouble) / 1000)
+        lassistsString = String(describing: assistsDouble)
+        var stealsDouble: Double = rowSet[22] as! Double
+        stealsDouble = Double(round(1000 * stealsDouble) / 1000)
+        lstealsString = String(describing: stealsDouble)
+        var blocksDouble: Double = rowSet[23] as! Double
+        blocksDouble = Double(round(1000 * blocksDouble) / 1000)
+        lblocksString = String(describing: blocksDouble)
+        var toDouble: Double = rowSet[24] as! Double
+        toDouble = Double(round(1000 * toDouble) / 1000)
+        lturnoversString = String(describing: toDouble)
+        
+        var fgMDouble: Double = rowSet[9] as! Double
+        fgMDouble = Double(round(1000 * fgMDouble) / 1000)
+        var fgADouble: Double = rowSet[10] as! Double
+        fgADouble = Double(round(1000 * fgADouble) / 1000)
+        ltotalFGString = String(describing: fgMDouble) + "/" + String(describing: fgADouble)
         ltotalFGPerString = String(100*(rowSet[11] as! Double)) + "%"
-        lthreePTString = String(describing: rowSet[12]) + "/" + String(describing: rowSet[13])
-        //threePTPerString = String(describing: rowSet[14])
+        
+        var tPDouble: Double = rowSet[12] as! Double
+        tPDouble = Double(round(1000 * tPDouble) / 1000)
+        var tpADouble: Double = rowSet[13] as! Double
+        tpADouble = Double(round(1000 * tpADouble) / 1000)
+        lthreePTString = String(describing: tPDouble) + "/" + String(describing: tpADouble)
         lthreePTPerString = String(100*(rowSet[14] as! Double)) + "%"
-        lftString = String(describing: rowSet[15]) + "/" + String(describing: rowSet[16])
-        //ftPerString = String(describing: rowSet[17])
+        
+        var ftmDouble: Double = rowSet[15] as! Double
+        ftmDouble = Double(round(1000 * ftmDouble) / 1000)
+        var ftaDouble: Double = rowSet[16] as! Double
+        ftaDouble = Double(round(1000 * ftaDouble) / 1000)
+        lftString = String(describing: ftmDouble) + "/" + String(describing: ftaDouble)
         lftPerString = String(100*(rowSet[17] as! Double)) + "%"
     }
     

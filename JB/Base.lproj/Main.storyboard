@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,11 +22,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PJF-Mf-ZVt" userLabel="BackStrip">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PJF-Mf-ZVt" userLabel="BackStrip">
                                 <rect key="frame" x="0.0" y="301" width="375" height="128"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="boB-7G-WOa">
                                         <rect key="frame" x="16" y="-6" width="343" height="140"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="140" id="KiU-UZ-aNc"/>
+                                        </constraints>
                                         <string key="text">Next Game
 Date
 Time</string>
@@ -43,55 +45,12 @@ Time</string>
                                     <constraint firstItem="boB-7G-WOa" firstAttribute="centerX" secondItem="PJF-Mf-ZVt" secondAttribute="centerX" id="j76-TC-LEx"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Jaylen-Brown" translatesAutoresizingMaskIntoConstraints="NO" id="6l7-8J-SFD">
-                                <rect key="frame" x="61" y="97" width="253" height="126"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="130" id="14t-Sb-KvS"/>
-                                    <constraint firstAttribute="width" constant="259" id="945-vU-vxi"/>
-                                    <constraint firstAttribute="height" constant="130" id="K3Y-WG-trN"/>
-                                    <constraint firstAttribute="width" secondItem="6l7-8J-SFD" secondAttribute="height" multiplier="300:179" id="Zo1-n3-alK"/>
-                                    <constraint firstAttribute="width" constant="300" id="e37-dE-JPr"/>
-                                    <constraint firstAttribute="width" secondItem="6l7-8J-SFD" secondAttribute="height" multiplier="259:130" id="fZz-57-3Fj"/>
-                                    <constraint firstAttribute="width" constant="300" id="kE5-qn-3aL"/>
-                                    <constraint firstAttribute="height" constant="179" id="mji-96-PrU"/>
-                                    <constraint firstAttribute="height" constant="200" id="sNx-Dk-cFb"/>
-                                    <constraint firstAttribute="height" constant="179" id="vdO-rG-uGX"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="14t-Sb-KvS"/>
-                                        <exclude reference="945-vU-vxi"/>
-                                        <exclude reference="K3Y-WG-trN"/>
-                                        <exclude reference="Zo1-n3-alK"/>
-                                        <exclude reference="e37-dE-JPr"/>
-                                        <exclude reference="fZz-57-3Fj"/>
-                                        <exclude reference="kE5-qn-3aL"/>
-                                        <exclude reference="mji-96-PrU"/>
-                                        <exclude reference="sNx-Dk-cFb"/>
-                                        <exclude reference="vdO-rG-uGX"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=regular">
-                                    <mask key="constraints">
-                                        <exclude reference="14t-Sb-KvS"/>
-                                        <exclude reference="945-vU-vxi"/>
-                                        <exclude reference="K3Y-WG-trN"/>
-                                        <exclude reference="Zo1-n3-alK"/>
-                                        <exclude reference="e37-dE-JPr"/>
-                                        <exclude reference="fZz-57-3Fj"/>
-                                        <include reference="kE5-qn-3aL"/>
-                                        <exclude reference="mji-96-PrU"/>
-                                        <exclude reference="sNx-Dk-cFb"/>
-                                        <include reference="vdO-rG-uGX"/>
-                                    </mask>
-                                </variation>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wb3-7J-lIT">
-                                <rect key="frame" x="209" y="28" width="150" height="51"/>
+                                <rect key="frame" x="221" y="28" width="138" height="29"/>
                                 <color key="backgroundColor" red="0.1136131361" green="0.36653742719999999" blue="0.93997464009999998" alpha="0.61607934399999997" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="51" id="K7z-kd-tgF"/>
-                                    <constraint firstAttribute="width" constant="150" id="Tt1-rl-Yuw"/>
+                                    <constraint firstAttribute="height" constant="29" id="KUR-0L-Pfu"/>
+                                    <constraint firstAttribute="width" constant="138" id="rlZ-a1-Faa"/>
                                 </constraints>
                                 <state key="normal" title="Report Bug/Tweet">
                                     <color key="titleColor" red="0.098583028490000002" green="0.070316583670000002" blue="0.47592850129999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -100,65 +59,29 @@ Time</string>
                                     <action selector="reportButton:" destination="9pv-A4-QxB" eventType="touchUpInside" id="GiI-wJ-SCA"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kgg-rU-l1N" customClass="DropMenuButton" customModule="PlayerGT" customModuleProvider="target">
-                                <rect key="frame" x="118" y="231" width="126" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kgg-rU-l1N" customClass="DropMenuButton" customModule="PlayerGT" customModuleProvider="target">
+                                <rect key="frame" x="85" y="152" width="204" height="61"/>
                                 <color key="backgroundColor" red="0.098583028490000002" green="0.070316583670000002" blue="0.47592850129999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="61" id="Jrl-PE-R2O"/>
+                                    <constraint firstAttribute="width" constant="204" id="URl-Ob-97u"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Symbol" family="Symbol" pointSize="22"/>
                                 <state key="normal" title="Jaylen Brown">
-                                    <color key="titleColor" red="0.20025707021523254" green="0.64277405313963354" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.54676507424045706" green="1" blue="0.36086696114180195" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.63977111049549917" green="1" blue="0.92992619007577848" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="6l7-8J-SFD" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" constant="135" id="1fM-Cp-uTC"/>
-                            <constraint firstItem="6l7-8J-SFD" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="7dp-Nj-pPX"/>
-                            <constraint firstItem="6l7-8J-SFD" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="363" id="LSO-VK-uAg">
-                                <variation key="heightClass=regular-widthClass=regular" constant="300"/>
-                            </constraint>
+                            <constraint firstItem="kgg-rU-l1N" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="3hs-Af-jQ0"/>
+                            <constraint firstItem="PJF-Mf-ZVt" firstAttribute="top" secondItem="kgg-rU-l1N" secondAttribute="bottom" constant="88" id="Bed-oK-BRW"/>
                             <constraint firstItem="wb3-7J-lIT" firstAttribute="trailing" secondItem="tsR-hK-woN" secondAttribute="trailingMargin" id="MeP-6Y-rwT"/>
-                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="6l7-8J-SFD" secondAttribute="bottom" constant="524" id="PeV-Ju-eXr"/>
-                            <constraint firstItem="6l7-8J-SFD" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" constant="13" id="SeK-4v-fW4"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="6l7-8J-SFD" secondAttribute="trailing" constant="362" id="UWF-dr-ZeI">
-                                <variation key="heightClass=regular-widthClass=regular" constant="300"/>
-                            </constraint>
-                            <constraint firstItem="6l7-8J-SFD" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="bea-bv-oHk"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="6l7-8J-SFD" secondAttribute="trailing" constant="45" id="eQz-za-QSw"/>
+                            <constraint firstItem="kgg-rU-l1N" firstAttribute="top" secondItem="wb3-7J-lIT" secondAttribute="bottom" constant="95" id="U2b-Kl-xY9"/>
                             <constraint firstItem="PJF-Mf-ZVt" firstAttribute="width" secondItem="tsR-hK-woN" secondAttribute="width" id="ikT-W2-Fpg"/>
-                            <constraint firstItem="6l7-8J-SFD" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="45" id="nTA-CK-LUL"/>
-                            <constraint firstItem="6l7-8J-SFD" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" constant="45" id="o1e-EK-clt">
-                                <variation key="heightClass=regular-widthClass=regular" constant="5"/>
-                            </constraint>
                             <constraint firstItem="wb3-7J-lIT" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" constant="8" id="oKk-L8-XoC"/>
                             <constraint firstItem="PJF-Mf-ZVt" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="qGG-85-TE7"/>
-                            <constraint firstItem="PJF-Mf-ZVt" firstAttribute="top" secondItem="6l7-8J-SFD" secondAttribute="bottom" constant="20" id="wR5-je-Fpa"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="7dp-Nj-pPX"/>
-                                <exclude reference="LSO-VK-uAg"/>
-                                <exclude reference="SeK-4v-fW4"/>
-                                <exclude reference="UWF-dr-ZeI"/>
-                                <exclude reference="bea-bv-oHk"/>
-                                <exclude reference="o1e-EK-clt"/>
-                                <exclude reference="PeV-Ju-eXr"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=regular-widthClass=compact">
-                            <mask key="constraints">
-                                <include reference="7dp-Nj-pPX"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=regular-widthClass=regular">
-                            <mask key="constraints">
-                                <exclude reference="LSO-VK-uAg"/>
-                                <exclude reference="SeK-4v-fW4"/>
-                                <exclude reference="UWF-dr-ZeI"/>
-                                <include reference="bea-bv-oHk"/>
-                                <include reference="o1e-EK-clt"/>
-                                <exclude reference="PeV-Ju-eXr"/>
-                            </mask>
-                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" image="Home" id="acW-dT-cKf"/>
                     <connections>
@@ -242,9 +165,8 @@ Time</string>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iym-Vz-Qjb" userLabel="Celtics 2017">
                                                 <rect key="frame" x="0.0" y="379" width="375" height="299"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="760" verticalCompressionResistancePriority="760" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GGy-Nn-E4s" userLabel="Celtics 2017">
-                                                        <rect key="frame" x="63" y="9" width="249" height="282"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="760" verticalCompressionResistancePriority="760" misplaced="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GGy-Nn-E4s" userLabel="Celtics 2017">
+                                                        <rect key="frame" x="8" y="9" width="359" height="282"/>
                                                         <string key="text">Boston Celtics: 2016-2017
 
 Games: 0
@@ -265,6 +187,8 @@ Free Throws: 0/0 = ∞</string>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.46721644868157186" green="0.84185055205364989" blue="0.86529232111692855" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
+                                                    <constraint firstItem="GGy-Nn-E4s" firstAttribute="centerY" secondItem="Iym-Vz-Qjb" secondAttribute="centerY" id="7ik-Us-KO6"/>
+                                                    <constraint firstItem="GGy-Nn-E4s" firstAttribute="centerX" secondItem="Iym-Vz-Qjb" secondAttribute="centerX" id="ByR-YD-xtF"/>
                                                     <constraint firstAttribute="height" constant="299" id="cqp-ZC-5GB"/>
                                                 </constraints>
                                             </view>
@@ -272,7 +196,7 @@ Free Throws: 0/0 = ∞</string>
                                                 <rect key="frame" x="0.0" y="64" width="375" height="299"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="760" verticalCompressionResistancePriority="760" misplaced="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zxD-5z-tk3" userLabel="Celtics 2018">
-                                                        <rect key="frame" x="63" y="8" width="249" height="282"/>
+                                                        <rect key="frame" x="8" y="8" width="359" height="283"/>
                                                         <string key="text">Boston Celtics: 2017-2018
 
 Games: 0
@@ -926,7 +850,6 @@ Three Point Shooting Percentage</string>
     <resources>
         <image name="Basketball" width="25" height="25"/>
         <image name="Home" width="25" height="25"/>
-        <image name="Jaylen-Brown" width="703" height="96"/>
         <image name="News" width="25" height="25"/>
         <image name="Twitter" width="25" height="25"/>
     </resources>

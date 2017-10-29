@@ -120,8 +120,9 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, MFMailCompo
         getNextGameJSON(gameLogURL: playerDict[curPlayer]![0])
     }
     
+    //Removed Kawhi and Ivan Rabb
     override func viewWillAppear(_ animated: Bool) {
-        drop.initMenu(["Anderson, Ryan", "Antetokounmpo, G", "Anthony, Carmelo", "Ball, Lonzo", "Barnes, Harrison", "Bird, Jabari", "Booker, Devin", "Brown, Jaylen", "Butler, Jimmy", "Cousins, Demarcus", "Crabbe, Allen", "Curry, Stephen", "Davis, Anthony", "DeRozan, DeMar", "Drummond, Andre", "Durant, Kevin", "Embiid, Joel", "Fox, De'Aaron", "Fultz, Markelle", "George, Paul", "Gobert, Rudy", "Green, Draymond", "Griffin, Blake", "Harden, James", "Harris, Gary", "Hayward, Gordon", "Ingram, Brandon", "Irving, Kyrie", "Jackson, Josh", "James, LeBron", "Jokic, Nikola", "Leonard, Kawhi", "Lillard, Damian", "Lin, Jeremy", "Lowry, Kyle", "Monk, Malik", "Paul, Chris", "Porzingis, Kristaps", "Simmons, Ben", "Thompson, Klay", "Towns, Karl", "Rabb, Ivan", "Rose, Derrick", "Russell, D'Angelo", "Tatum, Jayson", "Wade, Dwyane", "Wall, John", "Westbrook, Russell", "Whiteside, Hassan", "Wiggins, Andrew"], actions: [({ () -> (Void) in
+        drop.initMenu(["Anderson, Ryan", "Antetokounmpo, G", "Anthony, Carmelo", "Ball, Lonzo", "Barnes, Harrison", "Bird, Jabari", "Booker, Devin", "Brown, Jaylen", "Butler, Jimmy", "Cousins, Demarcus", "Crabbe, Allen", "Curry, Stephen", "Davis, Anthony", "DeRozan, DeMar", "Drummond, Andre", "Durant, Kevin", "Embiid, Joel", "Fox, De'Aaron", "Fultz, Markelle", "George, Paul", "Gobert, Rudy", "Green, Draymond", "Griffin, Blake", "Harden, James", "Harris, Gary", "Hayward, Gordon", "Ingram, Brandon", "Irving, Kyrie", "Jackson, Josh", "James, LeBron", "Jokic, Nikola", "Lillard, Damian", "Lin, Jeremy", "Lowry, Kyle", "Monk, Malik", "Paul, Chris", "Porzingis, Kristaps", "Simmons, Ben", "Thompson, Klay", "Towns, Karl", "Rabb, Ivan", "Rose, Derrick", "Russell, D'Angelo", "Tatum, Jayson", "Wade, Dwyane", "Wall, John", "Westbrook, Russell", "Whiteside, Hassan", "Wiggins, Andrew"], actions: [({ () -> (Void) in
             self.curPlayer = "Ryan Anderson"
             self.dropMenuPressed()
         }), ({ () -> (Void) in
@@ -213,9 +214,6 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, MFMailCompo
             self.dropMenuPressed()
         }), ({ () -> (Void) in
             self.curPlayer = "Nikola Jokic"
-            self.dropMenuPressed()
-        }), ({ () -> (Void) in
-            self.curPlayer = "Kawhi Leonard"
             self.dropMenuPressed()
         }), ({ () -> (Void) in
             self.curPlayer = "Damian Lillard"

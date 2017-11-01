@@ -62,7 +62,7 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, MFMailCompo
         "Klay Thompson": ["https://api.seatgeek.com/2/events?performers.id=2108&per_page=25&client_id=MTIwNzV8MTM2NTQ1MDQyMg", "http://stats.nba.com/stats/playergamelog?DateFrom=&DateTo=&LeagueID=00&PlayerID=202691&Season=2017-18&SeasonType=Regular+Season", "http://stats.nba.com/stats/playercareerstats?LeagueID=00&PerMode=PerGame&PlayerID=202691", "6", "KlayThompson"],
         "Draymond Green": ["https://api.seatgeek.com/2/events?performers.id=2108&per_page=25&client_id=MTIwNzV8MTM2NTQ1MDQyMg", "http://stats.nba.com/stats/playergamelog?DateFrom=&DateTo=&LeagueID=00&PlayerID=203110&Season=2017-18&SeasonType=Regular+Season", "http://stats.nba.com/stats/playercareerstats?LeagueID=00&PerMode=PerGame&PlayerID=203110", "5", "Money23Green"],
         "Jeremy Lin": ["https://api.seatgeek.com/2/events?performers.id=2089&per_page=25&client_id=MTIwNzV8MTM2NTQ1MDQyMg", "http://stats.nba.com/stats/playergamelog?DateFrom=&DateTo=&LeagueID=00&PlayerID=202391&Season=2017-18&SeasonType=Regular+Season", "http://stats.nba.com/stats/playercareerstats?LeagueID=00&PerMode=PerGame&PlayerID=202391", "7", "JLin7"],
-        "Giannis Antetokounmpo": ["https://api.seatgeek.com/2/events?performers.id=2097&per_page=25&client_id=MTIwNzV8MTM2NTQ1MDQyMg", "http://stats.nba.com/stats/playergamelog?DateFrom=&DateTo=&LeagueID=00&PlayerID=203507&Season=2017-18&SeasonType=Regular+Season", "http://stats.nba.com/stats/playercareerstats?LeagueID=00&PerMode=PerGame&PlayerID=203507", "4", "Giannis_An34"],
+        "G Antetokounmpo": ["https://api.seatgeek.com/2/events?performers.id=2097&per_page=25&client_id=MTIwNzV8MTM2NTQ1MDQyMg", "http://stats.nba.com/stats/playergamelog?DateFrom=&DateTo=&LeagueID=00&PlayerID=203507&Season=2017-18&SeasonType=Regular+Season", "http://stats.nba.com/stats/playercareerstats?LeagueID=00&PerMode=PerGame&PlayerID=203507", "4", "Giannis_An34"],
         "James Harden": ["https://api.seatgeek.com/2/events?performers.id=2114&per_page=25&client_id=MTIwNzV8MTM2NTQ1MDQyMg", "http://stats.nba.com/stats/playergamelog?DateFrom=&DateTo=&LeagueID=00&PlayerID=201935&Season=2017-18&SeasonType=Regular+Season", "http://stats.nba.com/stats/playercareerstats?LeagueID=00&PerMode=PerGame&PlayerID=201935", "8", "JHarden13"],
         "Chris Paul": ["https://api.seatgeek.com/2/events?performers.id=2114&per_page=25&client_id=MTIwNzV8MTM2NTQ1MDQyMg", "http://stats.nba.com/stats/playergamelog?DateFrom=&DateTo=&LeagueID=00&PlayerID=101108&Season=2017-18&SeasonType=Regular+Season", "http://stats.nba.com/stats/playercareerstats?LeagueID=00&PerMode=PerGame&PlayerID=101108", "12", "CP3"],
         "Kawhi Leonard": ["https://api.seatgeek.com/2/events?performers.id=2117&per_page=25&client_id=MTIwNzV8MTM2NTQ1MDQyMg", "http://stats.nba.com/stats/playergamelog?DateFrom=&DateTo=&LeagueID=00&PlayerID=202695&Season=2017-18&SeasonType=Regular+Season", "http://stats.nba.com/stats/playercareerstats?LeagueID=00&PerMode=PerGame&PlayerID=202695", "6", "kawhileonard"],
@@ -126,7 +126,7 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, MFMailCompo
             self.curPlayer = "Ryan Anderson"
             self.dropMenuPressed()
         }), ({ () -> (Void) in
-            self.curPlayer = "Giannis Antetokounmpo"
+            self.curPlayer = "G Antetokounmpo"
             self.dropMenuPressed()
         }), ({ () -> (Void) in
             self.curPlayer = "Carmelo Anthony"
@@ -286,9 +286,11 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, MFMailCompo
         userDefaults.synchronize()
     }
     
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        drop.showItems()
+        drop.closeItems()
     }
+ 
     
     //Function that gets JSON data from the URL
     func getNextGameJSON(gameLogURL: String) {

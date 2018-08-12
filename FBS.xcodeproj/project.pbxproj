@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5001269921194E44004F4677 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5001269821194E44004F4677 /* Player.swift */; };
+		5001269B211951B5004F4677 /* HomeTableScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5001269A211951B5004F4677 /* HomeTableScreen.swift */; };
+		5001269D21195C13004F4677 /* PlayerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5001269C21195C13004F4677 /* PlayerCell.swift */; };
+		5001269F211977C4004F4677 /* GetImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5001269E211977C4004F4677 /* GetImage.swift */; };
 		5019B5D11D67EB6700423579 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5019B5CD1D67EB6700423579 /* Fabric.framework */; };
 		5019B5D21D67EB6700423579 /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5019B5CE1D67EB6700423579 /* TwitterKit.framework */; };
 		5019B5D31D67EB6700423579 /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5019B5CF1D67EB6700423579 /* TwitterKitResources.bundle */; };
@@ -29,6 +33,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5001269821194E44004F4677 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		5001269A211951B5004F4677 /* HomeTableScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableScreen.swift; sourceTree = "<group>"; };
+		5001269C21195C13004F4677 /* PlayerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCell.swift; sourceTree = "<group>"; };
+		5001269E211977C4004F4677 /* GetImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetImage.swift; sourceTree = "<group>"; };
 		5019B5CD1D67EB6700423579 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = SOURCE_ROOT; };
 		5019B5CE1D67EB6700423579 /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterKit.framework; sourceTree = SOURCE_ROOT; };
 		5019B5CF1D67EB6700423579 /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle; sourceTree = SOURCE_ROOT; };
@@ -36,7 +44,7 @@
 		5019B5D51D67EC7700423579 /* TwitterTimeline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterTimeline.swift; sourceTree = "<group>"; };
 		5019B5D91D68085F00423579 /* SeasonStatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeasonStatsViewController.swift; sourceTree = "<group>"; };
 		5019B5DB1D68F4CB00423579 /* DetailedGameVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailedGameVC.swift; sourceTree = "<group>"; };
-		5026C2521D65716B0057D046 /* PlayerGT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlayerGT.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5026C2521D65716B0057D046 /* FBS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FBS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5026C2551D65716B0057D046 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5026C2571D65716B0057D046 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		5026C25C1D65716B0057D046 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -67,14 +75,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5019B5C91D67D1D400423579 /* Model */ = {
+		5001269721194DF2004F4677 /* Game Log */ = {
 			isa = PBXGroup;
 			children = (
 				5026C26D1D65AF460057D046 /* GameStats.swift */,
 				5026C2711D65B6590057D046 /* GameCell.swift */,
+			);
+			name = "Game Log";
+			sourceTree = "<group>";
+		};
+		5019B5C91D67D1D400423579 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5001269721194DF2004F4677 /* Game Log */,
 				5092B1451F2D8B5A0049EA26 /* SeasonCell.swift */,
 				5092B1491F2D90630049EA26 /* SeasonStats.swift */,
 				50B1A6701FA33C8300BC4A62 /* DropMenu.swift */,
+				5001269821194E44004F4677 /* Player.swift */,
+				5001269C21195C13004F4677 /* PlayerCell.swift */,
+				5001269E211977C4004F4677 /* GetImage.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -91,6 +110,7 @@
 		5019B5CB1D67D1E200423579 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				5001269A211951B5004F4677 /* HomeTableScreen.swift */,
 				5026C2571D65716B0057D046 /* HomeViewController.swift */,
 				5026C26F1D65B4D80057D046 /* GameLogViewController.swift */,
 				5019B5DB1D68F4CB00423579 /* DetailedGameVC.swift */,
@@ -104,7 +124,7 @@
 		5026C2491D65716B0057D046 = {
 			isa = PBXGroup;
 			children = (
-				5026C2541D65716B0057D046 /* PlayerGT */,
+				5026C2541D65716B0057D046 /* FBS */,
 				5026C2531D65716B0057D046 /* Products */,
 				50DBBB841DD17523000EE4E4 /* Frameworks */,
 			);
@@ -113,12 +133,12 @@
 		5026C2531D65716B0057D046 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5026C2521D65716B0057D046 /* PlayerGT.app */,
+				5026C2521D65716B0057D046 /* FBS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		5026C2541D65716B0057D046 /* PlayerGT */ = {
+		5026C2541D65716B0057D046 /* FBS */ = {
 			isa = PBXGroup;
 			children = (
 				5019B5CD1D67EB6700423579 /* Fabric.framework */,
@@ -131,7 +151,7 @@
 				5026C25E1D65716B0057D046 /* Assets.xcassets */,
 				5026C2631D65716B0057D046 /* Info.plist */,
 			);
-			name = PlayerGT;
+			name = FBS;
 			path = JB;
 			sourceTree = "<group>";
 		};
@@ -146,9 +166,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5026C2511D65716B0057D046 /* PlayerGT */ = {
+		5026C2511D65716B0057D046 /* FBS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5026C2661D65716B0057D046 /* Build configuration list for PBXNativeTarget "PlayerGT" */;
+			buildConfigurationList = 5026C2661D65716B0057D046 /* Build configuration list for PBXNativeTarget "FBS" */;
 			buildPhases = (
 				5026C24E1D65716B0057D046 /* Sources */,
 				5026C24F1D65716B0057D046 /* Frameworks */,
@@ -159,9 +179,9 @@
 			);
 			dependencies = (
 			);
-			name = PlayerGT;
+			name = FBS;
 			productName = JB;
-			productReference = 5026C2521D65716B0057D046 /* PlayerGT.app */;
+			productReference = 5026C2521D65716B0057D046 /* FBS.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -182,7 +202,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 5026C24D1D65716B0057D046 /* Build configuration list for PBXProject "PlayerGT" */;
+			buildConfigurationList = 5026C24D1D65716B0057D046 /* Build configuration list for PBXProject "FBS" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -195,7 +215,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5026C2511D65716B0057D046 /* PlayerGT */,
+				5026C2511D65716B0057D046 /* FBS */,
 			);
 		};
 /* End PBXProject section */
@@ -237,10 +257,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				5026C2721D65B6590057D046 /* GameCell.swift in Sources */,
+				5001269F211977C4004F4677 /* GetImage.swift in Sources */,
 				5019B5DA1D68085F00423579 /* SeasonStatsViewController.swift in Sources */,
+				5001269D21195C13004F4677 /* PlayerCell.swift in Sources */,
 				5092B1461F2D8B5A0049EA26 /* SeasonCell.swift in Sources */,
 				5026C2701D65B4D80057D046 /* GameLogViewController.swift in Sources */,
+				5001269921194E44004F4677 /* Player.swift in Sources */,
 				5019B5D61D67EC7700423579 /* TwitterTimeline.swift in Sources */,
+				5001269B211951B5004F4677 /* HomeTableScreen.swift in Sources */,
 				5026C2561D65716B0057D046 /* AppDelegate.swift in Sources */,
 				5019B5DC1D68F4CB00423579 /* DetailedGameVC.swift in Sources */,
 				5092B14A1F2D90630049EA26 /* SeasonStats.swift in Sources */,
@@ -369,9 +393,10 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = JB/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				"OTHER_CODE_SIGN_FLAGS[sdk=*]" = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.rli.PlayerGT2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rli.fbs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -392,8 +417,9 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = JB/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.rli.PlayerGT2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rli.fbs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -405,7 +431,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5026C24D1D65716B0057D046 /* Build configuration list for PBXProject "PlayerGT" */ = {
+		5026C24D1D65716B0057D046 /* Build configuration list for PBXProject "FBS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5026C2641D65716B0057D046 /* Debug */,
@@ -414,7 +440,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5026C2661D65716B0057D046 /* Build configuration list for PBXNativeTarget "PlayerGT" */ = {
+		5026C2661D65716B0057D046 /* Build configuration list for PBXNativeTarget "FBS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5026C2671D65716B0057D046 /* Debug */,

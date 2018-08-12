@@ -53,7 +53,7 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, MFMailCompo
     
     var playerDict: [String: [String]] = [
         "Jaylen Brown": ["https://api.seatgeek.com/2/events?performers.id=2088&per_page=25&client_id=MTIwNzV8MTM2NTQ1MDQyMg", "http://stats.nba.com/stats/playergamelog?DateFrom=&DateTo=&LeagueID=00&PlayerID=1627759&Season=2017-18&SeasonType=Regular+Season", "http://stats.nba.com/stats/playercareerstats?LeagueID=00&PerMode=PerGame&PlayerID=1627759", "1", "FCHWPO"],
-        "Jabari Bird": ["https://api.seatgeek.com/2/events?performers.id=2088&per_page=25&client_id=MTIwNzV8MTM2NTQ1MDQyMg", "http://stats.nba.com/stats/playergamelog?DateFrom=&DateTo=&LeagueID=00&PlayerID=1628444&Season=2017-18&SeasonType=Regular+Season", "http://stats.nba.com/stats/playercareerstats?LeagueID=00&PerMode=PerGame&PlayerID=1628444", "0", "JabariBird"],
+        "Jabari Bird": ["https://api.seatgeek.com/2/events?performers.id=2088&per_page=25&client_id=MTIwNzV8MTM2NTQ1MDQyMg", "http://stats.nba.com/stats/playergamelog?DateFrom=&DateTo=&LeagueID=00&PlayerID=1628444&Season=2017-18&SeasonType=Regular+Season", "http://stats.nba.com/stats/playercareerstats?LeagueID=00&PerMode=PerGame&PlayerID=1628444", "0", "Jabari_Bird"],
         "Ivan Rabb": ["https://api.seatgeek.com/2/events?performers.id=2115&per_page=25&client_id=MTIwNzV8MTM2NTQ1MDQyMg", "http://stats.nba.com/stats/playergamelog?DateFrom=&DateTo=&LeagueID=00&PlayerID=1628397&Season=2017-18&SeasonType=Regular+Season", "http://stats.nba.com/stats/playercareerstats?LeagueID=00&PerMode=PerGame&PlayerID=1628397", "0", "YoungIvee"],
         "Allen Crabbe": ["https://api.seatgeek.com/2/events?performers.id=2089&per_page=25&client_id=MTIwNzV8MTM2NTQ1MDQyMg", "http://stats.nba.com/stats/playergamelog?DateFrom=&DateTo=&LeagueID=00&PlayerID=203459&Season=2017-18&SeasonType=Regular+Season", "http://stats.nba.com/stats/playercareerstats?LeagueID=00&PerMode=PerGame&PlayerID=203459", "4", "allencrabbe"],
         "Ryan Anderson": ["https://api.seatgeek.com/2/events?performers.id=2114&per_page=25&client_id=MTIwNzV8MTM2NTQ1MDQyMg", "http://stats.nba.com/stats/playergamelog?DateFrom=&DateTo=&LeagueID=00&PlayerID=201583&Season=2017-18&SeasonType=Regular+Season", "http://stats.nba.com/stats/playercareerstats?LeagueID=00&PerMode=PerGame&PlayerID=201583", "9", "NBA"],
@@ -70,7 +70,7 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, MFMailCompo
         "Paul George": ["https://api.seatgeek.com/2/events?performers.id=2105&per_page=25&client_id=MTIwNzV8MTM2NTQ1MDQyMg", "http://stats.nba.com/stats/playergamelog?DateFrom=&DateTo=&LeagueID=00&PlayerID=202331&Season=2017-18&SeasonType=Regular+Season", "http://stats.nba.com/stats/playercareerstats?LeagueID=00&PerMode=PerGame&PlayerID=202331", "7", "Yg_Trece"],
         "Carmelo Anthony": ["https://api.seatgeek.com/2/events?performers.id=2105&per_page=25&client_id=MTIwNzV8MTM2NTQ1MDQyMg", "http://stats.nba.com/stats/playergamelog?DateFrom=&DateTo=&LeagueID=00&PlayerID=2546&Season=2017-18&SeasonType=Regular+Season", "http://stats.nba.com/stats/playercareerstats?LeagueID=00&PerMode=PerGame&PlayerID=2546", "16", "carmeloanthony"],
         "LeBron James": ["https://api.seatgeek.com/2/events?performers.id=2094&per_page=25&client_id=MTIwNzV8MTM2NTQ1MDQyMg", "http://stats.nba.com/stats/playergamelog?DateFrom=&DateTo=&LeagueID=00&PlayerID=2544&Season=2017-18&SeasonType=Regular+Season", "http://stats.nba.com/stats/playercareerstats?LeagueID=00&PerMode=PerGame&PlayerID=2544", "14", "KingJames"],
-        "Joel Embiid": ["https://api.seatgeek.com/2/events?performers.id=2091&per_page=25&client_id=MTIwNzV8MTM2NTQ1MDQyMg", "http://stats.nba.com/stats/playergamelog?DateFrom=&DateTo=&LeagueID=00&PlayerID=203954&Season=2017-18&SeasonType=Regular+Season", "http://stats.nba.com/stats/playercareerstats?LeagueID=00&PerMode=PerGame&PlayerID=203954", "2", "JoelEmbiid"],
+        "Joel Embiid": ["https://api.seatgeek.com/2/events?performers.id=2091&per_page=25&client_id=MTIwNzV8MTM2NTQ1MDQyMg", "http://stats.nba.com/stats/playergamelog?DateFrom=&DateTo=&LeagueID=00&PlayerID=203954&Season=2017-18&SeasonType=Regular+Season", "http://stats.nba.com/stats/playercareerstats?LeagueID=00&PerMode=PerGame&PlayerID=203954", "1", "JoelEmbiid"],
         "Ben Simmons": ["https://api.seatgeek.com/2/events?performers.id=2091&per_page=25&client_id=MTIwNzV8MTM2NTQ1MDQyMg", "http://stats.nba.com/stats/playergamelog?DateFrom=&DateTo=&LeagueID=00&PlayerID=1627732&Season=2017-18&SeasonType=Regular+Season", "http://stats.nba.com/stats/playercareerstats?LeagueID=00&PerMode=PerGame&PlayerID=1627732", "0", "BenSimmons25"],
         "Markelle Fultz": ["https://api.seatgeek.com/2/events?performers.id=2091&per_page=25&client_id=MTIwNzV8MTM2NTQ1MDQyMg", "http://stats.nba.com/stats/playergamelog?DateFrom=&DateTo=&LeagueID=00&PlayerID=1628365&Season=2017-18&SeasonType=Regular+Season", "http://stats.nba.com/stats/playercareerstats?LeagueID=00&PerMode=PerGame&PlayerID=1628365", "0", "MarkelleF"],
         "Demarcus Cousins": ["https://api.seatgeek.com/2/events?performers.id=2116&per_page=25&client_id=MTIwNzV8MTM2NTQ1MDQyMg", "http://stats.nba.com/stats/playergamelog?DateFrom=&DateTo=&LeagueID=00&PlayerID=202326&Season=2017-18&SeasonType=Regular+Season", "http://stats.nba.com/stats/playercareerstats?LeagueID=00&PerMode=PerGame&PlayerID=202326", "9", "boogiecousins"],
@@ -122,7 +122,7 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, MFMailCompo
     
     //Removed Kawhi and Ivan Rabb
     override func viewWillAppear(_ animated: Bool) {
-        drop.initMenu(["Anderson, Ryan", "Antetokounmpo, G", "Anthony, Carmelo", "Ball, Lonzo", "Barnes, Harrison", "Bird, Jabari", "Booker, Devin", "Brown, Jaylen", "Butler, Jimmy", "Cousins, Demarcus", "Crabbe, Allen", "Curry, Stephen", "Davis, Anthony", "DeRozan, DeMar", "Drummond, Andre", "Durant, Kevin", "Embiid, Joel", "Fox, De'Aaron", "Fultz, Markelle", "George, Paul", "Gobert, Rudy", "Green, Draymond", "Griffin, Blake", "Harden, James", "Harris, Gary", "Hayward, Gordon", "Ingram, Brandon", "Irving, Kyrie", "Jackson, Josh", "James, LeBron", "Jokic, Nikola", "Lillard, Damian", "Lin, Jeremy", "Lowry, Kyle", "Monk, Malik", "Paul, Chris", "Porzingis, Kristaps", "Simmons, Ben", "Thompson, Klay", "Towns, Karl", "Rabb, Ivan", "Rose, Derrick", "Russell, D'Angelo", "Tatum, Jayson", "Wade, Dwyane", "Wall, John", "Westbrook, Russell", "Whiteside, Hassan", "Wiggins, Andrew"], actions: [({ () -> (Void) in
+        drop.initMenu(["Anderson, Ryan", "Antetokounmpo, G", "Anthony, Carmelo", "Ball, Lonzo", "Barnes, Harrison", "Bird, Jabari", "Booker, Devin", "Brown, Jaylen", "Butler, Jimmy", "Cousins, Demarcus", "Crabbe, Allen", "Curry, Stephen", "Davis, Anthony", "DeRozan, DeMar", "Drummond, Andre", "Durant, Kevin", "Embiid, Joel", "Fox, De'Aaron", "Fultz, Markelle", "George, Paul", "Gobert, Rudy", "Green, Draymond", "Griffin, Blake", "Harden, James", "Harris, Gary", "Hayward, Gordon", "Ingram, Brandon", "Irving, Kyrie", "Jackson, Josh", "James, LeBron", "Jokic, Nikola", "Leonard, Kawhi", "Lillard, Damian", "Lin, Jeremy", "Lowry, Kyle", "Monk, Malik", "Paul, Chris", "Porzingis, Kristaps", "Simmons, Ben", "Thompson, Klay", "Towns, Karl", "Rabb, Ivan", "Rose, Derrick", "Russell, D'Angelo", "Tatum, Jayson", "Wade, Dwyane", "Wall, John", "Westbrook, Russell", "Whiteside, Hassan", "Wiggins, Andrew"], actions: [({ () -> (Void) in
             self.curPlayer = "Ryan Anderson"
             self.dropMenuPressed()
         }), ({ () -> (Void) in
@@ -214,6 +214,9 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, MFMailCompo
             self.dropMenuPressed()
         }), ({ () -> (Void) in
             self.curPlayer = "Nikola Jokic"
+            self.dropMenuPressed()
+        }), ({ () -> (Void) in
+            self.curPlayer = "Kawhi Leonard"
             self.dropMenuPressed()
         }), ({ () -> (Void) in
             self.curPlayer = "Damian Lillard"
@@ -315,9 +318,10 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, MFMailCompo
                         self.nextGameDate = self.formatGameDate(input: unformattedGameDate)
                         self.nextGameTime = self.formatGameTime(input: unformattedGameDate)
                     
-                        DispatchQueue.main.async(execute: {
-                            self.nextGame.text = "Next Game\n" + self.nextGameString + "\n" + self.nextGameDate + "\n" + self.nextGameTime
-                        })
+                        DispatchQueue.main.async {
+                            //self.nextGame.text = "Next Game\n" + self.nextGameString + "\n" + self.nextGameDate + "\n" + self.nextGameTime
+                            self.nextGame.text = "Checking"
+                        }
                     }
                 } catch {
                     print("Could not serialize")

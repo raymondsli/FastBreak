@@ -8,22 +8,27 @@
 
 import UIKit
 
-class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
     var playerIds: [String: Int] = [:]
     var namesToLabel: [String: String] = [:]
     var playerFirstNames: [String] = []
     var playerLastNames: [String] = []
+    var playerNames: [String] = []
     var playerImages: [String: UIImage] = [:]
     var playerTeams: [String: String] = [:]
     var playerPositions: [String: String] = [:]
     
+    var currentPlayerNames: [String] = []
+    
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        searchBar.delegate = self
         
         let nib = UINib(nibName: "PlayerCell", bundle: nil)
         self.tableView.register(nib, forCellReuseIdentifier: "PlayerCell")
@@ -133,9 +138,11 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
             
             playerIds[firstName + " " + lastName] = playerId
             namesToLabel[firstName + " " + lastName] = playerName
+            playerNames.append(playerName)
             
             playerFirstNames.append(firstName)
             playerLastNames.append(lastName)
+            
             
             var team = currentPlayer[10] as! String
             if team == "" {
@@ -146,57 +153,8 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
             
             i = i + 1
         }
-    }
-    
-    func getPlayerData() {
-        var i = 0
         
-        while i < playerFirstNames.count {
-            let fullName = playerFirstNames[i] + " " + playerLastNames[i]
-            let id = String(playerIds[fullName]!)
-            
-            let urlString = "https://stats.nba.com/stats/commonplayerinfo/?PlayerId=" + id
-            let url = URL(string: urlString)
-            
-            let request = URLRequest(url: url!)
-            do {
-                print("Calling \(fullName)")
-                let response: AutoreleasingUnsafeMutablePointer<URLResponse?>? = nil
-                let data = try NSURLConnection.sendSynchronousRequest(request, returning: response)
-                
-                let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String : Any]
-
-                //let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments) as! [String: Any]
-                let resultSetsTemp: NSArray = json["resultSets"] as! NSArray
-                let resultSets = resultSetsTemp[0] as! [String: Any]
-                let rowSet: NSArray = resultSets["rowSet"] as! NSArray
-                let currentPlayer: NSArray = rowSet[0] as! NSArray
-
-                let position = self.convertPosition(position: currentPlayer[14] as? String)
-                
-                playerPositions[fullName] = position
-            } catch {
-                print("Could not serialize")
-            }
-            
-            i = i + 1
-        }
-    }
-    
-    func convertPosition(position: String?) -> String {
-        if position == "Guard-Forward" || position == "Forward-Guard" {
-            return "G/F"
-        } else if position == "Guard" {
-            return "G"
-        } else if position == "Forward" {
-            return "F"
-        } else if position == "Center" {
-            return "C"
-        } else if position == "Forward-Center" || position == "Center-Forward" {
-            return "F/C"
-        } else {
-            return "NA"
-        }
+        currentPlayerNames = playerNames
     }
     
     func getImage(i: Int) {
@@ -350,12 +308,41 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
         
     }
     
+    func getFirstName(playerName: String) -> String {
+        let fullNameArr = playerName.components(separatedBy: " ")
+        
+        var characterSet = CharacterSet.letters.inverted
+        characterSet.remove(charactersIn: "-")
+        
+        if fullNameArr.count != 2 {
+            return ""
+        }
+        
+        return fullNameArr[0].components(separatedBy: characterSet).joined()
+    }
+    
+    func getLastName(playerName: String) -> String {
+        let fullNameArr = playerName.components(separatedBy: " ")
+        
+        var characterSet = CharacterSet.letters.inverted
+        characterSet.remove(charactersIn: "-")
+        
+        if fullNameArr.count == 1 {
+            return fullNameArr[0].components(separatedBy: characterSet).joined()
+        } else if fullNameArr.count == 2 {
+            return fullNameArr[1].components(separatedBy: characterSet).joined()
+        }
+        
+        return ""
+    }
+    
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "PlayerCell") as? PlayerCell {
-            let firstName = playerFirstNames[indexPath.row]
-            let lastName = playerLastNames[indexPath.row]
+            let firstName = getFirstName(playerName: currentPlayerNames[indexPath.row])
+            let lastName = getLastName(playerName: currentPlayerNames[indexPath.row])
+            
             cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
             cell.headshot.contentMode = .scaleAspectFit
             cell.headshot.backgroundColor = .lightGray
@@ -431,11 +418,29 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return playerIds.count
+        return currentPlayerNames.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100.0
     }
     
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard searchText.isEmpty == false && searchText != "\\" else {
+            currentPlayerNames = playerNames
+            tableView.reloadData()
+            return
+        }
+        
+        currentPlayerNames = playerNames.filter { $0.lowercased().contains(searchText.lowercased()) }
+        tableView.reloadData()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        searchBar.resignFirstResponder()
+    }
 }

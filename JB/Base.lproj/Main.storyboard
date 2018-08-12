@@ -26,10 +26,24 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <searchBar contentMode="redraw" fixedFrame="YES" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="MJN-j8-CfI">
-                                        <rect key="frame" x="56" y="18" width="311" height="56"/>
+                                        <rect key="frame" x="109" y="18" width="258" height="56"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </searchBar>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4nj-kK-9GT" customClass="DropMenuButton" customModule="FBS" customModuleProvider="target">
+                                        <rect key="frame" x="8" y="28" width="86" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.15198446139999999" green="0.235571747" blue="0.2795971062" alpha="0.81393045770000005" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
+                                        <state key="normal" title="All Teams">
+                                            <color key="titleColor" red="0.64673223350253806" green="0.63542976742238066" blue="0.60326169937391094" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.15198446137659291" green="0.23557174701857056" blue="0.27959710622080869" alpha="0.81393045774647887" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
@@ -52,6 +66,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <connections>
+                        <outlet property="drop" destination="4nj-kK-9GT" id="cI6-V4-S20"/>
                         <outlet property="searchBar" destination="MJN-j8-CfI" id="UuE-6y-equ"/>
                         <outlet property="tableView" destination="hHB-Ti-avJ" id="E3Y-4y-KUl"/>
                     </connections>

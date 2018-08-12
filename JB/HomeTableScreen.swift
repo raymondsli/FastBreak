@@ -20,12 +20,17 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
     var playerPositions: [String: String] = [:]
     
     var currentPlayerNames: [String] = []
+    var currentTeamFilter: String = "All Teams"
+    var currentSearchFilter: String = ""
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var drop: DropMenuButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        drop.setTitle("All Teams", for: .normal)
+        
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
@@ -74,6 +79,97 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
         
         tableView.reloadData()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        drop.initMenu(["All Teams", "ATL", "BKN", "BOS", "CHA", "CHI", "CLE", "DAL", "DEN", "DET", "GSW", "HOU", "IND", "LAC", "LAL", "MEM", "MIA", "MIL", "MIN", "NOP", "NYK", "OKC", "ORL", "PHI", "PHX", "POR", "SAC", "SAS", "TOR", "UTA", "WAS"],
+        actions: [({ () -> (Void) in
+            self.dropMenuPressed(team: "All Teams")
+        }), ({ () -> (Void) in
+            self.dropMenuPressed(team: "ATL")
+        }), ({ () -> (Void) in
+            self.dropMenuPressed(team: "BKN")
+        }), ({ () -> (Void) in
+            self.dropMenuPressed(team: "BOS")
+        }), ({ () -> (Void) in
+            self.dropMenuPressed(team: "CHA")
+        }), ({ () -> (Void) in
+            self.dropMenuPressed(team: "CHI")
+        }), ({ () -> (Void) in
+            self.dropMenuPressed(team: "CLE")
+        }), ({ () -> (Void) in
+            self.dropMenuPressed(team: "DAL")
+        }), ({ () -> (Void) in
+            self.dropMenuPressed(team: "DEN")
+        }), ({ () -> (Void) in
+            self.dropMenuPressed(team: "DET")
+        }), ({ () -> (Void) in
+            self.dropMenuPressed(team: "GSW")
+        }), ({ () -> (Void) in
+            self.dropMenuPressed(team: "HOU")
+        }), ({ () -> (Void) in
+            self.dropMenuPressed(team: "IND")
+        }), ({ () -> (Void) in
+            self.dropMenuPressed(team: "LAC")
+        }), ({ () -> (Void) in
+            self.dropMenuPressed(team: "LAL")
+        }), ({ () -> (Void) in
+            self.dropMenuPressed(team: "MEM")
+        }), ({ () -> (Void) in
+            self.dropMenuPressed(team: "MIA")
+        }), ({ () -> (Void) in
+            self.dropMenuPressed(team: "MIL")
+        }), ({ () -> (Void) in
+            self.dropMenuPressed(team: "MIN")
+        }), ({ () -> (Void) in
+            self.dropMenuPressed(team: "NOP")
+        }), ({ () -> (Void) in
+            self.dropMenuPressed(team: "NYK")
+        }), ({ () -> (Void) in
+            self.dropMenuPressed(team: "OKC")
+        }), ({ () -> (Void) in
+            self.dropMenuPressed(team: "ORL")
+        }), ({ () -> (Void) in
+            self.dropMenuPressed(team: "PHI")
+        }), ({ () -> (Void) in
+            self.dropMenuPressed(team: "PHX")
+        }), ({ () -> (Void) in
+            self.dropMenuPressed(team: "POR")
+        }), ({ () -> (Void) in
+            self.dropMenuPressed(team: "SAC")
+        }), ({ () -> (Void) in
+            self.dropMenuPressed(team: "SAS")
+        }), ({ () -> (Void) in
+            self.dropMenuPressed(team: "TOR")
+        }), ({ () -> (Void) in
+            self.dropMenuPressed(team: "UTA")
+        }), ({ () -> (Void) in
+            self.dropMenuPressed(team: "WAS")
+        }),
+            ])
+    }
+    
+    func dropMenuPressed(team: String) {
+        searchBarTextDidEndEditing(searchBar)
+        
+        if team == "All Teams" {
+            if currentSearchFilter == "" {
+                currentPlayerNames = playerNames
+            } else {
+                currentPlayerNames = playerNames.filter { $0.lowercased().contains(currentSearchFilter) }
+            }
+            currentTeamFilter = "All Teams"
+        } else {
+            if currentSearchFilter == "" {
+                currentPlayerNames = playerNames.filter { playerTeams[$0] == team }
+            } else {
+                currentPlayerNames = playerNames.filter {
+                    playerTeams[$0] == team && $0.lowercased().contains(currentSearchFilter)
+                }
+            }
+            currentTeamFilter = team
+        }
+        tableView.reloadData()
+    }
 
     func getPlayerIds(urlAllPlayers: String) {
         let url = URL(string: urlAllPlayers)
@@ -118,23 +214,8 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
             let playerId = currentPlayer[0] as! Int
             let playerName = currentPlayer[2] as! String
             
-            let fullNameArr = playerName.components(separatedBy: " ")
-            
-            var firstName = ""
-            var lastName = ""
-            
-            var characterSet = CharacterSet.letters.inverted
-            characterSet.remove(charactersIn: "-")
-            
-            if fullNameArr.count == 1 {
-                lastName = fullNameArr[0].components(separatedBy: characterSet).joined()
-            } else if fullNameArr.count == 2 {
-                firstName = fullNameArr[0].components(separatedBy: characterSet).joined()
-                lastName = fullNameArr[1].components(separatedBy: characterSet).joined()
-            } else {
-                i = i + 1
-                continue
-            }
+            let firstName = getFirstName(playerName: playerName)
+            let lastName = getLastName(playerName: playerName)
             
             playerIds[firstName + " " + lastName] = playerId
             namesToLabel[firstName + " " + lastName] = playerName
@@ -183,7 +264,7 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
         if image != nil {
             playerImages[fullName] = image
         } else {
-            playerImages[fullName] = UIImage(named: "Neutral")!
+            playerImages[fullName] = UIImage(named: "NoHeadshot")!
         }
     }
     
@@ -303,7 +384,7 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
         if image != nil {
             return image!
         } else {
-            return UIImage(named: "Neutral")!
+            return UIImage(named: "NoHeadshot")!
         }
         
     }
@@ -358,7 +439,7 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
             if let image = playerImages[fullName] {
                 cell.headshot.image = image
             } else {
-                cell.headshot.image = UIImage(named: "Neutral")!
+                cell.headshot.image = UIImage(named: "NoHeadshot")!
                 
                 DispatchQueue.global(qos: .userInitiated).async {
                     let urlImage = "https://nba-players.herokuapp.com/players/" + lastName + "/" + firstName
@@ -382,7 +463,7 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
                             }
                         })
                     } else {
-                        self.playerImages[firstName + " " + lastName] = UIImage(named: "Neutral")!
+                        self.playerImages[firstName + " " + lastName] = UIImage(named: "NoHeadshot")!
                     }
                 }
             }
@@ -427,12 +508,22 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         guard searchText.isEmpty == false && searchText != "\\" else {
-            currentPlayerNames = playerNames
+            if currentTeamFilter == "All Teams" {
+                currentPlayerNames = playerNames
+            } else {
+                currentPlayerNames = playerNames.filter { playerTeams[$0] == currentTeamFilter }
+            }
             tableView.reloadData()
             return
         }
         
-        currentPlayerNames = playerNames.filter { $0.lowercased().contains(searchText.lowercased()) }
+        if currentTeamFilter == "All Teams" {
+            currentPlayerNames = playerNames.filter { $0.lowercased().contains(searchText.lowercased()) }
+        } else {
+            currentPlayerNames = playerNames.filter {
+                $0.lowercased().contains(searchText.lowercased()) && playerTeams[$0] == currentTeamFilter
+            }
+        }
         tableView.reloadData()
     }
     
@@ -440,7 +531,18 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
         searchBar.resignFirstResponder()
     }
     
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        
+        if let text = searchBar.text {
+            currentSearchFilter = text.lowercased()
+        } else {
+            currentSearchFilter = ""
+        }
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         searchBar.resignFirstResponder()
+        drop.closeItems()
     }
 }

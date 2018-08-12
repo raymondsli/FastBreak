@@ -29,7 +29,9 @@
 		5092B1461F2D8B5A0049EA26 /* SeasonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5092B1451F2D8B5A0049EA26 /* SeasonCell.swift */; };
 		5092B14A1F2D90630049EA26 /* SeasonStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5092B1491F2D90630049EA26 /* SeasonStats.swift */; };
 		50B1A6711FA33C8300BC4A62 /* DropMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1A6701FA33C8300BC4A62 /* DropMenu.swift */; };
+		50DA74102120177E00C73019 /* allplayers.json in Resources */ = {isa = PBXBuildFile; fileRef = 50DA740F2120177E00C73019 /* allplayers.json */; };
 		50DBBB861DD17523000EE4E4 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50DBBB851DD17523000EE4E4 /* MessageUI.framework */; };
+		50DD7DD8211FD1C400D66A85 /* PlayerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50DD7DD7211FD1C400D66A85 /* PlayerCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,7 +59,9 @@
 		5092B1451F2D8B5A0049EA26 /* SeasonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeasonCell.swift; sourceTree = "<group>"; };
 		5092B1491F2D90630049EA26 /* SeasonStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeasonStats.swift; sourceTree = "<group>"; };
 		50B1A6701FA33C8300BC4A62 /* DropMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropMenu.swift; sourceTree = "<group>"; };
+		50DA740F2120177E00C73019 /* allplayers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = allplayers.json; sourceTree = "<group>"; };
 		50DBBB851DD17523000EE4E4 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		50DD7DD7211FD1C400D66A85 /* PlayerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +96,7 @@
 				5092B1491F2D90630049EA26 /* SeasonStats.swift */,
 				50B1A6701FA33C8300BC4A62 /* DropMenu.swift */,
 				5001269821194E44004F4677 /* Player.swift */,
+				50DD7DD7211FD1C400D66A85 /* PlayerCell.xib */,
 				5001269C21195C13004F4677 /* PlayerCell.swift */,
 				5001269E211977C4004F4677 /* GetImage.swift */,
 			);
@@ -124,6 +129,7 @@
 		5026C2491D65716B0057D046 = {
 			isa = PBXGroup;
 			children = (
+				50DA740F2120177E00C73019 /* allplayers.json */,
 				5026C2541D65716B0057D046 /* FBS */,
 				5026C2531D65716B0057D046 /* Products */,
 				50DBBB841DD17523000EE4E4 /* Frameworks */,
@@ -227,7 +233,9 @@
 			files = (
 				5019B5D31D67EB6700423579 /* TwitterKitResources.bundle in Resources */,
 				5026C2621D65716B0057D046 /* LaunchScreen.storyboard in Resources */,
+				50DA74102120177E00C73019 /* allplayers.json in Resources */,
 				5019B5DD1D6D639000423579 /* Assets.xcassets in Resources */,
+				50DD7DD8211FD1C400D66A85 /* PlayerCell.xib in Resources */,
 				5026C25D1D65716B0057D046 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

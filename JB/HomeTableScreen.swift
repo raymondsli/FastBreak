@@ -15,6 +15,8 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
     var playerFirstNames: [String] = []
     var playerLastNames: [String] = []
     var playerImages: [String: UIImage] = [:]
+    var playerTeams: [String: String] = [:]
+    var playerPositions: [String: String] = [:]
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -23,27 +25,32 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
         tableView.delegate = self
         tableView.dataSource = self
         
-        if (playerIds.count == 0) {
-            getPlayerIds(urlAllPlayers: "https://stats.nba.com/stats/commonallplayers/?LeagueID=00&Season=2017-18&IsOnlyCurrentSeason=1")
-            sleep(1)
-        }
+        let nib = UINib(nibName: "PlayerCell", bundle: nil)
+        self.tableView.register(nib, forCellReuseIdentifier: "PlayerCell")
+        
+//        if (playerIds.count == 0) {
+//            getPlayerIds(urlAllPlayers: "https://stats.nba.com/stats/commonallplayers/?LeagueID=00&Season=2017-18&IsOnlyCurrentSeason=1")
+//            sleep(1)
+//        }
+
+        populateData()
         
         DispatchQueue.global(qos: .background).async {
             self.getPlayerImages()
         }
-        
+
         DispatchQueue.global(qos: .background).async {
             self.getPlayerImages2()
         }
-        
+
         DispatchQueue.global(qos: .background).async {
             self.getPlayerImages3()
         }
-        
+
         DispatchQueue.global(qos: .background).async {
             self.getPlayerImages4()
         }
-        
+
         DispatchQueue.global(qos: .background).async {
             self.getPlayerImages5()
         }
@@ -82,6 +89,22 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
         }).resume()
     }
     
+    func populateData() {
+        if let path = Bundle.main.path(forResource: "allplayers", ofType: "json") {
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+                let json = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves) as! [String: Any]
+                let resultSetsTemp: NSArray = json["resultSets"] as! NSArray
+                let resultSets = resultSetsTemp[0] as! [String: Any]
+                let rowSet: NSArray = resultSets["rowSet"] as! NSArray
+                
+                turnRowSetIntoPlayerIds(rowSet)
+            } catch {
+                print("Could not parse JSON")
+            }
+        }
+    }
+    
     func turnRowSetIntoPlayerIds(_ rowSet: NSArray) {
         var i: Int = 0
         
@@ -114,7 +137,65 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
             playerFirstNames.append(firstName)
             playerLastNames.append(lastName)
             
+            var team = currentPlayer[10] as! String
+            if team == "" {
+                team = "NA"
+            }
+            
+            playerTeams[firstName + " " + lastName] = team
+            
             i = i + 1
+        }
+    }
+    
+    func getPlayerData() {
+        var i = 0
+        
+        while i < playerFirstNames.count {
+            let fullName = playerFirstNames[i] + " " + playerLastNames[i]
+            let id = String(playerIds[fullName]!)
+            
+            let urlString = "https://stats.nba.com/stats/commonplayerinfo/?PlayerId=" + id
+            let url = URL(string: urlString)
+            
+            let request = URLRequest(url: url!)
+            do {
+                print("Calling \(fullName)")
+                let response: AutoreleasingUnsafeMutablePointer<URLResponse?>? = nil
+                let data = try NSURLConnection.sendSynchronousRequest(request, returning: response)
+                
+                let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String : Any]
+
+                //let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments) as! [String: Any]
+                let resultSetsTemp: NSArray = json["resultSets"] as! NSArray
+                let resultSets = resultSetsTemp[0] as! [String: Any]
+                let rowSet: NSArray = resultSets["rowSet"] as! NSArray
+                let currentPlayer: NSArray = rowSet[0] as! NSArray
+
+                let position = self.convertPosition(position: currentPlayer[14] as? String)
+                
+                playerPositions[fullName] = position
+            } catch {
+                print("Could not serialize")
+            }
+            
+            i = i + 1
+        }
+    }
+    
+    func convertPosition(position: String?) -> String {
+        if position == "Guard-Forward" || position == "Forward-Guard" {
+            return "G/F"
+        } else if position == "Guard" {
+            return "G"
+        } else if position == "Forward" {
+            return "F"
+        } else if position == "Center" {
+            return "C"
+        } else if position == "Forward-Center" || position == "Center-Forward" {
+            return "F/C"
+        } else {
+            return "NA"
         }
     }
     
@@ -276,23 +357,23 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
             let firstName = playerFirstNames[indexPath.row]
             let lastName = playerLastNames[indexPath.row]
             cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
+            cell.headshot.contentMode = .scaleAspectFit
+            cell.headshot.backgroundColor = .lightGray
             
             let fullName = firstName + " " + lastName
             
+            cell.name.adjustsFontSizeToFitWidth = true
+            cell.team.adjustsFontSizeToFitWidth = true
+            
             cell.name.text = namesToLabel[fullName]
-            cell.firstName = firstName
-            cell.lastName = lastName
+            cell.team.text = playerTeams[fullName]
             
             if let image = playerImages[fullName] {
-                cell.imageHeadshot.image = image
+                cell.headshot.image = image
             } else {
-                cell.imageHeadshot.image = UIImage(named: "Neutral")!
+                cell.headshot.image = UIImage(named: "Neutral")!
                 
                 DispatchQueue.global(qos: .userInitiated).async {
-                    if let v = tableView.indexPathsForVisibleRows, !v.contains(indexPath) {
-                        return
-                    }
-                    
                     let urlImage = "https://nba-players.herokuapp.com/players/" + lastName + "/" + firstName
                 
                     let url = URL(string: urlImage)
@@ -310,19 +391,14 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
                             self.playerImages[firstName + " " + lastName] = image
                             
                             if tableView.cellForRow(at: indexPath) != nil {
-                                cell.imageHeadshot.image = self.playerImages[firstName + " " + lastName]
+                                cell.headshot.image = self.playerImages[firstName + " " + lastName]
                             }
                         })
                     } else {
-                        DispatchQueue.main.async(execute: { () -> Void in
-                            self.playerImages[firstName + " " + lastName] = UIImage(named: "Neutral")!
-                        })
+                        self.playerImages[firstName + " " + lastName] = UIImage(named: "Neutral")!
                     }
                 }
             }
-            
-            cell.imageHeadshot.contentMode = .scaleAspectFit
-            cell.imageHeadshot.backgroundColor = .lightGray
             
             return cell
         } else {

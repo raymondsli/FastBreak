@@ -10,57 +10,18 @@ import UIKit
 
 class PlayerCell: UITableViewCell {
     
-
-    @IBOutlet weak var imageHeadshot: UIImageView!
+    @IBOutlet weak var headshot: UIImageView!
     @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var team: UILabel!
     
-    var firstName: String = ""
-    var lastName: String = ""
     
-    func setValues(firstName: String, lastName: String, image: UIImage) {
-        name.text = firstName + " " + lastName
-        imageHeadshot.image = image
-    }
-    func configureCell(_ firstName: String, lastName: String) {
-        name.text = firstName + " " + lastName
-        
-        let urlImage = "https://nba-players.herokuapp.com/players/" + lastName + "/" + firstName
-        
-        setImage(imageUrl: urlImage)
-        
+    class func instanceFromNib() -> UIView {
+        return UINib(nibName: "PlayerCell", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! UIView
     }
     
-    func setImage(imageUrl: String) {
-        let url = URL(string: imageUrl)
-        let data = try? Data(contentsOf: url!)
-        if data != nil {
-            imageHeadshot.image = UIImage(data: data!)
-        } else {
-            imageHeadshot.image = UIImage(named: "Basketball")
-        }
-        imageHeadshot.contentMode = .scaleAspectFit
-        
-//        let url = URL(string: imageUrl)
-//
-//        URLSession.shared.dataTask(with: url!, completionHandler: {(data, response, error) in
-//            if data != nil {
-//                do {
-//                    let image = UIImage(data: data!)
-//                    if (image != nil) {
-//                        self.imageHeadshot.image = image
-//                        self.imageHeadshot.contentMode = .scaleAspectFit
-////                        DispatchQueue.main.async(execute: {
-////                            self.imageHeadshot.image = image
-////                            self.imageHeadshot.contentMode = .scaleAspectFit
-////                        })
-//                    } else {
-//                        DispatchQueue.main.async(execute: {
-//                            self.imageHeadshot.image = UIImage(named: "Basketball")
-//                            self.imageHeadshot.contentMode = .scaleAspectFit
-//                        })
-//                    }
-//                }
-//            }
-//        }).resume()
+    func setValues(firstName: String, lastName: String, team: String, image: UIImage) {
+        name.text = firstName + " " + lastName
+        self.team.text = team
+        headshot.image = image
     }
 }

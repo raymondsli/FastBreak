@@ -15,6 +15,7 @@ class PlayerPersonal: UIView {
     @IBOutlet weak var draftLabel: UILabel!
     @IBOutlet weak var schoolLabel: UILabel!
     @IBOutlet weak var experienceLabel: UILabel!
+    @IBOutlet weak var heightWeightLabel: UILabel!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,6 +32,12 @@ class PlayerPersonal: UIView {
         addSubview(contentView)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        
+        birthDateLabel.adjustsFontSizeToFitWidth = true
+        draftLabel.adjustsFontSizeToFitWidth = true
+        schoolLabel.adjustsFontSizeToFitWidth = true
+        experienceLabel.adjustsFontSizeToFitWidth = true
+        heightWeightLabel.adjustsFontSizeToFitWidth = true
     }
     
 }

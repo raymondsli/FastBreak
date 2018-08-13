@@ -8,9 +8,9 @@
 
 import UIKit
 
-class PlayerStats: UIView {
+class PlayerRankings: UIView {
     
-    @IBOutlet var contentView: PlayerStats!
+    @IBOutlet var contentView: PlayerRankings!
     @IBOutlet weak var stat1: StatRow!
     @IBOutlet weak var stat2: StatRow!
     @IBOutlet weak var stat3: StatRow!
@@ -19,6 +19,9 @@ class PlayerStats: UIView {
     @IBOutlet weak var stat6: StatRow!
     @IBOutlet weak var stat7: StatRow!
     @IBOutlet weak var stat8: StatRow!
+    @IBOutlet weak var stat9: StatRow!
+    @IBOutlet weak var stat10: StatRow!
+    @IBOutlet weak var stat11: StatRow!
     
     
     override init(frame: CGRect) {
@@ -32,9 +35,23 @@ class PlayerStats: UIView {
     }
     
     private func commonInit() {
-        Bundle.main.loadNibNamed("PlayerStats", owner: self, options: nil)
+        Bundle.main.loadNibNamed("PlayerRankings", owner: self, options: nil)
         addSubview(contentView)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        
+        stat1.backgroundColor = .white
+        stat2.backgroundColor = .white
+        stat3.backgroundColor = .white
+        stat4.backgroundColor = .white
+        stat5.backgroundColor = .white
+        stat6.backgroundColor = .white
+        stat7.backgroundColor = .white
+        stat8.backgroundColor = .white
+        stat9.backgroundColor = .white
+        stat10.backgroundColor = .white
+        stat11.backgroundColor = .white
+        
+        
     }
 }

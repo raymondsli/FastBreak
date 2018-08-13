@@ -50,31 +50,9 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let homeVC = self.tabBarController?.viewControllers?[0] as! HomeViewController
-        playerDict = homeVC.playerDict
-        
-        let userDefaults = UserDefaults.standard
-        if let decoded = userDefaults.object(forKey: "curPlayer") as? Data {
-            curPlayer = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! String
-        } else {
-            curPlayer = "Jaylen Brown"
-            let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: curPlayer)
-            userDefaults.set(encodedData, forKey: "curPlayer")
-            userDefaults.synchronize()
-        }
-        
         seasonStats.text = "Loading..."
         lastSeasonStats.text = "Loading..."
-        getSeasonJSON(gameLogURL: playerDict[curPlayer]![2])
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        let userDefaults = UserDefaults.standard
-        if let decoded = userDefaults.object(forKey: "curPlayer") as? Data {
-            if NSKeyedUnarchiver.unarchiveObject(with: decoded) as? String != curPlayer {
-                self.viewDidLoad()
-            }
-        }
+        getSeasonJSON(gameLogURL: "http://stats.nba.com/stats/playercareerstats?LeagueID=00&PerMode=PerGame&PlayerID=1627759")
     }
     
     //Function that gets JSON data from the URL

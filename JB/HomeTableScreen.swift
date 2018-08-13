@@ -483,11 +483,17 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
     //Called before the segue is executed. Sets the labels of the detailed game view.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toPlayer" {
-            let upcoming: HomeViewController = segue.destination as! HomeViewController
+            let upcomingTabVC: UITabBarController = segue.destination as! UITabBarController
+            let upcoming: HomeViewController = upcomingTabVC.viewControllers?[0] as! HomeViewController
+            
             let indexPath = self.tableView.indexPathForSelectedRow!
             
             let firstName = playerFirstNames[indexPath.row]
             let lastName = playerLastNames[indexPath.row]
+            
+            if let image = playerImages[firstName + " " + lastName] {
+                upcoming.playerImage = image
+            }
             
             upcoming.playerId = playerIds[firstName + " " + lastName]!
             upcoming.firstName = firstName

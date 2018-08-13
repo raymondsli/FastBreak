@@ -30,7 +30,7 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
     
     //Function that gets JSON data from the URL
     func getGameLogJSON() {
-        let url = URL(string: "temp")
+        let url = URL(string: "http://stats.nba.com/stats/playergamelog?DateFrom=&DateTo=&LeagueID=00&PlayerID=1627759&Season=2017-18&SeasonType=Regular+Season")
         
         URLSession.shared.dataTask(with: url!, completionHandler: {(data, response, error) in
             if data != nil {
@@ -243,7 +243,7 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
 //            upcoming.additionalStatsString = additionalStatsLabel
 //            upcoming.shootingDetailsString = shootingDetailsLabel
             
-            self.tableView.deselectRow(at: indexPath, animated: true)
+            self.tableView.deselectRow(at: self.tableView.indexPathForSelectedRow!, animated: true)
         }
     }
     

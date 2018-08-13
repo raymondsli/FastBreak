@@ -10,8 +10,11 @@ import MessageUI
 
 class HomeViewController: UIViewController, NSURLConnectionDelegate, MFMailComposeViewControllerDelegate {
     
+    @IBOutlet weak var headerView: PlayerOverviewHead!
+    @IBOutlet weak var personalView: PlayerPersonal!
+    @IBOutlet weak var rankingsView: PlayerRankings!
     
-    
+    var playerImage: UIImage?
     var playerId: Int = -1
     var firstName: String = ""
     var lastName: String = ""
@@ -20,6 +23,11 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, MFMailCompo
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if playerImage == nil {
+            playerImage = getPlayerImage()
+        }
+        
         getPlayer()
         sleep(1)
         
@@ -46,35 +54,9 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, MFMailCompo
             }
         }).resume()
     }
-
-    func turnRowSetIntoPlayer(_ rowSet: NSArray) {
-        let currentPlayer: NSArray = rowSet[0] as! NSArray
-        let firstName = currentPlayer[1] as! String
-        let lastName = currentPlayer[2] as! String
-
-        let height = currentPlayer[10] as! String
-        let weight = currentPlayer[11] as! String
-
-        let position = currentPlayer[14] as! String
-        let currentTeam = currentPlayer[18] as! String
-        let yearsExperience = String(describing: currentPlayer[12])
-        let jerseyNumber = currentPlayer[13] as! String
-        var school = currentPlayer[7] as? String
-        if school == nil {
-            school = "NA"
-        } else {
-            school = currentPlayer[7] as? String
-        }
-        let draftYear = currentPlayer[26] as! String
-        let draftRound = currentPlayer[27] as! String
-        let draftNumber = currentPlayer[28] as! String
-
-        player = Player(firstName: firstName, lastName: lastName, height: height, weight: weight, position: position, currentTeam: currentTeam, yearsExperience: yearsExperience, jerseyNumber: jerseyNumber, school: school!, draftYear: draftYear, draftRound: draftRound, draftNumber: draftNumber)
-        
-    }
     
     func tempNextGameJSON() {
-        guard let teamAbv = player.currentTeam, let team = getTeamName(team: teamAbv) else {
+        guard let team = getTeamName(team: player.currentTeam) else {
             return
         }
         
@@ -97,24 +79,42 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, MFMailCompo
                         let isHomeTeam = nextGame["isHomeTeam"] as! Bool
                         
                         var nextGameOpponent = ""
+                        var homeOAway = ""
                         
                         if isHomeTeam {
                             let vTeam = nextGame["vTeam"] as! [String: String]
                             let oppo = vTeam["teamId"]
-                            let nextGameOpponent = self.getTeamFromId(teamId: oppo!)
+                            nextGameOpponent = self.getTeamFromId(teamId: oppo!)
+                            homeOAway = "vs"
                         } else {
                             let hTeam = nextGame["hTeam"] as! [String: String]
                             let oppo = hTeam["teamId"]
-                            let nextGameOpponent = self.getTeamFromId(teamId: oppo!)
+                            nextGameOpponent = self.getTeamFromId(teamId: oppo!)
+                            homeOAway = "@"
                         }
                         
                         let nextGameDate = self.formatDate(date: startDate)
                         let nextGameTime = self.formatTime(time: startTime)
+                        let nextGameDetails = homeOAway + " " + nextGameOpponent + " - " + nextGameTime
+                        
+                        let birthDetails = self.player.birthDate + ", (Age: " + self.player.age + ")"
+                        let draftDetails = self.player.draftYear + ": Rd " + self.player.draftRound + ", Pick " + self.player.draftNumber
+                        let heightWeightDetails = self.player.height + ", " + self.player.weight + " lbs"
                         
                         DispatchQueue.main.async(execute: {
-//                            self.nextOpponent.text = nextGameOpponent
-//                            self.gameDate.text = nextGameDate
-//                            self.gameTime.text = nextGameTime
+                            self.headerView.headshot.image = self.player.headshot
+                            self.headerView.number.text = "#" + self.player.jerseyNumber
+                            self.headerView.position.text = self.player.position
+                            self.headerView.name.text = self.displayName
+                            self.headerView.team.text = self.player.currentTeam
+                            self.headerView.gameDate.text = "Next Game: " + nextGameDate
+                            self.headerView.gameDetail.text = nextGameDetails
+
+                            self.personalView.birthDateLabel.text = birthDetails
+                            self.personalView.draftLabel.text = draftDetails
+                            self.personalView.schoolLabel.text = self.player.school
+                            self.personalView.experienceLabel.text = self.player.yearsExperience
+                            self.personalView.heightWeightLabel.text = heightWeightDetails
                         })
                     }
                 } catch {
@@ -204,6 +204,64 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, MFMailCompo
 //        }).resume()
 //    }
     
+    func turnRowSetIntoPlayer(_ rowSet: NSArray) {
+        let currentPlayer: NSArray = rowSet[0] as! NSArray
+        let firstName = currentPlayer[1] as! String
+        let lastName = currentPlayer[2] as! String
+        
+        let heightString = currentPlayer[10] as! String
+        let height = convertHeight(height: heightString)
+        let weight = currentPlayer[11] as! String
+        
+        let positionLong = currentPlayer[14] as! String
+        let position = convertPosition(position: positionLong)
+        let currentTeam = currentPlayer[18] as! String
+        let yearsExperience = String(describing: currentPlayer[12])
+        let birthDateString = currentPlayer[6] as! String
+        let stringArr = convertBirthDate(birthDate: birthDateString)
+        let birthDate = stringArr[0]
+        let age = stringArr[1]
+        let jerseyNumber = currentPlayer[13] as! String
+        var school = currentPlayer[7] as? String
+        if school == nil {
+            school = "NA"
+        } else {
+            school = currentPlayer[7] as? String
+        }
+        let draftYear = currentPlayer[26] as! String
+        let draftRound = currentPlayer[27] as! String
+        let draftNumber = currentPlayer[28] as! String
+        
+        var pImage: UIImage
+        if let _image = playerImage {
+            pImage = _image
+        } else {
+            pImage = UIImage(named: "NoHeadshot")!
+        }
+        
+        player = Player(headshot: pImage, firstName: firstName, lastName: lastName, height: height, weight: weight, position: position, currentTeam: currentTeam, yearsExperience: yearsExperience, birthDate: birthDate, age: age, jerseyNumber: jerseyNumber, school: school!, draftYear: draftYear, draftRound: draftRound, draftNumber: draftNumber)
+        
+    }
+    
+    func getPlayerImage() -> UIImage {
+        let urlImage = "https://nba-players.herokuapp.com/players/" + lastName + "/" + firstName
+        let url = URL(string: urlImage)
+        
+        let data = try? Data(contentsOf: url!)
+        
+        if data == nil {
+            return UIImage(named: "NoHeadshot")!
+        }
+        
+        let image = UIImage(data: data!)
+        
+        if let _image = image {
+            return _image
+        }
+        
+        return UIImage(named: "NoHeadshot")!
+    }
+    
     func formatGameDate(input: String) -> String {
         let index1 = input.index(input.startIndex, offsetBy: 4)
         let year: String = input.substring(to: index1)
@@ -245,6 +303,107 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, MFMailCompo
         let hour: String = String(describing: intHour)
         
         return hour + ":" + minute + " "  + ampm + " PST"
+    }
+    
+    func convertHeight(height: String) -> String {
+        let heightArr = height.components(separatedBy: "-")
+        return heightArr[0] + "'" + heightArr[1] + "''"
+    }
+    
+    func convertPosition(position: String) -> String {
+        if position == "Guard" {
+            return "G"
+        } else if position == "Forward" {
+            return "F"
+        } else if position == "Center" {
+            return "C"
+        } else if position == "Guard-Forward" || position == "Forward-Guard" {
+            return "G/F"
+        } else if position == "Forward-Center" || position == "Center-Forward" {
+            return "F/C"
+        }
+        
+        return "NA"
+    }
+    
+    func convertBirthDate(birthDate: String) -> [String] {
+        let yearEndIndex = birthDate.index(birthDate.startIndex, offsetBy: 4)
+        
+        let monthStartIndex = birthDate.index(birthDate.startIndex, offsetBy: 5)
+        let monthEndIndex = birthDate.index(birthDate.startIndex, offsetBy: 7)
+        
+        let dayStartIndex = birthDate.index(birthDate.startIndex, offsetBy: 8)
+        let dayEndIndex = birthDate.index(birthDate.startIndex, offsetBy: 10)
+        
+        let yearRange = birthDate.startIndex..<yearEndIndex
+        let monthRange = monthStartIndex..<monthEndIndex
+        let dayRange = dayStartIndex..<dayEndIndex
+        
+        let yearString = birthDate[yearRange]
+        let monthStringNumber = birthDate[monthRange]
+        let monthString = convertMonth(month: monthStringNumber)
+        let dayString = birthDate[dayRange]
+        
+        let age = findAge(dayString: dayString, monthString: monthStringNumber, yearString: yearString)
+        
+        
+        return [monthString + " " + dayString + ", " + yearString, age]
+    }
+    
+    func findAge(dayString: String, monthString: String, yearString: String) -> String {
+        guard let day = Int(dayString), let month = Int(monthString), let year = Int(yearString) else {
+            return ""
+        }
+        
+        let currentDate = Date()
+        let calendar = Calendar.current
+        
+        let curYear = calendar.component(.year, from: currentDate)
+        let curMonth = calendar.component(.month, from: currentDate)
+        let curDay = calendar.component(.day, from: currentDate)
+        
+        if curMonth == month {
+            if curDay >= day {
+                return String(curYear - year)
+            } else {
+                return String(curYear - year - 1)
+            }
+        } else if curMonth < month {
+            return String(curYear - year - 1)
+        }
+        
+        return String(curYear - year)
+    }
+    
+    func convertMonth(month: String) -> String {
+        switch month {
+        case "01":
+            return "Jan"
+        case "02":
+            return "Feb"
+        case "03":
+            return "Mar"
+        case "04":
+            return "Apr"
+        case "05":
+            return "May"
+        case "06":
+            return "June"
+        case "07":
+            return "July"
+        case "08":
+            return "Aug"
+        case "09":
+            return "Sep"
+        case "10":
+            return "Oct"
+        case "11":
+            return "Nov"
+        case "12":
+            return "Dec"
+        default:
+            return ""
+        }
     }
     
     
@@ -381,6 +540,12 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, MFMailCompo
             return ""
         }
     }
+    
+    @IBAction func backPressed(_ sender: Any) {
+        self.performSegue(withIdentifier: "backToSelection", sender: self)
+    }
+    
+    
 }
 
 

@@ -9,13 +9,6 @@ import UIKit
 
 class DetailedGameVC: UIViewController {
 
-    
-    
-    var gameInfoString: String!
-    var mainStatsString: String!
-    var additionalStatsString: String!
-    var shootingDetailsString: String!
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = false

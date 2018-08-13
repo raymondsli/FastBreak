@@ -69,14 +69,14 @@
                         <outlet property="drop" destination="4nj-kK-9GT" id="cI6-V4-S20"/>
                         <outlet property="searchBar" destination="MJN-j8-CfI" id="UuE-6y-equ"/>
                         <outlet property="tableView" destination="hHB-Ti-avJ" id="E3Y-4y-KUl"/>
-                        <segue destination="9pv-A4-QxB" kind="show" identifier="toPlayer" id="MAE-5w-wGF"/>
+                        <segue destination="49e-Tb-3d3" kind="show" identifier="toPlayer" id="9HI-wy-fmc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="36d-cZ-a7x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1078" y="-669"/>
+            <point key="canvasLocation" x="-1442" y="-217"/>
         </scene>
-        <!--Home-->
+        <!--Overview-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
                 <viewController id="9pv-A4-QxB" customClass="HomeViewController" customModule="FBS" customModuleProvider="target" sceneMemberID="viewController">
@@ -85,22 +85,65 @@
                         <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1125"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l2g-N3-mH2">
-                                <rect key="frame" x="0.0" y="20" width="375" height="128"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l2g-N3-mH2" userLabel="headerView" customClass="PlayerOverviewHead" customModule="FBS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="375" height="250"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Xa-1i-JBK" userLabel="headerView" customClass="PlayerRankings" customModule="FBS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="538" width="375" height="538"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QGh-hk-Pa8" customClass="PlayerPersonal" customModule="FBS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="314" width="375" height="225"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Me-6X-3Vg">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Overview" id="j7s-D0-8sk" userLabel="Player">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" style="plain" id="e31-bk-2jG">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="gM4-ce-D7B">
+                                                <rect key="frame" x="16" y="6" width="83" height="32"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                <state key="normal" title="Back">
+                                                    <color key="titleColor" red="0.15198446139999999" green="0.235571747" blue="0.2795971062" alpha="0.81393045770000005" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="backPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="QG0-mv-gaR"/>
+                                                </connections>
+                                            </button>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="barPosition">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" image="Home" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Overview" image="Home" id="Axl-as-88g"/>
+                    <size key="freeformSize" width="375" height="1125"/>
+                    <connections>
+                        <outlet property="headerView" destination="l2g-N3-mH2" id="2Wi-Pr-Unh"/>
+                        <outlet property="personalView" destination="QGh-hk-Pa8" id="7wa-gH-oim"/>
+                        <outlet property="rankingsView" destination="9Xa-1i-JBK" id="ic0-HS-STT"/>
+                        <segue destination="SK2-nT-FZd" kind="show" identifier="backToSelection" id="G2w-Dg-YNp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4" y="-668.81559220389806"/>
+            <point key="canvasLocation" x="494" y="-397"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -113,7 +156,7 @@
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
-                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
+                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="X2R-Ga-oz7"/>
                         <segue destination="J7g-wv-9tT" kind="relationship" relationship="viewControllers" id="3Rb-Kr-5Y3"/>
                         <segue destination="ycx-nU-GkU" kind="relationship" relationship="viewControllers" id="ZPo-KS-U2L"/>
                         <segue destination="RLK-5P-RUN" kind="relationship" relationship="viewControllers" id="Bo6-Fh-cGU"/>
@@ -121,7 +164,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4" y="10"/>
+            <point key="canvasLocation" x="-564" y="358"/>
         </scene>
         <!--Twitter-->
         <scene sceneID="nwG-gK-MiE">
@@ -151,7 +194,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oK4-cO-Cxe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-794" y="770"/>
+            <point key="canvasLocation" x="-1026" y="1120"/>
         </scene>
         <!--Season Stats-->
         <scene sceneID="SDF-Aw-ygE">
@@ -654,7 +697,7 @@ Free Throws: 0/0 = ∞</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yfe-dx-2y3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1441" y="-636"/>
+            <point key="canvasLocation" x="2380" y="-636.4317841079461"/>
         </scene>
         <!--Detailed GameVC-->
         <scene sceneID="Y2w-xt-dKT">
@@ -713,7 +756,7 @@ Free Throws: 0/0 = ∞</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tCD-IJ-Mbx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2302" y="-624"/>
+            <point key="canvasLocation" x="3240.8000000000002" y="-624.28785607196403"/>
         </scene>
         <!--Game Log-->
         <scene sceneID="mY2-Se-71X">
@@ -732,7 +775,7 @@ Free Throws: 0/0 = ∞</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K9Q-az-Ve4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="782" y="-636"/>
+            <point key="canvasLocation" x="1720.8" y="-636.4317841079461"/>
         </scene>
     </scenes>
     <resources>
@@ -741,7 +784,4 @@ Free Throws: 0/0 = ∞</string>
         <image name="News" width="25" height="25"/>
         <image name="Twitter" width="25" height="25"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="MAE-5w-wGF"/>
-    </inferredMetricsTieBreakers>
 </document>

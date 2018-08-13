@@ -34,8 +34,8 @@
 		50DA74142120DD7100C73019 /* PlayerOverviewHead.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DA74132120DD7100C73019 /* PlayerOverviewHead.swift */; };
 		50DA74162120FB5700C73019 /* PlayerPersonal.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50DA74152120FB5700C73019 /* PlayerPersonal.xib */; };
 		50DA74182120FB6200C73019 /* PlayerPersonal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DA74172120FB6200C73019 /* PlayerPersonal.swift */; };
-		50DA741A212104E300C73019 /* PlayerStats.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50DA7419212104E300C73019 /* PlayerStats.xib */; };
-		50DA741C212104ED00C73019 /* PlayerStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DA741B212104ED00C73019 /* PlayerStats.swift */; };
+		50DA741A212104E300C73019 /* PlayerRankings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50DA7419212104E300C73019 /* PlayerRankings.xib */; };
+		50DA741C212104ED00C73019 /* PlayerRankings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DA741B212104ED00C73019 /* PlayerRankings.swift */; };
 		50DA741E212110B200C73019 /* StatRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50DA741D212110B200C73019 /* StatRow.xib */; };
 		50DA7420212110C400C73019 /* StatRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DA741F212110C400C73019 /* StatRow.swift */; };
 		50DBBB861DD17523000EE4E4 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50DBBB851DD17523000EE4E4 /* MessageUI.framework */; };
@@ -72,8 +72,8 @@
 		50DA74132120DD7100C73019 /* PlayerOverviewHead.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerOverviewHead.swift; sourceTree = "<group>"; };
 		50DA74152120FB5700C73019 /* PlayerPersonal.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerPersonal.xib; sourceTree = "<group>"; };
 		50DA74172120FB6200C73019 /* PlayerPersonal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerPersonal.swift; sourceTree = "<group>"; };
-		50DA7419212104E300C73019 /* PlayerStats.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerStats.xib; sourceTree = "<group>"; };
-		50DA741B212104ED00C73019 /* PlayerStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerStats.swift; sourceTree = "<group>"; };
+		50DA7419212104E300C73019 /* PlayerRankings.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerRankings.xib; sourceTree = "<group>"; };
+		50DA741B212104ED00C73019 /* PlayerRankings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerRankings.swift; sourceTree = "<group>"; };
 		50DA741D212110B200C73019 /* StatRow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatRow.xib; sourceTree = "<group>"; };
 		50DA741F212110C400C73019 /* StatRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatRow.swift; sourceTree = "<group>"; };
 		50DBBB851DD17523000EE4E4 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -119,8 +119,8 @@
 				50DA74132120DD7100C73019 /* PlayerOverviewHead.swift */,
 				50DA74152120FB5700C73019 /* PlayerPersonal.xib */,
 				50DA74172120FB6200C73019 /* PlayerPersonal.swift */,
-				50DA7419212104E300C73019 /* PlayerStats.xib */,
-				50DA741B212104ED00C73019 /* PlayerStats.swift */,
+				50DA7419212104E300C73019 /* PlayerRankings.xib */,
+				50DA741B212104ED00C73019 /* PlayerRankings.swift */,
 				50DA741D212110B200C73019 /* StatRow.xib */,
 				50DA741F212110C400C73019 /* StatRow.swift */,
 			);
@@ -145,7 +145,6 @@
 				5019B5DB1D68F4CB00423579 /* DetailedGameVC.swift */,
 				5019B5D91D68085F00423579 /* SeasonStatsViewController.swift */,
 				5019B5D51D67EC7700423579 /* TwitterTimeline.swift */,
-				5026C2551D65716B0057D046 /* AppDelegate.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -171,6 +170,7 @@
 		5026C2541D65716B0057D046 /* FBS */ = {
 			isa = PBXGroup;
 			children = (
+				5026C2551D65716B0057D046 /* AppDelegate.swift */,
 				5019B5CD1D67EB6700423579 /* Fabric.framework */,
 				5019B5CE1D67EB6700423579 /* TwitterKit.framework */,
 				5019B5CF1D67EB6700423579 /* TwitterKitResources.bundle */,
@@ -256,7 +256,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5019B5D31D67EB6700423579 /* TwitterKitResources.bundle in Resources */,
-				50DA741A212104E300C73019 /* PlayerStats.xib in Resources */,
+				50DA741A212104E300C73019 /* PlayerRankings.xib in Resources */,
 				5026C2621D65716B0057D046 /* LaunchScreen.storyboard in Resources */,
 				50DA74102120177E00C73019 /* allplayers.json in Resources */,
 				5019B5DD1D6D639000423579 /* Assets.xcassets in Resources */,
@@ -297,7 +297,7 @@
 				5019B5DA1D68085F00423579 /* SeasonStatsViewController.swift in Sources */,
 				5001269D21195C13004F4677 /* PlayerCell.swift in Sources */,
 				5092B1461F2D8B5A0049EA26 /* SeasonCell.swift in Sources */,
-				50DA741C212104ED00C73019 /* PlayerStats.swift in Sources */,
+				50DA741C212104ED00C73019 /* PlayerRankings.swift in Sources */,
 				5026C2701D65B4D80057D046 /* GameLogViewController.swift in Sources */,
 				5001269921194E44004F4677 /* Player.swift in Sources */,
 				50DA74182120FB6200C73019 /* PlayerPersonal.swift in Sources */,

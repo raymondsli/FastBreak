@@ -160,7 +160,7 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
             currentTeamFilter = "All Teams"
         } else {
             if currentSearchFilter == "" {
-                currentPlayerNames = playerNames.filter { playerTeams[$0] == team }
+                currentPlayerNames = playerNames.filter { return playerTeams[$0] == team }
             } else {
                 currentPlayerNames = playerNames.filter {
                     playerTeams[$0] == team && $0.lowercased().contains(currentSearchFilter)
@@ -230,7 +230,7 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
                 team = "NA"
             }
             
-            playerTeams[firstName + " " + lastName] = team
+            playerTeams[playerName] = team
             
             i = i + 1
         }
@@ -395,11 +395,11 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
         var characterSet = CharacterSet.letters.inverted
         characterSet.remove(charactersIn: "-")
         
-        if fullNameArr.count != 2 {
+        if fullNameArr.count < 2 {
             return ""
         }
         
-        return fullNameArr[0].components(separatedBy: characterSet).joined()
+        return fullNameArr[fullNameArr.count - 2].components(separatedBy: characterSet).joined()
     }
     
     func getLastName(playerName: String) -> String {
@@ -410,8 +410,8 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
         
         if fullNameArr.count == 1 {
             return fullNameArr[0].components(separatedBy: characterSet).joined()
-        } else if fullNameArr.count == 2 {
-            return fullNameArr[1].components(separatedBy: characterSet).joined()
+        } else if fullNameArr.count >= 2 {
+            return fullNameArr[fullNameArr.count - 1].components(separatedBy: characterSet).joined()
         }
         
         return ""
@@ -433,8 +433,9 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
             cell.name.adjustsFontSizeToFitWidth = true
             cell.team.adjustsFontSizeToFitWidth = true
             
-            cell.name.text = namesToLabel[fullName]
-            cell.team.text = playerTeams[fullName]
+            let displayName = namesToLabel[fullName]
+            cell.name.text = displayName
+            cell.team.text = playerTeams[displayName!]
             
             if let image = playerImages[fullName] {
                 cell.headshot.image = image
@@ -475,23 +476,26 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        self.performSegue(withIdentifier: "showDetailedGame", sender: self)
-//        self.tableView.deselectRow(at: indexPath, animated: true)
+        self.performSegue(withIdentifier: "toPlayer", sender: self)
+        self.tableView.deselectRow(at: indexPath, animated: true)
     }
     
     //Called before the segue is executed. Sets the labels of the detailed game view.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "showDetailedGame" {
-//            let upcoming: DetailedGameVC = segue.destination as! DetailedGameVC
-//            let indexPath = self.tableView.indexPathForSelectedRow!
-//
-//            upcoming.gameInfoString = titleLabel
-//            upcoming.mainStatsString = mainStatsLabel
-//            upcoming.additionalStatsString = additionalStatsLabel
-//            upcoming.shootingDetailsString = shootingDetailsLabel
-//
-//            self.tableView.deselectRow(at: indexPath, animated: true)
-//        }
+        if segue.identifier == "toPlayer" {
+            let upcoming: HomeViewController = segue.destination as! HomeViewController
+            let indexPath = self.tableView.indexPathForSelectedRow!
+            
+            let firstName = playerFirstNames[indexPath.row]
+            let lastName = playerLastNames[indexPath.row]
+            
+            upcoming.playerId = playerIds[firstName + " " + lastName]!
+            upcoming.firstName = firstName
+            upcoming.lastName = lastName
+            upcoming.displayName = namesToLabel[firstName + " " + lastName]!
+
+            self.tableView.deselectRow(at: indexPath, animated: true)
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

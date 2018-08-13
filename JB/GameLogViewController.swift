@@ -1,8 +1,8 @@
 //
-//  SecondViewController.swift
+//  GameLogViewController.swift
 //
-//  Created by Raymond Li on 10/24/17.
-//  Copyright © 2017 Raymond Li. All rights reserved.
+//  Created by Raymond Li on 8/12/18.
+//  Copyright © 2018 Raymond Li. All rights reserved.
 //
 
 import UIKit
@@ -19,40 +19,18 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
         tableView.delegate = self
         tableView.dataSource = self
         
-        let homeVC = self.tabBarController?.viewControllers?[0] as! HomeViewController
-        playerDict = homeVC.playerDict
-        
-        games = []
-        
-        let userDefaults = UserDefaults.standard
-        if let decoded = userDefaults.object(forKey: "curPlayer") as? Data {
-            curPlayer = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! String
-        } else {
-            curPlayer = "Jaylen Brown"
-            let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: curPlayer)
-            userDefaults.set(encodedData, forKey: "curPlayer")
-            userDefaults.synchronize()
-        }
-        
-        getNBAJSON(gameLogURL: playerDict[curPlayer]![1])
+        getGameLogJSON()
 
         tableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
-        
-        let userDefaults = UserDefaults.standard
-        if let decoded = userDefaults.object(forKey: "curPlayer") as? Data {
-            if NSKeyedUnarchiver.unarchiveObject(with: decoded) as? String != curPlayer {
-                self.viewDidLoad()
-            }
-        }
     }
     
     //Function that gets JSON data from the URL
-    func getNBAJSON(gameLogURL: String) {
-        let url = URL(string: gameLogURL)
+    func getGameLogJSON() {
+        let url = URL(string: "temp")
         
         URLSession.shared.dataTask(with: url!, completionHandler: {(data, response, error) in
             if data != nil {
@@ -175,120 +153,104 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "GameCell") as? GameCell {
             cell.accessoryView?.backgroundColor = UIColor.black
-            //Check if cell needs to be game. If so, load labels with appropriate text.
-            if games[indexPath.row].label == "game" {
-                let totalPoints = games[indexPath.row].totalPoints
-                let totalRebounds = games[indexPath.row].totalRebounds
-                let totalAssists = games[indexPath.row].totalAssists
-                let totalSteals = games[indexPath.row].totalSteals
-                let totalBlocks = games[indexPath.row].totalBlocks
-                let totalShootingFraction = games[indexPath.row].totalShootingFraction
-                
-                let mainStats = totalPoints + "/" + totalRebounds + "/" + totalAssists + "/" + totalSteals + "/" + totalBlocks
-                
-                cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
-                
-                cell.configureCell(games[indexPath.row].dateLocation, gameMainStats: mainStats, gameShootingF: totalShootingFraction)
-            } else {
-                cell.accessoryType = UITableViewCellAccessoryType.none
-                cell.configureCell(games[indexPath.row].label, gameMainStats: games[indexPath.row].dateLocation, gameShootingF: "")
-            }
-            
-            //Sets cell background color
-            //cell.backgroundColor = UIColor(red: games[indexPath.row].backgroundRed, green: games[indexPath.row].backgroundGreen, blue: games[indexPath.row].backgroundBlue, alpha: games[indexPath.row].backgroundAlpha)
-            
-            return cell
-        } else {
-            return GameCell()
-        }
-    }
-    
-    //Called when user taps on a cell. Performs segue if the cell is a game. Otherwise do nothing.
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if games[indexPath.row].label == "game" {
-            self.performSegue(withIdentifier: "showDetailedGame", sender: self)
-        } else {
-            self.tableView.deselectRow(at: indexPath, animated: true)
-        }
-    }
-    
-    //Called before the segue is executed. Sets the labels of the detailed game view.
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showDetailedGame" {
-            let upcoming: DetailedGameVC = segue.destination as! DetailedGameVC
-            let indexPath = self.tableView.indexPathForSelectedRow!
-            
-            let dateLocation = games[indexPath.row].dateLocation
-            let gameNumber = games[indexPath.row].gameNumber
-            let score = games[indexPath.row].score
-            
+
             let totalPoints = games[indexPath.row].totalPoints
             let totalRebounds = games[indexPath.row].totalRebounds
             let totalAssists = games[indexPath.row].totalAssists
             let totalSteals = games[indexPath.row].totalSteals
             let totalBlocks = games[indexPath.row].totalBlocks
-            
             let totalShootingFraction = games[indexPath.row].totalShootingFraction
-            let totalShootingPercentage = games[indexPath.row].totalShootingPercentage
-            let twoPointShootingFraction = games[indexPath.row].twoPointShootingFraction
-            let twoPointShootingPercentage = games[indexPath.row].twoPointShootingPercentage
-            let threePointShootingFraction = games[indexPath.row].threePointShootingFraction
-            let threePointShootingPercentage = games[indexPath.row].threePointShootingPercentage
-            let freeThrowFraction = games[indexPath.row].freeThrowFraction
-            let freeThrowPercentage = games[indexPath.row].freeThrowPercentage
             
-            let turnovers = games[indexPath.row].turnovers
-            let minutes = games[indexPath.row].minutes
-            let fouls = games[indexPath.row].fouls
-            let offensiveRebounds = games[indexPath.row].offensiveRebounds
-            let defensiveRebounds = games[indexPath.row].defensiveRebounds
-            let plusMinus = games[indexPath.row].plusMinus
+            let mainStats = totalPoints + "/" + totalRebounds + "/" + totalAssists + "/" + totalSteals + "/" + totalBlocks
             
+            cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
+            
+            cell.configureCell(games[indexPath.row].dateLocation, gameMainStats: mainStats, gameShootingF: totalShootingFraction)
+            return cell
+        } else {
+            return GameCell()
+        }
+    }
 
-            
-            let pointsLabel = "Points: " + totalPoints
-            let reboundsLabel = "Rebounds: " + totalRebounds
-            let assistsLabel = "Assists: " + totalAssists
-            let stealsLabel = "Steals: " + totalSteals
-            let blocksLabel = "Blocks: " + totalBlocks
-            
-            let tSFLabel = "Total Shooting Fraction: " + totalShootingFraction
-            let tSPLabel = "Total Shooting Percentage: " + totalShootingPercentage
-            let twoPtSFLabel = "2PT Shooting Fraction: " + twoPointShootingFraction
-            let twoPtSPLabel = "2PT Shooting Percentage: " + twoPointShootingPercentage
-            let threePtSFLabel = "3PT Shooting Fraction: " + threePointShootingFraction
-            let threePtSPLabel = "3PT Shooting Percentage: " + threePointShootingPercentage
-            let freeThrowFLabel = "Free Throws Fraction: " + freeThrowFraction
-            let freeThrowPLabel = "Free Throws Percentage: " + freeThrowPercentage
-            
-            let minutesLabel = "Minutes: " + minutes
-            let turnoversLabel = "Turnovers: " + turnovers
-            let foulsLabel = "Fouls: " + fouls
-            let oRebLabel = "Offensive Rebounds: " + offensiveRebounds
-            let dRebLabel = "Defensive Rebounds: " + defensiveRebounds
-            let plusMinusLabel = "Plus Minus: " + plusMinus
-
-            
-            let titleLabel = "Game " + gameNumber + "\n" + dateLocation + "\n" + score
-            let mainStatsLabel = pointsLabel + "\n\n" + reboundsLabel + "\n\n" + assistsLabel + "\n\n" + stealsLabel + "\n\n" + blocksLabel
-            let additionalStatsLabel = minutesLabel + "\n\n" + turnoversLabel + "\n\n" + foulsLabel + "\n\n" + oRebLabel + "\n\n" + dRebLabel + "\n\n" + plusMinusLabel
-            let shootingDetailsLabel = tSFLabel + "\n" + tSPLabel + "\n\n" + freeThrowFLabel + "\n" + freeThrowPLabel + "\n\n" + twoPtSFLabel + "\n" + twoPtSPLabel + "\n\n" + threePtSFLabel + "\n" + threePtSPLabel
-            
-            upcoming.gameInfoString = titleLabel
-            upcoming.mainStatsString = mainStatsLabel
-            upcoming.additionalStatsString = additionalStatsLabel
-            upcoming.shootingDetailsString = shootingDetailsLabel
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "showDetailedGame", sender: self)
+        self.tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDetailedGame" {
+//            let upcoming: DetailedGameVC = segue.destination as! DetailedGameVC
+//            let indexPath = self.tableView.indexPathForSelectedRow!
+//
+//            let dateLocation = games[indexPath.row].dateLocation
+//            let gameNumber = games[indexPath.row].gameNumber
+//            let score = games[indexPath.row].score
+//
+//            let totalPoints = games[indexPath.row].totalPoints
+//            let totalRebounds = games[indexPath.row].totalRebounds
+//            let totalAssists = games[indexPath.row].totalAssists
+//            let totalSteals = games[indexPath.row].totalSteals
+//            let totalBlocks = games[indexPath.row].totalBlocks
+//
+//            let totalShootingFraction = games[indexPath.row].totalShootingFraction
+//            let totalShootingPercentage = games[indexPath.row].totalShootingPercentage
+//            let twoPointShootingFraction = games[indexPath.row].twoPointShootingFraction
+//            let twoPointShootingPercentage = games[indexPath.row].twoPointShootingPercentage
+//            let threePointShootingFraction = games[indexPath.row].threePointShootingFraction
+//            let threePointShootingPercentage = games[indexPath.row].threePointShootingPercentage
+//            let freeThrowFraction = games[indexPath.row].freeThrowFraction
+//            let freeThrowPercentage = games[indexPath.row].freeThrowPercentage
+//
+//            let turnovers = games[indexPath.row].turnovers
+//            let minutes = games[indexPath.row].minutes
+//            let fouls = games[indexPath.row].fouls
+//            let offensiveRebounds = games[indexPath.row].offensiveRebounds
+//            let defensiveRebounds = games[indexPath.row].defensiveRebounds
+//            let plusMinus = games[indexPath.row].plusMinus
+//
+//
+//
+//            let pointsLabel = "Points: " + totalPoints
+//            let reboundsLabel = "Rebounds: " + totalRebounds
+//            let assistsLabel = "Assists: " + totalAssists
+//            let stealsLabel = "Steals: " + totalSteals
+//            let blocksLabel = "Blocks: " + totalBlocks
+//
+//            let tSFLabel = "Total Shooting Fraction: " + totalShootingFraction
+//            let tSPLabel = "Total Shooting Percentage: " + totalShootingPercentage
+//            let twoPtSFLabel = "2PT Shooting Fraction: " + twoPointShootingFraction
+//            let twoPtSPLabel = "2PT Shooting Percentage: " + twoPointShootingPercentage
+//            let threePtSFLabel = "3PT Shooting Fraction: " + threePointShootingFraction
+//            let threePtSPLabel = "3PT Shooting Percentage: " + threePointShootingPercentage
+//            let freeThrowFLabel = "Free Throws Fraction: " + freeThrowFraction
+//            let freeThrowPLabel = "Free Throws Percentage: " + freeThrowPercentage
+//
+//            let minutesLabel = "Minutes: " + minutes
+//            let turnoversLabel = "Turnovers: " + turnovers
+//            let foulsLabel = "Fouls: " + fouls
+//            let oRebLabel = "Offensive Rebounds: " + offensiveRebounds
+//            let dRebLabel = "Defensive Rebounds: " + defensiveRebounds
+//            let plusMinusLabel = "Plus Minus: " + plusMinus
+//
+//
+//            let titleLabel = "Game " + gameNumber + "\n" + dateLocation + "\n" + score
+//            let mainStatsLabel = pointsLabel + "\n\n" + reboundsLabel + "\n\n" + assistsLabel + "\n\n" + stealsLabel + "\n\n" + blocksLabel
+//            let additionalStatsLabel = minutesLabel + "\n\n" + turnoversLabel + "\n\n" + foulsLabel + "\n\n" + oRebLabel + "\n\n" + dRebLabel + "\n\n" + plusMinusLabel
+//            let shootingDetailsLabel = tSFLabel + "\n" + tSPLabel + "\n\n" + freeThrowFLabel + "\n" + freeThrowPLabel + "\n\n" + twoPtSFLabel + "\n" + twoPtSPLabel + "\n\n" + threePtSFLabel + "\n" + threePtSPLabel
+//
+//            upcoming.gameInfoString = titleLabel
+//            upcoming.mainStatsString = mainStatsLabel
+//            upcoming.additionalStatsString = additionalStatsLabel
+//            upcoming.shootingDetailsString = shootingDetailsLabel
             
             self.tableView.deselectRow(at: indexPath, animated: true)
         }
     }
     
-    //We are using a one column table.
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    //Number of rows is the length of the games array.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return games.count
     }

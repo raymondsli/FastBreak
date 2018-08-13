@@ -8,11 +8,8 @@
 import UIKit
 
 class DetailedGameVC: UIViewController {
+
     
-    @IBOutlet weak var gameDetails: UILabel!
-    @IBOutlet weak var mainStats: UILabel!
-    @IBOutlet weak var additionalStats: UILabel!
-    @IBOutlet weak var shootingDetails: UILabel!
     
     var gameInfoString: String!
     var mainStatsString: String!
@@ -23,30 +20,15 @@ class DetailedGameVC: UIViewController {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = false
         self.navigationItem.title = "Game Details"
-        
-        gameDetails.text = gameInfoString
-        mainStats.text = mainStatsString
-        additionalStats.text = additionalStatsString
-        shootingDetails.text = shootingDetailsString
+//
+//        gameDetails.text = gameInfoString
+//        mainStats.text = mainStatsString
+//        additionalStats.text = additionalStatsString
+//        shootingDetails.text = shootingDetailsString
     }
 
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

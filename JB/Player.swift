@@ -18,13 +18,14 @@ class Player {
     var position: String?
     var currentTeam: String?
     var yearsExperience: String?
+    var birthDate: String?
     var jerseyNumber: String?
     var school: String?
     var draftYear: String?
     var draftRound: String?
     var draftNumber: String?
     
-    public init(firstName: String, lastName: String, height: String, weight: String, position: String, currentTeam: String, yearsExperience: String, jerseyNumber: String, school: String, draftYear: String, draftRound: String, draftNumber: String) {
+    public init(firstName: String, lastName: String, height: String, weight: String, position: String, currentTeam: String, yearsExperience: String, birthDate: String, jerseyNumber: String, school: String, draftYear: String, draftRound: String, draftNumber: String) {
         self.firstName = firstName
         self.lastName = lastName
         self.height = height
@@ -32,6 +33,7 @@ class Player {
         self.position = position
         self.currentTeam = currentTeam
         self.yearsExperience = yearsExperience
+        self.birthDate = birthDate
         self.jerseyNumber = jerseyNumber
         self.school = school
         self.draftYear = draftYear
@@ -42,6 +44,11 @@ class Player {
     public init(firstName: String, lastName: String) {
         self.firstName = firstName
         self.lastName = lastName
+    }
+    
+    public init () {
+        self.firstName = ""
+        self.lastName = ""
     }
     
 }

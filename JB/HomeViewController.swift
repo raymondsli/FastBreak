@@ -417,6 +417,10 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate {
     
     func convertHeight(height: String) -> String {
         let heightArr = height.components(separatedBy: "-")
+        if heightArr.count < 2 {
+            return ""
+        }
+        
         return heightArr[0] + "'" + heightArr[1] + "''"
     }
     

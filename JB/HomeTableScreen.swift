@@ -543,6 +543,10 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
         searchBar.resignFirstResponder()
     }
     
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        drop.closeItems()
+    }
+    
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         

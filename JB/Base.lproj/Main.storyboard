@@ -213,87 +213,9 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eOJ-Oj-ULd" userLabel="Background View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="701"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iym-Vz-Qjb" userLabel="Celtics 2017">
-                                                <rect key="frame" x="0.0" y="378.5" width="375" height="299"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="760" verticalCompressionResistancePriority="760" misplaced="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GGy-Nn-E4s" userLabel="Celtics 2017">
-                                                        <rect key="frame" x="8" y="9" width="359" height="282"/>
-                                                        <string key="text">Boston Celtics: 2016-2017
-
-Games: 0
-MPG: 0
-Points: 0
-Rebounds: 0
-Assists: 0
-Steals: 0
-Blocks: 0
-Turnovers: 0
-Total FG: 0/0 = ∞
-3PT FG: 0/0 = ∞
-Free Throws: 0/0 = ∞</string>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                                <color key="backgroundColor" red="0.46721644868157186" green="0.84185055205364989" blue="0.86529232111692855" alpha="1" colorSpace="calibratedRGB"/>
-                                                <constraints>
-                                                    <constraint firstItem="GGy-Nn-E4s" firstAttribute="centerY" secondItem="Iym-Vz-Qjb" secondAttribute="centerY" id="7ik-Us-KO6"/>
-                                                    <constraint firstItem="GGy-Nn-E4s" firstAttribute="centerX" secondItem="Iym-Vz-Qjb" secondAttribute="centerX" id="ByR-YD-xtF"/>
-                                                    <constraint firstAttribute="height" constant="299" id="cqp-ZC-5GB"/>
-                                                </constraints>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bti-3u-qbk" userLabel="Celtics 2018">
-                                                <rect key="frame" x="0.0" y="63.5" width="375" height="299"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="760" verticalCompressionResistancePriority="760" misplaced="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zxD-5z-tk3" userLabel="Celtics 2018">
-                                                        <rect key="frame" x="8" y="8" width="359" height="283"/>
-                                                        <string key="text">Boston Celtics: 2017-2018
-
-Games: 0
-MPG: 0
-Points: 0
-Rebounds: 0
-Assists: 0
-Steals: 0
-Blocks: 0
-Turnovers: 0
-Total FG: 0/0 = ∞
-3PT FG: 0/0 = ∞
-Free Throws: 0/0 = ∞</string>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                                <color key="backgroundColor" red="0.55229181783009162" green="0.84933765332234845" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <constraints>
-                                                    <constraint firstItem="zxD-5z-tk3" firstAttribute="centerX" secondItem="Bti-3u-qbk" secondAttribute="centerX" id="dKL-tH-FOQ"/>
-                                                    <constraint firstAttribute="height" constant="299" id="dZ3-AK-isw"/>
-                                                    <constraint firstItem="zxD-5z-tk3" firstAttribute="centerY" secondItem="Bti-3u-qbk" secondAttribute="centerY" id="jW4-Jz-1Ad"/>
-                                                </constraints>
-                                            </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Season Statistics" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="th7-ei-XEL">
-                                                <rect key="frame" x="113.5" y="24" width="148" height="21"/>
-                                                <color key="tintColor" red="0.35316711047829741" green="1" blue="0.64171964351268507" alpha="1" colorSpace="calibratedRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="148" id="EFx-i8-D67"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.098583028490000002" green="0.070316583670000002" blue="0.47592850129999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
                                         <color key="backgroundColor" red="0.52480608249407723" green="0.64105379196013113" blue="0.78105230148342053" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstItem="Iym-Vz-Qjb" firstAttribute="top" secondItem="Bti-3u-qbk" secondAttribute="bottom" constant="16" id="3od-UA-TNJ"/>
                                             <constraint firstAttribute="height" constant="701" id="P43-TD-rXU"/>
-                                            <constraint firstItem="Bti-3u-qbk" firstAttribute="top" secondItem="th7-ei-XEL" secondAttribute="bottom" constant="18.5" id="UMG-8F-Aj4"/>
-                                            <constraint firstItem="Bti-3u-qbk" firstAttribute="centerX" secondItem="eOJ-Oj-ULd" secondAttribute="centerX" id="Xwl-qG-ngq"/>
-                                            <constraint firstItem="th7-ei-XEL" firstAttribute="top" secondItem="eOJ-Oj-ULd" secondAttribute="top" constant="24" id="mG0-TK-vEV"/>
-                                            <constraint firstItem="th7-ei-XEL" firstAttribute="centerX" secondItem="eOJ-Oj-ULd" secondAttribute="centerX" id="qe1-vK-9ai"/>
-                                            <constraint firstItem="Iym-Vz-Qjb" firstAttribute="centerX" secondItem="eOJ-Oj-ULd" secondAttribute="centerX" id="zQK-Kk-Lfp"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -309,9 +231,7 @@ Free Throws: 0/0 = ∞</string>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="i6v-iv-cXE" secondAttribute="trailing" id="1wN-TI-NgI"/>
                             <constraint firstItem="i6v-iv-cXE" firstAttribute="leading" secondItem="Y4a-WI-C1U" secondAttribute="leading" id="gZc-hM-h78"/>
-                            <constraint firstItem="Bti-3u-qbk" firstAttribute="width" secondItem="Y4a-WI-C1U" secondAttribute="width" id="lxS-am-dYm"/>
                             <constraint firstItem="i6v-iv-cXE" firstAttribute="top" secondItem="Y4a-WI-C1U" secondAttribute="top" id="qAX-a0-m4i"/>
-                            <constraint firstItem="Iym-Vz-Qjb" firstAttribute="width" secondItem="Y4a-WI-C1U" secondAttribute="width" id="vCf-Ff-5XJ"/>
                             <constraint firstItem="eOJ-Oj-ULd" firstAttribute="width" secondItem="Y4a-WI-C1U" secondAttribute="width" id="xAT-2F-n8T"/>
                             <constraint firstItem="raJ-3K-qns" firstAttribute="top" secondItem="i6v-iv-cXE" secondAttribute="bottom" id="yh8-9H-Fa8"/>
                         </constraints>
@@ -320,10 +240,6 @@ Free Throws: 0/0 = ∞</string>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="750"/>
-                    <connections>
-                        <outlet property="lastSeasonStats" destination="GGy-Nn-E4s" id="c0J-2k-ueJ"/>
-                        <outlet property="seasonStats" destination="zxD-5z-tk3" id="FjU-Ix-jv7"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="61A-4w-lWU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

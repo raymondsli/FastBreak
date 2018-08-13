@@ -97,7 +97,7 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, MFMailCompo
                         let nextGameTime = self.formatTime(time: startTime)
                         let nextGameDetails = homeOAway + " " + nextGameOpponent + " - " + nextGameTime
                         
-                        let birthDetails = self.player.birthDate + ", (Age: " + self.player.age + ")"
+                        let birthDetails = self.player.birthDate + " (Age: " + self.player.age + ")"
                         let draftDetails = self.player.draftYear + ": Rd " + self.player.draftRound + ", Pick " + self.player.draftNumber
                         let heightWeightDetails = self.player.height + ", " + self.player.weight + " lbs"
                         
@@ -542,7 +542,8 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, MFMailCompo
     }
     
     @IBAction func backPressed(_ sender: Any) {
-        self.performSegue(withIdentifier: "backToSelection", sender: self)
+        //self.performSegue(withIdentifier: "backToSelection", sender: self)
+        self.dismiss(animated: true, completion: nil)
     }
     
     

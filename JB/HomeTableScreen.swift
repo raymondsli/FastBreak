@@ -42,8 +42,10 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
 //            getPlayerIds(urlAllPlayers: "https://stats.nba.com/stats/commonallplayers/?LeagueID=00&Season=2017-18&IsOnlyCurrentSeason=1")
 //            sleep(1)
 //        }
-
-        populateData()
+        
+        if playerIds.count == 0 {
+            populateData()
+        }
         
         DispatchQueue.global(qos: .background).async {
             self.getPlayerImages()

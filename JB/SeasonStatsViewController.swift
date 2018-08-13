@@ -9,12 +9,6 @@ import UIKit
 
 class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
     
-    var curPlayer: String! = ""
-    var playerDict: [String: [String]] = [:]
-    
-    @IBOutlet weak var seasonStats: UILabel!
-    @IBOutlet weak var lastSeasonStats: UILabel!
-    
     var teamString: String! = "0"
     var gamesString: String! = "0"
     var MPGString: String! = "0"
@@ -50,8 +44,6 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        seasonStats.text = "Loading..."
-        lastSeasonStats.text = "Loading..."
         getSeasonJSON(gameLogURL: "http://stats.nba.com/stats/playercareerstats?LeagueID=00&PerMode=PerGame&PlayerID=1627759")
     }
     
@@ -68,24 +60,15 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
                     //resultSets is a dictionary
                     let rowSet: NSArray = resultSets["rowSet"] as! NSArray
                     //rowSet is an array of arrays, where each subarray is a season
-                    let season: NSArray = rowSet[Int(self.playerDict[self.curPlayer]![3])!] as! NSArray
+                    let season: NSArray = rowSet[1] as! NSArray
                     self.turnRowSetIntoSeasonStats(rowSet: season)
                     
-                    if Int(self.playerDict[self.curPlayer]![3])! != 0 {
-                        let lastSeason: NSArray = rowSet[Int(self.playerDict[self.curPlayer]![3])! - 1] as! NSArray
-                        self.turnRowSetIntoLastSeasonStats(rowSet: lastSeason)
-                    }
+                    let lastSeason: NSArray = rowSet[0] as! NSArray
+                    self.turnRowSetIntoLastSeasonStats(rowSet: lastSeason)
+
                     
                     DispatchQueue.main.async(execute: {
-//                        self.seasonStats.text = self.teamString + " 2017-2018" + "\n\n" + "Games: " + self.gamesString + "\n" + "MPG: " + self.MPGString + "\n" + "Points: " + self.pointsString + "\n" + "Rebounds: " + self.reboundsString + "\n" + "Assists: " + self.assistsString + "\n" + "Steals: " + self.stealsString + "\n" + "Blocks: " + self.blocksString + "\n" + "Turnovers: " + self.turnoversString + "\n" + "Total FG: " + self.totalFGString + " = " + self.totalFGPerString + "\n" + "3PT FG: " + self.threePTString + " = " + self.threePTPerString + "\n" + "Free Throws: " + self.ftString + " = " + self.ftPerString
-                        self.seasonStats.text = "Raymond"
-                        
-                        if Int(self.playerDict[self.curPlayer]![3])! != 0 {
-//                            self.lastSeasonStats.text = self.lteamString + " 2016-2017" + "\n\n" + "Games: " + self.lgamesString + "\n" + "MPG: " + self.lMPGString + "\n" + "Points: " + self.lpointsString + "\n" + "Rebounds: " + self.lreboundsString + "\n" + "Assists: " + self.lassistsString + "\n" + "Steals: " + self.lstealsString + "\n" + "Blocks: " + self.lblocksString + "\n" + "Turnovers: " + self.lturnoversString + "\n" + "Total FG: " + self.ltotalFGString + " = " + self.ltotalFGPerString + "\n" + "3PT FG: " + self.lthreePTString + " = " + self.lthreePTPerString + "\n" + "Free Throws: " + self.lftString + " = " + self.lftPerString
-                            self.lastSeasonStats.text = "Li"
-                        } else {
-                            self.lastSeasonStats.text = ""
-                        }
+
                     })
                 } catch {
                     print("Could not serialize")

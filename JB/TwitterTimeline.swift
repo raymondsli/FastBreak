@@ -14,7 +14,10 @@ class JBTwitterTimeline: TWTRTimelineViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let client = TWTRAPIClient()
+//        let client = TWTRAPIClient()
+//        self.dataSource = TWTRUserTimelineDataSource(screenName: "FCHWPO", apiClient: client)
+        let client = TWTRAPIClient.withCurrentUser()
         self.dataSource = TWTRUserTimelineDataSource(screenName: "FCHWPO", apiClient: client)
+        self.showTweetActions = true
     }
 }

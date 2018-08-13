@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -93,8 +92,8 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Overview" id="j7s-D0-8sk" userLabel="Player">
-                                        <barButtonItem key="leftBarButtonItem" title="Back" style="plain" id="e31-bk-2jG">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="gM4-ce-D7B">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" style="plain" id="Ckp-Kc-Q0P" userLabel="Bar">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="VHX-ZH-Qhg">
                                                 <rect key="frame" x="16" y="6" width="83" height="32"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
@@ -102,7 +101,7 @@
                                                     <color key="titleColor" red="0.15198446139999999" green="0.235571747" blue="0.2795971062" alpha="0.81393045770000005" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="backPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="QG0-mv-gaR"/>
+                                                    <action selector="backPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="g1C-qI-Mxs"/>
                                                 </connections>
                                             </button>
                                         </barButtonItem>

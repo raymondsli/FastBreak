@@ -19,9 +19,6 @@ class PlayerRankings: UIView {
     @IBOutlet weak var stat6: StatRow!
     @IBOutlet weak var stat7: StatRow!
     @IBOutlet weak var stat8: StatRow!
-    @IBOutlet weak var stat9: StatRow!
-    @IBOutlet weak var stat10: StatRow!
-    @IBOutlet weak var stat11: StatRow!
     
     
     override init(frame: CGRect) {
@@ -48,10 +45,5 @@ class PlayerRankings: UIView {
         stat6.backgroundColor = .white
         stat7.backgroundColor = .white
         stat8.backgroundColor = .white
-        stat9.backgroundColor = .white
-        stat10.backgroundColor = .white
-        stat11.backgroundColor = .white
-        
-        
     }
 }

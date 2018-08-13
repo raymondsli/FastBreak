@@ -6,9 +6,8 @@
 //
 
 import UIKit
-import MessageUI
 
-class HomeViewController: UIViewController, NSURLConnectionDelegate, MFMailComposeViewControllerDelegate {
+class HomeViewController: UIViewController, NSURLConnectionDelegate {
     
     @IBOutlet weak var headerView: PlayerOverviewHead!
     @IBOutlet weak var personalView: PlayerPersonal!
@@ -31,7 +30,15 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, MFMailCompo
         getPlayer()
         sleep(1)
         
-        tempNextGameJSON()
+        getNextGameJSON()
+        getStatRankings(category: "EFF")
+        getStatRankings(category: "MIN")
+        getStatRankings(category: "PTS")
+        getStatRankings(category: "REB")
+        getStatRankings(category: "AST")
+        getStatRankings(category: "STL")
+        getStatRankings(category: "BLK")
+        getStatRankings(category: "TOV")
     }
     
     
@@ -55,7 +62,7 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, MFMailCompo
         }).resume()
     }
     
-    func tempNextGameJSON() {
+    func getNextGameJSON() {
         guard let team = getTeamName(team: player.currentTeam) else {
             return
         }
@@ -124,6 +131,140 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, MFMailCompo
         }).resume()
     }
     
+    func getStatRankings(category: String) {
+        let urlString = "https://stats.nba.com/stats/leagueleaders/?LeagueID=00&Season=2017-18&PerMode=PerGame&SeasonType=Regular+Season&Scope=RS&StatCategory=" + category
+        let url = URL(string: urlString)
+        
+        URLSession.shared.dataTask(with: url!, completionHandler: {(data, response, error) in
+            if data != nil {
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments) as! [String: Any]
+                    let resultSets = json["resultSet"] as! [String: Any]
+                    let rowSet: NSArray = resultSets["rowSet"] as! NSArray
+                    
+                    let rankingArr = self.findRanking(rowSet, category: category)
+                    let rank = rankingArr[0]
+                    let amount = rankingArr[1]
+                    
+                    switch category {
+                    case "EFF":
+                        DispatchQueue.main.async(execute: {
+                            self.rankingsView.stat1.statType.text = category
+                            self.rankingsView.stat1.statAmount.text = amount
+                            self.rankingsView.stat1.rank.text = rank
+                        })
+                    case "MIN":
+                        DispatchQueue.main.async(execute: {
+                            self.rankingsView.stat2.statType.text = category
+                            self.rankingsView.stat2.statAmount.text = amount
+                            self.rankingsView.stat2.rank.text = rank
+                        })
+                    case "PTS":
+                        DispatchQueue.main.async(execute: {
+                            self.rankingsView.stat3.statType.text = category
+                            self.rankingsView.stat3.statAmount.text = amount
+                            self.rankingsView.stat3.rank.text = rank
+                        })
+                    case "REB":
+                        DispatchQueue.main.async(execute: {
+                            self.rankingsView.stat4.statType.text = category
+                            self.rankingsView.stat4.statAmount.text = amount
+                            self.rankingsView.stat4.rank.text = rank
+                        })
+                    case "AST":
+                        DispatchQueue.main.async(execute: {
+                            self.rankingsView.stat5.statType.text = category
+                            self.rankingsView.stat5.statAmount.text = amount
+                            self.rankingsView.stat5.rank.text = rank
+                        })
+                    case "STL":
+                        DispatchQueue.main.async(execute: {
+                            self.rankingsView.stat6.statType.text = category
+                            self.rankingsView.stat6.statAmount.text = amount
+                            self.rankingsView.stat6.rank.text = rank
+                        })
+                    case "BLK":
+                        DispatchQueue.main.async(execute: {
+                            self.rankingsView.stat7.statType.text = category
+                            self.rankingsView.stat7.statAmount.text = amount
+                            self.rankingsView.stat7.rank.text = rank
+                        })
+                    case "TOV":
+                        DispatchQueue.main.async(execute: {
+                            self.rankingsView.stat8.statType.text = category
+                            self.rankingsView.stat8.statAmount.text = amount
+                            self.rankingsView.stat8.rank.text = rank
+                        })
+                    default:
+                        print("No stat category")
+                    }
+                } catch {
+                    print("Could not serialize")
+                }
+            }
+        }).resume()
+    }
+    
+    func findRanking(_ rowSet: NSArray, category: String) -> [String] {
+        var i = 0
+        
+        while i < rowSet.count {
+            let curPlayer: NSArray = rowSet[i] as! NSArray
+            let curId = curPlayer[0] as! Int
+            
+            if curId == playerId {
+                switch category {
+                case "EFF":
+                    let amountFloat = curPlayer[23] as! Double
+                    let roundedAmount = Double(round(100 * amountFloat) / 100)
+                    let amount = String(roundedAmount)
+                    return ["#" + String(i), amount]
+                case "MIN":
+                    let amountFloat = curPlayer[5] as! Double
+                    let roundedAmount = Double(round(100 * amountFloat) / 100)
+                    let amount = String(roundedAmount)
+                    return ["#" + String(i), amount]
+                case "PTS":
+                    let amountFloat = curPlayer[22] as! Double
+                    let roundedAmount = Double(round(100 * amountFloat) / 100)
+                    let amount = String(roundedAmount)
+                    return ["#" + String(i), amount]
+                case "REB":
+                    let amountFloat = curPlayer[17] as! Double
+                    let roundedAmount = Double(round(100 * amountFloat) / 100)
+                    let amount = String(roundedAmount)
+                    return ["#" + String(i), amount]
+                case "AST":
+                    let amountFloat = curPlayer[18] as! Double
+                    let roundedAmount = Double(round(100 * amountFloat) / 100)
+                    let amount = String(roundedAmount)
+                    return ["#" + String(i), amount]
+                case "STL":
+                    let amountFloat = curPlayer[19] as! Double
+                    let roundedAmount = Double(round(100 * amountFloat) / 100)
+                    let amount = String(roundedAmount)
+                    return ["#" + String(i), amount]
+                case "BLK":
+                    let amountFloat = curPlayer[20] as! Double
+                    let roundedAmount = Double(round(100 * amountFloat) / 100)
+                    let amount = String(roundedAmount)
+                    return ["#" + String(i), amount]
+                case "TOV":
+                    let amountFloat = curPlayer[21] as! Double
+                    let roundedAmount = Double(round(100 * amountFloat) / 100)
+                    let amount = String(roundedAmount)
+                    return ["#" + String(i), amount]
+                default:
+                    return ["No Rank", "No Rank"]
+                }
+            }
+            
+            i = i + 1
+        }
+        
+        return ["No Rank", "No Rank"]
+    }
+    
     func formatDate(date: String) -> String {
         let monthStartIndex = date.index(date.startIndex, offsetBy: 4)
         let dayStartIndex = date.index(date.startIndex, offsetBy: 6)
@@ -172,37 +313,6 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, MFMailCompo
         
         return hourString + ":" + minuteString + " " + timeHalf + " PST"
     }
-    
-//    func getNextGameJSON(gameLogURL: String) {
-//        let url = URL(string: gameLogURL)
-//
-//        URLSession.shared.dataTask(with: url!, completionHandler: {(data, response, error) in
-//            if data != nil {
-//                do {
-//                    let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments) as! [String: Any]
-//                    //eventsList is an array of events
-//                    let eventsList: NSArray = json["events"] as! NSArray
-//                    if eventsList.count == 0 {
-//                        return
-//                    } else{
-//                        let nextGameEvent = eventsList[0] as! [String: Any]
-//
-//                        self.nextGameString = nextGameEvent["title"] as! String
-//                        let unformattedGameDate: String = nextGameEvent["datetime_local"] as! String
-//                        self.nextGameDate = self.formatGameDate(input: unformattedGameDate)
-//                        self.nextGameTime = self.formatGameTime(input: unformattedGameDate)
-//
-//                        DispatchQueue.main.async(execute: {
-//                            //                            self.nextGame.text = "Next Game\n" + self.nextGameString + "\n" + self.nextGameDate + "\n" + self.nextGameTime
-//                            self.nextGame.text = "Temp"
-//                        })
-//                    }
-//                } catch {
-//                    print("Could not serialize")
-//                }
-//            }
-//        }).resume()
-//    }
     
     func turnRowSetIntoPlayer(_ rowSet: NSArray) {
         let currentPlayer: NSArray = rowSet[0] as! NSArray

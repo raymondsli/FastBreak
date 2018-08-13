@@ -14,8 +14,6 @@
             <connections>
                 <outlet property="contentView" destination="iN0-l3-epB" id="A14-Xs-TB1"/>
                 <outlet property="stat1" destination="eWw-03-h42" id="5qk-1M-c9s"/>
-                <outlet property="stat10" destination="PRE-bO-JNI" id="0B6-vF-OF6"/>
-                <outlet property="stat11" destination="2q0-c3-ebX" id="RJA-kd-1Re"/>
                 <outlet property="stat2" destination="c42-Q8-lTS" id="Ikg-ki-F6R"/>
                 <outlet property="stat3" destination="9pj-gh-pTU" id="VEC-4F-l3g"/>
                 <outlet property="stat4" destination="ndi-Yw-22A" id="hvA-BG-CTx"/>
@@ -23,12 +21,11 @@
                 <outlet property="stat6" destination="qyH-Do-Hu9" id="cPq-iU-Hze"/>
                 <outlet property="stat7" destination="fMG-RT-8fR" id="Dyv-rT-s7n"/>
                 <outlet property="stat8" destination="s75-q2-FX0" id="t3i-aB-2Z1"/>
-                <outlet property="stat9" destination="Dy2-nm-ODv" id="ZAY-Yw-D7h"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="625"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="475"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rankings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xGI-mr-PfX">
@@ -58,52 +55,37 @@
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c42-Q8-lTS" customClass="StatRow" customModule="FBS" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="166" width="375" height="35"/>
+                    <rect key="frame" x="-1" y="152" width="375" height="35"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9pj-gh-pTU" customClass="StatRow" customModule="FBS" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="209" width="375" height="35"/>
+                    <rect key="frame" x="-1" y="195" width="375" height="35"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ndi-Yw-22A" customClass="StatRow" customModule="FBS" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="252" width="376" height="35"/>
+                    <rect key="frame" x="0.0" y="238" width="376" height="35"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hHD-Fo-fL9" customClass="StatRow" customModule="FBS" customModuleProvider="target">
-                    <rect key="frame" x="-1" y="295" width="377" height="35"/>
+                    <rect key="frame" x="-1" y="281" width="377" height="35"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qyH-Do-Hu9" customClass="StatRow" customModule="FBS" customModuleProvider="target">
-                    <rect key="frame" x="1" y="338" width="376" height="35"/>
+                    <rect key="frame" x="1" y="324" width="376" height="35"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fMG-RT-8fR" customClass="StatRow" customModule="FBS" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="381" width="377" height="35"/>
+                    <rect key="frame" x="0.0" y="367" width="377" height="35"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s75-q2-FX0" customClass="StatRow" customModule="FBS" customModuleProvider="target">
-                    <rect key="frame" x="-1" y="424" width="376" height="35"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dy2-nm-ODv" customClass="StatRow" customModule="FBS" customModuleProvider="target">
-                    <rect key="frame" x="-1" y="467" width="376" height="35"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PRE-bO-JNI" customClass="StatRow" customModule="FBS" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="510" width="376" height="35"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2q0-c3-ebX" customClass="StatRow" customModule="FBS" customModuleProvider="target">
-                    <rect key="frame" x="-1" y="553" width="378" height="35"/>
+                    <rect key="frame" x="-1" y="410" width="376" height="35"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>

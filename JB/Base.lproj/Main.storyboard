@@ -73,7 +73,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="36d-cZ-a7x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1442" y="-217"/>
+            <point key="canvasLocation" x="-1692" y="358"/>
         </scene>
         <!--Overview-->
         <scene sceneID="hNz-n2-bh7">
@@ -137,12 +137,11 @@
                         <outlet property="headerView" destination="l2g-N3-mH2" id="2Wi-Pr-Unh"/>
                         <outlet property="personalView" destination="QGh-hk-Pa8" id="7wa-gH-oim"/>
                         <outlet property="rankingsView" destination="9Xa-1i-JBK" id="ic0-HS-STT"/>
-                        <segue destination="SK2-nT-FZd" kind="show" identifier="backToSelection" id="G2w-Dg-YNp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="493.60000000000002" y="-397.60119940029989"/>
+            <point key="canvasLocation" x="-564" y="-580"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -156,7 +155,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="X2R-Ga-oz7"/>
-                        <segue destination="J7g-wv-9tT" kind="relationship" relationship="viewControllers" id="3Rb-Kr-5Y3"/>
+                        <segue destination="9ea-Xs-TEb" kind="relationship" relationship="viewControllers" id="HEk-9B-i25"/>
                         <segue destination="ycx-nU-GkU" kind="relationship" relationship="viewControllers" id="ZPo-KS-U2L"/>
                         <segue destination="RLK-5P-RUN" kind="relationship" relationship="viewControllers" id="Bo6-Fh-cGU"/>
                     </connections>
@@ -242,9 +241,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="61A-4w-lWU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="740" y="807"/>
+            <point key="canvasLocation" x="329" y="1157"/>
         </scene>
-        <!--Game Log View Controller-->
+        <!--Game Log-->
         <scene sceneID="az1-T0-Jna">
             <objects>
                 <viewController id="9ea-Xs-TEb" customClass="GameLogViewController" customModule="FBS" customModuleProvider="target" sceneMemberID="viewController">
@@ -553,11 +552,6 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.55229181780000003" green="0.8493376533" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <connections>
-                                            <outlet property="gameInfoLabel" destination="D2c-mj-e0h" id="ncp-Hk-OkW"/>
-                                            <outlet property="gameMainStatsLabel" destination="epn-OB-HeE" id="4jP-vI-kuP"/>
-                                            <outlet property="gameShootingFLabel" destination="DM5-p4-ymI" id="WcW-Xy-rSP"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <variation key="default">
@@ -603,94 +597,16 @@
                             </mask>
                         </variation>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Game Log" image="News" id="u7c-PY-X11"/>
                     <navigationItem key="navigationItem" id="Fbk-yJ-hsg"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="UIs-bR-KSm" id="vyZ-FT-qXx"/>
-                        <segue destination="Gc1-jf-V6f" kind="show" identifier="showDetailedGame" id="S12-Ou-DeN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yfe-dx-2y3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2380" y="-636.4317841079461"/>
-        </scene>
-        <!--Detailed GameVC-->
-        <scene sceneID="Y2w-xt-dKT">
-            <objects>
-                <viewController id="Gc1-jf-V6f" customClass="DetailedGameVC" customModule="FBS" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="lFM-mf-zha"/>
-                        <viewControllerLayoutGuide type="bottom" id="P2K-jg-hg8"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="b9P-5V-vME">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="970"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j8g-WK-iZM">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="921"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Kh-6M-VeC" userLabel="BackgroundView">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="970"/>
-                                        <color key="backgroundColor" red="0.31110096230000001" green="0.56249310539999997" blue="0.66666666669999997" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="970" id="Gbe-Y3-PkB"/>
-                                            <constraint firstAttribute="height" constant="970" id="LsW-WB-jQz"/>
-                                        </constraints>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="LsW-WB-jQz"/>
-                                            </mask>
-                                        </variation>
-                                    </view>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="8Kh-6M-VeC" firstAttribute="top" secondItem="j8g-WK-iZM" secondAttribute="top" id="2Nz-33-0my"/>
-                                    <constraint firstAttribute="bottom" secondItem="8Kh-6M-VeC" secondAttribute="bottom" id="KIm-dw-5Hu"/>
-                                    <constraint firstItem="8Kh-6M-VeC" firstAttribute="leading" secondItem="j8g-WK-iZM" secondAttribute="leading" id="qds-01-Cmc"/>
-                                    <constraint firstAttribute="trailing" secondItem="8Kh-6M-VeC" secondAttribute="trailing" id="x6p-1T-6DG"/>
-                                </constraints>
-                            </scrollView>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="j8g-WK-iZM" secondAttribute="trailing" id="BTM-pX-ZD0"/>
-                            <constraint firstItem="j8g-WK-iZM" firstAttribute="top" secondItem="b9P-5V-vME" secondAttribute="top" id="CF5-bK-FcF"/>
-                            <constraint firstItem="j8g-WK-iZM" firstAttribute="leading" secondItem="b9P-5V-vME" secondAttribute="leading" id="CUr-Rl-Was"/>
-                            <constraint firstItem="8Kh-6M-VeC" firstAttribute="width" secondItem="b9P-5V-vME" secondAttribute="width" id="Ivn-RO-ayL"/>
-                            <constraint firstItem="P2K-jg-hg8" firstAttribute="top" secondItem="j8g-WK-iZM" secondAttribute="bottom" id="e5g-Fq-0HE"/>
-                            <constraint firstItem="j8g-WK-iZM" firstAttribute="bottom" secondItem="b9P-5V-vME" secondAttribute="bottomMargin" id="tuf-aW-KAk"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="e5g-Fq-0HE"/>
-                            </mask>
-                        </variation>
-                    </view>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="970"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tCD-IJ-Mbx" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3240.8000000000002" y="-624.28785607196403"/>
-        </scene>
-        <!--Game Log-->
-        <scene sceneID="mY2-Se-71X">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="J7g-wv-9tT" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Game Log" image="News" id="djS-lW-plP"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Xon-5d-siH">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="9ea-Xs-TEb" kind="relationship" relationship="rootViewController" id="XH6-gh-Fa3"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="K9Q-az-Ve4" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1720.8" y="-636.4317841079461"/>
+            <point key="canvasLocation" x="679" y="358"/>
         </scene>
     </scenes>
     <resources>

@@ -108,12 +108,7 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "showDetailedGame", sender: self)
         self.tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        self.tableView.deselectRow(at: self.tableView.indexPathForSelectedRow!, animated: true)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

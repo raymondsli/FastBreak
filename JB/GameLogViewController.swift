@@ -8,12 +8,12 @@
 import UIKit
 class GameLogViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var curPlayer: String! = ""
-    var playerDict: [String: [String]] = [:]
-    var games = [GameStats]()
+    let playerId = ""
+    var games = [Game]()
     
     @IBOutlet weak var tableView: UITableView!
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -28,24 +28,21 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
         self.navigationController?.isNavigationBarHidden = true
     }
     
-    //Function that gets JSON data from the URL
     func getGameLogJSON() {
-        let url = URL(string: "http://stats.nba.com/stats/playergamelog?DateFrom=&DateTo=&LeagueID=00&PlayerID=1627759&Season=2017-18&SeasonType=Regular+Season")
+        let url = URL(string: "https://stats.nba.com/stats/playergamelog?DateFrom=&DateTo=&LeagueID=00&SeasonType=Regular+Season&Season=2017-18&PlayerID=" + playerId)
         
         URLSession.shared.dataTask(with: url!, completionHandler: {(data, response, error) in
             if data != nil {
                 do {
                     let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments) as! [String: Any]
-                    //resultSets is a dictionary
                     let resultSetsTemp: NSArray = json["resultSets"] as! NSArray
                     let resultSets = resultSetsTemp[0] as! [String: Any]
-                    //rowSet is an array of arrays, where each subarray is a game
                     let rowSet: NSArray = resultSets["rowSet"] as! NSArray
                     
-                    self.turnRowSetIntoGameStats(rowSet)
+                    self.turnRowSetIntoGames(rowSet)
                     
                     DispatchQueue.main.async(execute: {
-                        self.tableView!.reloadData()
+                        self.tableView.reloadData()
                     })
                 } catch {
                     print("Could not serialize")
@@ -54,118 +51,56 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
         }).resume()
     }
     
-    func turnRowSetIntoGameStats(_ rowSet: NSArray) {
-        //rowSet is an array of arrays, where each subarray is a game. Turn each game into a GameStats
+    func turnRowSetIntoGames(_ rowSet: NSArray) {
         var i: Int = 0
+        
         while i < rowSet.count {
-            //Start at i = 0, so rowSet[0] is the first game array. Continue until last game.
             let currentGame: NSArray = rowSet[i] as! NSArray
-            let gameInfo = self.getGameInfo(currentGame[3] as! String, opponent: currentGame[4] as! String)
-            let gameNumber = String(rowSet.count - i)
-            let score = String(describing: currentGame[5])
-            let points = String(describing: currentGame[24])
-            let rebounds = String(describing: currentGame[18])
-            let assists = String(describing: currentGame[19])
-            let steals = String(describing: currentGame[20])
-            let blocks = String(describing: currentGame[21])
             
-            let FGM: String = String(describing: currentGame[7])
-            let FGA: String = String(describing: currentGame[8])
+            let gameNumber = rowSet.count - i
+            let date = currentGame[3] as! String
             
-            let totalShoot = FGM + "/" + FGA
-            let totalShootP = String(describing: currentGame[9])
+            var opponent = currentGame[4] as! String
+            opponent = opponent.substring(from: opponent.index(opponent.startIndex, offsetBy: 4))
             
+            let winLoss = currentGame[5] as! String
             
-            let twoPointersMade =  (currentGame[7] as! Int) - (currentGame[10] as! Int)
-            let twoPointersAttempted = (currentGame[8] as! Int) - (currentGame[11] as! Int)
-            let twoF = String(twoPointersMade) + "/" + String(twoPointersAttempted)
-            let twoPtDouble = Double(twoPointersMade) / Double(twoPointersAttempted)
-            let twoPtRounded = Double(round(twoPtDouble * 1000) / 1000)
-            let twoP = String(twoPtRounded)
+            let MIN = currentGame[6] as! Double
             
-            let threeF = String(describing: currentGame[10]) + "/" + String(describing: currentGame[11])
-            let threeP = String(describing: currentGame[12])
+            let PTS = currentGame[24] as! Double
+            let OREB = currentGame[16] as! Double
+            let DREB = currentGame[17] as! Double
+            let REB = currentGame[18] as! Double
+            let AST = currentGame[19] as! Double
+            let STL = currentGame[20] as! Double
+            let BLK = currentGame[21] as! Double
+            let TOV = currentGame[22] as! Double
+            let PF = currentGame[23] as! Double
+            let PLUSMINUS = currentGame[25] as! Double
             
-            let fF = String(describing: currentGame[13]) + "/" + String(describing: currentGame[14])
-            let fP = String(describing: currentGame[15])
+            let FGM = currentGame[7] as! Double
+            let FGA = currentGame[8] as! Double
+            let FGP = currentGame[9] as! Double
             
-            let turnovers = String(describing: currentGame[22])
-            let minutes = String(describing: currentGame[6])
-            let fouls = String(describing: currentGame[23])
-            let offensiveRebounds = String(describing: currentGame[16])
-            let defensiveRebounds = String(describing: currentGame[17])
-            let plus_minus = String(describing: currentGame[25])
+            let FG3M = currentGame[10] as! Double
+            let FG3A = currentGame[11] as! Double
+            let FG3P = currentGame[12] as! Double
             
-            //Create a new GameStats and append it to games. So first element in games will be first element in rowSet, which is the most recent game.
-            let newGame = GameStats(label: "game", dl: gameInfo, gN: gameNumber, scr: score, bgR: 0, bgG: 0.9, bgB: 0, bgA: 1, p: points, r: rebounds, a: assists, s: steals, b: blocks, tSF: totalShoot, tSP: totalShootP, tPSF: twoF, tPSP: twoP, thPSF: threeF, thPSP: threeP, fTF: fF, ftP: fP, turn: turnovers, min: minutes, foul: fouls, oReb: offensiveRebounds, dReb: defensiveRebounds, pM: plus_minus)
-            self.games.append(newGame)
+            let FTM = currentGame[13] as! Double
+            let FTA = currentGame[14] as! Double
+            let FTP = currentGame[15] as! Double
+            
+            let game = Game(date: date, opponent: opponent, gameNumber: gameNumber, winLoss: winLoss, MIN: MIN, PTS: PTS, OREB: OREB, DREB: DREB, REB: REB, AST: AST, STL: STL, BLK: BLK, TOV: TOV, PF: PF, PLUSMINUS: PLUSMINUS, FGM: FGM, FGA: FGA, FGP: FGP, FG3M: FG3M, FG3A: FG3A, FG3P: FG3P, FTM: FTM, FTA: FTA, FTP: FTP)
+            self.games.append(game)
             
             i = i + 1
         }
     }
     
     
-    //Function called in turnRowSetIntoGameStats that turns format FEB 09, 2016 GSW vs. DAL into form 2/9/16 vs. DAL through subsetting strings.
-    func getGameInfo(_ date: String, opponent: String) -> String {
-        let oppIndex = opponent.characters.index(opponent.startIndex, offsetBy: 4)
-        let trunOpp = opponent.substring(from: oppIndex)
-        
-        let day = date.substring(with: (date.characters.index(date.startIndex, offsetBy: 4) ..< date.characters.index(date.endIndex, offsetBy: -6)))
-        let year = date.substring(from: date.characters.index(date.endIndex, offsetBy: -2))
-        
-        let writtenMonth = date.substring(to: date.characters.index(date.startIndex, offsetBy: 3))
-        let numberMonth: String
-        
-        if writtenMonth == "JAN" {
-            numberMonth = "1"
-        } else if writtenMonth == "FEB" {
-            numberMonth = "2"
-        } else if writtenMonth == "MAR" {
-            numberMonth = "3"
-        } else if writtenMonth == "APR" {
-            numberMonth = "4"
-        } else if writtenMonth == "MAY" {
-            numberMonth = "5"
-        } else if writtenMonth == "JUN" {
-            numberMonth = "6"
-        } else if writtenMonth == "JUL" {
-            numberMonth = "7"
-        } else if writtenMonth == "AUG" {
-            numberMonth = "8"
-        } else if writtenMonth == "SEP" {
-            numberMonth = "9"
-        } else if writtenMonth == "OCT" {
-            numberMonth = "10"
-        } else if writtenMonth == "NOV" {
-            numberMonth = "11"
-        } else if writtenMonth == "DEC" {
-            numberMonth = "12"
-        } else {
-            numberMonth = "0"
-        }
-        
-        let numberedDate = numberMonth + "/" + day + "/" + year
-        
-        return numberedDate + " " + trunOpp
-    }
-    
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "GameCell") as? GameCell {
-            cell.accessoryView?.backgroundColor = UIColor.black
-
-            let totalPoints = games[indexPath.row].totalPoints
-            let totalRebounds = games[indexPath.row].totalRebounds
-            let totalAssists = games[indexPath.row].totalAssists
-            let totalSteals = games[indexPath.row].totalSteals
-            let totalBlocks = games[indexPath.row].totalBlocks
-            let totalShootingFraction = games[indexPath.row].totalShootingFraction
             
-            let mainStats = totalPoints + "/" + totalRebounds + "/" + totalAssists + "/" + totalSteals + "/" + totalBlocks
-            
-            cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
-            
-            cell.configureCell(games[indexPath.row].dateLocation, gameMainStats: mainStats, gameShootingF: totalShootingFraction)
             return cell
         } else {
             return GameCell()
@@ -178,73 +113,7 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showDetailedGame" {
-//            let upcoming: DetailedGameVC = segue.destination as! DetailedGameVC
-//            let indexPath = self.tableView.indexPathForSelectedRow!
-//
-//            let dateLocation = games[indexPath.row].dateLocation
-//            let gameNumber = games[indexPath.row].gameNumber
-//            let score = games[indexPath.row].score
-//
-//            let totalPoints = games[indexPath.row].totalPoints
-//            let totalRebounds = games[indexPath.row].totalRebounds
-//            let totalAssists = games[indexPath.row].totalAssists
-//            let totalSteals = games[indexPath.row].totalSteals
-//            let totalBlocks = games[indexPath.row].totalBlocks
-//
-//            let totalShootingFraction = games[indexPath.row].totalShootingFraction
-//            let totalShootingPercentage = games[indexPath.row].totalShootingPercentage
-//            let twoPointShootingFraction = games[indexPath.row].twoPointShootingFraction
-//            let twoPointShootingPercentage = games[indexPath.row].twoPointShootingPercentage
-//            let threePointShootingFraction = games[indexPath.row].threePointShootingFraction
-//            let threePointShootingPercentage = games[indexPath.row].threePointShootingPercentage
-//            let freeThrowFraction = games[indexPath.row].freeThrowFraction
-//            let freeThrowPercentage = games[indexPath.row].freeThrowPercentage
-//
-//            let turnovers = games[indexPath.row].turnovers
-//            let minutes = games[indexPath.row].minutes
-//            let fouls = games[indexPath.row].fouls
-//            let offensiveRebounds = games[indexPath.row].offensiveRebounds
-//            let defensiveRebounds = games[indexPath.row].defensiveRebounds
-//            let plusMinus = games[indexPath.row].plusMinus
-//
-//
-//
-//            let pointsLabel = "Points: " + totalPoints
-//            let reboundsLabel = "Rebounds: " + totalRebounds
-//            let assistsLabel = "Assists: " + totalAssists
-//            let stealsLabel = "Steals: " + totalSteals
-//            let blocksLabel = "Blocks: " + totalBlocks
-//
-//            let tSFLabel = "Total Shooting Fraction: " + totalShootingFraction
-//            let tSPLabel = "Total Shooting Percentage: " + totalShootingPercentage
-//            let twoPtSFLabel = "2PT Shooting Fraction: " + twoPointShootingFraction
-//            let twoPtSPLabel = "2PT Shooting Percentage: " + twoPointShootingPercentage
-//            let threePtSFLabel = "3PT Shooting Fraction: " + threePointShootingFraction
-//            let threePtSPLabel = "3PT Shooting Percentage: " + threePointShootingPercentage
-//            let freeThrowFLabel = "Free Throws Fraction: " + freeThrowFraction
-//            let freeThrowPLabel = "Free Throws Percentage: " + freeThrowPercentage
-//
-//            let minutesLabel = "Minutes: " + minutes
-//            let turnoversLabel = "Turnovers: " + turnovers
-//            let foulsLabel = "Fouls: " + fouls
-//            let oRebLabel = "Offensive Rebounds: " + offensiveRebounds
-//            let dRebLabel = "Defensive Rebounds: " + defensiveRebounds
-//            let plusMinusLabel = "Plus Minus: " + plusMinus
-//
-//
-//            let titleLabel = "Game " + gameNumber + "\n" + dateLocation + "\n" + score
-//            let mainStatsLabel = pointsLabel + "\n\n" + reboundsLabel + "\n\n" + assistsLabel + "\n\n" + stealsLabel + "\n\n" + blocksLabel
-//            let additionalStatsLabel = minutesLabel + "\n\n" + turnoversLabel + "\n\n" + foulsLabel + "\n\n" + oRebLabel + "\n\n" + dRebLabel + "\n\n" + plusMinusLabel
-//            let shootingDetailsLabel = tSFLabel + "\n" + tSPLabel + "\n\n" + freeThrowFLabel + "\n" + freeThrowPLabel + "\n\n" + twoPtSFLabel + "\n" + twoPtSPLabel + "\n\n" + threePtSFLabel + "\n" + threePtSPLabel
-//
-//            upcoming.gameInfoString = titleLabel
-//            upcoming.mainStatsString = mainStatsLabel
-//            upcoming.additionalStatsString = additionalStatsLabel
-//            upcoming.shootingDetailsString = shootingDetailsLabel
-            
-            self.tableView.deselectRow(at: self.tableView.indexPathForSelectedRow!, animated: true)
-        }
+        self.tableView.deselectRow(at: self.tableView.indexPathForSelectedRow!, animated: true)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

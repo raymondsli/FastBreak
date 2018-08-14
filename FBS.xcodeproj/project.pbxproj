@@ -17,7 +17,7 @@
 		5019B5DC1D68F4CB00423579 /* DetailedGameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5019B5DB1D68F4CB00423579 /* DetailedGameVC.swift */; };
 		5019B5DD1D6D639000423579 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5026C25E1D65716B0057D046 /* Assets.xcassets */; };
 		5026C2561D65716B0057D046 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5026C2551D65716B0057D046 /* AppDelegate.swift */; };
-		5026C2581D65716B0057D046 /* OverviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5026C2571D65716B0057D046 /* OverviewController.swift */; };
+		5026C2581D65716B0057D046 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5026C2571D65716B0057D046 /* HomeViewController.swift */; };
 		5026C25D1D65716B0057D046 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5026C25B1D65716B0057D046 /* Main.storyboard */; };
 		5026C2621D65716B0057D046 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5026C2601D65716B0057D046 /* LaunchScreen.storyboard */; };
 		5026C26E1D65AF460057D046 /* GameStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5026C26D1D65AF460057D046 /* GameStats.swift */; };
@@ -27,6 +27,7 @@
 		5092B14A1F2D90630049EA26 /* SeasonStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5092B1491F2D90630049EA26 /* SeasonStats.swift */; };
 		50B1A6711FA33C8300BC4A62 /* DropMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1A6701FA33C8300BC4A62 /* DropMenu.swift */; };
 		50CFAB94212295220066F449 /* bree-serif in Resources */ = {isa = PBXBuildFile; fileRef = 50CFAB93212295220066F449 /* bree-serif */; };
+		50CFAB962122C2FE0066F449 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFAB952122C2FE0066F449 /* Game.swift */; };
 		50DA74102120177E00C73019 /* allplayers.json in Resources */ = {isa = PBXBuildFile; fileRef = 50DA740F2120177E00C73019 /* allplayers.json */; };
 		50DA74122120DD6200C73019 /* PlayerOverviewHead.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50DA74112120DD6200C73019 /* PlayerOverviewHead.xib */; };
 		50DA74142120DD7100C73019 /* PlayerOverviewHead.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DA74132120DD7100C73019 /* PlayerOverviewHead.swift */; };
@@ -50,7 +51,7 @@
 		5019B5DB1D68F4CB00423579 /* DetailedGameVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailedGameVC.swift; sourceTree = "<group>"; };
 		5026C2521D65716B0057D046 /* FBS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FBS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5026C2551D65716B0057D046 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5026C2571D65716B0057D046 /* OverviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewController.swift; sourceTree = "<group>"; };
+		5026C2571D65716B0057D046 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		5026C25C1D65716B0057D046 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5026C25E1D65716B0057D046 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5026C2611D65716B0057D046 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -62,6 +63,7 @@
 		5092B1491F2D90630049EA26 /* SeasonStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeasonStats.swift; sourceTree = "<group>"; };
 		50B1A6701FA33C8300BC4A62 /* DropMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropMenu.swift; sourceTree = "<group>"; };
 		50CFAB93212295220066F449 /* bree-serif */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "bree-serif"; sourceTree = SOURCE_ROOT; };
+		50CFAB952122C2FE0066F449 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		50DA740F2120177E00C73019 /* allplayers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = allplayers.json; sourceTree = "<group>"; };
 		50DA74112120DD6200C73019 /* PlayerOverviewHead.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerOverviewHead.xib; sourceTree = "<group>"; };
 		50DA74132120DD7100C73019 /* PlayerOverviewHead.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerOverviewHead.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				5001269821194E44004F4677 /* Player.swift */,
 				5001269E211977C4004F4677 /* GetImage.swift */,
 				5001269721194DF2004F4677 /* Game Log */,
+				50CFAB952122C2FE0066F449 /* Game.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -134,7 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				5001269A211951B5004F4677 /* HomeTableScreen.swift */,
-				5026C2571D65716B0057D046 /* OverviewController.swift */,
+				5026C2571D65716B0057D046 /* HomeViewController.swift */,
 				5026C26F1D65B4D80057D046 /* GameLogViewController.swift */,
 				5019B5DB1D68F4CB00423579 /* DetailedGameVC.swift */,
 				5019B5D91D68085F00423579 /* SeasonStatsViewController.swift */,
@@ -351,12 +354,13 @@
 				50DA74182120FB6200C73019 /* PlayerPersonal.swift in Sources */,
 				5019B5D61D67EC7700423579 /* TwitterTimeline.swift in Sources */,
 				5001269B211951B5004F4677 /* HomeTableScreen.swift in Sources */,
+				50CFAB962122C2FE0066F449 /* Game.swift in Sources */,
 				50DA74142120DD7100C73019 /* PlayerOverviewHead.swift in Sources */,
 				5026C2561D65716B0057D046 /* AppDelegate.swift in Sources */,
 				5019B5DC1D68F4CB00423579 /* DetailedGameVC.swift in Sources */,
 				5092B14A1F2D90630049EA26 /* SeasonStats.swift in Sources */,
 				50B1A6711FA33C8300BC4A62 /* DropMenu.swift in Sources */,
-				5026C2581D65716B0057D046 /* OverviewController.swift in Sources */,
+				5026C2581D65716B0057D046 /* HomeViewController.swift in Sources */,
 				50DA7420212110C400C73019 /* StatRow.swift in Sources */,
 				5026C26E1D65AF460057D046 /* GameStats.swift in Sources */,
 			);

@@ -12,8 +12,6 @@ class PlayerOverviewHead: UIView {
     
     @IBOutlet var contentView: PlayerOverviewHead!
     @IBOutlet weak var headshot: UIImageView!
-    @IBOutlet weak var number: UILabel!
-    @IBOutlet weak var position: UILabel!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var team: UILabel!
     @IBOutlet weak var gameDate: UILabel!
@@ -36,14 +34,16 @@ class PlayerOverviewHead: UIView {
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         
-        headshot.contentMode = .scaleAspectFit
+        headshot.contentMode = .scaleAspectFill
+        headshot.backgroundColor = .white
+        headshot.layer.borderWidth=1.0
+        headshot.layer.borderColor = UIColor.white.cgColor
+        headshot.layer.cornerRadius = headshot.frame.size.height/2
         headshot.clipsToBounds = true
-        
-        position.adjustsFontSizeToFitWidth = true
+
         name.adjustsFontSizeToFitWidth = true
         team.adjustsFontSizeToFitWidth = true
         gameDate.adjustsFontSizeToFitWidth = true
         gameDetail.adjustsFontSizeToFitWidth = true
-        number.adjustsFontSizeToFitWidth = true
     }
 }

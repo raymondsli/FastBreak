@@ -490,8 +490,9 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
             
             let indexPath = self.tableView.indexPathForSelectedRow!
             
-            let firstName = playerFirstNames[indexPath.row]
-            let lastName = playerLastNames[indexPath.row]
+            let playerName = currentPlayerNames[indexPath.row]
+            let firstName = getFirstName(playerName: playerName)
+            let lastName = getLastName(playerName: playerName)
             
             if let image = playerImages[firstName + " " + lastName] {
                 upcoming.playerImage = image
@@ -500,7 +501,7 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
             upcoming.playerId = playerIds[firstName + " " + lastName]!
             upcoming.firstName = firstName
             upcoming.lastName = lastName
-            upcoming.displayName = namesToLabel[firstName + " " + lastName]!
+            upcoming.displayName = playerName
 
             self.tableView.deselectRow(at: indexPath, animated: true)
         }

@@ -26,6 +26,7 @@
 		5092B1461F2D8B5A0049EA26 /* SeasonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5092B1451F2D8B5A0049EA26 /* SeasonCell.swift */; };
 		5092B14A1F2D90630049EA26 /* SeasonStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5092B1491F2D90630049EA26 /* SeasonStats.swift */; };
 		50B1A6711FA33C8300BC4A62 /* DropMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1A6701FA33C8300BC4A62 /* DropMenu.swift */; };
+		50CFAB94212295220066F449 /* bree-serif in Resources */ = {isa = PBXBuildFile; fileRef = 50CFAB93212295220066F449 /* bree-serif */; };
 		50DA74102120177E00C73019 /* allplayers.json in Resources */ = {isa = PBXBuildFile; fileRef = 50DA740F2120177E00C73019 /* allplayers.json */; };
 		50DA74122120DD6200C73019 /* PlayerOverviewHead.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50DA74112120DD6200C73019 /* PlayerOverviewHead.xib */; };
 		50DA74142120DD7100C73019 /* PlayerOverviewHead.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DA74132120DD7100C73019 /* PlayerOverviewHead.swift */; };
@@ -60,6 +61,7 @@
 		5092B1451F2D8B5A0049EA26 /* SeasonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeasonCell.swift; sourceTree = "<group>"; };
 		5092B1491F2D90630049EA26 /* SeasonStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeasonStats.swift; sourceTree = "<group>"; };
 		50B1A6701FA33C8300BC4A62 /* DropMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropMenu.swift; sourceTree = "<group>"; };
+		50CFAB93212295220066F449 /* bree-serif */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "bree-serif"; sourceTree = SOURCE_ROOT; };
 		50DA740F2120177E00C73019 /* allplayers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = allplayers.json; sourceTree = "<group>"; };
 		50DA74112120DD6200C73019 /* PlayerOverviewHead.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerOverviewHead.xib; sourceTree = "<group>"; };
 		50DA74132120DD7100C73019 /* PlayerOverviewHead.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerOverviewHead.swift; sourceTree = "<group>"; };
@@ -98,17 +100,24 @@
 			name = "Game Log";
 			sourceTree = "<group>";
 		};
-		5019B5C91D67D1D400423579 /* Model */ = {
+		5019B5C91D67D1D400423579 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				5001269721194DF2004F4677 /* Game Log */,
-				5092B1451F2D8B5A0049EA26 /* SeasonCell.swift */,
-				5092B1491F2D90630049EA26 /* SeasonStats.swift */,
 				50B1A6701FA33C8300BC4A62 /* DropMenu.swift */,
+				5092B1491F2D90630049EA26 /* SeasonStats.swift */,
+				5092B1451F2D8B5A0049EA26 /* SeasonCell.swift */,
 				5001269821194E44004F4677 /* Player.swift */,
+				5001269E211977C4004F4677 /* GetImage.swift */,
+				5001269721194DF2004F4677 /* Game Log */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		5019B5CA1D67D1DB00423579 /* Views */ = {
+			isa = PBXGroup;
+			children = (
 				50DD7DD7211FD1C400D66A85 /* PlayerCell.xib */,
 				5001269C21195C13004F4677 /* PlayerCell.swift */,
-				5001269E211977C4004F4677 /* GetImage.swift */,
 				50DA74112120DD6200C73019 /* PlayerOverviewHead.xib */,
 				50DA74132120DD7100C73019 /* PlayerOverviewHead.swift */,
 				50DA74152120FB5700C73019 /* PlayerPersonal.xib */,
@@ -118,19 +127,10 @@
 				50DA741D212110B200C73019 /* StatRow.xib */,
 				50DA741F212110C400C73019 /* StatRow.swift */,
 			);
-			name = Model;
+			name = Views;
 			sourceTree = "<group>";
 		};
-		5019B5CA1D67D1DB00423579 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				5026C25B1D65716B0057D046 /* Main.storyboard */,
-				5026C2601D65716B0057D046 /* LaunchScreen.storyboard */,
-			);
-			name = View;
-			sourceTree = "<group>";
-		};
-		5019B5CB1D67D1E200423579 /* Controller */ = {
+		5019B5CB1D67D1E200423579 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				5001269A211951B5004F4677 /* HomeTableScreen.swift */,
@@ -140,7 +140,7 @@
 				5019B5D91D68085F00423579 /* SeasonStatsViewController.swift */,
 				5019B5D51D67EC7700423579 /* TwitterTimeline.swift */,
 			);
-			name = Controller;
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 		5026C2491D65716B0057D046 = {
@@ -165,12 +165,15 @@
 		5026C2541D65716B0057D046 /* FBS */ = {
 			isa = PBXGroup;
 			children = (
-				5026C2551D65716B0057D046 /* AppDelegate.swift */,
-				5019B5C91D67D1D400423579 /* Model */,
-				5019B5CA1D67D1DB00423579 /* View */,
-				5019B5CB1D67D1E200423579 /* Controller */,
+				50CFAB93212295220066F449 /* bree-serif */,
 				5026C25E1D65716B0057D046 /* Assets.xcassets */,
 				5026C2631D65716B0057D046 /* Info.plist */,
+				5026C2551D65716B0057D046 /* AppDelegate.swift */,
+				5026C25B1D65716B0057D046 /* Main.storyboard */,
+				5026C2601D65716B0057D046 /* LaunchScreen.storyboard */,
+				5019B5C91D67D1D400423579 /* Models */,
+				5019B5CA1D67D1DB00423579 /* Views */,
+				5019B5CB1D67D1E200423579 /* Controllers */,
 			);
 			name = FBS;
 			path = JB;
@@ -264,6 +267,7 @@
 				5019B5DD1D6D639000423579 /* Assets.xcassets in Resources */,
 				50DA74162120FB5700C73019 /* PlayerPersonal.xib in Resources */,
 				50DA741E212110B200C73019 /* StatRow.xib in Resources */,
+				50CFAB94212295220066F449 /* bree-serif in Resources */,
 				50DD7DD8211FD1C400D66A85 /* PlayerCell.xib in Resources */,
 				5026C25D1D65716B0057D046 /* Main.storyboard in Resources */,
 				50DA74122120DD6200C73019 /* PlayerOverviewHead.xib in Resources */,

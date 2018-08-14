@@ -55,6 +55,68 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate {
                     let rowSet: NSArray = resultSets["rowSet"] as! NSArray
 
                     self.turnRowSetIntoPlayer(rowSet)
+                    
+                    var birthDetails = self.player.birthDate + " (Age: " + self.player.age + ")"
+                    if self.player.age == "" {
+                        birthDetails = "NA"
+                    }
+                    
+                    var draftDetails = self.player.draftYear + ": Rd " + self.player.draftRound + ", Pick " + self.player.draftNumber
+                    if self.player.draftYear == "Undrafted" {
+                        draftDetails = "Undrafted"
+                    }
+                    
+                    if self.player.school == "" {
+                        self.player.school = "None"
+                    } else if self.player.school == "California-Los Angeles" {
+                        self.player.school = "UCLA"
+                    }
+                    
+                    if self.player.yearsExperience == "" {
+                        self.player.yearsExperience = "NA"
+                    }
+                    
+                    var heightWeightDetails = self.player.height + ", " + self.player.weight + " lbs"
+                    if self.player.height == "" && self.player.weight == "" {
+                        heightWeightDetails = "NA"
+                    } else if self.player.height == "" {
+                        heightWeightDetails = "NA, " + self.player.weight + " lbs"
+                    } else if self.player.weight == "" {
+                        heightWeightDetails = self.player.height + ", NA"
+                    }
+                    
+                    var teamDetails = self.player.currentTeam + " | #" + self.player.jerseyNumber + " | " + self.player.position
+                    if self.player.currentTeam == "" {
+                        if self.player.position == "NA" {
+                            teamDetails = "No Team"
+                        } else {
+                            teamDetails = "No Team | " + self.player.position
+                        }
+                    } else if self.player.jerseyNumber == "" {
+                        if self.player.position == "NA" {
+                            teamDetails = self.player.currentTeam
+                        } else {
+                            teamDetails = self.player.currentTeam + " | " + self.player.position
+                        }
+                    } else if self.player.position == "NA" {
+                        if self.player.jerseyNumber == "" {
+                            teamDetails = self.player.currentTeam
+                        } else {
+                            teamDetails = self.player.currentTeam + " | #" + self.player.jerseyNumber
+                        }
+                    }
+                    
+                    DispatchQueue.main.async(execute: {
+                        self.headerView.headshot.image = self.playerImage
+                        self.headerView.name.text = self.displayName
+                        self.headerView.team.text = teamDetails
+                        
+                        self.personalView.birthDateLabel.text = birthDetails
+                        self.personalView.draftLabel.text = draftDetails
+                        self.personalView.schoolLabel.text = self.player.school
+                        self.personalView.experienceLabel.text = self.player.yearsExperience
+                        self.personalView.heightWeightLabel.text = heightWeightDetails
+                    })
                 } catch {
                     print("Could not serialize")
                 }
@@ -64,6 +126,8 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate {
     
     func getNextGameJSON() {
         guard let team = getTeamName(team: player.currentTeam) else {
+            self.headerView.gameDate.text = "No Next Game"
+            self.headerView.gameDetail.text = "No Opponent"
             return
         }
         
@@ -92,7 +156,7 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate {
                             let vTeam = nextGame["vTeam"] as! [String: String]
                             let oppo = vTeam["teamId"]
                             nextGameOpponent = self.getTeamFromId(teamId: oppo!)
-                            homeOAway = "vs"
+                            homeOAway = "vs. "
                         } else {
                             let hTeam = nextGame["hTeam"] as! [String: String]
                             let oppo = hTeam["teamId"]
@@ -102,26 +166,11 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate {
                         
                         let nextGameDate = self.formatDate(date: startDate)
                         let nextGameTime = self.formatTime(time: startTime)
-                        let nextGameDetails = homeOAway + " " + nextGameOpponent + " - " + nextGameTime
-                        
-                        let birthDetails = self.player.birthDate + " (Age: " + self.player.age + ")"
-                        let draftDetails = self.player.draftYear + ": Rd " + self.player.draftRound + ", Pick " + self.player.draftNumber
-                        let heightWeightDetails = self.player.height + ", " + self.player.weight + " lbs"
+                        let nextGameDetails = homeOAway + nextGameOpponent + " - " + nextGameTime
                         
                         DispatchQueue.main.async(execute: {
-                            self.headerView.headshot.image = self.player.headshot
-                            self.headerView.number.text = "#" + self.player.jerseyNumber
-                            self.headerView.position.text = self.player.position
-                            self.headerView.name.text = self.displayName
-                            self.headerView.team.text = self.player.currentTeam
                             self.headerView.gameDate.text = "Next Game: " + nextGameDate
                             self.headerView.gameDetail.text = nextGameDetails
-
-                            self.personalView.birthDateLabel.text = birthDetails
-                            self.personalView.draftLabel.text = draftDetails
-                            self.personalView.schoolLabel.text = self.player.school
-                            self.personalView.experienceLabel.text = self.player.yearsExperience
-                            self.personalView.heightWeightLabel.text = heightWeightDetails
                         })
                     }
                 } catch {

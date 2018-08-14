@@ -9,63 +9,39 @@ import UIKit
 
 class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
     
-    var teamString: String! = "0"
-    var gamesString: String! = "0"
-    var MPGString: String! = "0"
-    var pointsString: String! = "0"
-    var reboundsString: String! = "0"
-    var assistsString: String! = "0"
-    var stealsString: String! = "0"
-    var blocksString: String! = "0"
-    var turnoversString: String! = "0"
-    var totalFGString: String! = "0"
-    var totalFGPerString: String! = "0"
-    var threePTString: String! = "0"
-    var threePTPerString: String! = "0"
-    var ftString: String! = "0"
-    var ftPerString: String! = "0"
-    
-    var lteamString: String! = ""
-    var lgamesString: String! = ""
-    var lMPGString: String! = ""
-    var lpointsString: String! = ""
-    var lreboundsString: String! = ""
-    var lassistsString: String! = ""
-    var lstealsString: String! = ""
-    var lblocksString: String! = ""
-    var lturnoversString: String! = ""
-    var ltotalFGString: String! = ""
-    var ltotalFGPerString: String! = ""
-    var lthreePTString: String! = ""
-    var lthreePTPerString: String! = ""
-    var lftString: String! = ""
-    var lftPerString: String! = ""
+    var baseStat: BaseStat = BaseStat()
+    var advancedStat: AdvancedStat = AdvancedStat()
+    var playerId = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getSeasonJSON(gameLogURL: "http://stats.nba.com/stats/playercareerstats?LeagueID=00&PerMode=PerGame&PlayerID=1627759")
+        getSeasonJSON(type: "Base")
+        getSeasonJSON(type: "Advanced")
+        
+        //"http://stats.nba.com/stats/playercareerstats?LeagueID=00&PerMode=PerGame&PlayerID=1627759"
     }
     
-    //Function that gets JSON data from the URL
-    func getSeasonJSON(gameLogURL: String) {
-        let url = URL(string: gameLogURL)
+    func getSeasonJSON(type: String) {
+        let urlString = "https://stats.nba.com/stats/playerdashboardbyyearoveryear?DateFrom=&DateTo=&GameSegment=&LastNGames=0&LeagueID=00&Location=&Month=0&OpponentTeamID=0&Outcome=&PORound=0&PaceAdjust=N&PerMode=PerGame&Period=0&PlusMinus=N&Rank=N&Season=2017-18&SeasonSegment=&SeasonType=Regular+Season&ShotClockRange=&Split=yoy&VsConference=&VsDivision=&MeasureType=" + type + "&PlayerID=" + playerId
+        let url = URL(string: urlString)
         
         URLSession.shared.dataTask(with: url!, completionHandler: {(data, response, error) in
             if data != nil {
                 do {
                     let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments) as! [String: Any]
                     let resultSetsTemp: NSArray = json["resultSets"] as! NSArray
-                    let resultSets = resultSetsTemp[0] as! [String: Any]
-                    //resultSets is a dictionary
-                    let rowSet: NSArray = resultSets["rowSet"] as! NSArray
-                    //rowSet is an array of arrays, where each subarray is a season
-                    let season: NSArray = rowSet[1] as! NSArray
-                    self.turnRowSetIntoSeasonStats(rowSet: season)
+                    let resultSets = resultSetsTemp[1] as! [String: Any]
+                    let rowSetTemp: NSArray = resultSets["rowSet"] as! NSArray
+                    let rowSet: NSArray = rowSetTemp[0] as! NSArray
                     
-                    let lastSeason: NSArray = rowSet[0] as! NSArray
-                    self.turnRowSetIntoLastSeasonStats(rowSet: lastSeason)
-
+                    let season: NSArray = rowSet[0] as! NSArray
+                    
+                    if type == "Base" {
+                        self.turnRowSetIntoBaseStat(rowSet: season)
+                    } else if type == "Advanced" {
+                        self.turnRowSetIntoAdvancedStat(rowSet: season)
+                    }
                     
                     DispatchQueue.main.async(execute: {
 
@@ -77,53 +53,58 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
         }).resume()
     }
     
-
-    func turnRowSetIntoSeasonStats(rowSet: NSArray) {
-        var pointsDouble: Double = rowSet[26] as! Double
-        pointsDouble = Double(round(1000 * pointsDouble) / 1000)
-        pointsString = String(describing: pointsDouble)
+    
+    func turnRowSetIntoBaseStat(rowSet: NSArray) {
+        var year = rowSet[1] as! String
+        var team =
+        var GP: Double
         
-        teamString = abvToTeam(team: String(describing: rowSet[4]))
-        gamesString = String(describing: rowSet[6])
-        var mpgDouble: Double = rowSet[8] as! Double
-        mpgDouble = Double(round(1000 * mpgDouble) / 1000)
-        MPGString = String(describing: mpgDouble)
-        var rebDouble: Double = rowSet[20] as! Double
-        rebDouble = Double(round(1000 * rebDouble) / 1000)
-        reboundsString = String(describing: rebDouble)
-        var assistsDouble: Double = rowSet[21] as! Double
-        assistsDouble = Double(round(1000 * assistsDouble) / 1000)
-        assistsString = String(describing: assistsDouble)
-        var stealsDouble: Double = rowSet[22] as! Double
-        stealsDouble = Double(round(1000 * stealsDouble) / 1000)
-        stealsString = String(describing: stealsDouble)
-        var blocksDouble: Double = rowSet[23] as! Double
-        blocksDouble = Double(round(1000 * blocksDouble) / 1000)
-        blocksString = String(describing: blocksDouble)
-        var toDouble: Double = rowSet[24] as! Double
-        toDouble = Double(round(1000 * toDouble) / 1000)
-        turnoversString = String(describing: toDouble)
+        var MIN: Double
+        var PF: Double //will be unused
         
-        var fgMDouble: Double = rowSet[9] as! Double
-        fgMDouble = Double(round(1000 * fgMDouble) / 1000)
-        var fgADouble: Double = rowSet[10] as! Double
-        fgADouble = Double(round(1000 * fgADouble) / 1000)
-        totalFGString = String(describing: fgMDouble) + "/" + String(describing: fgADouble)
-        totalFGPerString = String(100*(rowSet[11] as! Double)) + "%"
+        var FGM: Double
+        var FGA: Double
+        var FGP: Double
         
-        var tPDouble: Double = rowSet[12] as! Double
-        tPDouble = Double(round(1000 * tPDouble) / 1000)
-        var tpADouble: Double = rowSet[13] as! Double
-        tpADouble = Double(round(1000 * tpADouble) / 1000)
-        threePTString = String(describing: tPDouble) + "/" + String(describing: tpADouble)
-        threePTPerString = String(100*(rowSet[14] as! Double)) + "%"
+        var FG3M: Double
+        var FG3A: Double
+        var FG3P: Double
         
-        var ftmDouble: Double = rowSet[15] as! Double
-        ftmDouble = Double(round(1000 * ftmDouble) / 1000)
-        var ftaDouble: Double = rowSet[16] as! Double
-        ftaDouble = Double(round(1000 * ftaDouble) / 1000)
-        ftString = String(describing: ftmDouble) + "/" + String(describing: ftaDouble)
-        ftPerString = String(100*(rowSet[17] as! Double)) + "%"
+        var FTM: Double
+        var FTA: Double
+        var FTP: Double
+        
+        var OREB: Double
+        var DREB: Double
+        var TREB: Double
+        
+        var PTS: Double
+        var AST: Double
+        var BLK: Double
+        var TOV: Double
+        
+        self.baseStat = BaseStat(year: year, team: team, GP: GP, MIN: MIN, PF: PF, FGM: FGM, FGA: FGA, FGP: FGP, FG3M: FG3M, FG3A: FG3A, FG3P: FG3P, FTM: FTM, FTA: FTA, FTP: FTP, OREB: OREB, DREB: DREB, TREB: TREB, PTS: PTS, AST: AST, BLK: BLK, TOV: TOV)
+    }
+    
+    func turnRowSetIntoAdvancedStat(rowSet: NSArray) {
+        var ORAT: Double = 0
+        var DRAT: Double = 0
+        var NRAT: Double = 0
+        var USG: Double = 0
+        var EFG: Double = 0
+        var TSP: Double = 0
+        var ASTP: Double = 0
+        var A2T: Double = 0
+        var REBP: Double = 0
+        var OREBP: Double = 0
+        var DREBP: Double = 0
+        var PACE: Double = 0
+        
+        self.advancedStat = (ORAT: ORAT, DRAT: DRAT, NRAT: NRAT, USG: USG, EFG: EFG, TSP: TSP, ASTP: ASTP, A2T: A2T, REBP: REBP, OREBP: OREBP, DREBP: DREBP, PACE: PACE)
+    }
+    
+    func roundThree(val: Double) -> Double {
+        return Double(round(1000 * val) / 1000)
     }
     
     func turnRowSetIntoLastSeasonStats(rowSet: NSArray) {
@@ -268,3 +249,92 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
         return "Team"
     }
 }
+
+struct BaseStat {
+    var year: String = ""
+    var team: String = ""
+    var GP: Double = 0
+    
+    var MIN: Double = 0
+    var PF: Double = 0 //will be unused
+    
+    var FGM: Double = 0
+    var FGA: Double = 0
+    var FGP: Double = 0
+    
+    var FG3M: Double = 0
+    var FG3A: Double = 0
+    var FG3P: Double = 0
+    
+    var FTM: Double = 0
+    var FTA: Double = 0
+    var FTP: Double = 0
+    
+    var OREB: Double = 0
+    var DREB: Double = 0
+    var TREB: Double = 0
+    
+    var PTS: Double = 0
+    var AST: Double = 0
+    var BLK: Double = 0
+    var TOV: Double = 0
+    
+    init(year: String, team: String, GP: Double, MIN: Double, PF: Double, FGM: Double, FGA: Double, FGP: Double, FG3M: Double, FG3A: Double, FG3P: Double, FTM: Double, FTA: Double, FTP: Double, OREB: Double, DREB: Double, TREB: Double, PTS: Double, AST: Double, BLK: Double, TOV: Double) {
+        self.year = year
+        self.team = team
+        self.GP = GP
+        self.MIN = MIN
+        self.PF = PF
+        self.FGM = FGM
+        self.FGA = FGA
+        self.FGP = FGP
+        self.FG3M = FG3M
+        self.FG3A = FG3A
+        self.FG3P = FG3P
+        self.FTM = FTM
+        self.FTA = FTA
+        self.FTP = FTP
+        self.OREB = OREB
+        self.DREB = DREB
+        self.TREB = TREB
+        self.PTS = PTS
+        self.AST = AST
+        self.BLK = BLK
+        self.TOV = TOV
+    }
+    
+    init() {}
+}
+
+struct AdvancedStat {
+    var ORAT: Double = 0
+    var DRAT: Double = 0
+    var NRAT: Double = 0
+    var USG: Double = 0
+    var EFG: Double = 0
+    var TSP: Double = 0
+    var ASTP: Double = 0
+    var A2T: Double = 0
+    var REBP: Double = 0
+    var OREBP: Double = 0
+    var DREBP: Double = 0
+    var PACE: Double = 0
+    
+    init(ORAT: Double, DRAT: Double, NRAT: Double, USG: Double, EFG: Double, TSP: Double, ASTP: Double, A2T: Double, REBP: Double, OREBP: Double, DREBP: Double, PACE: Double) {
+        self.ORAT = ORAT
+        self.DRAT = DRAT
+        self.NRAT = NRAT
+        self.USG = USG
+        self.EFG = EFG
+        self.TSP = TSP
+        self.ASTP = ASTP
+        self.A2T = A2T
+        self.REBP = REBP
+        self.OREBP = OREBP
+        self.DREBP = DREBP
+        self.PACE = PACE
+    }
+    
+    init() {}
+}
+

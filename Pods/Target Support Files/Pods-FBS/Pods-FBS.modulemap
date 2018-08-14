@@ -1,0 +1,6 @@
+framework module Pods_FBS {
+  umbrella header "Pods-FBS-umbrella.h"
+
+  export *
+  module * { export * }
+}

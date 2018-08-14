@@ -44,7 +44,7 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
                     }
                     
                     DispatchQueue.main.async(execute: {
-
+                        
                     })
                 } catch {
                     print("Could not serialize")
@@ -55,105 +55,58 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
     
     
     func turnRowSetIntoBaseStat(rowSet: NSArray) {
-        var year = rowSet[1] as! String
-        var team =
-        var GP: Double
+        let year = rowSet[1] as! String
+        let team = rowSet[3] as! String
         
-        var MIN: Double
-        var PF: Double //will be unused
+        let GP = rowSet[5] as! Double
+        let MIN = roundThree(val: rowSet[9] as! Double)
+        let PF = roundThree(val: rowSet[27] as! Double)
         
-        var FGM: Double
-        var FGA: Double
-        var FGP: Double
+        let FGM = roundThree(val: rowSet[10] as! Double)
+        let FGA = roundThree(val: rowSet[11] as! Double)
+        let FGP = roundThree(val: rowSet[12] as! Double)
         
-        var FG3M: Double
-        var FG3A: Double
-        var FG3P: Double
+        let FG3M = roundThree(val: rowSet[13] as! Double)
+        let FG3A = roundThree(val: rowSet[14] as! Double)
+        let FG3P = roundThree(val: rowSet[15] as! Double)
         
-        var FTM: Double
-        var FTA: Double
-        var FTP: Double
+        let FTM = roundThree(val: rowSet[16] as! Double)
+        let FTA = roundThree(val: rowSet[17] as! Double)
+        let FTP = roundThree(val: rowSet[18] as! Double)
         
-        var OREB: Double
-        var DREB: Double
-        var TREB: Double
+        let OREB = roundThree(val: rowSet[19] as! Double)
+        let DREB = roundThree(val: rowSet[20] as! Double)
+        let TREB = roundThree(val: rowSet[21] as! Double)
         
-        var PTS: Double
-        var AST: Double
-        var BLK: Double
-        var TOV: Double
+        let PTS = roundThree(val: rowSet[29] as! Double)
+        let AST = roundThree(val: rowSet[22] as! Double)
+        let BLK = roundThree(val: rowSet[25] as! Double)
+        let TOV = roundThree(val: rowSet[23] as! Double)
         
         self.baseStat = BaseStat(year: year, team: team, GP: GP, MIN: MIN, PF: PF, FGM: FGM, FGA: FGA, FGP: FGP, FG3M: FG3M, FG3A: FG3A, FG3P: FG3P, FTM: FTM, FTA: FTA, FTP: FTP, OREB: OREB, DREB: DREB, TREB: TREB, PTS: PTS, AST: AST, BLK: BLK, TOV: TOV)
     }
     
     func turnRowSetIntoAdvancedStat(rowSet: NSArray) {
-        var ORAT: Double = 0
-        var DRAT: Double = 0
-        var NRAT: Double = 0
-        var USG: Double = 0
-        var EFG: Double = 0
-        var TSP: Double = 0
-        var ASTP: Double = 0
-        var A2T: Double = 0
-        var REBP: Double = 0
-        var OREBP: Double = 0
-        var DREBP: Double = 0
-        var PACE: Double = 0
+        let ORAT = roundThree(val: rowSet[10] as! Double)
+        let DRAT = roundThree(val: rowSet[11] as! Double)
+        let NRAT = roundThree(val: rowSet[12] as! Double)
+        let USG = roundThree(val: rowSet[22] as! Double)
+        let EFG = roundThree(val: rowSet[20] as! Double)
+        let TSP = roundThree(val: rowSet[21] as! Double)
+        let ASTP = roundThree(val: rowSet[13] as! Double)
+        let A2T = roundThree(val: rowSet[14] as! Double)
+        let REBP = roundThree(val: rowSet[18] as! Double)
+        let OREBP = roundThree(val: rowSet[16] as! Double)
+        let DREBP = roundThree(val: rowSet[17] as! Double)
+        let PACE = roundThree(val: rowSet[23] as! Double)
         
-        self.advancedStat = (ORAT: ORAT, DRAT: DRAT, NRAT: NRAT, USG: USG, EFG: EFG, TSP: TSP, ASTP: ASTP, A2T: A2T, REBP: REBP, OREBP: OREBP, DREBP: DREBP, PACE: PACE)
+        self.advancedStat = AdvancedStat(ORAT: ORAT, DRAT: DRAT, NRAT: NRAT, USG: USG, EFG: EFG, TSP: TSP, ASTP: ASTP, A2T: A2T, REBP: REBP, OREBP: OREBP, DREBP: DREBP, PACE: PACE)
     }
     
     func roundThree(val: Double) -> Double {
         return Double(round(1000 * val) / 1000)
     }
     
-    func turnRowSetIntoLastSeasonStats(rowSet: NSArray) {
-        var pointsDouble: Double = rowSet[26] as! Double
-        pointsDouble = Double(round(1000 * pointsDouble) / 1000)
-        lpointsString = String(describing: pointsDouble)
-        
-        lteamString = abvToTeam(team: String(describing: rowSet[4]))
-        lgamesString = String(describing: rowSet[6])
-        var mpgDouble: Double = rowSet[8] as! Double
-        mpgDouble = Double(round(1000 * mpgDouble) / 1000)
-        lMPGString = String(describing: mpgDouble)
-        var rebDouble: Double = rowSet[20] as! Double
-        rebDouble = Double(round(1000 * rebDouble) / 1000)
-        lreboundsString = String(describing: rebDouble)
-        var assistsDouble: Double = rowSet[21] as! Double
-        assistsDouble = Double(round(1000 * assistsDouble) / 1000)
-        lassistsString = String(describing: assistsDouble)
-        var stealsDouble: Double = rowSet[22] as! Double
-        stealsDouble = Double(round(1000 * stealsDouble) / 1000)
-        lstealsString = String(describing: stealsDouble)
-        var blocksDouble: Double = rowSet[23] as! Double
-        blocksDouble = Double(round(1000 * blocksDouble) / 1000)
-        lblocksString = String(describing: blocksDouble)
-        var toDouble: Double = rowSet[24] as! Double
-        toDouble = Double(round(1000 * toDouble) / 1000)
-        lturnoversString = String(describing: toDouble)
-        
-        var fgMDouble: Double = rowSet[9] as! Double
-        fgMDouble = Double(round(1000 * fgMDouble) / 1000)
-        var fgADouble: Double = rowSet[10] as! Double
-        fgADouble = Double(round(1000 * fgADouble) / 1000)
-        ltotalFGString = String(describing: fgMDouble) + "/" + String(describing: fgADouble)
-        ltotalFGPerString = String(100*(rowSet[11] as! Double)) + "%"
-        
-        var tPDouble: Double = rowSet[12] as! Double
-        tPDouble = Double(round(1000 * tPDouble) / 1000)
-        var tpADouble: Double = rowSet[13] as! Double
-        tpADouble = Double(round(1000 * tpADouble) / 1000)
-        lthreePTString = String(describing: tPDouble) + "/" + String(describing: tpADouble)
-        lthreePTPerString = String(100*(rowSet[14] as! Double)) + "%"
-        
-        var ftmDouble: Double = rowSet[15] as! Double
-        ftmDouble = Double(round(1000 * ftmDouble) / 1000)
-        var ftaDouble: Double = rowSet[16] as! Double
-        ftaDouble = Double(round(1000 * ftaDouble) / 1000)
-        lftString = String(describing: ftmDouble) + "/" + String(describing: ftaDouble)
-        lftPerString = String(100*(rowSet[17] as! Double)) + "%"
-    }
     
     func abvToTeam(team: String) -> String {
         if team == "ATL" {

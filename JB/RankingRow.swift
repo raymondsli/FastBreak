@@ -10,7 +10,7 @@ import UIKit
 
 class RankingRow: UIView {
     
-    @IBOutlet var contentView: StatRow!
+    @IBOutlet var contentView: RankingRow!
     @IBOutlet weak var statType: UILabel!
     @IBOutlet weak var statAmount: UILabel!
     @IBOutlet weak var rank: UILabel!

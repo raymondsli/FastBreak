@@ -482,11 +482,13 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
         self.tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    //Called before the segue is executed. Sets the labels of the detailed game view.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toPlayer" {
             let upcomingTabVC: UITabBarController = segue.destination as! UITabBarController
             let upcoming: HomeViewController = upcomingTabVC.viewControllers?[0] as! HomeViewController
+            let gameLogVC: GameLogViewController = upcomingTabVC.viewControllers?[1] as! GameLogViewController
+            let seasonStatsVC: SeasonStatsViewController = upcomingTabVC.viewControllers?[2] as! SeasonStatsViewController
+            let twitterVC: JBTwitterTimeline = upcomingTabVC.viewControllers?[3] as! JBTwitterTimeline
             
             let indexPath = self.tableView.indexPathForSelectedRow!
             
@@ -502,6 +504,10 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
             upcoming.firstName = firstName
             upcoming.lastName = lastName
             upcoming.displayName = playerName
+            
+            gameLogVC.playerId = playerIds[firstName + " " + lastName]!
+            seasonStatsVC.playerId = playerIds[firstName + " " + lastName]!
+            twitterVC.twitterHandle = "NBA"
 
             self.tableView.deselectRow(at: indexPath, animated: true)
         }

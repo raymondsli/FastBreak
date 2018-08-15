@@ -11,13 +11,12 @@ import TwitterKit
 
 class JBTwitterTimeline: TWTRTimelineViewController {
     
+    var twitterHandle: String = "NBA"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        let client = TWTRAPIClient()
-//        self.dataSource = TWTRUserTimelineDataSource(screenName: "FCHWPO", apiClient: client)
-        let client = TWTRAPIClient.withCurrentUser()
+        let client = TWTRAPIClient()
         self.dataSource = TWTRUserTimelineDataSource(screenName: "FCHWPO", apiClient: client)
-        self.showTweetActions = true
     }
 }

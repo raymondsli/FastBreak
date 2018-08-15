@@ -17,14 +17,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PlayerRankings" customModule="FBS" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="iN0-l3-epB" id="A14-Xs-TB1"/>
-                <outlet property="stat1" destination="eWw-03-h42" id="5qk-1M-c9s"/>
-                <outlet property="stat2" destination="c42-Q8-lTS" id="Ikg-ki-F6R"/>
-                <outlet property="stat3" destination="9pj-gh-pTU" id="VEC-4F-l3g"/>
-                <outlet property="stat4" destination="ndi-Yw-22A" id="hvA-BG-CTx"/>
-                <outlet property="stat5" destination="hHD-Fo-fL9" id="sKh-gP-6UV"/>
-                <outlet property="stat6" destination="qyH-Do-Hu9" id="cPq-iU-Hze"/>
-                <outlet property="stat7" destination="fMG-RT-8fR" id="Dyv-rT-s7n"/>
-                <outlet property="stat8" destination="s75-q2-FX0" id="t3i-aB-2Z1"/>
+                <outlet property="stat1" destination="eWw-03-h42" id="jOn-Jo-amk"/>
+                <outlet property="stat2" destination="c42-Q8-lTS" id="5NP-p6-MSc"/>
+                <outlet property="stat3" destination="9pj-gh-pTU" id="aH7-qz-PkK"/>
+                <outlet property="stat4" destination="ndi-Yw-22A" id="y8p-D1-fDz"/>
+                <outlet property="stat5" destination="hHD-Fo-fL9" id="Jfz-jK-m4m"/>
+                <outlet property="stat6" destination="qyH-Do-Hu9" id="gBZ-he-Fov"/>
+                <outlet property="stat7" destination="fMG-RT-8fR" id="XcX-h6-IVo"/>
+                <outlet property="stat8" destination="s75-q2-FX0" id="dDX-XC-hdo"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -53,42 +53,42 @@
                     <color key="textColor" red="0.15198446139999999" green="0.235571747" blue="0.2795971062" alpha="0.81393045770000005" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eWw-03-h42" customClass="StatRow" customModule="FBS" customModuleProvider="target">
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eWw-03-h42" customClass="RankingRow" customModule="FBS" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="109" width="375" height="35"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c42-Q8-lTS" customClass="StatRow" customModule="FBS" customModuleProvider="target">
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c42-Q8-lTS" customClass="RankingRow" customModule="FBS" customModuleProvider="target">
                     <rect key="frame" x="-1" y="152" width="375" height="35"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9pj-gh-pTU" customClass="StatRow" customModule="FBS" customModuleProvider="target">
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9pj-gh-pTU" customClass="RankingRow" customModule="FBS" customModuleProvider="target">
                     <rect key="frame" x="-1" y="195" width="375" height="35"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ndi-Yw-22A" customClass="StatRow" customModule="FBS" customModuleProvider="target">
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ndi-Yw-22A" customClass="RankingRow" customModule="FBS" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="238" width="376" height="35"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hHD-Fo-fL9" customClass="StatRow" customModule="FBS" customModuleProvider="target">
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hHD-Fo-fL9" customClass="RankingRow" customModule="FBS" customModuleProvider="target">
                     <rect key="frame" x="-1" y="281" width="377" height="35"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qyH-Do-Hu9" customClass="StatRow" customModule="FBS" customModuleProvider="target">
-                    <rect key="frame" x="1" y="324" width="376" height="35"/>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qyH-Do-Hu9" customClass="RankingRow" customModule="FBS" customModuleProvider="target">
+                    <rect key="frame" x="-1" y="324" width="378" height="35"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fMG-RT-8fR" customClass="StatRow" customModule="FBS" customModuleProvider="target">
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fMG-RT-8fR" customClass="RankingRow" customModule="FBS" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="367" width="377" height="35"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s75-q2-FX0" customClass="StatRow" customModule="FBS" customModuleProvider="target">
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s75-q2-FX0" customClass="RankingRow" customModule="FBS" customModuleProvider="target">
                     <rect key="frame" x="-1" y="410" width="376" height="35"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

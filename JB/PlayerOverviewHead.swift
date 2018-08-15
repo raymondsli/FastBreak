@@ -10,7 +10,8 @@ import UIKit
 
 class PlayerOverviewHead: UIView {
     
-    @IBOutlet var contentView: PlayerOverviewHead!
+    
+    @IBOutlet var contentView: UIView!
     @IBOutlet weak var headshot: UIImageView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var team: UILabel!

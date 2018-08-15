@@ -8,7 +8,7 @@
 import UIKit
 class GameLogViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    let playerId = ""
+    var playerId = 0
     var games = [Game]()
     
     @IBOutlet weak var tableView: UITableView!
@@ -19,17 +19,16 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
         tableView.delegate = self
         tableView.dataSource = self
         
+        let nib = UINib(nibName: "GameCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "GameCell")
+        
         getGameLogJSON()
 
         tableView.reloadData()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.isNavigationBarHidden = true
-    }
-    
     func getGameLogJSON() {
-        let url = URL(string: "https://stats.nba.com/stats/playergamelog?DateFrom=&DateTo=&LeagueID=00&SeasonType=Regular+Season&Season=2017-18&PlayerID=" + playerId)
+        let url = URL(string: "https://stats.nba.com/stats/playergamelog?DateFrom=&DateTo=&LeagueID=00&SeasonType=Regular+Season&Season=2017-18&PlayerID=" + String(playerId))
         
         URLSession.shared.dataTask(with: url!, completionHandler: {(data, response, error) in
             if data != nil {
@@ -99,7 +98,52 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "GameCell") as? GameCell {
+        if let cell = self.tableView.dequeueReusableCell(withIdentifier: "GameCell") as? GameCell {
+            let game = games[indexPath.row]
+            
+            cell.gameNumber.adjustsFontSizeToFitWidth = true
+            cell.gameDetails.adjustsFontSizeToFitWidth = true
+            cell.winLoss.adjustsFontSizeToFitWidth = true
+            
+            cell.gameNumber.text = "Game " + String(game.gameNumber)
+            cell.gameDetails.text = game.date + " " + game.opponent
+            cell.winLoss.text = game.winLoss
+            
+            cell.row1.stat1.text = "MIN"
+            cell.row1.stat2.text = "PTS"
+            cell.row1.stat3.text = "REB"
+            cell.row1.stat4.text = "OREB"
+            cell.row1.amount1.text = String(game.MIN)
+            cell.row1.amount2.text = String(game.PTS)
+            cell.row1.amount3.text = String(game.REB)
+            cell.row1.amount4.text = String(game.OREB)
+            
+            cell.row2.stat1.text = "AST"
+            cell.row2.stat2.text = "STL"
+            cell.row2.stat3.text = "FG%"
+            cell.row2.stat4.text = "FGM | FGA"
+            cell.row2.amount1.text = String(game.AST)
+            cell.row2.amount2.text = String(game.STL)
+            cell.row2.amount3.text = String(game.FGP) + "%"
+            cell.row2.amount4.text = String(game.FGM) + " | " + String(game.FGA)
+            
+            cell.row3.stat1.text = "BLK"
+            cell.row3.stat2.text = "TOV"
+            cell.row3.stat3.text = "3P%%"
+            cell.row3.stat4.text = "3PM | 3PA"
+            cell.row3.amount1.text = String(game.BLK)
+            cell.row3.amount2.text = String(game.TOV)
+            cell.row3.amount3.text = String(game.FG3P) + "%"
+            cell.row3.amount4.text = String(game.FG3M) + " | " + String(game.FG3A)
+            
+            cell.row4.stat1.text = "PF"
+            cell.row4.stat2.text = "+/-"
+            cell.row4.stat3.text = "FT%"
+            cell.row4.stat4.text = "FTM | FTA"
+            cell.row4.amount1.text = String(game.PF)
+            cell.row4.amount2.text = String(game.PLUSMINUS)
+            cell.row4.amount3.text = String(game.FTP) + "%"
+            cell.row4.amount4.text = String(game.FTM) + " | " + String(game.FTA)
             
             return cell
         } else {
@@ -119,5 +163,8 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
         return games.count
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 300.0
+    }
     
 }

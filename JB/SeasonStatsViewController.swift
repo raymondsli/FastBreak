@@ -11,7 +11,7 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
     
     var baseStat: BaseStat = BaseStat()
     var advancedStat: AdvancedStat = AdvancedStat()
-    var playerId = ""
+    var playerId = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +23,7 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
     }
     
     func getSeasonJSON(type: String) {
-        let urlString = "https://stats.nba.com/stats/playerdashboardbyyearoveryear?DateFrom=&DateTo=&GameSegment=&LastNGames=0&LeagueID=00&Location=&Month=0&OpponentTeamID=0&Outcome=&PORound=0&PaceAdjust=N&PerMode=PerGame&Period=0&PlusMinus=N&Rank=N&Season=2017-18&SeasonSegment=&SeasonType=Regular+Season&ShotClockRange=&Split=yoy&VsConference=&VsDivision=&MeasureType=" + type + "&PlayerID=" + playerId
+        let urlString = "https://stats.nba.com/stats/playerdashboardbyyearoveryear?DateFrom=&DateTo=&GameSegment=&LastNGames=0&LeagueID=00&Location=&Month=0&OpponentTeamID=0&Outcome=&PORound=0&PaceAdjust=N&PerMode=PerGame&Period=0&PlusMinus=N&Rank=N&Season=2017-18&SeasonSegment=&SeasonType=Regular+Season&ShotClockRange=&Split=yoy&VsConference=&VsDivision=&MeasureType=" + type + "&PlayerID=" + String(playerId)
         let url = URL(string: urlString)
         
         URLSession.shared.dataTask(with: url!, completionHandler: {(data, response, error) in
@@ -33,9 +33,7 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
                     let resultSetsTemp: NSArray = json["resultSets"] as! NSArray
                     let resultSets = resultSetsTemp[1] as! [String: Any]
                     let rowSetTemp: NSArray = resultSets["rowSet"] as! NSArray
-                    let rowSet: NSArray = rowSetTemp[0] as! NSArray
-                    
-                    let season: NSArray = rowSet[0] as! NSArray
+                    let season: NSArray = rowSetTemp[0] as! NSArray
                     
                     if type == "Base" {
                         self.turnRowSetIntoBaseStat(rowSet: season)
@@ -209,7 +207,7 @@ struct BaseStat {
     var GP: Double = 0
     
     var MIN: Double = 0
-    var PF: Double = 0 //will be unused
+    var PF: Double = 0 //Not used
     
     var FGM: Double = 0
     var FGA: Double = 0

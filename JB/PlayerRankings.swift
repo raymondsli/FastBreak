@@ -10,7 +10,7 @@ import UIKit
 
 class PlayerRankings: UIView {
     
-    @IBOutlet var contentView: PlayerRankings!
+    @IBOutlet var contentView: UIView!
     @IBOutlet weak var stat1: RankingRow!
     @IBOutlet weak var stat2: RankingRow!
     @IBOutlet weak var stat3: RankingRow!
@@ -19,6 +19,7 @@ class PlayerRankings: UIView {
     @IBOutlet weak var stat6: RankingRow!
     @IBOutlet weak var stat7: RankingRow!
     @IBOutlet weak var stat8: RankingRow!
+    
     
     
     override init(frame: CGRect) {

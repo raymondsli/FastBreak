@@ -20,7 +20,7 @@ class Game {
     
     var PTS: Double
     var OREB: Double
-    var DREB: Double
+    var DREB: Double //Not used
     var REB: Double
     var AST: Double
     var STL: Double

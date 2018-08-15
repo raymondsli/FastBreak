@@ -22,6 +22,8 @@
 		5026C2701D65B4D80057D046 /* GameLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5026C26F1D65B4D80057D046 /* GameLogViewController.swift */; };
 		5026C2721D65B6590057D046 /* GameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5026C2711D65B6590057D046 /* GameCell.swift */; };
 		504406512123BC2800B7994C /* GameCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 504406502123BC2800B7994C /* GameCell.xib */; };
+		504406532123BDD600B7994C /* StatRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 504406522123BDD600B7994C /* StatRow.xib */; };
+		504406552123BDE900B7994C /* StatRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504406542123BDE900B7994C /* StatRow.swift */; };
 		50B1A6711FA33C8300BC4A62 /* DropMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1A6701FA33C8300BC4A62 /* DropMenu.swift */; };
 		50CFAB94212295220066F449 /* bree-serif in Resources */ = {isa = PBXBuildFile; fileRef = 50CFAB93212295220066F449 /* bree-serif */; };
 		50CFAB962122C2FE0066F449 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFAB952122C2FE0066F449 /* Game.swift */; };
@@ -55,6 +57,8 @@
 		5026C26F1D65B4D80057D046 /* GameLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLogViewController.swift; sourceTree = "<group>"; };
 		5026C2711D65B6590057D046 /* GameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCell.swift; sourceTree = "<group>"; };
 		504406502123BC2800B7994C /* GameCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameCell.xib; sourceTree = "<group>"; };
+		504406522123BDD600B7994C /* StatRow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatRow.xib; sourceTree = "<group>"; };
+		504406542123BDE900B7994C /* StatRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatRow.swift; sourceTree = "<group>"; };
 		50B1A6701FA33C8300BC4A62 /* DropMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropMenu.swift; sourceTree = "<group>"; };
 		50CFAB93212295220066F449 /* bree-serif */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "bree-serif"; sourceTree = SOURCE_ROOT; };
 		50CFAB952122C2FE0066F449 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
@@ -113,6 +117,8 @@
 				50DA741F212110C400C73019 /* RankingRow.swift */,
 				504406502123BC2800B7994C /* GameCell.xib */,
 				5026C2711D65B6590057D046 /* GameCell.swift */,
+				504406522123BDD600B7994C /* StatRow.xib */,
+				504406542123BDE900B7994C /* StatRow.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -255,6 +261,7 @@
 				50DA741E212110B200C73019 /* RankingRow.xib in Resources */,
 				50CFAB94212295220066F449 /* bree-serif in Resources */,
 				50DD7DD8211FD1C400D66A85 /* PlayerCell.xib in Resources */,
+				504406532123BDD600B7994C /* StatRow.xib in Resources */,
 				5026C25D1D65716B0057D046 /* Main.storyboard in Resources */,
 				50DA74122120DD6200C73019 /* PlayerOverviewHead.xib in Resources */,
 				504406512123BC2800B7994C /* GameCell.xib in Resources */,
@@ -340,6 +347,7 @@
 				50CFAB962122C2FE0066F449 /* Game.swift in Sources */,
 				50DA74142120DD7100C73019 /* PlayerOverviewHead.swift in Sources */,
 				5026C2561D65716B0057D046 /* AppDelegate.swift in Sources */,
+				504406552123BDE900B7994C /* StatRow.swift in Sources */,
 				50B1A6711FA33C8300BC4A62 /* DropMenu.swift in Sources */,
 				5026C2581D65716B0057D046 /* HomeViewController.swift in Sources */,
 				50DA7420212110C400C73019 /* RankingRow.swift in Sources */,

@@ -10,4 +10,16 @@ import UIKit
 
 class GameCell: UITableViewCell {
     
+    @IBOutlet weak var gameNumber: UILabel!
+    @IBOutlet weak var gameDetails: UILabel!
+    @IBOutlet weak var winLoss: UILabel!
+    @IBOutlet weak var row1: StatRow!
+    @IBOutlet weak var row2: StatRow!
+    @IBOutlet weak var row3: StatRow!
+    @IBOutlet weak var row4: StatRow!
+    
+    class func instanceFromNib() -> UIView {
+        return UINib(nibName: "GameCell", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! UIView
+    }
+    
 }

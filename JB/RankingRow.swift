@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StatRow: UIView {
+class RankingRow: UIView {
     
     @IBOutlet var contentView: StatRow!
     @IBOutlet weak var statType: UILabel!
@@ -27,7 +27,7 @@ class StatRow: UIView {
     }
     
     private func commonInit() {
-        Bundle.main.loadNibNamed("StatRow", owner: self, options: nil)
+        Bundle.main.loadNibNamed("RankingRow", owner: self, options: nil)
         addSubview(contentView)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]

@@ -32,8 +32,8 @@
 		50DA74182120FB6200C73019 /* PlayerPersonal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DA74172120FB6200C73019 /* PlayerPersonal.swift */; };
 		50DA741A212104E300C73019 /* PlayerRankings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50DA7419212104E300C73019 /* PlayerRankings.xib */; };
 		50DA741C212104ED00C73019 /* PlayerRankings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DA741B212104ED00C73019 /* PlayerRankings.swift */; };
-		50DA741E212110B200C73019 /* StatRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50DA741D212110B200C73019 /* StatRow.xib */; };
-		50DA7420212110C400C73019 /* StatRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DA741F212110C400C73019 /* StatRow.swift */; };
+		50DA741E212110B200C73019 /* RankingRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50DA741D212110B200C73019 /* RankingRow.xib */; };
+		50DA7420212110C400C73019 /* RankingRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DA741F212110C400C73019 /* RankingRow.swift */; };
 		50DBBB861DD17523000EE4E4 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50DBBB851DD17523000EE4E4 /* MessageUI.framework */; };
 		50DD7DD8211FD1C400D66A85 /* PlayerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50DD7DD7211FD1C400D66A85 /* PlayerCell.xib */; };
 /* End PBXBuildFile section */
@@ -65,8 +65,8 @@
 		50DA74172120FB6200C73019 /* PlayerPersonal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerPersonal.swift; sourceTree = "<group>"; };
 		50DA7419212104E300C73019 /* PlayerRankings.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerRankings.xib; sourceTree = "<group>"; };
 		50DA741B212104ED00C73019 /* PlayerRankings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerRankings.swift; sourceTree = "<group>"; };
-		50DA741D212110B200C73019 /* StatRow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatRow.xib; sourceTree = "<group>"; };
-		50DA741F212110C400C73019 /* StatRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatRow.swift; sourceTree = "<group>"; };
+		50DA741D212110B200C73019 /* RankingRow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RankingRow.xib; sourceTree = "<group>"; };
+		50DA741F212110C400C73019 /* RankingRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingRow.swift; sourceTree = "<group>"; };
 		50DBBB851DD17523000EE4E4 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		50DD7DD7211FD1C400D66A85 /* PlayerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerCell.xib; sourceTree = "<group>"; };
 		76D8A17AC59E053D337B8E72 /* Pods-FBS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FBS.release.xcconfig"; path = "Pods/Target Support Files/Pods-FBS/Pods-FBS.release.xcconfig"; sourceTree = "<group>"; };
@@ -109,8 +109,8 @@
 				50DA74172120FB6200C73019 /* PlayerPersonal.swift */,
 				50DA7419212104E300C73019 /* PlayerRankings.xib */,
 				50DA741B212104ED00C73019 /* PlayerRankings.swift */,
-				50DA741D212110B200C73019 /* StatRow.xib */,
-				50DA741F212110C400C73019 /* StatRow.swift */,
+				50DA741D212110B200C73019 /* RankingRow.xib */,
+				50DA741F212110C400C73019 /* RankingRow.swift */,
 				504406502123BC2800B7994C /* GameCell.xib */,
 				5026C2711D65B6590057D046 /* GameCell.swift */,
 			);
@@ -252,7 +252,7 @@
 				50DA74102120177E00C73019 /* allplayers.json in Resources */,
 				5019B5DD1D6D639000423579 /* Assets.xcassets in Resources */,
 				50DA74162120FB5700C73019 /* PlayerPersonal.xib in Resources */,
-				50DA741E212110B200C73019 /* StatRow.xib in Resources */,
+				50DA741E212110B200C73019 /* RankingRow.xib in Resources */,
 				50CFAB94212295220066F449 /* bree-serif in Resources */,
 				50DD7DD8211FD1C400D66A85 /* PlayerCell.xib in Resources */,
 				5026C25D1D65716B0057D046 /* Main.storyboard in Resources */,
@@ -342,7 +342,7 @@
 				5026C2561D65716B0057D046 /* AppDelegate.swift in Sources */,
 				50B1A6711FA33C8300BC4A62 /* DropMenu.swift in Sources */,
 				5026C2581D65716B0057D046 /* HomeViewController.swift in Sources */,
-				50DA7420212110C400C73019 /* StatRow.swift in Sources */,
+				50DA7420212110C400C73019 /* RankingRow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

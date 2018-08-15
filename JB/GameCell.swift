@@ -1,9 +1,9 @@
 //
 //  gameCell.swift
-//  JB
+//  FBS
 //
-//  Created by Raymond Li on 8/18/16.
-//  Copyright © 2016 Raymond Li. All rights reserved.
+//  Created by Raymond Li on 8/14/18.
+//  Copyright © 2018 Raymond Li. All rights reserved.
 //
 
 import UIKit

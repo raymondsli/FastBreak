@@ -11,14 +11,14 @@ import UIKit
 class PlayerRankings: UIView {
     
     @IBOutlet var contentView: PlayerRankings!
-    @IBOutlet weak var stat1: StatRow!
-    @IBOutlet weak var stat2: StatRow!
-    @IBOutlet weak var stat3: StatRow!
-    @IBOutlet weak var stat4: StatRow!
-    @IBOutlet weak var stat5: StatRow!
-    @IBOutlet weak var stat6: StatRow!
-    @IBOutlet weak var stat7: StatRow!
-    @IBOutlet weak var stat8: StatRow!
+    @IBOutlet weak var stat1: RankingRow!
+    @IBOutlet weak var stat2: RankingRow!
+    @IBOutlet weak var stat3: RankingRow!
+    @IBOutlet weak var stat4: RankingRow!
+    @IBOutlet weak var stat5: RankingRow!
+    @IBOutlet weak var stat6: RankingRow!
+    @IBOutlet weak var stat7: RankingRow!
+    @IBOutlet weak var stat8: RankingRow!
     
     
     override init(frame: CGRect) {

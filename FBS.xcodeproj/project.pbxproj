@@ -21,6 +21,10 @@
 		5026C2621D65716B0057D046 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5026C2601D65716B0057D046 /* LaunchScreen.storyboard */; };
 		5026C2701D65B4D80057D046 /* GameLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5026C26F1D65B4D80057D046 /* GameLogViewController.swift */; };
 		5026C2721D65B6590057D046 /* GameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5026C2711D65B6590057D046 /* GameCell.swift */; };
+		5030539A21240B26004313AF /* BaseStatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5030539921240B26004313AF /* BaseStatView.xib */; };
+		5030539C21240B4F004313AF /* AdvancedStatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5030539B21240B4F004313AF /* AdvancedStatView.xib */; };
+		5030539E21240B7D004313AF /* BaseStatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5030539D21240B7D004313AF /* BaseStatView.swift */; };
+		503053A021240B93004313AF /* AdvancedStatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5030539F21240B93004313AF /* AdvancedStatView.swift */; };
 		504406512123BC2800B7994C /* GameCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 504406502123BC2800B7994C /* GameCell.xib */; };
 		504406532123BDD600B7994C /* StatRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 504406522123BDD600B7994C /* StatRow.xib */; };
 		504406552123BDE900B7994C /* StatRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504406542123BDE900B7994C /* StatRow.swift */; };
@@ -56,6 +60,10 @@
 		5026C2631D65716B0057D046 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5026C26F1D65B4D80057D046 /* GameLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLogViewController.swift; sourceTree = "<group>"; };
 		5026C2711D65B6590057D046 /* GameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCell.swift; sourceTree = "<group>"; };
+		5030539921240B26004313AF /* BaseStatView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BaseStatView.xib; sourceTree = "<group>"; };
+		5030539B21240B4F004313AF /* AdvancedStatView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdvancedStatView.xib; sourceTree = "<group>"; };
+		5030539D21240B7D004313AF /* BaseStatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseStatView.swift; sourceTree = "<group>"; };
+		5030539F21240B93004313AF /* AdvancedStatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedStatView.swift; sourceTree = "<group>"; };
 		504406502123BC2800B7994C /* GameCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameCell.xib; sourceTree = "<group>"; };
 		504406522123BDD600B7994C /* StatRow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatRow.xib; sourceTree = "<group>"; };
 		504406542123BDE900B7994C /* StatRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatRow.swift; sourceTree = "<group>"; };
@@ -119,6 +127,10 @@
 				5026C2711D65B6590057D046 /* GameCell.swift */,
 				504406522123BDD600B7994C /* StatRow.xib */,
 				504406542123BDE900B7994C /* StatRow.swift */,
+				5030539921240B26004313AF /* BaseStatView.xib */,
+				5030539D21240B7D004313AF /* BaseStatView.swift */,
+				5030539B21240B4F004313AF /* AdvancedStatView.xib */,
+				5030539F21240B93004313AF /* AdvancedStatView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -255,10 +267,12 @@
 			files = (
 				50DA741A212104E300C73019 /* PlayerRankings.xib in Resources */,
 				5026C2621D65716B0057D046 /* LaunchScreen.storyboard in Resources */,
+				5030539A21240B26004313AF /* BaseStatView.xib in Resources */,
 				50DA74102120177E00C73019 /* allplayers.json in Resources */,
 				5019B5DD1D6D639000423579 /* Assets.xcassets in Resources */,
 				50DA74162120FB5700C73019 /* PlayerPersonal.xib in Resources */,
 				50DA741E212110B200C73019 /* RankingRow.xib in Resources */,
+				5030539C21240B4F004313AF /* AdvancedStatView.xib in Resources */,
 				50CFAB94212295220066F449 /* bree-serif in Resources */,
 				50DD7DD8211FD1C400D66A85 /* PlayerCell.xib in Resources */,
 				504406532123BDD600B7994C /* StatRow.xib in Resources */,
@@ -337,11 +351,13 @@
 				5026C2721D65B6590057D046 /* GameCell.swift in Sources */,
 				5001269F211977C4004F4677 /* GetImage.swift in Sources */,
 				5019B5DA1D68085F00423579 /* SeasonStatsViewController.swift in Sources */,
+				5030539E21240B7D004313AF /* BaseStatView.swift in Sources */,
 				5001269D21195C13004F4677 /* PlayerCell.swift in Sources */,
 				50DA741C212104ED00C73019 /* PlayerRankings.swift in Sources */,
 				5026C2701D65B4D80057D046 /* GameLogViewController.swift in Sources */,
 				5001269921194E44004F4677 /* Player.swift in Sources */,
 				50DA74182120FB6200C73019 /* PlayerPersonal.swift in Sources */,
+				503053A021240B93004313AF /* AdvancedStatView.swift in Sources */,
 				5019B5D61D67EC7700423579 /* TwitterTimeline.swift in Sources */,
 				5001269B211951B5004F4677 /* HomeTableScreen.swift in Sources */,
 				50CFAB962122C2FE0066F449 /* Game.swift in Sources */,

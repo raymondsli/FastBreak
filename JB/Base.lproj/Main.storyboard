@@ -203,45 +203,55 @@
                         <viewControllerLayoutGuide type="bottom" id="raJ-3K-qns"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Y4a-WI-C1U">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="750"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i6v-iv-cXE">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="701"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OXY-7L-cIm" customClass="BaseStatView" customModule="FBS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="108" width="375" height="280"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q63-24-GhO">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eOJ-Oj-ULd" userLabel="Background View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="701"/>
-                                        <color key="backgroundColor" red="0.52480608249407723" green="0.64105379196013113" blue="0.78105230148342053" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="701" id="P43-TD-rXU"/>
-                                        </constraints>
-                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="_" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="COZ-6X-7u2">
+                                        <rect key="frame" x="8" y="19" width="359" height="39"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="27"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2017-2018" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ItU-4D-kxG">
+                                        <rect key="frame" x="110" y="66" width="155" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="22"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="eOJ-Oj-ULd" secondAttribute="bottom" id="3xZ-mu-l9g"/>
-                                    <constraint firstItem="eOJ-Oj-ULd" firstAttribute="top" secondItem="i6v-iv-cXE" secondAttribute="top" id="B8r-ac-xKn"/>
-                                    <constraint firstItem="eOJ-Oj-ULd" firstAttribute="leading" secondItem="i6v-iv-cXE" secondAttribute="leading" id="HIp-iB-5bE"/>
-                                    <constraint firstAttribute="trailing" secondItem="eOJ-Oj-ULd" secondAttribute="trailing" id="hEf-nR-lIh"/>
-                                </constraints>
-                            </scrollView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FaT-RY-QgE" customClass="AdvancedStatView" customModule="FBS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="398" width="375" height="220"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="i6v-iv-cXE" secondAttribute="trailing" id="1wN-TI-NgI"/>
-                            <constraint firstItem="i6v-iv-cXE" firstAttribute="leading" secondItem="Y4a-WI-C1U" secondAttribute="leading" id="gZc-hM-h78"/>
-                            <constraint firstItem="i6v-iv-cXE" firstAttribute="top" secondItem="Y4a-WI-C1U" secondAttribute="top" id="qAX-a0-m4i"/>
-                            <constraint firstItem="eOJ-Oj-ULd" firstAttribute="width" secondItem="Y4a-WI-C1U" secondAttribute="width" id="xAT-2F-n8T"/>
-                            <constraint firstItem="raJ-3K-qns" firstAttribute="top" secondItem="i6v-iv-cXE" secondAttribute="bottom" id="yh8-9H-Fa8"/>
-                        </constraints>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Season Stats" image="Basketball" id="ddq-SF-Lc0"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="750"/>
+                    <connections>
+                        <outlet property="advancedStatView" destination="FaT-RY-QgE" id="VzH-Fw-adp"/>
+                        <outlet property="baseStatView" destination="OXY-7L-cIm" id="3E4-ix-UTs"/>
+                        <outlet property="teamLabel" destination="COZ-6X-7u2" id="CEu-ft-rvj"/>
+                        <outlet property="yearLabel" destination="ItU-4D-kxG" id="NMI-O2-hul"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="61A-4w-lWU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="329" y="1157"/>
+            <point key="canvasLocation" x="328.80000000000001" y="1118.5907046476761"/>
         </scene>
         <!--Game Log-->
         <scene sceneID="az1-T0-Jna">

@@ -109,6 +109,12 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
             cell.gameDetails.text = game.date + " " + game.opponent
             cell.winLoss.text = game.winLoss
             
+            if game.winLoss == "W" {
+                cell.winLoss.textColor = UIColor(red: 38/255, green: 166/255, blue: 91/255, alpha: 1.0)
+            } else if game.winLoss == "L" {
+                cell.winLoss.textColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1.0)
+            }
+            
             cell.row1.stat1.text = "MIN"
             cell.row1.stat2.text = "PTS"
             cell.row1.stat3.text = "REB"
@@ -124,16 +130,16 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
             cell.row2.stat4.text = "FGM | FGA"
             cell.row2.amount1.text = String(game.AST)
             cell.row2.amount2.text = String(game.STL)
-            cell.row2.amount3.text = String(game.FGP) + "%"
+            cell.row2.amount3.text = String(game.FGP * 100).prefix(5) + "%"
             cell.row2.amount4.text = String(game.FGM) + " | " + String(game.FGA)
             
             cell.row3.stat1.text = "BLK"
             cell.row3.stat2.text = "TOV"
-            cell.row3.stat3.text = "3P%%"
+            cell.row3.stat3.text = "3P%"
             cell.row3.stat4.text = "3PM | 3PA"
             cell.row3.amount1.text = String(game.BLK)
             cell.row3.amount2.text = String(game.TOV)
-            cell.row3.amount3.text = String(game.FG3P) + "%"
+            cell.row3.amount3.text = String(game.FG3P * 100).prefix(5) + "%"
             cell.row3.amount4.text = String(game.FG3M) + " | " + String(game.FG3A)
             
             cell.row4.stat1.text = "PF"
@@ -142,7 +148,7 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
             cell.row4.stat4.text = "FTM | FTA"
             cell.row4.amount1.text = String(game.PF)
             cell.row4.amount2.text = String(game.PLUSMINUS)
-            cell.row4.amount3.text = String(game.FTP) + "%"
+            cell.row4.amount3.text = String(game.FTP * 100).prefix(5) + "%"
             cell.row4.amount4.text = String(game.FTM) + " | " + String(game.FTA)
             
             return cell
@@ -164,7 +170,7 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 300.0
+        return 350.0
     }
     
 }

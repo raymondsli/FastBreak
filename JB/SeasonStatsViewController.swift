@@ -78,33 +78,33 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
                         self.baseStatView.row3.amount1.text = String(self.baseStat.BLK)
                         self.baseStatView.row3.amount2.text = String(self.baseStat.TOV)
                         self.baseStatView.row3.amount3.text = String(self.baseStat.FGM) + " | " + String(self.baseStat.FGA)
-                        self.baseStatView.row3.amount4.text = String(self.baseStat.FGP * 100) + "%"
+                        self.baseStatView.row3.amount4.text = String(self.baseStat.FGP * 100).prefix(6) + "%"
                         
                         self.baseStatView.row4.stat1.text = "3PM | 3PA"
                         self.baseStatView.row4.stat2.text = "3P%"
                         self.baseStatView.row4.stat3.text = "FTM | FTA"
                         self.baseStatView.row4.stat4.text = "FT%"
                         self.baseStatView.row4.amount1.text = String(self.baseStat.FG3M) + " | " + String(self.baseStat.FG3A)
-                        self.baseStatView.row4.amount2.text = String(self.baseStat.FG3P * 100) + "%"
+                        self.baseStatView.row4.amount2.text = String(self.baseStat.FG3P * 100).prefix(6) + "%"
                         self.baseStatView.row4.amount3.text = String(self.baseStat.FTM) + " | " + String(self.baseStat.FTA)
-                        self.baseStatView.row4.amount4.text = String(self.baseStat.FTP * 100) + "%"
+                        self.baseStatView.row4.amount4.text = String(self.baseStat.FTP * 100).prefix(6) + "%"
                         
                         self.advancedStatView.row1.stat1.text = "TPACE"
                         self.advancedStatView.row1.stat2.text = "USG"
                         self.advancedStatView.row1.stat3.text = "OREB%"
                         self.advancedStatView.row1.stat4.text = "OFFRAT"
                         self.advancedStatView.row1.amount1.text = String(self.advancedStat.PACE)
-                        self.advancedStatView.row1.amount2.text = String(self.advancedStat.USG * 100) + "%"
-                        self.advancedStatView.row1.amount3.text = String(self.advancedStat.OREBP * 100) + "%"
+                        self.advancedStatView.row1.amount2.text = String(self.advancedStat.USG * 100).prefix(6) + "%"
+                        self.advancedStatView.row1.amount3.text = String(self.advancedStat.OREBP * 100).prefix(6) + "%"
                         self.advancedStatView.row1.amount4.text = String(self.advancedStat.ORAT)
                         
                         self.advancedStatView.row2.stat1.text = "EFG"
                         self.advancedStatView.row2.stat2.text = "TS%"
                         self.advancedStatView.row2.stat3.text = "DREB%"
                         self.advancedStatView.row2.stat4.text = "DRAT"
-                        self.advancedStatView.row2.amount1.text = String(self.advancedStat.EFG * 100) + "%"
-                        self.advancedStatView.row2.amount2.text = String(self.advancedStat.TSP * 100) + "%"
-                        self.advancedStatView.row2.amount3.text = String(self.advancedStat.DREBP * 100) + "%"
+                        self.advancedStatView.row2.amount1.text = String(self.advancedStat.EFG * 100).prefix(6) + "%"
+                        self.advancedStatView.row2.amount2.text = String(self.advancedStat.TSP * 100).prefix(6) + "%"
+                        self.advancedStatView.row2.amount3.text = String(self.advancedStat.DREBP * 100).prefix(6) + "%"
                         self.advancedStatView.row2.amount4.text = String(self.advancedStat.DRAT)
                         
                         self.advancedStatView.row3.stat1.text = "AST/TO"
@@ -112,8 +112,8 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
                         self.advancedStatView.row3.stat3.text = "REB%"
                         self.advancedStatView.row3.stat4.text = "NETRAT"
                         self.advancedStatView.row3.amount1.text = String(self.advancedStat.A2T)
-                        self.advancedStatView.row3.amount2.text = String(self.advancedStat.ASTP * 100) + "%"
-                        self.advancedStatView.row3.amount3.text = String(self.advancedStat.REBP * 100) + "%"
+                        self.advancedStatView.row3.amount2.text = String(self.advancedStat.ASTP * 100).prefix(6) + "%"
+                        self.advancedStatView.row3.amount3.text = String(self.advancedStat.REBP * 100).prefix(6) + "%"
                         self.advancedStatView.row3.amount4.text = String(self.advancedStat.NRAT)
                     })
                 } catch {
@@ -175,14 +175,16 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
     }
     
     func roundThree(val: Double) -> Double {
-        let stringVal = String(val * 1000)
+        let stringVal = String(val)
         let components = stringVal.components(separatedBy: ".")
         
         guard components.count > 1 else {
             return Double(components[0])!
         }
         
-        return Double(components[0])! / 1000
+        let decimalString = components[1].prefix(3)
+        let retValue = components[0] + "." + decimalString
+        return Double(retValue)!
  
         //return Double(round(1000 * val) / 1000)
     }

@@ -13,6 +13,9 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate {
     @IBOutlet weak var personalView: PlayerPersonal!
     @IBOutlet weak var rankingsView: PlayerRankings!
     
+    
+    
+    
     var playerImage: UIImage?
     var playerId: Int = -1
     var firstName: String = ""
@@ -267,42 +270,42 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate {
                     let amountFloat = curPlayer[23] as! Double
                     let roundedAmount = Double(round(100 * amountFloat) / 100)
                     let amount = String(roundedAmount)
-                    return ["#" + String(i), amount]
+                    return ["#" + String(i + 1), amount]
                 case "MIN":
                     let amountFloat = curPlayer[5] as! Double
                     let roundedAmount = Double(round(100 * amountFloat) / 100)
                     let amount = String(roundedAmount)
-                    return ["#" + String(i), amount]
+                    return ["#" + String(i + 1), amount]
                 case "PTS":
                     let amountFloat = curPlayer[22] as! Double
                     let roundedAmount = Double(round(100 * amountFloat) / 100)
                     let amount = String(roundedAmount)
-                    return ["#" + String(i), amount]
+                    return ["#" + String(i + 1), amount]
                 case "REB":
                     let amountFloat = curPlayer[17] as! Double
                     let roundedAmount = Double(round(100 * amountFloat) / 100)
                     let amount = String(roundedAmount)
-                    return ["#" + String(i), amount]
+                    return ["#" + String(i + 1), amount]
                 case "AST":
                     let amountFloat = curPlayer[18] as! Double
                     let roundedAmount = Double(round(100 * amountFloat) / 100)
                     let amount = String(roundedAmount)
-                    return ["#" + String(i), amount]
+                    return ["#" + String(i + 1), amount]
                 case "STL":
                     let amountFloat = curPlayer[19] as! Double
                     let roundedAmount = Double(round(100 * amountFloat) / 100)
                     let amount = String(roundedAmount)
-                    return ["#" + String(i), amount]
+                    return ["#" + String(i + 1), amount]
                 case "BLK":
                     let amountFloat = curPlayer[20] as! Double
                     let roundedAmount = Double(round(100 * amountFloat) / 100)
                     let amount = String(roundedAmount)
-                    return ["#" + String(i), amount]
+                    return ["#" + String(i + 1), amount]
                 case "TOV":
                     let amountFloat = curPlayer[21] as! Double
                     let roundedAmount = Double(round(100 * amountFloat) / 100)
                     let amount = String(roundedAmount)
-                    return ["#" + String(i), amount]
+                    return ["#" + String(i + 1), amount]
                 default:
                     return ["No Rank", "No Rank"]
                 }

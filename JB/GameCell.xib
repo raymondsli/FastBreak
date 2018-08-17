@@ -12,48 +12,48 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="GameCell" customModule="FBS" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="350"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="370"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="April 10, 2018 @ WAS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5PN-L9-KQx">
-                    <rect key="frame" x="66" y="37" width="242" height="28"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Game 10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x0g-X8-6N6">
+                    <rect key="frame" x="117" y="11" width="141" height="42"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="19"/>
-                    <color key="textColor" red="0.18487665038651055" green="0.3057227548163558" blue="0.55884440949949243" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="26"/>
+                    <color key="textColor" red="0.18487665040000001" green="0.3057227548" blue="0.55884440950000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="W" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eXC-4s-GBg">
-                    <rect key="frame" x="163" y="63" width="49" height="21"/>
+                    <rect key="frame" x="163" y="79" width="49" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="18"/>
+                    <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="15"/>
                     <color key="textColor" red="0.18487665040000001" green="0.3057227548" blue="0.55884440950000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ffg-y0-Inj" customClass="StatRow" customModule="FBS" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="92" width="375" height="45"/>
+                    <rect key="frame" x="0.0" y="108" width="375" height="45"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Mp-oc-kqS" customClass="StatRow" customModule="FBS" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="158" width="375" height="45"/>
+                    <rect key="frame" x="0.0" y="174" width="375" height="45"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e2x-Pz-2KE" customClass="StatRow" customModule="FBS" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="221" width="375" height="45"/>
+                    <rect key="frame" x="0.0" y="240" width="375" height="45"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W58-16-02h" customClass="StatRow" customModule="FBS" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="285" width="375" height="45"/>
+                    <rect key="frame" x="0.0" y="305" width="375" height="45"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Game 10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x0g-X8-6N6">
-                    <rect key="frame" x="117" y="6" width="141" height="42"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="April 10, 2018 @ WAS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5PN-L9-KQx">
+                    <rect key="frame" x="66" y="48" width="242" height="29"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="26"/>
-                    <color key="textColor" red="0.18487665040000001" green="0.3057227548" blue="0.55884440950000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="17"/>
+                    <color key="textColor" red="0.18487665038651055" green="0.3057227548163558" blue="0.55884440949949243" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>

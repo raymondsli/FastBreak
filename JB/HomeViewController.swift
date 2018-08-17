@@ -48,8 +48,12 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate {
     func getPlayer() {
         let urlString = "https://stats.nba.com/stats/commonplayerinfo/?PlayerId=" + String(playerId)
         let url = URL(string: urlString)
-
-        URLSession.shared.dataTask(with: url!, completionHandler: {(data, response, error) in
+        
+//        let configuration = URLSessionConfiguration.default
+//        configuration.timeoutIntervalForResource = 5
+        
+//        let session = URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
+        let task = URLSession.shared.dataTask(with: url!, completionHandler: {(data, response, error) in
             if data != nil {
                 do {
                     let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments) as! [String: Any]
@@ -124,7 +128,8 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate {
                     print("Could not serialize")
                 }
             }
-        }).resume()
+        })
+        task.resume()
     }
     
     func getNextGameJSON() {
@@ -708,7 +713,6 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate {
     }
     
     @IBAction func backPressed(_ sender: Any) {
-        //self.performSegue(withIdentifier: "backToSelection", sender: self)
         self.dismiss(animated: true, completion: nil)
     }
     

@@ -92,15 +92,18 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="VJz-yd-Cod"/>
                                 </constraints>
+                                <color key="barTintColor" red="0.1173284892" green="0.17706105799999999" blue="0.2795971062" alpha="0.81393045770000005" colorSpace="custom" customColorSpace="sRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </textAttributes>
                                 <items>
                                     <navigationItem title="Overview" id="j7s-D0-8sk" userLabel="Player">
-                                        <barButtonItem key="leftBarButtonItem" title="Back" style="plain" id="Ckp-Kc-Q0P" userLabel="Bar">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="VHX-ZH-Qhg">
-                                                <rect key="frame" x="16" y="6" width="83" height="32"/>
+                                        <barButtonItem key="leftBarButtonItem" title="Item" style="plain" id="Ckp-Kc-Q0P" userLabel="Bar">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="VHX-ZH-Qhg">
+                                                <rect key="frame" x="16" y="0.0" width="50" height="44"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                                <state key="normal" title="Back">
-                                                    <color key="titleColor" red="0.15198446139999999" green="0.235571747" blue="0.2795971062" alpha="0.81393045770000005" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" image="Back">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="backPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="g1C-qI-Mxs"/>
@@ -123,7 +126,7 @@
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nxe-it-zSS" userLabel="HeaderView" customClass="PlayerOverviewHead" customModule="FBS" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
-                                                <color key="backgroundColor" red="0.1173284892" green="0.17706105799999999" blue="0.2795971062" alpha="0.81393045770000005" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="250" id="Ear-kZ-k3v"/>
                                                 </constraints>
@@ -140,7 +143,7 @@
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" red="0.82316782994923854" green="0.82316782994923854" blue="0.82316782994923854" alpha="0.88225064212328763" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="nxe-it-zSS" firstAttribute="leading" secondItem="u74-9P-wGm" secondAttribute="leading" id="1Uh-2A-7yj"/>
                                             <constraint firstAttribute="trailing" secondItem="ga4-aq-E0x" secondAttribute="trailing" id="CCd-8m-NRV"/>
@@ -164,7 +167,8 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" red="0.64673223349999998" green="0.63542976740000001" blue="0.60326169939999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="u74-9P-wGm" firstAttribute="width" secondItem="tsR-hK-woN" secondAttribute="width" id="1bV-1r-A6O"/>
                             <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="2xm-eN-9qV" secondAttribute="bottom" id="7ra-fI-jln"/>
@@ -343,6 +347,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Back" width="50" height="50"/>
         <image name="Basketball" width="25" height="25"/>
         <image name="Home" width="25" height="25"/>
         <image name="News" width="25" height="25"/>

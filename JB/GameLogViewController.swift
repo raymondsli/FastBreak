@@ -234,7 +234,7 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 350.0
+        return 370.0
     }
     
 }

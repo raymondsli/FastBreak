@@ -16,33 +16,33 @@ class Game {
     
     var gameNumber: Int
     
-    var MIN: Double
+    var MIN: String
     
-    var PTS: Double
-    var OREB: Double
-    var DREB: Double //Not used
-    var REB: Double
-    var AST: Double
-    var STL: Double
-    var BLK: Double
-    var TOV: Double
-    var PF: Double
-    var PLUSMINUS: Double
+    var PTS: String
+    var OREB: String
+    var DREB: String //Not used
+    var REB: String
+    var AST: String
+    var STL: String
+    var BLK: String
+    var TOV: String
+    var PF: String
+    var PLUSMINUS: String
 
-    var FGM: Double
-    var FGA: Double
-    var FGP: Double
+    var FGM: String
+    var FGA: String
+    var FGP: String
     
-    var FG3M: Double
-    var FG3A: Double
-    var FG3P: Double
+    var FG3M: String
+    var FG3A: String
+    var FG3P: String
     
-    var FTM: Double
-    var FTA: Double
-    var FTP: Double
+    var FTM: String
+    var FTA: String
+    var FTP: String
     
     
-    init(date: String, opponent: String, gameNumber: Int, winLoss: String, MIN: Double, PTS: Double, OREB: Double, DREB: Double, REB: Double, AST: Double, STL: Double, BLK: Double, TOV: Double, PF: Double, PLUSMINUS: Double, FGM: Double, FGA: Double, FGP: Double, FG3M: Double, FG3A: Double, FG3P: Double, FTM: Double, FTA: Double, FTP: Double) {
+    init(date: String, opponent: String, gameNumber: Int, winLoss: String, MIN: String, PTS: String, OREB: String, DREB: String, REB: String, AST: String, STL: String, BLK: String, TOV: String, PF: String, PLUSMINUS: String, FGM: String, FGA: String, FGP: String, FG3M: String, FG3A: String, FG3P: String, FTM: String, FTA: String, FTP: String) {
         self.date = date
         self.opponent = opponent
         self.gameNumber = gameNumber

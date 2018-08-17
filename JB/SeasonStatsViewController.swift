@@ -57,64 +57,64 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
                         self.baseStatView.row1.stat2.text = "MIN"
                         self.baseStatView.row1.stat3.text = "PTS"
                         self.baseStatView.row1.stat4.text = "REB"
-                        self.baseStatView.row1.amount1.text = String(self.baseStat.GP)
-                        self.baseStatView.row1.amount2.text = String(self.baseStat.MIN)
-                        self.baseStatView.row1.amount3.text = String(self.baseStat.PTS)
-                        self.baseStatView.row1.amount4.text = String(self.baseStat.TREB)
+                        self.baseStatView.row1.amount1.text = self.baseStat.GP
+                        self.baseStatView.row1.amount2.text = self.baseStat.MIN
+                        self.baseStatView.row1.amount3.text = self.baseStat.PTS
+                        self.baseStatView.row1.amount4.text = self.baseStat.TREB
                         
                         self.baseStatView.row2.stat1.text = "OREB"
                         self.baseStatView.row2.stat2.text = "DREB"
                         self.baseStatView.row2.stat3.text = "AST"
                         self.baseStatView.row2.stat4.text = "STL"
-                        self.baseStatView.row2.amount1.text = String(self.baseStat.OREB)
-                        self.baseStatView.row2.amount2.text = String(self.baseStat.DREB)
-                        self.baseStatView.row2.amount3.text = String(self.baseStat.AST)
-                        self.baseStatView.row2.amount4.text = String(self.baseStat.STL)
+                        self.baseStatView.row2.amount1.text = self.baseStat.OREB
+                        self.baseStatView.row2.amount2.text = self.baseStat.DREB
+                        self.baseStatView.row2.amount3.text = self.baseStat.AST
+                        self.baseStatView.row2.amount4.text = self.baseStat.STL
                         
                         self.baseStatView.row3.stat1.text = "BLK"
                         self.baseStatView.row3.stat2.text = "TOV"
                         self.baseStatView.row3.stat3.text = "FGM | FGA"
                         self.baseStatView.row3.stat4.text = "FG%"
-                        self.baseStatView.row3.amount1.text = String(self.baseStat.BLK)
-                        self.baseStatView.row3.amount2.text = String(self.baseStat.TOV)
-                        self.baseStatView.row3.amount3.text = String(self.baseStat.FGM) + " | " + String(self.baseStat.FGA)
-                        self.baseStatView.row3.amount4.text = String(self.baseStat.FGP * 100).prefix(6) + "%"
+                        self.baseStatView.row3.amount1.text = self.baseStat.BLK
+                        self.baseStatView.row3.amount2.text = self.baseStat.TOV
+                        self.baseStatView.row3.amount3.text = self.baseStat.FGM + " | " + self.baseStat.FGA
+                        self.baseStatView.row3.amount4.text = self.baseStat.FGP + "%"
                         
                         self.baseStatView.row4.stat1.text = "3PM | 3PA"
                         self.baseStatView.row4.stat2.text = "3P%"
                         self.baseStatView.row4.stat3.text = "FTM | FTA"
                         self.baseStatView.row4.stat4.text = "FT%"
-                        self.baseStatView.row4.amount1.text = String(self.baseStat.FG3M) + " | " + String(self.baseStat.FG3A)
-                        self.baseStatView.row4.amount2.text = String(self.baseStat.FG3P * 100).prefix(6) + "%"
-                        self.baseStatView.row4.amount3.text = String(self.baseStat.FTM) + " | " + String(self.baseStat.FTA)
-                        self.baseStatView.row4.amount4.text = String(self.baseStat.FTP * 100).prefix(6) + "%"
+                        self.baseStatView.row4.amount1.text = self.baseStat.FG3M + " | " + self.baseStat.FG3A
+                        self.baseStatView.row4.amount2.text = self.baseStat.FG3P + "%"
+                        self.baseStatView.row4.amount3.text = self.baseStat.FTM + " | " + self.baseStat.FTA
+                        self.baseStatView.row4.amount4.text = self.baseStat.FTP + "%"
                         
                         self.advancedStatView.row1.stat1.text = "TPACE"
                         self.advancedStatView.row1.stat2.text = "USG"
                         self.advancedStatView.row1.stat3.text = "OREB%"
                         self.advancedStatView.row1.stat4.text = "OFFRAT"
-                        self.advancedStatView.row1.amount1.text = String(self.advancedStat.PACE)
-                        self.advancedStatView.row1.amount2.text = String(self.advancedStat.USG * 100).prefix(6) + "%"
-                        self.advancedStatView.row1.amount3.text = String(self.advancedStat.OREBP * 100).prefix(6) + "%"
-                        self.advancedStatView.row1.amount4.text = String(self.advancedStat.ORAT)
+                        self.advancedStatView.row1.amount1.text = self.advancedStat.PACE
+                        self.advancedStatView.row1.amount2.text = self.advancedStat.USG + "%"
+                        self.advancedStatView.row1.amount3.text = self.advancedStat.OREBP + "%"
+                        self.advancedStatView.row1.amount4.text = self.advancedStat.ORAT
                         
                         self.advancedStatView.row2.stat1.text = "EFG"
                         self.advancedStatView.row2.stat2.text = "TS%"
                         self.advancedStatView.row2.stat3.text = "DREB%"
                         self.advancedStatView.row2.stat4.text = "DRAT"
-                        self.advancedStatView.row2.amount1.text = String(self.advancedStat.EFG * 100).prefix(6) + "%"
-                        self.advancedStatView.row2.amount2.text = String(self.advancedStat.TSP * 100).prefix(6) + "%"
-                        self.advancedStatView.row2.amount3.text = String(self.advancedStat.DREBP * 100).prefix(6) + "%"
-                        self.advancedStatView.row2.amount4.text = String(self.advancedStat.DRAT)
+                        self.advancedStatView.row2.amount1.text = self.advancedStat.EFG + "%"
+                        self.advancedStatView.row2.amount2.text = self.advancedStat.TSP + "%"
+                        self.advancedStatView.row2.amount3.text = self.advancedStat.DREBP + "%"
+                        self.advancedStatView.row2.amount4.text = self.advancedStat.DRAT
                         
                         self.advancedStatView.row3.stat1.text = "AST/TO"
                         self.advancedStatView.row3.stat2.text = "AST%"
                         self.advancedStatView.row3.stat3.text = "REB%"
                         self.advancedStatView.row3.stat4.text = "NETRAT"
-                        self.advancedStatView.row3.amount1.text = String(self.advancedStat.A2T)
-                        self.advancedStatView.row3.amount2.text = String(self.advancedStat.ASTP * 100).prefix(6) + "%"
-                        self.advancedStatView.row3.amount3.text = String(self.advancedStat.REBP * 100).prefix(6) + "%"
-                        self.advancedStatView.row3.amount4.text = String(self.advancedStat.NRAT)
+                        self.advancedStatView.row3.amount1.text = self.advancedStat.A2T
+                        self.advancedStatView.row3.amount2.text = self.advancedStat.ASTP + "%"
+                        self.advancedStatView.row3.amount3.text = self.advancedStat.REBP + "%"
+                        self.advancedStatView.row3.amount4.text = self.advancedStat.NRAT
                     })
                 } catch {
                     print("Could not serialize")
@@ -128,67 +128,130 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
         let year = rowSet[1] as! String
         let team = rowSet[3] as! String
         
-        let GP = rowSet[5] as! Double
-        let MIN = roundThree(val: rowSet[9] as! Double)
-        let PF = roundThree(val: rowSet[27] as! Double)
+        let GP = String(rowSet[5] as! Int)
+        let MIN = convertToString(val: rowSet[9] as! Double)
+        let PF = convertToString(val: rowSet[27] as! Double)
         
-        let FGM = roundThree(val: rowSet[10] as! Double)
-        let FGA = roundThree(val: rowSet[11] as! Double)
-        let FGP = roundThree(val: rowSet[12] as! Double)
+        let FGM = convertToString(val: rowSet[10] as! Double)
+        let FGA = convertToString(val: rowSet[11] as! Double)
+        let FGP = convertToString(val: rowSet[12] as! Double * 100)
         
-        let FG3M = roundThree(val: rowSet[13] as! Double)
-        let FG3A = roundThree(val: rowSet[14] as! Double)
-        let FG3P = roundThree(val: rowSet[15] as! Double)
+        let FG3M = convertToString(val: rowSet[13] as! Double)
+        let FG3A = convertToString(val: rowSet[14] as! Double)
+        let FG3P = convertToString(val: rowSet[15] as! Double * 100)
         
-        let FTM = roundThree(val: rowSet[16] as! Double)
-        let FTA = roundThree(val: rowSet[17] as! Double)
-        let FTP = roundThree(val: rowSet[18] as! Double)
+        let FTM = convertToString(val: rowSet[16] as! Double)
+        let FTA = convertToString(val: rowSet[17] as! Double)
+        let FTP = convertToString(val: rowSet[18] as! Double * 100)
         
-        let OREB = roundThree(val: rowSet[19] as! Double)
-        let DREB = roundThree(val: rowSet[20] as! Double)
-        let TREB = roundThree(val: rowSet[21] as! Double)
+        let OREB = convertToString(val: rowSet[19] as! Double)
+        let DREB = convertToString(val: rowSet[20] as! Double)
+        let TREB = convertToString(val: rowSet[21] as! Double)
         
-        let PTS = roundThree(val: rowSet[29] as! Double)
-        let AST = roundThree(val: rowSet[22] as! Double)
-        let STL = roundThree(val: rowSet[24] as! Double)
-        let BLK = roundThree(val: rowSet[25] as! Double)
-        let TOV = roundThree(val: rowSet[23] as! Double)
+        let PTS = convertToString(val: rowSet[29] as! Double)
+        let AST = convertToString(val: rowSet[22] as! Double)
+        let STL = convertToString(val: rowSet[24] as! Double)
+        let BLK = convertToString(val: rowSet[25] as! Double)
+        let TOV = convertToString(val: rowSet[23] as! Double)
         
         self.baseStat = BaseStat(year: year, team: team, GP: GP, MIN: MIN, PF: PF, FGM: FGM, FGA: FGA, FGP: FGP, FG3M: FG3M, FG3A: FG3A, FG3P: FG3P, FTM: FTM, FTA: FTA, FTP: FTP, OREB: OREB, DREB: DREB, TREB: TREB, PTS: PTS, AST: AST, STL: STL, BLK: BLK, TOV: TOV)
     }
     
     func turnRowSetIntoAdvancedStat(rowSet: NSArray) {
-        let ORAT = roundThree(val: rowSet[10] as! Double)
-        let DRAT = roundThree(val: rowSet[11] as! Double)
-        let NRAT = roundThree(val: rowSet[12] as! Double)
-        let USG = roundThree(val: rowSet[22] as! Double)
-        let EFG = roundThree(val: rowSet[20] as! Double)
-        let TSP = roundThree(val: rowSet[21] as! Double)
-        let ASTP = roundThree(val: rowSet[13] as! Double)
-        let A2T = roundThree(val: rowSet[14] as! Double)
-        let REBP = roundThree(val: rowSet[18] as! Double)
-        let OREBP = roundThree(val: rowSet[16] as! Double)
-        let DREBP = roundThree(val: rowSet[17] as! Double)
-        let PACE = roundThree(val: rowSet[23] as! Double)
+        let ORAT = convertToString(val: rowSet[10] as! Double)
+        let DRAT = convertToString(val: rowSet[11] as! Double)
+        let NRAT = convertToString(val: rowSet[12] as! Double)
+        let USG = convertToString(val: rowSet[22] as! Double * 100)
+        let EFG = convertToString(val: rowSet[20] as! Double * 100)
+        let TSP = convertToString(val: rowSet[21] as! Double * 100)
+        let ASTP = convertToString(val: rowSet[13] as! Double * 100)
+        let A2T = convertToString(val: rowSet[14] as! Double)
+        let REBP = convertToString(val: rowSet[18] as! Double * 100)
+        let OREBP = convertToString(val: rowSet[16] as! Double * 100)
+        let DREBP = convertToString(val: rowSet[17] as! Double * 100)
+        let PACE = convertToString(val: rowSet[23] as! Double)
         
         self.advancedStat = AdvancedStat(ORAT: ORAT, DRAT: DRAT, NRAT: NRAT, USG: USG, EFG: EFG, TSP: TSP, ASTP: ASTP, A2T: A2T, REBP: REBP, OREBP: OREBP, DREBP: DREBP, PACE: PACE)
     }
     
-    func roundThree(val: Double) -> Double {
-        let stringVal = String(val)
-        let components = stringVal.components(separatedBy: ".")
+//    func roundThree(val: Double) -> Double {
+//        let stringVal = String(val)
+//        let components = stringVal.components(separatedBy: ".")
+//
+//        guard components.count > 1 else {
+//            return Double(components[0])!
+//        }
+//
+//        let decimalString = components[1].prefix(3)
+//        let retValue = components[0] + "." + decimalString
+//        return Double(retValue)!
+//
+//        //return Double(round(1000 * val) / 1000)
+//    }
+    
+    func convertToString(val: Double) -> String {
+        let valString = String(val)
+        let valArr = valString.components(separatedBy: ".")
         
-        guard components.count > 1 else {
-            return Double(components[0])!
+        guard valArr.count == 2 else {
+            return ""
         }
         
-        let decimalString = components[1].prefix(3)
-        let retValue = components[0] + "." + decimalString
-        return Double(retValue)!
- 
-        //return Double(round(1000 * val) / 1000)
+        var wholeNumberString = valArr[0]
+        var decimalString = String(valArr[1].prefix(3))
+        
+        if decimalString.count == 3 {
+            let lastString = decimalString.last
+            let lastInt = Int(String(lastString!))
+            
+            guard lastInt != nil else {
+                return ""
+            }
+            
+            decimalString = String(decimalString.dropLast())
+            
+            if lastInt! >= 5 {
+                let secondLastString = decimalString.last
+                var secondLastInt = Int(String(secondLastString!))
+                
+                if secondLastInt == 9 {
+                    secondLastInt = 0
+                    var firstLastInt = Int(decimalString.prefix(1))
+                    
+                    if firstLastInt == 9 {
+                        firstLastInt = 0
+                        wholeNumberString = String(Int(wholeNumberString)! + 1)
+                    } else {
+                        firstLastInt = firstLastInt! + 1
+                    }
+                    
+                    decimalString = String(firstLastInt!) + String(secondLastInt!)
+                } else {
+                    secondLastInt = secondLastInt! + 1
+                    decimalString = decimalString.prefix(1) + String(secondLastInt!)
+                }
+            }
+        }
+        
+        decimalString = removeTrailingZeroes(dec: decimalString)
+        
+        if decimalString == "" {
+            return wholeNumberString
+        }
+        
+        return wholeNumberString + "." + decimalString
     }
     
+    
+    
+    func removeTrailingZeroes(dec: String) -> String {
+        var decString = dec
+        while decString.last == "0" {
+            decString = String(decString.dropLast())
+        }
+        
+        return decString
+    }
     
     func abvToTeam(team: String) -> String {
         if team == "ATL" {
@@ -288,34 +351,34 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
 struct BaseStat {
     var year: String = ""
     var team: String = ""
-    var GP: Double = 0
+    var GP: String = ""
     
-    var MIN: Double = 0
-    var PF: Double = 0 //Not used
+    var MIN: String = ""
+    var PF: String = "" //Not used
     
-    var FGM: Double = 0
-    var FGA: Double = 0
-    var FGP: Double = 0
+    var FGM: String = ""
+    var FGA: String = ""
+    var FGP: String = ""
     
-    var FG3M: Double = 0
-    var FG3A: Double = 0
-    var FG3P: Double = 0
+    var FG3M: String = ""
+    var FG3A: String = ""
+    var FG3P: String = ""
     
-    var FTM: Double = 0
-    var FTA: Double = 0
-    var FTP: Double = 0
+    var FTM: String = ""
+    var FTA: String = ""
+    var FTP: String = ""
     
-    var OREB: Double = 0
-    var DREB: Double = 0
-    var TREB: Double = 0
+    var OREB: String = ""
+    var DREB: String = ""
+    var TREB: String = ""
     
-    var PTS: Double = 0
-    var AST: Double = 0
-    var STL: Double = 0
-    var BLK: Double = 0
-    var TOV: Double = 0
+    var PTS: String = ""
+    var AST: String = ""
+    var STL: String = ""
+    var BLK: String = ""
+    var TOV: String = ""
     
-    init(year: String, team: String, GP: Double, MIN: Double, PF: Double, FGM: Double, FGA: Double, FGP: Double, FG3M: Double, FG3A: Double, FG3P: Double, FTM: Double, FTA: Double, FTP: Double, OREB: Double, DREB: Double, TREB: Double, PTS: Double, AST: Double, STL: Double, BLK: Double, TOV: Double) {
+    init(year: String, team: String, GP: String, MIN: String, PF: String, FGM: String, FGA: String, FGP: String, FG3M: String, FG3A: String, FG3P: String, FTM: String, FTA: String, FTP: String, OREB: String, DREB: String, TREB: String, PTS: String, AST: String, STL: String, BLK: String, TOV: String) {
         self.year = year
         self.team = team
         self.GP = GP
@@ -344,20 +407,20 @@ struct BaseStat {
 }
 
 struct AdvancedStat {
-    var ORAT: Double = 0
-    var DRAT: Double = 0
-    var NRAT: Double = 0
-    var USG: Double = 0
-    var EFG: Double = 0
-    var TSP: Double = 0
-    var ASTP: Double = 0
-    var A2T: Double = 0
-    var REBP: Double = 0
-    var OREBP: Double = 0
-    var DREBP: Double = 0
-    var PACE: Double = 0
+    var ORAT: String = ""
+    var DRAT: String = ""
+    var NRAT: String = ""
+    var USG: String = ""
+    var EFG: String = ""
+    var TSP: String = ""
+    var ASTP: String = ""
+    var A2T: String = ""
+    var REBP: String = ""
+    var OREBP: String = ""
+    var DREBP: String = ""
+    var PACE: String = ""
     
-    init(ORAT: Double, DRAT: Double, NRAT: Double, USG: Double, EFG: Double, TSP: Double, ASTP: Double, A2T: Double, REBP: Double, OREBP: Double, DREBP: Double, PACE: Double) {
+    init(ORAT: String, DRAT: String, NRAT: String, USG: String, EFG: String, TSP: String, ASTP: String, A2T: String, REBP: String, OREBP: String, DREBP: String, PACE: String) {
         self.ORAT = ORAT
         self.DRAT = DRAT
         self.NRAT = NRAT

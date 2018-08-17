@@ -13,6 +13,8 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
     
     @IBOutlet weak var tableView: UITableView!
 
+    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+    var loadingView: UIView = UIView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,9 +24,19 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
         let nib = UINib(nibName: "GameCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "GameCell")
         
+        let window = UIApplication.shared.keyWindow!
+        loadingView = UIView(frame: CGRect(x: window.frame.origin.x, y: window.frame.origin.y, width: window.frame.width, height: window.frame.height))
+        loadingView.backgroundColor = .white
+        
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = .gray
+        loadingView.addSubview(activityIndicator)
+        window.addSubview(loadingView)
+        
+        activityIndicator.startAnimating()
+        
         getGameLogJSON()
-
-        tableView.reloadData()
     }
     
     func getGameLogJSON() {
@@ -41,6 +53,8 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
                     self.turnRowSetIntoGames(rowSet)
                     
                     DispatchQueue.main.async(execute: {
+                        self.activityIndicator.stopAnimating()
+                        self.loadingView.removeFromSuperview()
                         self.tableView.reloadData()
                     })
                 } catch {

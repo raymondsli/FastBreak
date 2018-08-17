@@ -18,8 +18,24 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
     var advancedStat: AdvancedStat = AdvancedStat()
     var playerId = 0
     
+    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+    var loadingView: UIView = UIView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let window = UIApplication.shared.keyWindow!
+        loadingView = UIView(frame: CGRect(x: window.frame.origin.x, y: window.frame.origin.y, width: window.frame.width, height: window.frame.height))
+        loadingView.backgroundColor = .white
+        
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = .gray
+        loadingView.addSubview(activityIndicator)
+        window.addSubview(loadingView)
+        
+        activityIndicator.startAnimating()
+        
         
         yearLabel.text = "2017-2018"
         yearLabel.adjustsFontSizeToFitWidth = true
@@ -27,8 +43,6 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
         
         getSeasonJSON(type: "Base")
         getSeasonJSON(type: "Advanced")
-        
-        //"http://stats.nba.com/stats/playercareerstats?LeagueID=00&PerMode=PerGame&PlayerID=1627759"
     }
     
     func getSeasonJSON(type: String) {
@@ -115,6 +129,9 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
                         self.advancedStatView.row3.amount2.text = self.advancedStat.ASTP + "%"
                         self.advancedStatView.row3.amount3.text = self.advancedStat.REBP + "%"
                         self.advancedStatView.row3.amount4.text = self.advancedStat.NRAT
+                        
+                        self.activityIndicator.stopAnimating()
+                        self.loadingView.removeFromSuperview()
                     })
                 } catch {
                     print("Could not serialize")

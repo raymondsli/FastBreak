@@ -78,8 +78,6 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
         DispatchQueue.global(qos: .background).async {
             self.getPlayerImages8()
         }
-        
-        tableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {

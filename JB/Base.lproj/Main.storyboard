@@ -269,7 +269,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rlr-hO-YA4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1071" y="1119"/>
+            <point key="canvasLocation" x="-98" y="1172"/>
         </scene>
         <!--Season Stats-->
         <scene sceneID="SDF-Aw-ygE">
@@ -358,7 +358,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="61A-4w-lWU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="328.80000000000001" y="1118.5907046476761"/>
+            <point key="canvasLocation" x="-1188" y="1172"/>
         </scene>
         <!--Game Log-->
         <scene sceneID="az1-T0-Jna">
@@ -463,7 +463,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hMM-DL-VPy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2020" y="1147"/>
+            <point key="canvasLocation" x="678" y="1172"/>
         </scene>
     </scenes>
     <resources>

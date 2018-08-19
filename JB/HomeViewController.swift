@@ -21,6 +21,8 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate {
     var team: String = ""
     var player: Player = Player()
     
+    var numPlayers = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -253,6 +255,10 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate {
                     default:
                         print("No stat category")
                     }
+                    
+                    DispatchQueue.main.async(execute: {
+                        self.rankingsView.numPlayersLabel.text = "\(self.numPlayers) Qualified Players (Need to play over 70% of games to qualify"
+                    })
                 } catch {
                     print("Could not serialize")
                 }
@@ -261,6 +267,7 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate {
     }
     
     func findRanking(_ rowSet: NSArray, category: String) -> [String] {
+        self.numPlayers = rowSet.count
         var i = 0
         
         while i < rowSet.count {

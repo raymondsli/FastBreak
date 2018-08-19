@@ -192,21 +192,6 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
         self.advancedStat = AdvancedStat(ORAT: ORAT, DRAT: DRAT, NRAT: NRAT, USG: USG, EFG: EFG, TSP: TSP, ASTP: ASTP, A2T: A2T, REBP: REBP, OREBP: OREBP, DREBP: DREBP, PACE: PACE)
     }
     
-//    func roundThree(val: Double) -> Double {
-//        let stringVal = String(val)
-//        let components = stringVal.components(separatedBy: ".")
-//
-//        guard components.count > 1 else {
-//            return Double(components[0])!
-//        }
-//
-//        let decimalString = components[1].prefix(3)
-//        let retValue = components[0] + "." + decimalString
-//        return Double(retValue)!
-//
-//        //return Double(round(1000 * val) / 1000)
-//    }
-    
     func convertToString(val: Double) -> String {
         let valString = String(val)
         let valArr = valString.components(separatedBy: ".")

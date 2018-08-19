@@ -11,6 +11,7 @@ import UIKit
 class PlayerRankings: UIView {
     
     @IBOutlet var contentView: UIView!
+    @IBOutlet weak var numPlayersLabel: UILabel!
     @IBOutlet weak var stat1: RankingRow!
     @IBOutlet weak var stat2: RankingRow!
     @IBOutlet weak var stat3: RankingRow!
@@ -37,6 +38,8 @@ class PlayerRankings: UIView {
         addSubview(contentView)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        
+        numPlayersLabel.adjustsFontSizeToFitWidth = true
         
         stat1.backgroundColor = .white
         stat2.backgroundColor = .white

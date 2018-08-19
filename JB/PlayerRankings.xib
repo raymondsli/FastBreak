@@ -17,6 +17,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PlayerRankings" customModule="FBS" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="iN0-l3-epB" id="A14-Xs-TB1"/>
+                <outlet property="numPlayersLabel" destination="Iej-wN-n7A" id="NhE-Z6-hlL"/>
                 <outlet property="stat1" destination="eWw-03-h42" id="jOn-Jo-amk"/>
                 <outlet property="stat2" destination="c42-Q8-lTS" id="5NP-p6-MSc"/>
                 <outlet property="stat3" destination="9pj-gh-pTU" id="aH7-qz-PkK"/>

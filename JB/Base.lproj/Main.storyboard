@@ -68,7 +68,7 @@
                         <outlet property="drop" destination="4nj-kK-9GT" id="cI6-V4-S20"/>
                         <outlet property="searchBar" destination="MJN-j8-CfI" id="UuE-6y-equ"/>
                         <outlet property="tableView" destination="hHB-Ti-avJ" id="E3Y-4y-KUl"/>
-                        <segue destination="49e-Tb-3d3" kind="show" identifier="toPlayer" id="9HI-wy-fmc"/>
+                        <segue destination="49e-Tb-3d3" kind="custom" identifier="toPlayer" customClass="SlideLeftSegue" customModule="FBS" customModuleProvider="target" id="9HI-wy-fmc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="36d-cZ-a7x" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -99,7 +99,7 @@
                                 <items>
                                     <navigationItem title="Overview" id="j7s-D0-8sk" userLabel="Player">
                                         <barButtonItem key="leftBarButtonItem" title="Item" style="plain" id="Ckp-Kc-Q0P" userLabel="Bar">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="VHX-ZH-Qhg">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="VHX-ZH-Qhg">
                                                 <rect key="frame" x="16" y="0.0" width="50" height="44"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" image="Back">

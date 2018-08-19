@@ -21,6 +21,7 @@
 		5026C2621D65716B0057D046 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5026C2601D65716B0057D046 /* LaunchScreen.storyboard */; };
 		5026C2701D65B4D80057D046 /* GameLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5026C26F1D65B4D80057D046 /* GameLogViewController.swift */; };
 		5026C2721D65B6590057D046 /* GameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5026C2711D65B6590057D046 /* GameCell.swift */; };
+		502FA97F212979B40036FEDE /* SlideLeftSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502FA97E212979B40036FEDE /* SlideLeftSegue.swift */; };
 		5030539A21240B26004313AF /* BaseStatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5030539921240B26004313AF /* BaseStatView.xib */; };
 		5030539C21240B4F004313AF /* AdvancedStatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5030539B21240B4F004313AF /* AdvancedStatView.xib */; };
 		5030539E21240B7D004313AF /* BaseStatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5030539D21240B7D004313AF /* BaseStatView.swift */; };
@@ -61,6 +62,7 @@
 		5026C2631D65716B0057D046 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5026C26F1D65B4D80057D046 /* GameLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLogViewController.swift; sourceTree = "<group>"; };
 		5026C2711D65B6590057D046 /* GameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCell.swift; sourceTree = "<group>"; };
+		502FA97E212979B40036FEDE /* SlideLeftSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideLeftSegue.swift; sourceTree = "<group>"; };
 		5030539921240B26004313AF /* BaseStatView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BaseStatView.xib; sourceTree = "<group>"; };
 		5030539B21240B4F004313AF /* AdvancedStatView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdvancedStatView.xib; sourceTree = "<group>"; };
 		5030539D21240B7D004313AF /* BaseStatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseStatView.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				50B1A6701FA33C8300BC4A62 /* DropMenu.swift */,
 				5001269821194E44004F4677 /* Player.swift */,
 				50CFAB952122C2FE0066F449 /* Game.swift */,
+				502FA97E212979B40036FEDE /* SlideLeftSegue.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -352,6 +355,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				502FA97F212979B40036FEDE /* SlideLeftSegue.swift in Sources */,
 				5026C2721D65B6590057D046 /* GameCell.swift in Sources */,
 				5001269F211977C4004F4677 /* GetImage.swift in Sources */,
 				5019B5DA1D68085F00423579 /* SeasonStatsViewController.swift in Sources */,

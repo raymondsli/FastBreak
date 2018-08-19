@@ -17,7 +17,6 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
     var playerNames: [String] = []
     var playerImages: [String: UIImage] = [:]
     var playerTeams: [String: String] = [:]
-    var playerPositions: [String: String] = [:]
     
     var twitterHandles: [String: String] = [:]
     
@@ -40,14 +39,16 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
         let nib = UINib(nibName: "PlayerCell", bundle: nil)
         self.tableView.register(nib, forCellReuseIdentifier: "PlayerCell")
         
-//        if (playerIds.count == 0) {
-//            getPlayerIds(urlAllPlayers: "https://stats.nba.com/stats/commonallplayers/?LeagueID=00&Season=2017-18&IsOnlyCurrentSeason=1")
-//            sleep(1)
-//        }
-        
-        if playerIds.count == 0 {
-            populateData()
+        if (playerIds.count == 0) {
+            getPlayerIds(urlAllPlayers: "https://stats.nba.com/stats/commonallplayers/?LeagueID=00&Season=2018-19&IsOnlyCurrentSeason=1")
+            sleep(1)
         }
+        
+        getTwitters()
+        
+//        if playerIds.count == 0 {
+//            populateData()
+//        }
         
         DispatchQueue.global(qos: .background).async {
             self.getPlayerImages()
@@ -195,6 +196,18 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
         }).resume()
     }
     
+    func getTwitters() {
+        if let newPath = Bundle.main.path(forResource: "twitterJSON", ofType: "json") {
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: newPath), options:.mappedIfSafe)
+                let json = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves) as! [String: String]
+                self.twitterHandles = json
+            } catch {
+                print("Could not parse Twitter JSON")
+            }
+        }
+    }
+    
     func populateData() {
         if let path = Bundle.main.path(forResource: "allplayers", ofType: "json") {
             do {
@@ -228,6 +241,17 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
             let currentPlayer: NSArray = rowSet[i] as! NSArray
             let playerId = currentPlayer[0] as! Int
             let playerName = currentPlayer[2] as! String
+            
+            if playerName == "Michael Porter Jr." {
+                playerTeams["Michael Porter"] = "DEN"
+                playerImages["Michael Porter"] = UIImage(named: "NoHeadshot")!
+                namesToLabel["Michael Porter"] = "Michael Porter Jr."
+                playerNames.append("Michael Porter Jr.")
+                playerFirstNames.append("Michael")
+                playerLastNames.append("Porter")
+                i = i + 1
+                continue
+            }
             
             let firstName = getFirstName(playerName: playerName)
             let lastName = getLastName(playerName: playerName)
@@ -448,6 +472,13 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
             cell.name.adjustsFontSizeToFitWidth = true
             cell.team.adjustsFontSizeToFitWidth = true
             
+            if currentPlayerNames[indexPath.row] == "Michael Porter Jr." {
+                cell.name.text = "Michael Porter Jr."
+                cell.team.text = "DEN"
+                cell.headshot.image = UIImage(named: "NoHeadshot")!
+                return cell
+            }
+            
             let displayName = namesToLabel[fullName]
             cell.name.text = displayName
             cell.team.text = playerTeams[displayName!]
@@ -528,6 +559,14 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
             
             if let twitterHandle = twitterHandles[playerName] {
                 twitterVC.twitterHandle = twitterHandle
+            }
+            
+            if playerName == "Michael Porter Jr." {
+                upcoming.playerImage = UIImage(named: "NoHeadshot")!
+                upcoming.playerId = 1629008
+                upcoming.team = "DEN"
+                gameLogVC.playerId = 1629008
+                seasonStatsVC.playerId = 1629008
             }
 
             self.tableView.deselectRow(at: indexPath, animated: true)

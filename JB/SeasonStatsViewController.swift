@@ -47,7 +47,7 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
     }
     
     func getSeasonJSON(type: String) {
-        let urlString = "https://stats.nba.com/stats/playerdashboardbyyearoveryear?DateFrom=&DateTo=&GameSegment=&LastNGames=0&LeagueID=00&Location=&Month=0&OpponentTeamID=0&Outcome=&PORound=0&PaceAdjust=N&PerMode=PerGame&Period=0&PlusMinus=N&Rank=N&Season=2017-18&SeasonSegment=&SeasonType=Regular+Season&ShotClockRange=&Split=yoy&VsConference=&VsDivision=&MeasureType=" + type + "&PlayerID=" + String(playerId)
+        let urlString = "https://stats.nba.com/stats/playerdashboardbyyearoveryear?DateFrom=&DateTo=&GameSegment=&LastNGames=0&LeagueID=00&Location=&Month=0&OpponentTeamID=0&Outcome=&PORound=0&PaceAdjust=N&PerMode=PerGame&Period=0&PlusMinus=N&Rank=N&Season=2018-19&SeasonSegment=&SeasonType=Regular+Season&ShotClockRange=&Split=yoy&VsConference=&VsDivision=&MeasureType=" + type + "&PlayerID=" + String(playerId)
         let url = URL(string: urlString)
         
         URLSession.shared.dataTask(with: url!, completionHandler: {(data, response, error) in
@@ -57,6 +57,17 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
                     let resultSetsTemp: NSArray = json["resultSets"] as! NSArray
                     let resultSets = resultSetsTemp[1] as! [String: Any]
                     let rowSetTemp: NSArray = resultSets["rowSet"] as! NSArray
+                    
+                    if (rowSetTemp.count == 0) {
+                        DispatchQueue.main.async(execute: {
+                            self.nameLabel.text = self.playerName
+                            self.setToNA(type: type)
+                            self.activityIndicator.stopAnimating()
+                            self.loadingView.removeFromSuperview()
+                        })
+                        return
+                    }
+                    
                     let season: NSArray = rowSetTemp[0] as! NSArray
                     
                     if type == "Base" {
@@ -254,6 +265,73 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
         }
         
         return decString
+    }
+    
+    func setToNA(type: String) {
+        if type == "Base" {
+            self.baseStatView.row1.stat1.text = "GP"
+            self.baseStatView.row1.stat2.text = "MIN"
+            self.baseStatView.row1.stat3.text = "PTS"
+            self.baseStatView.row1.stat4.text = "REB"
+            self.baseStatView.row1.amount1.text = "NA"
+            self.baseStatView.row1.amount2.text = "NA"
+            self.baseStatView.row1.amount3.text = "NA"
+            self.baseStatView.row1.amount4.text = "NA"
+            
+            self.baseStatView.row2.stat1.text = "OREB"
+            self.baseStatView.row2.stat2.text = "DREB"
+            self.baseStatView.row2.stat3.text = "FG%"
+            self.baseStatView.row2.stat4.text = "FGM | FGA"
+            self.baseStatView.row2.amount1.text = "NA"
+            self.baseStatView.row2.amount2.text = "NA"
+            self.baseStatView.row2.amount3.text = "NA"
+            self.baseStatView.row2.amount4.text = "NA | NA"
+            
+            self.baseStatView.row3.stat1.text = "AST"
+            self.baseStatView.row3.stat2.text = "STL"
+            self.baseStatView.row3.stat3.text = "3P%"
+            self.baseStatView.row3.stat4.text = "3PM | 3PA"
+            self.baseStatView.row3.amount1.text = "NA"
+            self.baseStatView.row3.amount2.text = "NA"
+            self.baseStatView.row3.amount3.text = "NA"
+            self.baseStatView.row3.amount4.text = "NA | NA"
+            
+            self.baseStatView.row4.stat1.text = "BLK"
+            self.baseStatView.row4.stat2.text = "TOV"
+            self.baseStatView.row4.stat3.text = "FT%"
+            self.baseStatView.row4.stat4.text = "FTM | FTA"
+            self.baseStatView.row4.amount1.text = "NA"
+            self.baseStatView.row4.amount2.text = "NA"
+            self.baseStatView.row4.amount3.text = "NA"
+            self.baseStatView.row4.amount4.text = "NA | NA"
+        } else if type == "Advanced" {
+            self.advancedStatView.row1.stat1.text = "TPACE"
+            self.advancedStatView.row1.stat2.text = "USG"
+            self.advancedStatView.row1.stat3.text = "OREB%"
+            self.advancedStatView.row1.stat4.text = "OFFRAT"
+            self.advancedStatView.row1.amount1.text = "NA"
+            self.advancedStatView.row1.amount2.text = "NA"
+            self.advancedStatView.row1.amount3.text = "NA"
+            self.advancedStatView.row1.amount4.text = "NA"
+            
+            self.advancedStatView.row2.stat1.text = "EFG"
+            self.advancedStatView.row2.stat2.text = "TS%"
+            self.advancedStatView.row2.stat3.text = "DREB%"
+            self.advancedStatView.row2.stat4.text = "DRAT"
+            self.advancedStatView.row2.amount1.text = "NA"
+            self.advancedStatView.row2.amount2.text = "NA"
+            self.advancedStatView.row2.amount3.text = "NA"
+            self.advancedStatView.row2.amount4.text = "NA"
+            
+            self.advancedStatView.row3.stat1.text = "AST/TO"
+            self.advancedStatView.row3.stat2.text = "AST%"
+            self.advancedStatView.row3.stat3.text = "REB%"
+            self.advancedStatView.row3.stat4.text = "NETRAT"
+            self.advancedStatView.row3.amount1.text = "NA"
+            self.advancedStatView.row3.amount2.text = "NA"
+            self.advancedStatView.row3.amount3.text = "NA"
+            self.advancedStatView.row3.amount4.text = "NA"
+        }
     }
     
     func abvToTeam(team: String) -> String {

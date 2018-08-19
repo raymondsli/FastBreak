@@ -233,7 +233,8 @@
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </textAttributes>
                                 <items>
-                                    <navigationItem title="Twitter Timeline" id="HNl-9N-sxN" userLabel="Player">
+                                    <navigationItem id="HNl-9N-sxN" userLabel="Player">
+                                        <nil key="title"/>
                                         <barButtonItem key="leftBarButtonItem" title="Item" style="plain" id="cW4-3h-MHx" userLabel="Bar">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="lCB-su-hGi" userLabel="Back">
                                                 <rect key="frame" x="16" y="0.0" width="50" height="44"/>
@@ -247,6 +248,17 @@
                                                 </connections>
                                             </button>
                                         </barButtonItem>
+                                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="2fQ-1Q-sFa">
+                                            <rect key="frame" x="112.5" y="5" width="150" height="34"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
+                                            <state key="normal" title="Twitter">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="twitterPressed:" destination="nJh-UN-mcn" eventType="touchUpInside" id="mIH-D0-grS"/>
+                                            </connections>
+                                        </button>
                                     </navigationItem>
                                 </items>
                                 <userDefinedRuntimeAttributes>
@@ -266,6 +278,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Twitter" image="Twitter" id="xsY-pO-mFk"/>
+                    <connections>
+                        <outlet property="twitterButton" destination="2fQ-1Q-sFa" id="ITR-Vf-AZI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rlr-hO-YA4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -411,9 +426,9 @@
                                             </button>
                                         </barButtonItem>
                                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="l07-fQ-KCe">
-                                            <rect key="frame" x="112.5" y="5.5" width="150" height="33"/>
+                                            <rect key="frame" x="112.5" y="5" width="150" height="34"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
                                             <state key="normal" title="Game Log"/>
                                             <connections>
                                                 <action selector="gameLogPressed:" destination="9ea-Xs-TEb" eventType="touchUpInside" id="leR-Hi-WYk"/>

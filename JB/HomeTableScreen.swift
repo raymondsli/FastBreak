@@ -168,6 +168,9 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
             }
             currentTeamFilter = team
         }
+        if currentPlayerNames.count > 0 {
+            tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+        }
         tableView.reloadData()
     }
 
@@ -476,6 +479,7 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        drop.closeItems()
         self.performSegue(withIdentifier: "toPlayer", sender: self)
         self.tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -502,9 +506,13 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
             upcoming.firstName = firstName
             upcoming.lastName = lastName
             upcoming.displayName = playerName
+            if let team = playerTeams[playerName] {
+                upcoming.team = team
+            }
             
             gameLogVC.playerId = playerIds[firstName + " " + lastName]!
             seasonStatsVC.playerId = playerIds[firstName + " " + lastName]!
+            seasonStatsVC.playerName = playerName
             twitterVC.twitterHandle = "NBA"
 
             self.tableView.deselectRow(at: indexPath, animated: true)
@@ -542,10 +550,16 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
             }
         }
         tableView.reloadData()
+        if currentPlayerNames.count > 0 {
+            tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+        }
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
+        if currentPlayerNames.count > 0 {
+            tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+        }
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {

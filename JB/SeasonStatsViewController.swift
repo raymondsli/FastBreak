@@ -9,7 +9,7 @@ import UIKit
 
 class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
     
-    @IBOutlet weak var teamLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var baseStatView: BaseStatView!
     @IBOutlet weak var advancedStatView: AdvancedStatView!
@@ -17,6 +17,7 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
     var baseStat: BaseStat = BaseStat()
     var advancedStat: AdvancedStat = AdvancedStat()
     var playerId = 0
+    var playerName = ""
     
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     var loadingView: UIView = UIView()
@@ -36,10 +37,10 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
         
         activityIndicator.startAnimating()
         
-        
+        nameLabel.text = ""
         yearLabel.text = "2017-2018"
         yearLabel.adjustsFontSizeToFitWidth = true
-        teamLabel.adjustsFontSizeToFitWidth = true
+        nameLabel.adjustsFontSizeToFitWidth = true
         
         getSeasonJSON(type: "Base")
         getSeasonJSON(type: "Advanced")
@@ -65,7 +66,7 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
                     }
                     
                     DispatchQueue.main.async(execute: {
-                        self.teamLabel.text = self.abvToTeam(team: self.baseStat.team)
+                        self.nameLabel.text = self.playerName
                         
                         self.baseStatView.row1.stat1.text = "GP"
                         self.baseStatView.row1.stat2.text = "MIN"
@@ -78,30 +79,30 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
                         
                         self.baseStatView.row2.stat1.text = "OREB"
                         self.baseStatView.row2.stat2.text = "DREB"
-                        self.baseStatView.row2.stat3.text = "AST"
-                        self.baseStatView.row2.stat4.text = "STL"
+                        self.baseStatView.row2.stat3.text = "FG%"
+                        self.baseStatView.row2.stat4.text = "FGM | FGA"
                         self.baseStatView.row2.amount1.text = self.baseStat.OREB
                         self.baseStatView.row2.amount2.text = self.baseStat.DREB
-                        self.baseStatView.row2.amount3.text = self.baseStat.AST
-                        self.baseStatView.row2.amount4.text = self.baseStat.STL
-                        
-                        self.baseStatView.row3.stat1.text = "BLK"
-                        self.baseStatView.row3.stat2.text = "TOV"
-                        self.baseStatView.row3.stat3.text = "FGM | FGA"
-                        self.baseStatView.row3.stat4.text = "FG%"
-                        self.baseStatView.row3.amount1.text = self.baseStat.BLK
-                        self.baseStatView.row3.amount2.text = self.baseStat.TOV
-                        self.baseStatView.row3.amount3.text = self.baseStat.FGM + " | " + self.baseStat.FGA
-                        self.baseStatView.row3.amount4.text = self.baseStat.FGP + "%"
-                        
-                        self.baseStatView.row4.stat1.text = "3PM | 3PA"
-                        self.baseStatView.row4.stat2.text = "3P%"
-                        self.baseStatView.row4.stat3.text = "FTM | FTA"
-                        self.baseStatView.row4.stat4.text = "FT%"
-                        self.baseStatView.row4.amount1.text = self.baseStat.FG3M + " | " + self.baseStat.FG3A
-                        self.baseStatView.row4.amount2.text = self.baseStat.FG3P + "%"
-                        self.baseStatView.row4.amount3.text = self.baseStat.FTM + " | " + self.baseStat.FTA
-                        self.baseStatView.row4.amount4.text = self.baseStat.FTP + "%"
+                        self.baseStatView.row2.amount3.text = self.baseStat.FGP + "%"
+                        self.baseStatView.row2.amount4.text = self.baseStat.FGM + " | " + self.baseStat.FGA
+
+                        self.baseStatView.row3.stat1.text = "AST"
+                        self.baseStatView.row3.stat2.text = "STL"
+                        self.baseStatView.row3.stat3.text = "3P%"
+                        self.baseStatView.row3.stat4.text = "3PM | 3PA"
+                        self.baseStatView.row3.amount1.text = self.baseStat.AST
+                        self.baseStatView.row3.amount2.text = self.baseStat.STL
+                        self.baseStatView.row3.amount3.text = self.baseStat.FG3P + "%"
+                        self.baseStatView.row3.amount4.text = self.baseStat.FG3M + " | " + self.baseStat.FG3A
+
+                        self.baseStatView.row4.stat1.text = "BLK"
+                        self.baseStatView.row4.stat2.text = "TOV"
+                        self.baseStatView.row4.stat3.text = "FT%"
+                        self.baseStatView.row4.stat4.text = "FTM | FTA"
+                        self.baseStatView.row4.amount1.text = self.baseStat.BLK
+                        self.baseStatView.row4.amount2.text = self.baseStat.TOV
+                        self.baseStatView.row4.amount3.text = self.baseStat.FTP + "%"
+                        self.baseStatView.row4.amount4.text = self.baseStat.FTM + " | " + self.baseStat.FTA
                         
                         self.advancedStatView.row1.stat1.text = "TPACE"
                         self.advancedStatView.row1.stat2.text = "USG"

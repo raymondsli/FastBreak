@@ -21,6 +21,8 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
         tableView.delegate = self
         tableView.dataSource = self
         
+        tableView.allowsSelection = false
+        
         let nib = UINib(nibName: "GameCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "GameCell")
         
@@ -234,10 +236,6 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
             return GameCell()
         }
     }
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.tableView.deselectRow(at: indexPath, animated: true)
-    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -255,6 +253,13 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 370.0
     }
+    
+    @IBAction func gameLogPressed(_ sender: Any) {
+        if games.count > 0 {
+            tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+        }
+    }
+    
     
 }
 
@@ -277,4 +282,6 @@ extension UITableView {
         self.backgroundView = nil
         self.separatorStyle = .singleLine
     }
+    
+    
 }

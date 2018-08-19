@@ -13,14 +13,12 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate {
     @IBOutlet weak var personalView: PlayerPersonal!
     @IBOutlet weak var rankingsView: PlayerRankings!
     
-    
-    
-    
     var playerImage: UIImage?
     var playerId: Int = -1
     var firstName: String = ""
     var lastName: String = ""
     var displayName: String = ""
+    var team: String = ""
     var player: Player = Player()
     
     override func viewDidLoad() {
@@ -133,13 +131,13 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate {
     }
     
     func getNextGameJSON() {
-        guard let team = getTeamName(team: player.currentTeam) else {
+        guard let pTeam = getTeamName(team: self.team) else {
             self.headerView.gameDate.text = "No Next Game"
             self.headerView.gameDetail.text = "No Opponent"
             return
         }
         
-        let urlString = "http://data.nba.net/data/10s/prod/v1/2018/teams/" + team + "/schedule.json"
+        let urlString = "http://data.nba.net/data/10s/prod/v1/2018/teams/" + pTeam + "/schedule.json"
         let url = URL(string: urlString)
         
         URLSession.shared.dataTask(with: url!, completionHandler: {(data, response, error) in

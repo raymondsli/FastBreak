@@ -17,6 +17,6 @@ class JBTwitterTimeline: TWTRTimelineViewController {
         super.viewDidLoad()
         
         let client = TWTRAPIClient()
-        self.dataSource = TWTRUserTimelineDataSource(screenName: "FCHWPO", apiClient: client)
+        self.dataSource = TWTRUserTimelineDataSource(screenName: twitterHandle, apiClient: client)
     }
 }

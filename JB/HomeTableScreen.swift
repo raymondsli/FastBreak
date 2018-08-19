@@ -19,6 +19,8 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
     var playerTeams: [String: String] = [:]
     var playerPositions: [String: String] = [:]
     
+    var twitterHandles: [String: String] = [:]
+    
     var currentPlayerNames: [String] = []
     var currentTeamFilter: String = "All Teams"
     var currentSearchFilter: String = ""
@@ -204,7 +206,17 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
                 
                 turnRowSetIntoPlayerIds(rowSet)
             } catch {
-                print("Could not parse JSON")
+                print("Could not parse Player JSON")
+            }
+        }
+        
+        if let newPath = Bundle.main.path(forResource: "twitterJSON", ofType: "json") {
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: newPath), options:.mappedIfSafe)
+                let json = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves) as! [String: String]
+                self.twitterHandles = json
+            } catch {
+                print("Could not parse Twitter JSON")
             }
         }
     }
@@ -513,7 +525,10 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
             gameLogVC.playerId = playerIds[firstName + " " + lastName]!
             seasonStatsVC.playerId = playerIds[firstName + " " + lastName]!
             seasonStatsVC.playerName = playerName
-            twitterVC.twitterHandle = "NBA"
+            
+            if let twitterHandle = twitterHandles[playerName] {
+                twitterVC.twitterHandle = twitterHandle
+            }
 
             self.tableView.deselectRow(at: indexPath, animated: true)
         }

@@ -1,0 +1,39 @@
+---
+title: "NBATwitter"
+author: "Raymond Li"
+date: "8/18/2018"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+```{r}
+twitter_players = read.csv("~/Documents/Apps/FBS/TwitterHandles.csv", header = TRUE, sep = ",")[, c(2,3)]
+```
+
+```{r}
+library(rjson)
+rowSet <- fromJSON(file="https://stats.nba.com/stats/commonallplayers/?LeagueID=00&Season=2018-19&IsOnlyCurrentSeason=1")["resultSets"][[1]][[1]]$rowSet
+```
+
+```{r}
+all_players = c()
+for (i in 1:length(rowSet)) {
+  all_players[i] = rowSet[[i]][[3]]
+}
+```
+
+```{r}
+unknown_players = c()
+
+for (i in 1:length(all_players)) {
+  if (!(all_players[i] %in% twitter_players$Player)) {
+    unknown_players = c(unknown_players, all_players[i])
+  } 
+}
+```
+

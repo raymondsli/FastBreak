@@ -206,7 +206,7 @@
                         <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="X2R-Ga-oz7"/>
                         <segue destination="9ea-Xs-TEb" kind="relationship" relationship="viewControllers" id="HEk-9B-i25"/>
                         <segue destination="ycx-nU-GkU" kind="relationship" relationship="viewControllers" id="ZPo-KS-U2L"/>
-                        <segue destination="RLK-5P-RUN" kind="relationship" relationship="viewControllers" id="Bo6-Fh-cGU"/>
+                        <segue destination="nJh-UN-mcn" kind="relationship" relationship="viewControllers" id="H8U-rs-bYK"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -214,70 +214,62 @@
             <point key="canvasLocation" x="-564" y="358"/>
         </scene>
         <!--Twitter-->
-        <scene sceneID="nwG-gK-MiE">
+        <scene sceneID="pXd-oq-Cev">
             <objects>
-                <tableViewController id="RLK-5P-RUN" customClass="JBTwitterTimeline" customModule="FBS" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="jEa-mP-Sqh">
+                <viewController id="nJh-UN-mcn" customClass="TwitterVC" customModule="FBS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="h7h-dT-O3G"/>
+                        <viewControllerLayoutGuide type="bottom" id="4xM-SG-Rok"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="aEE-ET-awe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="ooH-M0-CXL">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2cF-4n-KMb">
-                                    <rect key="frame" x="0.0" y="-8" width="375" height="44"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="barTintColor" red="0.1173284892" green="0.17706105799999999" blue="0.2795971062" alpha="0.81393045770000005" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <textAttributes key="titleTextAttributes">
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </textAttributes>
-                                    <items>
-                                        <navigationItem title="Twitter Timeline" id="t6T-jP-TZx" userLabel="Player">
-                                            <barButtonItem key="leftBarButtonItem" title="Item" style="plain" id="3Ca-Ka-83B" userLabel="Bar">
-                                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="2qk-FN-5Cw">
-                                                    <rect key="frame" x="16" y="0.0" width="50" height="44"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" image="Back">
-                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="backPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="Pka-OL-fP6"/>
-                                                    </connections>
-                                                </button>
-                                            </barButtonItem>
-                                        </navigationItem>
-                                    </items>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="barPosition">
-                                            <integer key="value" value="3"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
-                                </navigationBar>
-                            </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </view>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="kJK-Yx-6Ty">
-                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kJK-Yx-6Ty" id="TRj-Yv-fgp">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="RLK-5P-RUN" id="gQb-E4-Sii"/>
-                            <outlet property="delegate" destination="RLK-5P-RUN" id="tlV-HJ-FMF"/>
-                        </connections>
-                    </tableView>
-                    <tabBarItem key="tabBarItem" title="Twitter" image="Twitter" id="1pq-iB-KSS"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oK4-cO-Cxe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zU6-7A-3rA">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="barTintColor" red="0.1173284892" green="0.17706105799999999" blue="0.2795971062" alpha="0.81393045770000005" colorSpace="custom" customColorSpace="sRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Twitter Timeline" id="HNl-9N-sxN" userLabel="Player">
+                                        <barButtonItem key="leftBarButtonItem" title="Item" style="plain" id="cW4-3h-MHx" userLabel="Bar">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="lCB-su-hGi" userLabel="Back">
+                                                <rect key="frame" x="16" y="0.0" width="50" height="44"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="Back">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="backPressed:" destination="nJh-UN-mcn" eventType="touchUpInside" id="bYd-op-6Jf"/>
+                                                    <action selector="backPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="dWP-UJ-Nfa"/>
+                                                </connections>
+                                            </button>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="barPosition">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </navigationBar>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P8C-P1-tW6">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <connections>
+                                    <segue destination="ueM-Fr-cqK" kind="embed" identifier="toTwitterContainer" id="cab-Cx-qwY"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Twitter" image="Twitter" id="xsY-pO-mFk"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rlr-hO-YA4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1026" y="1120"/>
+            <point key="canvasLocation" x="-1071" y="1119"/>
         </scene>
         <!--Season Stats-->
         <scene sceneID="SDF-Aw-ygE">
@@ -301,7 +293,7 @@
                                 <items>
                                     <navigationItem title="Season Statistics" id="uci-gn-SKR" userLabel="Player">
                                         <barButtonItem key="leftBarButtonItem" title="Item" style="plain" id="Fxv-qb-s3j" userLabel="Bar">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nZb-vD-TMz">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nZb-vD-TMz" userLabel="Back">
                                                 <rect key="frame" x="16" y="0.0" width="50" height="44"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" image="Back">
@@ -309,6 +301,7 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="backPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="DDw-0n-fYD"/>
+                                                    <action selector="backPressed:" destination="ycx-nU-GkU" eventType="touchUpInside" id="rPJ-wY-Ywn"/>
                                                 </connections>
                                             </button>
                                         </barButtonItem>
@@ -331,18 +324,18 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q63-24-GhO">
-                                <rect key="frame" x="0.0" y="72" width="375" height="60"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="68"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Jaylen Brown" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="COZ-6X-7u2" userLabel="Name Label">
                                         <rect key="frame" x="8" y="6" width="359" height="38"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="20"/>
+                                        <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="21"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2017-2018" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ItU-4D-kxG">
-                                        <rect key="frame" x="110" y="26" width="155" height="40"/>
+                                        <rect key="frame" x="110" y="37" width="155" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -408,10 +401,13 @@
                                     <navigationItem id="YJi-ar-1tw">
                                         <nil key="title"/>
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="ajg-dg-EE1">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="PDN-2c-IQ3">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="PDN-2c-IQ3" userLabel="Back">
                                                 <rect key="frame" x="16" y="0.0" width="50" height="44"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" image="Back"/>
+                                                <connections>
+                                                    <action selector="backPressed:" destination="9ea-Xs-TEb" eventType="touchUpInside" id="fSC-Dr-Bjm"/>
+                                                </connections>
                                             </button>
                                         </barButtonItem>
                                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="l07-fQ-KCe">
@@ -444,6 +440,30 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yfe-dx-2y3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="677.60000000000002" y="357.57121439280365"/>
+        </scene>
+        <!--Twitter Timeline-->
+        <scene sceneID="eFx-qA-UJi">
+            <objects>
+                <viewController id="ueM-Fr-cqK" customClass="JBTwitterTimeline" customModule="FBS" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="xja-9H-ALR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="FYl-im-isl">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FYl-im-isl" id="iBb-xt-JqP">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                    </tableView>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hMM-DL-VPy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2020" y="1147"/>
         </scene>
     </scenes>
     <resources>

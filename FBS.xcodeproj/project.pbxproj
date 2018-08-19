@@ -22,6 +22,7 @@
 		5026C2701D65B4D80057D046 /* GameLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5026C26F1D65B4D80057D046 /* GameLogViewController.swift */; };
 		5026C2721D65B6590057D046 /* GameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5026C2711D65B6590057D046 /* GameCell.swift */; };
 		502FA97F212979B40036FEDE /* SlideLeftSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502FA97E212979B40036FEDE /* SlideLeftSegue.swift */; };
+		502FA981212981170036FEDE /* TwitterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502FA980212981170036FEDE /* TwitterVC.swift */; };
 		5030539A21240B26004313AF /* BaseStatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5030539921240B26004313AF /* BaseStatView.xib */; };
 		5030539C21240B4F004313AF /* AdvancedStatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5030539B21240B4F004313AF /* AdvancedStatView.xib */; };
 		5030539E21240B7D004313AF /* BaseStatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5030539D21240B7D004313AF /* BaseStatView.swift */; };
@@ -63,6 +64,7 @@
 		5026C26F1D65B4D80057D046 /* GameLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLogViewController.swift; sourceTree = "<group>"; };
 		5026C2711D65B6590057D046 /* GameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCell.swift; sourceTree = "<group>"; };
 		502FA97E212979B40036FEDE /* SlideLeftSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideLeftSegue.swift; sourceTree = "<group>"; };
+		502FA980212981170036FEDE /* TwitterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterVC.swift; sourceTree = "<group>"; };
 		5030539921240B26004313AF /* BaseStatView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BaseStatView.xib; sourceTree = "<group>"; };
 		5030539B21240B4F004313AF /* AdvancedStatView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdvancedStatView.xib; sourceTree = "<group>"; };
 		5030539D21240B7D004313AF /* BaseStatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseStatView.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				5026C2571D65716B0057D046 /* HomeViewController.swift */,
 				5026C26F1D65B4D80057D046 /* GameLogViewController.swift */,
 				5019B5D91D68085F00423579 /* SeasonStatsViewController.swift */,
+				502FA980212981170036FEDE /* TwitterVC.swift */,
 				5019B5D51D67EC7700423579 /* TwitterTimeline.swift */,
 			);
 			name = Controllers;
@@ -374,6 +377,7 @@
 				504406552123BDE900B7994C /* StatRow.swift in Sources */,
 				50B1A6711FA33C8300BC4A62 /* DropMenu.swift in Sources */,
 				5026C2581D65716B0057D046 /* HomeViewController.swift in Sources */,
+				502FA981212981170036FEDE /* TwitterVC.swift in Sources */,
 				50DA7420212110C400C73019 /* RankingRow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

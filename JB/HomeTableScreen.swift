@@ -502,7 +502,7 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
             let upcoming: HomeViewController = upcomingTabVC.viewControllers?[0] as! HomeViewController
             let gameLogVC: GameLogViewController = upcomingTabVC.viewControllers?[1] as! GameLogViewController
             let seasonStatsVC: SeasonStatsViewController = upcomingTabVC.viewControllers?[2] as! SeasonStatsViewController
-            let twitterVC: JBTwitterTimeline = upcomingTabVC.viewControllers?[3] as! JBTwitterTimeline
+            let twitterVC: TwitterVC = upcomingTabVC.viewControllers?[3] as! TwitterVC
             
             let indexPath = self.tableView.indexPathForSelectedRow!
             

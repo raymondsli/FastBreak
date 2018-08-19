@@ -13,10 +13,10 @@ class JBTwitterTimeline: TWTRTimelineViewController {
     
     var twitterHandle: String = "NBA"
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         let client = TWTRAPIClient()
         self.dataSource = TWTRUserTimelineDataSource(screenName: twitterHandle, apiClient: client)
     }
+
 }

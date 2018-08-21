@@ -490,8 +490,6 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
             }
             
             upcoming.playerId = playerIds[firstName + " " + lastName]!
-            upcoming.firstName = firstName
-            upcoming.lastName = lastName
             upcoming.displayName = playerName
             if let team = playerTeams[playerName] {
                 upcoming.team = team

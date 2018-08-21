@@ -74,8 +74,8 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
         let url = URL(string: urlString)
         
         let sessionConfig = URLSessionConfiguration.default
-        sessionConfig.timeoutIntervalForRequest = 10
-        sessionConfig.timeoutIntervalForResource = 10
+        sessionConfig.timeoutIntervalForRequest = 5
+        sessionConfig.timeoutIntervalForResource = 5
         let session = URLSession(configuration: sessionConfig)
         
         let task = session.dataTask(with: url!, completionHandler: {(data, response, error) in

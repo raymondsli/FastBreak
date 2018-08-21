@@ -65,8 +65,8 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
         let url = URL(string: "https://stats.nba.com/stats/playergamelog?DateFrom=&DateTo=&LeagueID=00&SeasonType=Regular+Season&Season=2017-18&PlayerID=" + String(playerId))
         
         let sessionConfig = URLSessionConfiguration.default
-        sessionConfig.timeoutIntervalForRequest = 10
-        sessionConfig.timeoutIntervalForResource = 10
+        sessionConfig.timeoutIntervalForRequest = 5
+        sessionConfig.timeoutIntervalForResource = 5
         let session = URLSession(configuration: sessionConfig)
         
         let task = session.dataTask(with: url!, completionHandler: {(data, response, error) in

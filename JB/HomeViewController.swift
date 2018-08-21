@@ -15,8 +15,6 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate {
     
     var playerImage: UIImage = UIImage(named: "NoHeadshot")!
     var playerId: Int = -1
-    var firstName: String = ""
-    var lastName: String = ""
     var displayName: String = ""
     var team: String = ""
     var player: Player = Player()
@@ -28,22 +26,17 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getPlayer()
-        sleep(1)
+        headerView.headshot.image = playerImage
+        headerView.name.text = displayName
+        headerView.team.text = team
         
-        if getPlayerTask.state != .completed {
-            getPlayerTask.cancel()
-            
-            headerView.headshot.image = playerImage
-            headerView.name.text = displayName
-            headerView.team.text = team
-            
-            personalView.birthDateLabel.text = "NA"
-            personalView.draftLabel.text = "NA"
-            personalView.schoolLabel.text = "NA"
-            personalView.experienceLabel.text = "NA"
-            personalView.heightWeightLabel.text = "NA"
-        }
+        personalView.birthDateLabel.text = "NA"
+        personalView.draftLabel.text = "NA"
+        personalView.schoolLabel.text = "NA"
+        personalView.experienceLabel.text = "NA"
+        personalView.heightWeightLabel.text = "NA"
+        
+        getPlayer()
         
         getNextGameJSON()
         getStatRankings(category: "EFF")
@@ -59,7 +52,7 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        if getPlayerTask.state == .running {
+        if getPlayerTask.state != .completed {
             getPlayerTask.cancel()
         }
     }
@@ -69,7 +62,12 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate {
         let urlString = "https://stats.nba.com/stats/commonplayerinfo/?PlayerId=" + String(playerId)
         let url = URL(string: urlString)
         
-        let task = URLSession.shared.dataTask(with: url!, completionHandler: {(data, response, error) in
+        let sessionConfig = URLSessionConfiguration.default
+        sessionConfig.timeoutIntervalForRequest = 10
+        sessionConfig.timeoutIntervalForResource = 10
+        let session = URLSession(configuration: sessionConfig)
+        
+        let task = session.dataTask(with: url!, completionHandler: {(data, response, error) in
             if data != nil {
                 do {
                     let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments) as! [String: Any]

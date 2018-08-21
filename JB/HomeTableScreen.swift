@@ -39,16 +39,14 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
         let nib = UINib(nibName: "PlayerCell", bundle: nil)
         self.tableView.register(nib, forCellReuseIdentifier: "PlayerCell")
         
+        getPlayerIds(urlAllPlayers: "https://stats.nba.com/stats/commonallplayers/?LeagueID=00&Season=2018-19&IsOnlyCurrentSeason=1")
+        sleep(1)
+        
         if (playerIds.count == 0) {
-            getPlayerIds(urlAllPlayers: "https://stats.nba.com/stats/commonallplayers/?LeagueID=00&Season=2018-19&IsOnlyCurrentSeason=1")
-            sleep(1)
+            useBackupPlayerIds()
         }
         
         getTwitters()
-        
-//        if playerIds.count == 0 {
-//            populateData()
-//        }
         
         DispatchQueue.global(qos: .background).async {
             self.getPlayerImages()
@@ -208,7 +206,7 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
         }
     }
     
-    func populateData() {
+    func useBackupPlayerIds() {
         if let path = Bundle.main.path(forResource: "allplayers", ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
@@ -220,16 +218,6 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
                 turnRowSetIntoPlayerIds(rowSet)
             } catch {
                 print("Could not parse Player JSON")
-            }
-        }
-        
-        if let newPath = Bundle.main.path(forResource: "twitterJSON", ofType: "json") {
-            do {
-                let data = try Data(contentsOf: URL(fileURLWithPath: newPath), options:.mappedIfSafe)
-                let json = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves) as! [String: String]
-                self.twitterHandles = json
-            } catch {
-                print("Could not parse Twitter JSON")
             }
         }
     }
@@ -611,9 +599,6 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-        if currentPlayerNames.count > 0 {
-            tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
-        }
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {

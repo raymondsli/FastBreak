@@ -23,11 +23,27 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate {
     
     var numPlayers = 0
     
+    var getPlayerTask = URLSessionTask()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         getPlayer()
         sleep(1)
+        
+        if getPlayerTask.state != .completed {
+            getPlayerTask.cancel()
+            
+            headerView.headshot.image = playerImage
+            headerView.name.text = displayName
+            headerView.team.text = team
+            
+            personalView.birthDateLabel.text = "NA"
+            personalView.draftLabel.text = "NA"
+            personalView.schoolLabel.text = "NA"
+            personalView.experienceLabel.text = "NA"
+            personalView.heightWeightLabel.text = "NA"
+        }
         
         getNextGameJSON()
         getStatRankings(category: "EFF")
@@ -38,6 +54,14 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate {
         getStatRankings(category: "STL")
         getStatRankings(category: "BLK")
         getStatRankings(category: "TOV")
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if getPlayerTask.state == .running {
+            getPlayerTask.cancel()
+        }
     }
     
     
@@ -121,6 +145,7 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate {
                 }
             }
         })
+        getPlayerTask = task
         task.resume()
     }
     

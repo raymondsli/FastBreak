@@ -21,7 +21,7 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
     var currentPlayerNames: [String] = []
     var currentTeamFilter: String = "All Teams"
     var currentSearchFilter: String = ""
-    var lastIndexPathRow = 0
+    var lastIndex = 0
     
     var getPlayerIdTask = URLSessionDataTask()
     
@@ -425,7 +425,7 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
                 cell.headshot.image = UIImage(named: "NoHeadshot")!
                 
                 DispatchQueue.global(qos: .userInitiated).async {
-                    if indexPath.row < self.lastIndexPathRow - 8 || indexPath.row > self.lastIndexPathRow + 8 {
+                    if indexPath.row < self.lastIndex - 8 || indexPath.row > self.lastIndex + 8 {
                         return
                     }
                     
@@ -455,7 +455,7 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
                 }
             }
             
-            lastIndexPathRow = indexPath.row
+            lastIndex = indexPath.row
             
             return cell
         } else {

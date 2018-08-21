@@ -16,6 +16,8 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     var loadingView: UIView = UIView()
     
+    var getGamesTask = URLSessionTask()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -41,10 +43,18 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
         getGameLogJSON()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if getGamesTask.state == .running {
+            getGamesTask.cancel()
+        }
+    }
+    
     func getGameLogJSON() {
         let url = URL(string: "https://stats.nba.com/stats/playergamelog?DateFrom=&DateTo=&LeagueID=00&SeasonType=Regular+Season&Season=2017-18&PlayerID=" + String(playerId))
         
-        URLSession.shared.dataTask(with: url!, completionHandler: {(data, response, error) in
+        let task = URLSession.shared.dataTask(with: url!, completionHandler: {(data, response, error) in
             if data != nil {
                 do {
                     let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments) as! [String: Any]
@@ -63,7 +73,9 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
                     print("Could not serialize")
                 }
             }
-        }).resume()
+        })
+        getGamesTask = task
+        task.resume()
     }
     
     func turnRowSetIntoGames(_ rowSet: NSArray) {

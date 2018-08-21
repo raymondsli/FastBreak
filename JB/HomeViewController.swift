@@ -13,7 +13,7 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate {
     @IBOutlet weak var personalView: PlayerPersonal!
     @IBOutlet weak var rankingsView: PlayerRankings!
     
-    var playerImage: UIImage?
+    var playerImage: UIImage = UIImage(named: "NoHeadshot")!
     var playerId: Int = -1
     var firstName: String = ""
     var lastName: String = ""
@@ -25,10 +25,6 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if playerImage == nil {
-            playerImage = getPlayerImage()
-        }
         
         getPlayer()
         sleep(1)
@@ -49,10 +45,6 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate {
         let urlString = "https://stats.nba.com/stats/commonplayerinfo/?PlayerId=" + String(playerId)
         let url = URL(string: urlString)
         
-//        let configuration = URLSessionConfiguration.default
-//        configuration.timeoutIntervalForResource = 5
-        
-//        let session = URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
         let task = URLSession.shared.dataTask(with: url!, completionHandler: {(data, response, error) in
             if data != nil {
                 do {
@@ -404,34 +396,8 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate {
         let draftRound = currentPlayer[27] as! String
         let draftNumber = currentPlayer[28] as! String
         
-        var pImage: UIImage
-        if let _image = playerImage {
-            pImage = _image
-        } else {
-            pImage = UIImage(named: "NoHeadshot")!
-        }
+        player = Player(firstName: firstName, lastName: lastName, height: height, weight: weight, position: position, currentTeam: currentTeam, yearsExperience: yearsExperience, birthDate: birthDate, age: age, jerseyNumber: jerseyNumber, school: school!, draftYear: draftYear, draftRound: draftRound, draftNumber: draftNumber)
         
-        player = Player(headshot: pImage, firstName: firstName, lastName: lastName, height: height, weight: weight, position: position, currentTeam: currentTeam, yearsExperience: yearsExperience, birthDate: birthDate, age: age, jerseyNumber: jerseyNumber, school: school!, draftYear: draftYear, draftRound: draftRound, draftNumber: draftNumber)
-        
-    }
-    
-    func getPlayerImage() -> UIImage {
-        let urlImage = "https://nba-players.herokuapp.com/players/" + lastName + "/" + firstName
-        let url = URL(string: urlImage)
-        
-        let data = try? Data(contentsOf: url!)
-        
-        if data == nil {
-            return UIImage(named: "NoHeadshot")!
-        }
-        
-        let image = UIImage(data: data!)
-        
-        if let _image = image {
-            return _image
-        }
-        
-        return UIImage(named: "NoHeadshot")!
     }
     
     func formatGameDate(input: String) -> String {

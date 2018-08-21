@@ -9,8 +9,7 @@
 import UIKit
 
 class Player {
-    
-    var headshot: UIImage
+
     var firstName: String
     var lastName: String
 
@@ -28,8 +27,7 @@ class Player {
     var draftRound: String
     var draftNumber: String
     
-    public init(headshot: UIImage, firstName: String, lastName: String, height: String, weight: String, position: String, currentTeam: String, yearsExperience: String, birthDate: String, age: String, jerseyNumber: String, school: String, draftYear: String, draftRound: String, draftNumber: String) {
-        self.headshot = headshot
+    public init(firstName: String, lastName: String, height: String, weight: String, position: String, currentTeam: String, yearsExperience: String, birthDate: String, age: String, jerseyNumber: String, school: String, draftYear: String, draftRound: String, draftNumber: String) {
         self.firstName = firstName
         self.lastName = lastName
         self.height = height
@@ -47,7 +45,6 @@ class Player {
     }
     
     public init(firstName: String, lastName: String) {
-        self.headshot = UIImage(named: "NoHeadshot")!
         self.firstName = firstName
         self.lastName = lastName
         self.height = ""
@@ -65,7 +62,6 @@ class Player {
     }
     
     public init () {
-        self.headshot = UIImage(named: "NoHeadshot")!
         self.firstName = ""
         self.lastName = ""
         self.height = ""

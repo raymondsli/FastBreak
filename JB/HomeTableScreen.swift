@@ -10,13 +10,11 @@ import UIKit
 
 class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
-    var playerIds: [String: Int] = [:]
-    var namesToLabel: [String: String] = [:]
-    var playerFirstNames: [String] = []
-    var playerLastNames: [String] = []
-    var playerNames: [String] = []
-    var playerImages: [String: UIImage] = [:]
-    var playerTeams: [String: String] = [:]
+    var playerIds: [String: Int] = [:] //Key is first name + last name
+    var namesToLabel: [String: String] = [:] //Key is first name + last name
+    var playerNames: [String] = [] //All display names
+    var playerImages: [String: UIImage] = [:] //Key is first name + last name
+    var playerTeams: [String: String] = [:] //Key is player display name
     
     var twitterHandles: [String: String] = [:]
     
@@ -231,12 +229,21 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
             let playerName = currentPlayer[2] as! String
             
             if playerName == "Michael Porter Jr." {
+                playerIds["Michael Porter"] = playerId
                 playerTeams["Michael Porter"] = "DEN"
                 playerImages["Michael Porter"] = UIImage(named: "NoHeadshot")!
                 namesToLabel["Michael Porter"] = "Michael Porter Jr."
                 playerNames.append("Michael Porter Jr.")
-                playerFirstNames.append("Michael")
-                playerLastNames.append("Porter")
+                i = i + 1
+                continue
+            }
+            
+            if playerName == "Justin Jackson" && currentPlayer[4] as! String == "2018" {
+                playerIds["Jackson 2"] = playerId
+                playerTeams["Jackson 2"] = "ORL"
+                playerImages["Jackson 2"] = UIImage(named: "NoHeadshot")!
+                namesToLabel["Jackson 2"] = "Justin Jackson"
+                playerNames.append("Justin Jackson")
                 i = i + 1
                 continue
             }
@@ -247,9 +254,6 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
             playerIds[firstName + " " + lastName] = playerId
             namesToLabel[firstName + " " + lastName] = playerName
             playerNames.append(playerName)
-            
-            playerFirstNames.append(firstName)
-            playerLastNames.append(lastName)
             
             
             var team = currentPlayer[10] as! String
@@ -266,11 +270,12 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     
     func getImage(i: Int) {
-        if i < 0 || i >= playerFirstNames.count || i >= playerLastNames.count {
+        if i < 0 || i >= playerNames.count {
             return
         }
-        let firstName = playerFirstNames[i]
-        let lastName = playerLastNames[i]
+        let playerName = playerNames[i]
+        let firstName = getFirstName(playerName: playerName)
+        let lastName = getLastName(playerName: playerName)
         
         let fullName = firstName + " " + lastName
         
@@ -298,8 +303,8 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
     func getPlayerImages() {
         var i: Int = 0
 
-        while i < playerLastNames.count {
-            if playerImages.count == playerLastNames.count {
+        while i < playerNames.count {
+            if playerImages.count == playerNames.count {
                 print("Raymond finished")
                 return
             }
@@ -309,10 +314,10 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     
     func getPlayerImages2() {
-        var i: Int = playerLastNames.count - 1
+        var i: Int = playerNames.count - 1
         
         while i >= 0 {
-            if playerImages.count == playerLastNames.count {
+            if playerImages.count == playerNames.count {
                 print("Raymond finished")
                 return
             }
@@ -322,10 +327,10 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     
     func getPlayerImages3() {
-        var i: Int = playerLastNames.count / 2
+        var i: Int = playerNames.count / 2
         
-        while i < playerLastNames.count {
-            if playerImages.count == playerLastNames.count {
+        while i < playerNames.count {
+            if playerImages.count == playerNames.count {
                 print("Raymond finished")
                 return
             }
@@ -335,10 +340,10 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     
     func getPlayerImages4() {
-        var i: Int = playerLastNames.count / 2
+        var i: Int = playerNames.count / 2
         
         while i >= 0 {
-            if playerImages.count == playerLastNames.count {
+            if playerImages.count == playerNames.count {
                 print("Raymond finished")
                 return
             }
@@ -348,10 +353,10 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     
     func getPlayerImages5() {
-        var i: Int = playerLastNames.count / 4
+        var i: Int = playerNames.count / 4
         
         while i >= 0 {
-            if playerImages.count == playerLastNames.count {
+            if playerImages.count == playerNames.count {
                 print("Raymond finished")
                 return
             }
@@ -361,10 +366,10 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     
     func getPlayerImages6() {
-        var i: Int = playerLastNames.count / 4
+        var i: Int = playerNames.count / 4
         
-        while i < playerLastNames.count / 2 {
-            if playerImages.count == playerLastNames.count {
+        while i < playerNames.count / 2 {
+            if playerImages.count == playerNames.count {
                 print("Raymond finished")
                 return
             }
@@ -374,10 +379,10 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     
     func getPlayerImages7() {
-        var i: Int = playerLastNames.count * 3 / 4
+        var i: Int = playerNames.count * 3 / 4
         
-        while i < playerLastNames.count {
-            if playerImages.count == playerLastNames.count {
+        while i < playerNames.count {
+            if playerImages.count == playerNames.count {
                 print("Raymond finished")
                 return
             }
@@ -387,10 +392,10 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     
     func getPlayerImages8() {
-        var i: Int = playerLastNames.count * 3 / 4
+        var i: Int = playerNames.count * 3 / 4
         
-        while i > playerLastNames.count / 2 {
-            if playerImages.count == playerLastNames.count {
+        while i > playerNames.count / 2 {
+            if playerImages.count == playerNames.count {
                 print("Raymond finished")
                 return
             }
@@ -450,19 +455,24 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
         if let cell = tableView.dequeueReusableCell(withIdentifier: "PlayerCell") as? PlayerCell {
             let firstName = getFirstName(playerName: currentPlayerNames[indexPath.row])
             let lastName = getLastName(playerName: currentPlayerNames[indexPath.row])
+            let fullName = firstName + " " + lastName
             
             cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
             cell.headshot.contentMode = .scaleAspectFit
             cell.headshot.backgroundColor = .lightGray
-            
-            let fullName = firstName + " " + lastName
-            
             cell.name.adjustsFontSizeToFitWidth = true
             cell.team.adjustsFontSizeToFitWidth = true
             
             if currentPlayerNames[indexPath.row] == "Michael Porter Jr." {
                 cell.name.text = "Michael Porter Jr."
                 cell.team.text = "DEN"
+                cell.headshot.image = UIImage(named: "NoHeadshot")!
+                return cell
+            }
+            
+            if indexPath.row != currentPlayerNames.count - 1 && fullName == "Justin Jackson" && currentPlayerNames[indexPath.row + 1] == "Justin Jackson" {
+                cell.name.text = "Justin Jackson"
+                cell.team.text = "ORL"
                 cell.headshot.image = UIImage(named: "NoHeadshot")!
                 return cell
             }
@@ -555,6 +565,15 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
                 upcoming.team = "DEN"
                 gameLogVC.playerId = 1629008
                 seasonStatsVC.playerId = 1629008
+            }
+            
+            if indexPath.row != currentPlayerNames.count - 1 && playerName == "Justin Jackson" && currentPlayerNames[indexPath.row + 1] == "Justin Jackson" {
+                upcoming.playerImage = UIImage(named: "NoHeadshot")!
+                upcoming.playerId = 1628992
+                upcoming.team = "ORL"
+                gameLogVC.playerId = 1628992
+                seasonStatsVC.playerId = 1628992
+                twitterVC.twitterHandle = "j5t4l_"
             }
 
             self.tableView.deselectRow(at: indexPath, animated: true)

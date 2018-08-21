@@ -43,7 +43,6 @@
 		50DA741C212104ED00C73019 /* PlayerRankings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DA741B212104ED00C73019 /* PlayerRankings.swift */; };
 		50DA741E212110B200C73019 /* RankingRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50DA741D212110B200C73019 /* RankingRow.xib */; };
 		50DA7420212110C400C73019 /* RankingRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DA741F212110C400C73019 /* RankingRow.swift */; };
-		50DBBB861DD17523000EE4E4 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50DBBB851DD17523000EE4E4 /* MessageUI.framework */; };
 		50DD7DD8211FD1C400D66A85 /* PlayerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50DD7DD7211FD1C400D66A85 /* PlayerCell.xib */; };
 /* End PBXBuildFile section */
 
@@ -97,7 +96,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				50DBBB861DD17523000EE4E4 /* MessageUI.framework in Frameworks */,
 				04E819D35901B1A8A44EAD6E /* Pods_FBS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -320,13 +318,9 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-FBS/Pods-FBS-frameworks.sh",
-				"${PODS_ROOT}/TwitterCore/iOS/TwitterCore.framework",
-				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterCore.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

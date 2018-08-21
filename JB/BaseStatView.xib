@@ -47,7 +47,7 @@
                     <rect key="frame" x="16" y="0.0" width="176" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" name="BreeSerif-Regular" family="Bree Serif" pointSize="23"/>
-                    <nil key="textColor"/>
+                    <color key="textColor" red="0.18487665040000001" green="0.3057227548" blue="0.55884440950000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Djq-UE-PDk" customClass="StatRow" customModule="FBS" customModuleProvider="target">

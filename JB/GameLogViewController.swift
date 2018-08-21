@@ -64,7 +64,12 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
     func getGameLogJSON() {
         let url = URL(string: "https://stats.nba.com/stats/playergamelog?DateFrom=&DateTo=&LeagueID=00&SeasonType=Regular+Season&Season=2017-18&PlayerID=" + String(playerId))
         
-        let task = URLSession.shared.dataTask(with: url!, completionHandler: {(data, response, error) in
+        let sessionConfig = URLSessionConfiguration.default
+        sessionConfig.timeoutIntervalForRequest = 10
+        sessionConfig.timeoutIntervalForResource = 10
+        let session = URLSession(configuration: sessionConfig)
+        
+        let task = session.dataTask(with: url!, completionHandler: {(data, response, error) in
             if data != nil {
                 do {
                     let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments) as! [String: Any]
@@ -87,6 +92,7 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
                 self.loadingView.removeFromSuperview()
             }
         })
+        
         getGamesTask = task
         assignedTask = true
         task.resume()

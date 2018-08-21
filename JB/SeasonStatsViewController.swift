@@ -22,7 +22,8 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     var loadingView: UIView = UIView()
     
-    //var 
+    var baseTask = URLSessionTask()
+    var advancedTask = URLSessionTask()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +53,12 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
         let urlString = "https://stats.nba.com/stats/playerdashboardbyyearoveryear?DateFrom=&DateTo=&GameSegment=&LastNGames=0&LeagueID=00&Location=&Month=0&OpponentTeamID=0&Outcome=&PORound=0&PaceAdjust=N&PerMode=PerGame&Period=0&PlusMinus=N&Rank=N&Season=2018-19&SeasonSegment=&SeasonType=Regular+Season&ShotClockRange=&Split=yoy&VsConference=&VsDivision=&MeasureType=" + type + "&PlayerID=" + String(playerId)
         let url = URL(string: urlString)
         
-        URLSession.shared.dataTask(with: url!, completionHandler: {(data, response, error) in
+        let sessionConfig = URLSessionConfiguration.default
+        sessionConfig.timeoutIntervalForRequest = 10
+        sessionConfig.timeoutIntervalForResource = 10
+        let session = URLSession(configuration: sessionConfig)
+        
+        let task = session.dataTask(with: url!, completionHandler: {(data, response, error) in
             if data != nil {
                 do {
                     let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments) as! [String: Any]
@@ -151,7 +157,13 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
                     print("Could not serialize")
                 }
             }
-        }).resume()
+        })
+        if type == "Base" {
+            baseTask = task
+        } else if type == "Advanced" {
+            advancedTask = task
+        }
+        task.resume()
     }
     
     

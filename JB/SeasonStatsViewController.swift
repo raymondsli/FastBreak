@@ -24,6 +24,7 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
     
     var baseTask = URLSessionTask()
     var advancedTask = URLSessionTask()
+    var assignedTask = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +48,25 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
         
         getSeasonJSON(type: "Base")
         getSeasonJSON(type: "Advanced")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if !assignedTask {
+            getSeasonJSON(type: "Base")
+            getSeasonJSON(type: "Advanced")
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if baseTask.state != .completed || advancedTask.state != .completed {
+            baseTask.cancel()
+            advancedTask.cancel()
+            assignedTask = false
+        }
     }
     
     func getSeasonJSON(type: String) {
@@ -77,6 +97,16 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
                     }
                     
                     let season: NSArray = rowSetTemp[0] as! NSArray
+                    
+                    if season[1] as! String != "2017-18" {
+                        DispatchQueue.main.async(execute: {
+                            self.nameLabel.text = self.playerName
+                            self.setToNA(type: type)
+                            self.activityIndicator.stopAnimating()
+                            self.loadingView.removeFromSuperview()
+                        })
+                        return
+                    }
                     
                     if type == "Base" {
                         self.turnRowSetIntoBaseStat(rowSet: season)
@@ -156,12 +186,16 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
                 } catch {
                     print("Could not serialize")
                 }
+            } else {
+                self.activityIndicator.stopAnimating()
+                self.loadingView.removeFromSuperview()
             }
         })
         if type == "Base" {
             baseTask = task
         } else if type == "Advanced" {
             advancedTask = task
+            assignedTask = true
         }
         task.resume()
     }

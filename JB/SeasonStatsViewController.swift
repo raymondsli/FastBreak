@@ -29,8 +29,13 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        var tabHeight = CGFloat(0)
+        if let tabBarHeight = self.tabBarController?.tabBar.frame.height {
+            tabHeight = tabBarHeight
+        }
+        
         let window = UIApplication.shared.keyWindow!
-        loadingView = UIView(frame: CGRect(x: window.frame.origin.x, y: window.frame.origin.y, width: window.frame.width, height: window.frame.height))
+        loadingView = UIView(frame: CGRect(x: window.frame.origin.x, y: window.frame.origin.y + 64, width: window.frame.width, height: window.frame.height - tabHeight - 64))
         loadingView.backgroundColor = .white
         
         activityIndicator.center = self.view.center
@@ -66,6 +71,10 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
             baseTask.cancel()
             advancedTask.cancel()
             assignedTask = false
+            if activityIndicator.isAnimating {
+                self.activityIndicator.stopAnimating()
+                self.loadingView.removeFromSuperview()
+            }
         }
     }
     

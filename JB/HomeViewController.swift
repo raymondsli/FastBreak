@@ -29,12 +29,14 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate {
         headerView.headshot.image = playerImage
         headerView.name.text = displayName
         headerView.team.text = team
+        headerView.gameDate.text = ""
+        headerView.gameDetail.text = ""
         
-        personalView.birthDateLabel.text = "NA"
-        personalView.draftLabel.text = "NA"
-        personalView.schoolLabel.text = "NA"
-        personalView.experienceLabel.text = "NA"
-        personalView.heightWeightLabel.text = "NA"
+        personalView.birthDateLabel.text = ""
+        personalView.draftLabel.text = ""
+        personalView.schoolLabel.text = ""
+        personalView.experienceLabel.text = ""
+        personalView.heightWeightLabel.text = ""
         
         getPlayer()
         

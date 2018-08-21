@@ -30,7 +30,12 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
         tableView.register(nib, forCellReuseIdentifier: "GameCell")
         
         let window = UIApplication.shared.keyWindow!
-        loadingView = UIView(frame: CGRect(x: window.frame.origin.x, y: window.frame.origin.y, width: window.frame.width, height: window.frame.height))
+        
+        var tabHeight = CGFloat(0)
+        if let tabBarHeight = self.tabBarController?.tabBar.frame.height {
+            tabHeight = tabBarHeight
+        }
+        loadingView = UIView(frame: CGRect(x: window.frame.origin.x, y: window.frame.origin.y + 64, width: window.frame.width, height: window.frame.height - tabHeight - 64))
         loadingView.backgroundColor = .white
         
         activityIndicator.center = self.view.center
@@ -58,6 +63,10 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
         if getGamesTask.state != .completed {
             getGamesTask.cancel()
             assignedTask = false
+            if activityIndicator.isAnimating {
+                self.activityIndicator.stopAnimating()
+                self.loadingView.removeFromSuperview()
+            }
         }
     }
     

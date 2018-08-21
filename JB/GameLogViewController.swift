@@ -96,9 +96,6 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
                 } catch {
                     print("Could not serialize")
                 }
-            } else {
-                self.activityIndicator.stopAnimating()
-                self.loadingView.removeFromSuperview()
             }
         })
         

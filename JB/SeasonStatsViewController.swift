@@ -195,9 +195,6 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
                 } catch {
                     print("Could not serialize")
                 }
-            } else {
-                self.activityIndicator.stopAnimating()
-                self.loadingView.removeFromSuperview()
             }
         })
         if type == "Base" {

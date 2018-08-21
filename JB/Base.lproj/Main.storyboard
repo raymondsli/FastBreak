@@ -354,13 +354,13 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FaT-RY-QgE" customClass="AdvancedStatView" customModule="FBS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="76" width="375" height="210"/>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OXY-7L-cIm" customClass="BaseStatView" customModule="FBS" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="76" width="375" height="250"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.54676507419999998" green="1" blue="0.36086696109999999" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OXY-7L-cIm" customClass="BaseStatView" customModule="FBS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="294" width="375" height="250"/>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FaT-RY-QgE" customClass="AdvancedStatView" customModule="FBS" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="334" width="375" height="210"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.54676507419999998" green="1" blue="0.36086696109999999" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>

@@ -17,6 +17,7 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
     var loadingView: UIView = UIView()
     
     var getGamesTask = URLSessionTask()
+    var assignedTask = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,11 +44,20 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
         getGameLogJSON()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if !assignedTask {
+            getGameLogJSON()
+        }
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        if getGamesTask.state == .running {
+        if getGamesTask.state != .completed {
             getGamesTask.cancel()
+            assignedTask = false
         }
     }
     
@@ -72,9 +82,13 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
                 } catch {
                     print("Could not serialize")
                 }
+            } else {
+                self.activityIndicator.stopAnimating()
+                self.loadingView.removeFromSuperview()
             }
         })
         getGamesTask = task
+        assignedTask = true
         task.resume()
     }
     

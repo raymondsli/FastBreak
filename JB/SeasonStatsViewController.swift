@@ -22,6 +22,8 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     var loadingView: UIView = UIView()
     
+    //var 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

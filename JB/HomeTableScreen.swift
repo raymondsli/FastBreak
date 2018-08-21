@@ -21,6 +21,9 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
     var currentPlayerNames: [String] = []
     var currentTeamFilter: String = "All Teams"
     var currentSearchFilter: String = ""
+    var lastIndexPathRow = 0
+    
+    var getPlayerIdTask = URLSessionDataTask()
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -40,7 +43,8 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
         getPlayerIds(urlAllPlayers: "https://stats.nba.com/stats/commonallplayers/?LeagueID=00&Season=2018-19&IsOnlyCurrentSeason=1")
         sleep(1)
         
-        if (playerIds.count == 0) {
+        if getPlayerIdTask.state != .completed {
+            getPlayerIdTask.cancel()
             useBackupPlayerIds()
         }
         
@@ -60,22 +64,6 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
 
         DispatchQueue.global(qos: .background).async {
             self.getPlayerImages4()
-        }
-
-        DispatchQueue.global(qos: .background).async {
-            self.getPlayerImages5()
-        }
-
-        DispatchQueue.global(qos: .background).async {
-            self.getPlayerImages6()
-        }
-
-        DispatchQueue.global(qos: .background).async {
-            self.getPlayerImages7()
-        }
-
-        DispatchQueue.global(qos: .background).async {
-            self.getPlayerImages8()
         }
     }
     
@@ -176,7 +164,7 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
     func getPlayerIds(urlAllPlayers: String) {
         let url = URL(string: urlAllPlayers)
         
-        URLSession.shared.dataTask(with: url!, completionHandler: {(data, response, error) in
+        let task = URLSession.shared.dataTask(with: url!, completionHandler: {(data, response, error) in
             if data != nil {
                 do {
                     let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments) as! [String: Any]
@@ -189,7 +177,9 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
                     print("Could not serialize")
                 }
             }
-        }).resume()
+        })
+        getPlayerIdTask = task
+        task.resume()
     }
     
     func getTwitters() {
@@ -352,58 +342,6 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
         }
     }
     
-    func getPlayerImages5() {
-        var i: Int = playerNames.count / 4
-        
-        while i >= 0 {
-            if playerImages.count == playerNames.count {
-                print("Raymond finished")
-                return
-            }
-            getImage(i: i)
-            i = i - 1
-        }
-    }
-    
-    func getPlayerImages6() {
-        var i: Int = playerNames.count / 4
-        
-        while i < playerNames.count / 2 {
-            if playerImages.count == playerNames.count {
-                print("Raymond finished")
-                return
-            }
-            getImage(i: i)
-            i = i + 1
-        }
-    }
-    
-    func getPlayerImages7() {
-        var i: Int = playerNames.count * 3 / 4
-        
-        while i < playerNames.count {
-            if playerImages.count == playerNames.count {
-                print("Raymond finished")
-                return
-            }
-            getImage(i: i)
-            i = i + 1
-        }
-    }
-    
-    func getPlayerImages8() {
-        var i: Int = playerNames.count * 3 / 4
-        
-        while i > playerNames.count / 2 {
-            if playerImages.count == playerNames.count {
-                print("Raymond finished")
-                return
-            }
-            getImage(i: i)
-            i = i - 1
-        }
-    }
-    
     
     func getPlayerImage(firstName: String, lastName: String) -> UIImage {
         let urlImage = "https://nba-players.herokuapp.com/players/" + lastName + "/" + firstName
@@ -476,7 +414,7 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
                 cell.headshot.image = UIImage(named: "NoHeadshot")!
                 return cell
             }
-            
+
             let displayName = namesToLabel[fullName]
             cell.name.text = displayName
             cell.team.text = playerTeams[displayName!]
@@ -487,6 +425,10 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
                 cell.headshot.image = UIImage(named: "NoHeadshot")!
                 
                 DispatchQueue.global(qos: .userInitiated).async {
+                    if indexPath.row < self.lastIndexPathRow - 8 || indexPath.row > self.lastIndexPathRow + 8 {
+                        return
+                    }
+                    
                     let urlImage = "https://nba-players.herokuapp.com/players/" + lastName + "/" + firstName
                 
                     let url = URL(string: urlImage)
@@ -512,6 +454,8 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
                     }
                 }
             }
+            
+            lastIndexPathRow = indexPath.row
             
             return cell
         } else {
@@ -541,6 +485,8 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
             
             if let image = playerImages[firstName + " " + lastName] {
                 upcoming.playerImage = image
+            } else {
+                upcoming.playerImage = getPlayerImage(firstName: firstName, lastName: lastName)
             }
             
             upcoming.playerId = playerIds[firstName + " " + lastName]!

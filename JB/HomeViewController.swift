@@ -166,38 +166,39 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate {
                     let league = json["league"] as! [String: Any]
                     let games: NSArray = league["standard"] as! NSArray
 
-                    if games.count == 0 {
+                    let nextGameOptional = self.findNextGame(games: games)
+                    
+                    guard let nextGame = nextGameOptional else {
                         return
-                    } else {
-                        let nextGame = games[0] as! [String: Any]
-                        let startTime = nextGame["startTimeUTC"] as! String
-                        let startDate = nextGame["startDateEastern"] as! String
-                        let isHomeTeam = nextGame["isHomeTeam"] as! Bool
-                        
-                        var nextGameOpponent = ""
-                        var homeOAway = ""
-                        
-                        if isHomeTeam {
-                            let vTeam = nextGame["vTeam"] as! [String: String]
-                            let oppo = vTeam["teamId"]
-                            nextGameOpponent = self.getTeamFromId(teamId: oppo!)
-                            homeOAway = "vs. "
-                        } else {
-                            let hTeam = nextGame["hTeam"] as! [String: String]
-                            let oppo = hTeam["teamId"]
-                            nextGameOpponent = self.getTeamFromId(teamId: oppo!)
-                            homeOAway = "@"
-                        }
-                        
-                        let nextGameDate = self.formatDate(date: startDate)
-                        let nextGameTime = self.formatTime(time: startTime)
-                        let nextGameDetails = homeOAway + nextGameOpponent + " - " + nextGameTime
-                        
-                        DispatchQueue.main.async(execute: {
-                            self.headerView.gameDate.text = "Next Game: " + nextGameDate
-                            self.headerView.gameDetail.text = nextGameDetails
-                        })
                     }
+                    
+                    let startTime = nextGame["startTimeUTC"] as! String
+                    let startDate = nextGame["startDateEastern"] as! String
+                    let isHomeTeam = nextGame["isHomeTeam"] as! Bool
+                    
+                    var nextGameOpponent = ""
+                    var homeOAway = ""
+                    
+                    if isHomeTeam {
+                        let vTeam = nextGame["vTeam"] as! [String: String]
+                        let oppo = vTeam["teamId"]
+                        nextGameOpponent = self.getTeamFromId(teamId: oppo!)
+                        homeOAway = "vs. "
+                    } else {
+                        let hTeam = nextGame["hTeam"] as! [String: String]
+                        let oppo = hTeam["teamId"]
+                        nextGameOpponent = self.getTeamFromId(teamId: oppo!)
+                        homeOAway = "@"
+                    }
+                    
+                    let nextGameDate = self.formatDate(date: startDate)
+                    let nextGameTime = self.formatTime(time: startTime)
+                    let nextGameDetails = homeOAway + nextGameOpponent + " - " + nextGameTime
+                    
+                    DispatchQueue.main.async(execute: {
+                        self.headerView.gameDate.text = "Next Game: " + nextGameDate
+                        self.headerView.gameDetail.text = nextGameDetails
+                    })
                 } catch {
                     print("Could not serialize")
                 }
@@ -342,6 +343,18 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate {
         }
         
         return ["No Rank", "No Rank"]
+    }
+    
+    func findNextGame(games: NSArray) -> [String: Any]? {
+        
+        for i in 0..<games.count {
+            let currentGame = games[i] as! [String: Any]
+            let statusNum = currentGame["statusNum"] as! Int
+            if statusNum == 1 || statusNum == 2 {
+                return currentGame
+            }
+        }
+        return nil
     }
     
     func formatDate(date: String) -> String {

@@ -147,7 +147,7 @@ class DropMenuButton: UIButton, UITableViewDelegate, UITableViewDataSource {
         itemLabel.textColor = self.backgroundColor
         
         let bgColorView = UIView()
-        bgColorView.backgroundColor = UIColor.red
+        bgColorView.backgroundColor = UIColor.lightGray
         
         let cell = UITableViewCell(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height))
         cell.backgroundColor = self.titleLabel?.textColor

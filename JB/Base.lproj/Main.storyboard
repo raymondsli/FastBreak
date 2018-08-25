@@ -20,6 +20,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Kc-Ex-weM">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="97k-ON-sfz">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="74"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -67,13 +71,14 @@
                     <connections>
                         <outlet property="drop" destination="4nj-kK-9GT" id="cI6-V4-S20"/>
                         <outlet property="searchBar" destination="MJN-j8-CfI" id="UuE-6y-equ"/>
+                        <outlet property="splashImage" destination="8Kc-Ex-weM" id="qCc-Eo-3f6"/>
                         <outlet property="tableView" destination="hHB-Ti-avJ" id="E3Y-4y-KUl"/>
                         <segue destination="49e-Tb-3d3" kind="custom" identifier="toPlayer" customClass="SlideLeftSegue" customModule="FBS" customModuleProvider="target" id="9HI-wy-fmc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="36d-cZ-a7x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1692" y="358"/>
+            <point key="canvasLocation" x="-1692" y="357.57121439280365"/>
         </scene>
         <!--Overview-->
         <scene sceneID="hNz-n2-bh7">

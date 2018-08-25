@@ -28,9 +28,11 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var drop: DropMenuButton!
+    @IBOutlet weak var splashImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        splashImage.image = UIImage(named: "SplashDunk")!
         drop.setTitle("All Teams", for: .normal)
         
         tableView.delegate = self
@@ -50,21 +52,24 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
         
         getTwitters()
         
-        DispatchQueue.global(qos: .background).async {
-            self.getPlayerImages()
-        }
-
-        DispatchQueue.global(qos: .background).async {
-            self.getPlayerImages2()
-        }
-
-        DispatchQueue.global(qos: .background).async {
-            self.getPlayerImages3()
-        }
-
-        DispatchQueue.global(qos: .background).async {
-            self.getPlayerImages4()
-        }
+//        DispatchQueue.global(qos: .background).async {
+//            self.getPlayerImages()
+//        }
+//
+//        DispatchQueue.global(qos: .background).async {
+//            self.getPlayerImages2()
+//        }
+//
+//        DispatchQueue.global(qos: .background).async {
+//            self.getPlayerImages3()
+//        }
+//
+//        DispatchQueue.global(qos: .background).async {
+//            self.getPlayerImages4()
+//        }
+        
+        sleep(2)
+        self.splashImage.removeFromSuperview()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -295,7 +300,6 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
 
         while i < playerNames.count {
             if playerImages.count == playerNames.count {
-                print("Raymond finished")
                 return
             }
             getImage(i: i)
@@ -308,7 +312,6 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
         
         while i >= 0 {
             if playerImages.count == playerNames.count {
-                print("Raymond finished")
                 return
             }
             getImage(i: i)
@@ -321,7 +324,6 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
         
         while i < playerNames.count {
             if playerImages.count == playerNames.count {
-                print("Raymond finished")
                 return
             }
             getImage(i: i)
@@ -334,7 +336,6 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
         
         while i >= 0 {
             if playerImages.count == playerNames.count {
-                print("Raymond finished")
                 return
             }
             getImage(i: i)
@@ -344,7 +345,9 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     
     func getPlayerImage(firstName: String, lastName: String) -> UIImage {
-        let urlImage = "https://nba-players.herokuapp.com/players/" + lastName + "/" + firstName
+        //let urlImage = "https://nba-players.herokuapp.com/players/" + lastName + "/" + firstName
+        
+        let urlImage = "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/" + String(playerIds[firstName + lastName]!) + ".png"
         
         let url = URL(string: urlImage)
         
@@ -429,8 +432,9 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
                         return
                     }
                     
-                    let urlImage = "https://nba-players.herokuapp.com/players/" + lastName + "/" + firstName
-                
+                    //let urlImage = "https://nba-players.herokuapp.com/players/" + lastName + "/" + firstName
+                    
+                    let urlImage = "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/" + String(self.playerIds[firstName + " " + lastName]!) + ".png"
                     let url = URL(string: urlImage)
                 
                     let data = try? Data(contentsOf: url!)

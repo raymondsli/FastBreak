@@ -33,6 +33,7 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         splashImage.image = UIImage(named: "SplashDunk")!
+        
         drop.setTitle("All Teams", for: .normal)
         
         tableView.delegate = self
@@ -45,15 +46,12 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
         getPlayerIds(urlAllPlayers: "https://stats.nba.com/stats/commonallplayers/?LeagueID=00&Season=2018-19&IsOnlyCurrentSeason=1")
         sleep(1)
         
-        if getPlayerIdTask.state != .completed {
-            getPlayerIdTask.cancel()
-            useBackupPlayerIds()
-        }
+//        if getPlayerIdTask.state != .completed {
+//            getPlayerIdTask.cancel()
+//            useBackupPlayerIds()
+//        }
         
         getTwitters()
-        
-//        sleep(2)
-//        self.splashImage.removeFromSuperview()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -162,6 +160,10 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
                     let rowSet: NSArray = resultSets["rowSet"] as! NSArray
                     
                     self.turnRowSetIntoPlayerIds(rowSet)
+                    
+                    DispatchQueue.main.async(execute: {
+                        self.tableView.reloadData()
+                    })
                 } catch {
                     print("Could not serialize")
                 }
@@ -227,11 +229,7 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
                 continue
             }
             
-            let firstName = getFirstName(playerName: playerName)
-            let lastName = getLastName(playerName: playerName)
-            
-            playerIds[firstName + " " + lastName] = playerId
-            namesToLabel[firstName + " " + lastName] = playerName
+            playerIds[playerName] = playerId
             playerNames.append(playerName)
             
             
@@ -249,14 +247,22 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     
     
-    func getPlayerImage(firstName: String, lastName: String) -> UIImage {
-        //let urlImage = "https://nba-players.herokuapp.com/players/" + lastName + "/" + firstName
+    func getPlayerImage(playerName: String) -> UIImage {
+        guard let id = playerIds[playerName] else {
+            return UIImage(named: "NoHeadshot")!
+        }
         
-        let urlImage = "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/" + String(playerIds[firstName + lastName]!) + ".png"
+        let playerId = String(id)
+        
+        let urlImage = "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/" + playerId + ".png"
         
         let url = URL(string: urlImage)
-        
+    
         let data = try? Data(contentsOf: url!)
+        
+        if data == nil {
+            return UIImage(named: "NoHeadshot")!
+        }
         
         let image = UIImage(data: data!)
         if image != nil {
@@ -267,41 +273,13 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
         
     }
     
-    func getFirstName(playerName: String) -> String {
-        let fullNameArr = playerName.components(separatedBy: " ")
-        
-        var characterSet = CharacterSet.letters.inverted
-        characterSet.remove(charactersIn: "-")
-        
-        if fullNameArr.count < 2 {
-            return ""
-        }
-        
-        return fullNameArr[fullNameArr.count - 2].components(separatedBy: characterSet).joined()
-    }
-    
-    func getLastName(playerName: String) -> String {
-        let fullNameArr = playerName.components(separatedBy: " ")
-        
-        var characterSet = CharacterSet.letters.inverted
-        characterSet.remove(charactersIn: "-")
-        
-        if fullNameArr.count == 1 {
-            return fullNameArr[0].components(separatedBy: characterSet).joined()
-        } else if fullNameArr.count >= 2 {
-            return fullNameArr[fullNameArr.count - 1].components(separatedBy: characterSet).joined()
-        }
-        
-        return ""
-    }
-    
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "PlayerCell") as? PlayerCell {
-            let firstName = getFirstName(playerName: currentPlayerNames[indexPath.row])
-            let lastName = getLastName(playerName: currentPlayerNames[indexPath.row])
-            let fullName = firstName + " " + lastName
+            if playerIds.count == 0 {
+                return PlayerCell()
+            }
+            let playerName = playerNames[indexPath.row]
             
             cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
             cell.headshot.contentMode = .scaleAspectFit
@@ -309,25 +287,24 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
             cell.name.adjustsFontSizeToFitWidth = true
             cell.team.adjustsFontSizeToFitWidth = true
             
-            if currentPlayerNames[indexPath.row] == "Michael Porter Jr." {
-                cell.name.text = "Michael Porter Jr."
-                cell.team.text = "DEN"
-                cell.headshot.image = UIImage(named: "NoHeadshot")!
-                return cell
-            }
+//            if currentPlayerNames[indexPath.row] == "Michael Porter Jr." {
+//                cell.name.text = "Michael Porter Jr."
+//                cell.team.text = "DEN"
+//                cell.headshot.image = UIImage(named: "NoHeadshot")!
+//                return cell
+//            }
             
-            if indexPath.row != currentPlayerNames.count - 1 && fullName == "Justin Jackson" && currentPlayerNames[indexPath.row + 1] == "Justin Jackson" {
+            if indexPath.row != currentPlayerNames.count - 1 && playerName == "Justin Jackson" && currentPlayerNames[indexPath.row + 1] == "Justin Jackson" {
                 cell.name.text = "Justin Jackson"
                 cell.team.text = "ORL"
                 cell.headshot.image = UIImage(named: "NoHeadshot")!
                 return cell
             }
 
-            let displayName = namesToLabel[fullName]
-            cell.name.text = displayName
-            cell.team.text = playerTeams[displayName!]
+            cell.name.text = playerName
+            cell.team.text = playerTeams[playerName]
             
-            if let image = playerImages[fullName] {
+            if let image = playerImages[playerName] {
                 cell.headshot.image = image
             } else {
                 cell.headshot.image = UIImage(named: "NoHeadshot")!
@@ -337,29 +314,27 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
                         return
                     }
                     
-                    //let urlImage = "https://nba-players.herokuapp.com/players/" + lastName + "/" + firstName
-                    
-                    let urlImage = "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/" + String(self.playerIds[firstName + " " + lastName]!) + ".png"
+                    let urlImage = "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/" + String(self.playerIds[playerName]!) + ".png"
                     let url = URL(string: urlImage)
-                
+
                     let data = try? Data(contentsOf: url!)
-                
+
                     if data == nil {
                         return
                     }
-                
+
                     let image = UIImage(data: data!)
                     if image != nil {
                         DispatchQueue.main.async(execute: { () -> Void in
-                            
-                            self.playerImages[firstName + " " + lastName] = image
-                            
+
+                            self.playerImages[playerName] = image
+
                             if tableView.cellForRow(at: indexPath) != nil {
-                                cell.headshot.image = self.playerImages[firstName + " " + lastName]
+                                cell.headshot.image = self.playerImages[playerName]
                             }
                         })
                     } else {
-                        self.playerImages[firstName + " " + lastName] = UIImage(named: "NoHeadshot")!
+                        self.playerImages[playerName] = UIImage(named: "NoHeadshot")!
                     }
                 }
             }
@@ -389,36 +364,34 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
             let indexPath = self.tableView.indexPathForSelectedRow!
             
             let playerName = currentPlayerNames[indexPath.row]
-            let firstName = getFirstName(playerName: playerName)
-            let lastName = getLastName(playerName: playerName)
             
-            if let image = playerImages[firstName + " " + lastName] {
+            if let image = playerImages[playerName] {
                 upcoming.playerImage = image
             } else {
-                upcoming.playerImage = getPlayerImage(firstName: firstName, lastName: lastName)
+                upcoming.playerImage = getPlayerImage(playerName: playerName)
             }
             
-            upcoming.playerId = playerIds[firstName + " " + lastName]!
+            upcoming.playerId = playerIds[playerName]!
             upcoming.displayName = playerName
             if let team = playerTeams[playerName] {
                 upcoming.team = team
             }
             
-            gameLogVC.playerId = playerIds[firstName + " " + lastName]!
-            seasonStatsVC.playerId = playerIds[firstName + " " + lastName]!
+            gameLogVC.playerId = playerIds[playerName]!
+            seasonStatsVC.playerId = playerIds[playerName]!
             seasonStatsVC.playerName = playerName
             
             if let twitterHandle = twitterHandles[playerName] {
                 twitterVC.twitterHandle = twitterHandle
             }
             
-            if playerName == "Michael Porter Jr." {
-                upcoming.playerImage = UIImage(named: "NoHeadshot")!
-                upcoming.playerId = 1629008
-                upcoming.team = "DEN"
-                gameLogVC.playerId = 1629008
-                seasonStatsVC.playerId = 1629008
-            }
+//            if playerName == "Michael Porter Jr." {
+//                upcoming.playerImage = UIImage(named: "NoHeadshot")!
+//                upcoming.playerId = 1629008
+//                upcoming.team = "DEN"
+//                gameLogVC.playerId = 1629008
+//                seasonStatsVC.playerId = 1629008
+//            }
             
             if indexPath.row != currentPlayerNames.count - 1 && playerName == "Justin Jackson" && currentPlayerNames[indexPath.row + 1] == "Justin Jackson" {
                 upcoming.playerImage = UIImage(named: "NoHeadshot")!
@@ -541,3 +514,32 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
 //        i = i + 1
 //    }
 //}
+//
+//    func getFirstName(playerName: String) -> String {
+//        let fullNameArr = playerName.components(separatedBy: " ")
+//
+//        var characterSet = CharacterSet.letters.inverted
+//        characterSet.remove(charactersIn: "-")
+//
+//        if fullNameArr.count < 2 {
+//            return ""
+//        }
+//
+//        return fullNameArr[fullNameArr.count - 2].components(separatedBy: characterSet).joined()
+//    }
+//
+//    func getLastName(playerName: String) -> String {
+//        let fullNameArr = playerName.components(separatedBy: " ")
+//
+//        var characterSet = CharacterSet.letters.inverted
+//        characterSet.remove(charactersIn: "-")
+//
+//        if fullNameArr.count == 1 {
+//            return fullNameArr[0].components(separatedBy: characterSet).joined()
+//        } else if fullNameArr.count >= 2 {
+//            return fullNameArr[fullNameArr.count - 1].components(separatedBy: characterSet).joined()
+//        }
+//
+//        return ""
+//    }
+

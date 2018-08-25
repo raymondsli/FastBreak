@@ -10,11 +10,10 @@ import UIKit
 
 class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
-    var playerIds: [String: Int] = [:]
     var playerNames: [String] = []
+    var playerIds: [String: Int] = [:]
     var playerImages: [String: UIImage] = [:]
     var playerTeams: [String: String] = [:]
-    
     var twitterHandles: [String: String] = [:]
     
     var currentPlayerNames: [String] = []
@@ -27,11 +26,9 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var drop: DropMenuButton!
-    @IBOutlet weak var splashImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        splashImage.image = UIImage(named: "SplashDunk")!
         
         drop.setTitle("All Teams", for: .normal)
         
@@ -54,6 +51,8 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        tableView.allowsSelection = true
+        
         drop.initMenu(["All Teams", "ATL", "BKN", "BOS", "CHA", "CHI", "CLE", "DAL", "DEN", "DET", "GSW", "HOU", "IND", "LAC", "LAL", "MEM", "MIA", "MIL", "MIN", "NOP", "NYK", "OKC", "ORL", "PHI", "PHX", "POR", "SAC", "SAS", "TOR", "UTA", "WAS"],
         actions: [({ () -> (Void) in
             self.dropMenuPressed(team: "All Teams")
@@ -245,27 +244,21 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
         let playerId = String(id)
         
         let urlImage = "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/" + playerId + ".png"
-        
         let url = URL(string: urlImage)
     
-        let data = try? Data(contentsOf: url!)
+        let _data = try? Data(contentsOf: url!)
         
-        if data == nil {
+        guard let data = _data, let image = UIImage(data: data) else {
             return UIImage(named: "NoHeadshot")!
         }
         
-        let image = UIImage(data: data!)
-        if image != nil {
-            return image!
-        } else {
-            return UIImage(named: "NoHeadshot")!
-        }
-        
+        return image
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "PlayerCell") as? PlayerCell {
+            lastIndex = indexPath.row
             let playerName = currentPlayerNames[indexPath.row]
             
             cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
@@ -304,8 +297,7 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
                         return
                     }
                     
-                    DispatchQueue.main.async(execute: { () -> Void in
-
+                    DispatchQueue.main.async(execute: {
                         self.playerImages[playerName] = image
                         
                         if tableView.cellForRow(at: indexPath) != nil {
@@ -315,8 +307,6 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
                 }
             }
             
-            lastIndex = indexPath.row
-            
             return cell
         } else {
             return PlayerCell()
@@ -324,6 +314,7 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.allowsSelection = false //prevents double tapping cell
         drop.closeItems()
         self.performSegue(withIdentifier: "toPlayer", sender: self)
         self.tableView.deselectRow(at: indexPath, animated: true)
@@ -437,9 +428,9 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
 }
 
 
-//        DispatchQueue.global(qos: .background).async {
-//            self.getPlayerImages()
-//        }
+//DispatchQueue.global(qos: .background).async {
+//    self.getPlayerImages()
+//}
 //
 //func getImage(i: Int) {
 //    if i < 0 || i >= playerNames.count {

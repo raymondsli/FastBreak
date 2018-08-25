@@ -11,7 +11,6 @@ import UIKit
 class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
     var playerIds: [String: Int] = [:] //Key is first name + last name
-    var namesToLabel: [String: String] = [:] //Key is first name + last name
     var playerNames: [String] = [] //All display names
     var playerImages: [String: UIImage] = [:] //Key is first name + last name
     var playerTeams: [String: String] = [:] //Key is player display name
@@ -46,10 +45,10 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
         getPlayerIds(urlAllPlayers: "https://stats.nba.com/stats/commonallplayers/?LeagueID=00&Season=2018-19&IsOnlyCurrentSeason=1")
         sleep(1)
         
-//        if getPlayerIdTask.state != .completed {
-//            getPlayerIdTask.cancel()
-//            useBackupPlayerIds()
-//        }
+        if getPlayerIdTask.state != .completed {
+            getPlayerIdTask.cancel()
+            useBackupPlayerIds()
+        }
         
         getTwitters()
     }
@@ -209,21 +208,10 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
             let playerId = currentPlayer[0] as! Int
             let playerName = currentPlayer[2] as! String
             
-            if playerName == "Michael Porter Jr." {
-                playerIds["Michael Porter"] = playerId
-                playerTeams["Michael Porter"] = "DEN"
-                playerImages["Michael Porter"] = UIImage(named: "NoHeadshot")!
-                namesToLabel["Michael Porter"] = "Michael Porter Jr."
-                playerNames.append("Michael Porter Jr.")
-                i = i + 1
-                continue
-            }
-            
             if playerName == "Justin Jackson" && currentPlayer[4] as! String == "2018" {
                 playerIds["Jackson 2"] = playerId
                 playerTeams["Jackson 2"] = "ORL"
                 playerImages["Jackson 2"] = UIImage(named: "NoHeadshot")!
-                namesToLabel["Jackson 2"] = "Justin Jackson"
                 playerNames.append("Justin Jackson")
                 i = i + 1
                 continue
@@ -276,10 +264,10 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "PlayerCell") as? PlayerCell {
-            if playerIds.count == 0 {
-                return PlayerCell()
-            }
-            let playerName = playerNames[indexPath.row]
+//            if playerIds.count == 0 {
+//                return PlayerCell()
+//            }
+            let playerName = currentPlayerNames[indexPath.row]
             
             cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
             cell.headshot.contentMode = .scaleAspectFit

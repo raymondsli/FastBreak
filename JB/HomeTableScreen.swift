@@ -1,6 +1,6 @@
 //
 //  HomeTableScreen.swift
-//  GT
+//  FBS
 //
 //  Created by Raymond Li on 8/6/18.
 //  Copyright © 2018 Raymond Li. All rights reserved.
@@ -141,10 +141,12 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
             }
             currentTeamFilter = team
         }
+        
+        tableView.reloadData()
+        
         if currentPlayerNames.count > 0 {
             tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
         }
-        tableView.reloadData()
     }
 
     func getPlayerIds(urlAllPlayers: String) {
@@ -275,13 +277,6 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
             cell.name.adjustsFontSizeToFitWidth = true
             cell.team.adjustsFontSizeToFitWidth = true
             
-//            if currentPlayerNames[indexPath.row] == "Michael Porter Jr." {
-//                cell.name.text = "Michael Porter Jr."
-//                cell.team.text = "DEN"
-//                cell.headshot.image = UIImage(named: "NoHeadshot")!
-//                return cell
-//            }
-            
             if indexPath.row != currentPlayerNames.count - 1 && playerName == "Justin Jackson" && currentPlayerNames[indexPath.row + 1] == "Justin Jackson" {
                 cell.name.text = "Justin Jackson"
                 cell.team.text = "ORL"
@@ -373,14 +368,6 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
                 twitterVC.twitterHandle = twitterHandle
             }
             
-//            if playerName == "Michael Porter Jr." {
-//                upcoming.playerImage = UIImage(named: "NoHeadshot")!
-//                upcoming.playerId = 1629008
-//                upcoming.team = "DEN"
-//                gameLogVC.playerId = 1629008
-//                seasonStatsVC.playerId = 1629008
-//            }
-            
             if indexPath.row != currentPlayerNames.count - 1 && playerName == "Justin Jackson" && currentPlayerNames[indexPath.row + 1] == "Justin Jackson" {
                 upcoming.playerImage = UIImage(named: "NoHeadshot")!
                 upcoming.playerId = 1628992
@@ -424,7 +411,9 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
                 $0.lowercased().contains(searchText.lowercased()) && playerTeams[$0] == currentTeamFilter
             }
         }
+        
         tableView.reloadData()
+        
         if currentPlayerNames.count > 0 {
             tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
         }

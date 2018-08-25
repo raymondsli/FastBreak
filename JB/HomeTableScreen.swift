@@ -10,10 +10,10 @@ import UIKit
 
 class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
-    var playerIds: [String: Int] = [:] //Key is first name + last name
-    var playerNames: [String] = [] //All display names
-    var playerImages: [String: UIImage] = [:] //Key is first name + last name
-    var playerTeams: [String: String] = [:] //Key is player display name
+    var playerIds: [String: Int] = [:]
+    var playerNames: [String] = []
+    var playerImages: [String: UIImage] = [:]
+    var playerTeams: [String: String] = [:]
     
     var twitterHandles: [String: String] = [:]
     
@@ -266,9 +266,6 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "PlayerCell") as? PlayerCell {
-//            if playerIds.count == 0 {
-//                return PlayerCell()
-//            }
             let playerName = currentPlayerNames[indexPath.row]
             
             cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
@@ -300,25 +297,21 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
                     let urlImage = "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/" + String(self.playerIds[playerName]!) + ".png"
                     let url = URL(string: urlImage)
 
-                    let data = try? Data(contentsOf: url!)
-
-                    if data == nil {
+                    let _data = try? Data(contentsOf: url!)
+                    
+                    guard let data = _data, let image = UIImage(data: data) else {
+                        self.playerImages[playerName] = UIImage(named: "NoHeadshot")!
                         return
                     }
+                    
+                    DispatchQueue.main.async(execute: { () -> Void in
 
-                    let image = UIImage(data: data!)
-                    if image != nil {
-                        DispatchQueue.main.async(execute: { () -> Void in
-
-                            self.playerImages[playerName] = image
-
-                            if tableView.cellForRow(at: indexPath) != nil {
-                                cell.headshot.image = self.playerImages[playerName]
-                            }
-                        })
-                    } else {
-                        self.playerImages[playerName] = UIImage(named: "NoHeadshot")!
-                    }
+                        self.playerImages[playerName] = image
+                        
+                        if tableView.cellForRow(at: indexPath) != nil {
+                            cell.headshot.image = self.playerImages[playerName]
+                        }
+                    })
                 }
             }
             
@@ -369,11 +362,11 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
             }
             
             if indexPath.row != currentPlayerNames.count - 1 && playerName == "Justin Jackson" && currentPlayerNames[indexPath.row + 1] == "Justin Jackson" {
-                upcoming.playerImage = UIImage(named: "NoHeadshot")!
-                upcoming.playerId = 1628992
-                upcoming.team = "ORL"
-                gameLogVC.playerId = 1628992
-                seasonStatsVC.playerId = 1628992
+                upcoming.playerImage = playerImages["Jackson 2"]!
+                upcoming.playerId = playerIds["Jackson 2"]!
+                upcoming.team = playerTeams["Jackson 2"]!
+                gameLogVC.playerId = playerIds["Jackson 2"]!
+                seasonStatsVC.playerId = playerIds["Jackson 2"]!
                 twitterVC.twitterHandle = "j5t4l_"
             }
 

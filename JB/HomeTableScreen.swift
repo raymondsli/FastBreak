@@ -55,7 +55,7 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
 //        DispatchQueue.global(qos: .background).async {
 //            self.getPlayerImages()
 //        }
-//
+
 //        DispatchQueue.global(qos: .background).async {
 //            self.getPlayerImages2()
 //        }
@@ -68,8 +68,8 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
 //            self.getPlayerImages4()
 //        }
         
-        sleep(2)
-        self.splashImage.removeFromSuperview()
+//        sleep(2)
+//        self.splashImage.removeFromSuperview()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -266,6 +266,7 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     func getImage(i: Int) {
         if i < 0 || i >= playerNames.count {
+            print("Raymond finished")
             return
         }
         let playerName = playerNames[i]
@@ -278,11 +279,13 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
             return
         }
         
-        let urlImage = "https://nba-players.herokuapp.com/players/" + lastName + "/" + firstName
+        //let urlImage = "https://nba-players.herokuapp.com/players/" + lastName + "/" + firstName
+        let urlImage = "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/" + String(self.playerIds[firstName + " " + lastName]!) + ".png"
         let url = URL(string: urlImage)
         let data = try? Data(contentsOf: url!)
         
         if (data == nil) {
+            playerImages[fullName] = UIImage(named: "NoHeadshot")!
             return
         }
         
@@ -300,6 +303,7 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
 
         while i < playerNames.count {
             if playerImages.count == playerNames.count {
+                print("Raymond finished")
                 return
             }
             getImage(i: i)
@@ -312,6 +316,7 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
         
         while i >= 0 {
             if playerImages.count == playerNames.count {
+                print("Raymond finished")
                 return
             }
             getImage(i: i)
@@ -324,6 +329,7 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
         
         while i < playerNames.count {
             if playerImages.count == playerNames.count {
+                print("Raymond finished")
                 return
             }
             getImage(i: i)
@@ -336,6 +342,7 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
         
         while i >= 0 {
             if playerImages.count == playerNames.count {
+                print("Raymond finished")
                 return
             }
             getImage(i: i)
@@ -587,3 +594,8 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
         drop.closeItems()
     }
 }
+
+
+//        DispatchQueue.global(qos: .background).async {
+//            self.getPlayerImages()
+//        }

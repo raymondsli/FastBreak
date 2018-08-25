@@ -196,7 +196,7 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
                 
                 turnRowSetIntoPlayerIds(rowSet)
             } catch {
-                print("Could not parse Player JSON")
+                print("Could not parse player JSON")
             }
         }
     }
@@ -210,17 +210,16 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
             let playerName = currentPlayer[2] as! String
             
             if playerName == "Justin Jackson" && currentPlayer[4] as! String == "2018" {
+                playerNames.append("Justin Jackson")
                 playerIds["Jackson 2"] = playerId
                 playerTeams["Jackson 2"] = "ORL"
                 playerImages["Jackson 2"] = UIImage(named: "NoHeadshot")!
-                playerNames.append("Justin Jackson")
                 i = i + 1
                 continue
             }
             
-            playerIds[playerName] = playerId
             playerNames.append(playerName)
-            
+            playerIds[playerName] = playerId
             
             var team = currentPlayer[10] as! String
             if team == "" {
@@ -269,8 +268,8 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
             
             if indexPath.row != currentPlayerNames.count - 1 && playerName == "Justin Jackson" && currentPlayerNames[indexPath.row + 1] == "Justin Jackson" {
                 cell.name.text = "Justin Jackson"
-                cell.team.text = "ORL"
-                cell.headshot.image = UIImage(named: "NoHeadshot")!
+                cell.team.text = playerTeams["Jackson 2"]!
+                cell.headshot.image = playerImages["Jackson 2"]!
                 return cell
             }
 

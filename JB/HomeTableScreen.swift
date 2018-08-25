@@ -52,22 +52,6 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
         
         getTwitters()
         
-//        DispatchQueue.global(qos: .background).async {
-//            self.getPlayerImages()
-//        }
-
-//        DispatchQueue.global(qos: .background).async {
-//            self.getPlayerImages2()
-//        }
-//
-//        DispatchQueue.global(qos: .background).async {
-//            self.getPlayerImages3()
-//        }
-//
-//        DispatchQueue.global(qos: .background).async {
-//            self.getPlayerImages4()
-//        }
-        
 //        sleep(2)
 //        self.splashImage.removeFromSuperview()
     }
@@ -262,92 +246,6 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
         }
         
         currentPlayerNames = playerNames
-    }
-    
-    func getImage(i: Int) {
-        if i < 0 || i >= playerNames.count {
-            print("Raymond finished")
-            return
-        }
-        let playerName = playerNames[i]
-        let firstName = getFirstName(playerName: playerName)
-        let lastName = getLastName(playerName: playerName)
-        
-        let fullName = firstName + " " + lastName
-        
-        if playerImages[fullName] != nil {
-            return
-        }
-        
-        //let urlImage = "https://nba-players.herokuapp.com/players/" + lastName + "/" + firstName
-        let urlImage = "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/" + String(self.playerIds[firstName + " " + lastName]!) + ".png"
-        let url = URL(string: urlImage)
-        let data = try? Data(contentsOf: url!)
-        
-        if (data == nil) {
-            playerImages[fullName] = UIImage(named: "NoHeadshot")!
-            return
-        }
-        
-        let image = UIImage(data: data!)
-        
-        if image != nil {
-            playerImages[fullName] = image
-        } else {
-            playerImages[fullName] = UIImage(named: "NoHeadshot")!
-        }
-    }
-    
-    func getPlayerImages() {
-        var i: Int = 0
-
-        while i < playerNames.count {
-            if playerImages.count == playerNames.count {
-                print("Raymond finished")
-                return
-            }
-            getImage(i: i)
-            i = i + 1
-        }
-    }
-    
-    func getPlayerImages2() {
-        var i: Int = playerNames.count - 1
-        
-        while i >= 0 {
-            if playerImages.count == playerNames.count {
-                print("Raymond finished")
-                return
-            }
-            getImage(i: i)
-            i = i - 1
-        }
-    }
-    
-    func getPlayerImages3() {
-        var i: Int = playerNames.count / 2
-        
-        while i < playerNames.count {
-            if playerImages.count == playerNames.count {
-                print("Raymond finished")
-                return
-            }
-            getImage(i: i)
-            i = i + 1
-        }
-    }
-    
-    func getPlayerImages4() {
-        var i: Int = playerNames.count / 2
-        
-        while i >= 0 {
-            if playerImages.count == playerNames.count {
-                print("Raymond finished")
-                return
-            }
-            getImage(i: i)
-            i = i - 1
-        }
     }
     
     
@@ -599,3 +497,47 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
 //        DispatchQueue.global(qos: .background).async {
 //            self.getPlayerImages()
 //        }
+//
+//func getImage(i: Int) {
+//    if i < 0 || i >= playerNames.count {
+//        return
+//    }
+//    let playerName = playerNames[i]
+//    let firstName = getFirstName(playerName: playerName)
+//    let lastName = getLastName(playerName: playerName)
+//
+//    let fullName = firstName + " " + lastName
+//
+//    if playerImages[fullName] != nil {
+//        return
+//    }
+//
+//    let urlImage = "https://nba-players.herokuapp.com/players/" + lastName + "/" + firstName
+//    let url = URL(string: urlImage)
+//    let data = try? Data(contentsOf: url!)
+//
+//    if (data == nil) {
+//        playerImages[fullName] = UIImage(named: "NoHeadshot")!
+//        return
+//    }
+//
+//    let image = UIImage(data: data!)
+//
+//    if image != nil {
+//        playerImages[fullName] = image
+//    } else {
+//        playerImages[fullName] = UIImage(named: "NoHeadshot")!
+//    }
+//}
+//
+//func getPlayerImages() {
+//    var i: Int = 0
+//
+//    while i < playerNames.count {
+//        if playerImages.count == playerNames.count {
+//            return
+//        }
+//        getImage(i: i)
+//        i = i + 1
+//    }
+//}

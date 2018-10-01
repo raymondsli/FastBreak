@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.3.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -32,9 +32,12 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Stat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="57j-5H-s0S">
-                    <rect key="frame" x="36" y="1" width="60" height="27"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="57j-5H-s0S">
+                    <rect key="frame" x="37.5" y="1" width="60" height="27"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="27" id="oXt-sa-fLF"/>
+                        <constraint firstAttribute="width" constant="60" id="xTC-rK-Jsr"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="BreeSerif-Regular" family="Bree Serif" pointSize="16"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -46,57 +49,96 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Stat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Heg-Fs-KrO">
-                    <rect key="frame" x="104" y="1" width="60" height="27"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Heg-Fs-KrO">
+                    <rect key="frame" x="112.5" y="1" width="60" height="27"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="5eb-Yv-mjz"/>
+                        <constraint firstAttribute="height" constant="27" id="bZM-At-TSi"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="BreeSerif-Regular" family="Bree Serif" pointSize="16"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Stat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C6j-Cm-XN9">
-                    <rect key="frame" x="182" y="1" width="60" height="27"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C6j-Cm-XN9">
+                    <rect key="frame" x="187.5" y="1" width="60" height="27"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="7yc-B2-5TN"/>
+                        <constraint firstAttribute="height" constant="27" id="tVq-jE-D9O"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="BreeSerif-Regular" family="Bree Serif" pointSize="16"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Stat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="by8-DW-bga">
-                    <rect key="frame" x="250" y="1" width="95" height="27"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ovl-uR-KFv">
+                    <rect key="frame" x="37.5" y="21" width="60" height="27"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="AEt-rC-GI2"/>
+                        <constraint firstAttribute="height" constant="27" id="hGg-5E-mvI"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="BreeSerif-Regular" family="Bree Serif" pointSize="16"/>
+                    <color key="textColor" red="0.15198446139999999" green="0.235571747" blue="0.2795971062" alpha="0.81393045770000005" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Xf-Dc-YQk">
+                    <rect key="frame" x="112.5" y="21" width="60" height="27"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="XHO-58-YhI"/>
+                        <constraint firstAttribute="height" constant="27" id="gU2-vD-kaW"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="BreeSerif-Regular" family="Bree Serif" pointSize="16"/>
+                    <color key="textColor" red="0.15198446139999999" green="0.235571747" blue="0.2795971062" alpha="0.81393045770000005" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H7w-Oj-Zz6">
+                    <rect key="frame" x="257.5" y="21" width="95" height="27"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="27" id="8Zy-vc-acI"/>
+                        <constraint firstAttribute="width" constant="95" id="fTQ-Vb-fcc"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="BreeSerif-Regular" family="Bree Serif" pointSize="16"/>
+                    <color key="textColor" red="0.15198446139999999" green="0.235571747" blue="0.2795971062" alpha="0.81393045770000005" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tXI-6K-Y52">
+                    <rect key="frame" x="187.5" y="21" width="60" height="27"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="r7R-it-aPV"/>
+                        <constraint firstAttribute="height" constant="27" id="sVH-xp-u1Z"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="BreeSerif-Regular" family="Bree Serif" pointSize="16"/>
+                    <color key="textColor" red="0.15198446139999999" green="0.235571747" blue="0.2795971062" alpha="0.81393045770000005" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="by8-DW-bga">
+                    <rect key="frame" x="257.5" y="1" width="95" height="27"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="95" id="Bj0-R2-yNk"/>
+                        <constraint firstAttribute="height" constant="27" id="apz-tR-vWq"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="BreeSerif-Regular" family="Bree Serif" pointSize="16"/>
                     <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="NA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ovl-uR-KFv">
-                    <rect key="frame" x="36" y="21" width="60" height="27"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="BreeSerif-Regular" family="Bree Serif" pointSize="16"/>
-                    <color key="textColor" red="0.15198446139999999" green="0.235571747" blue="0.2795971062" alpha="0.81393045770000005" colorSpace="custom" customColorSpace="sRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="NA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Xf-Dc-YQk">
-                    <rect key="frame" x="104" y="21" width="60" height="27"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="BreeSerif-Regular" family="Bree Serif" pointSize="16"/>
-                    <color key="textColor" red="0.15198446139999999" green="0.235571747" blue="0.2795971062" alpha="0.81393045770000005" colorSpace="custom" customColorSpace="sRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="NA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H7w-Oj-Zz6">
-                    <rect key="frame" x="250" y="21" width="95" height="27"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="BreeSerif-Regular" family="Bree Serif" pointSize="16"/>
-                    <color key="textColor" red="0.15198446139999999" green="0.235571747" blue="0.2795971062" alpha="0.81393045770000005" colorSpace="custom" customColorSpace="sRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="NA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tXI-6K-Y52">
-                    <rect key="frame" x="182" y="21" width="60" height="27"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="BreeSerif-Regular" family="Bree Serif" pointSize="16"/>
-                    <color key="textColor" red="0.15198446139999999" green="0.235571747" blue="0.2795971062" alpha="0.81393045770000005" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="tXI-6K-Y52" firstAttribute="centerX" secondItem="C6j-Cm-XN9" secondAttribute="centerX" id="10y-K2-dvg"/>
+                <constraint firstItem="57j-5H-s0S" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="1" id="19J-kz-ddz"/>
+                <constraint firstItem="Heg-Fs-KrO" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="-45" id="DQ8-4q-MNa"/>
+                <constraint firstAttribute="bottom" secondItem="Ovl-uR-KFv" secondAttribute="bottom" constant="-3" id="GpF-PX-iqP"/>
+                <constraint firstAttribute="bottom" secondItem="3Xf-Dc-YQk" secondAttribute="bottom" constant="-3" id="Jeq-ZA-BHM"/>
+                <constraint firstItem="H7w-Oj-Zz6" firstAttribute="centerX" secondItem="by8-DW-bga" secondAttribute="centerX" id="NnN-SX-78I"/>
+                <constraint firstItem="Ovl-uR-KFv" firstAttribute="centerX" secondItem="57j-5H-s0S" secondAttribute="centerX" id="PD2-4N-41O"/>
+                <constraint firstItem="Heg-Fs-KrO" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="1" id="Qf2-zb-83k"/>
+                <constraint firstAttribute="bottom" secondItem="H7w-Oj-Zz6" secondAttribute="bottom" constant="-3" id="Rq4-HC-LHn"/>
+                <constraint firstItem="by8-DW-bga" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="1" id="SO4-nx-3c7"/>
+                <constraint firstItem="C6j-Cm-XN9" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="1" id="d6J-GR-PK9"/>
+                <constraint firstItem="3Xf-Dc-YQk" firstAttribute="centerX" secondItem="Heg-Fs-KrO" secondAttribute="centerX" id="m8o-7B-pRh"/>
+                <constraint firstItem="by8-DW-bga" firstAttribute="leading" secondItem="tXI-6K-Y52" secondAttribute="trailing" constant="10" id="ta0-Rf-vcD"/>
+                <constraint firstItem="3Xf-Dc-YQk" firstAttribute="leading" secondItem="57j-5H-s0S" secondAttribute="trailing" constant="15" id="uXo-qx-Hte"/>
+                <constraint firstAttribute="bottom" secondItem="tXI-6K-Y52" secondAttribute="bottom" constant="-3" id="w6O-Lg-C1j"/>
+                <constraint firstItem="C6j-Cm-XN9" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="30" id="yiM-41-6bn"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="138.40000000000001" y="152.47376311844079"/>

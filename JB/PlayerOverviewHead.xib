@@ -25,7 +25,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BOS | #7 | G" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdx-zE-v64">
-                    <rect key="frame" x="120" y="152" width="135" height="22"/>
+                    <rect key="frame" x="120" y="161" width="135" height="22"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="22" id="KGm-x6-6EP"/>
                         <constraint firstAttribute="width" constant="135" id="qau-f5-EG4"/>
@@ -35,7 +35,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next Game: 10/16" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9m9-KU-DHI">
-                    <rect key="frame" x="120" y="173" width="135" height="22"/>
+                    <rect key="frame" x="120" y="182" width="135" height="22"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="135" id="6e7-uO-Yy3"/>
                         <constraint firstAttribute="height" constant="22" id="ptn-fI-Xv5"/>
@@ -45,7 +45,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@ PHI - 5:00 PM PST" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sq6-X6-2kM">
-                    <rect key="frame" x="104" y="194" width="167" height="25"/>
+                    <rect key="frame" x="104" y="203" width="167" height="25"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="167" id="EKa-hv-pV3"/>
                         <constraint firstAttribute="height" constant="25" id="FpL-eM-7OA"/>
@@ -62,7 +62,7 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jaylen Brown" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SPx-kc-gNt">
-                    <rect key="frame" x="112.5" y="124" width="150" height="32"/>
+                    <rect key="frame" x="112.5" y="133" width="150" height="32"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="150" id="4vT-8I-4O8"/>
                         <constraint firstAttribute="height" constant="32" id="ZGG-Tw-wVt"/>
@@ -81,9 +81,9 @@
                 <constraint firstItem="SPx-kc-gNt" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="aBU-VH-8ia"/>
                 <constraint firstItem="EAo-x5-bMx" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="20" id="c5S-Qq-deE"/>
                 <constraint firstItem="sq6-X6-2kM" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="icR-Gu-64E"/>
-                <constraint firstItem="SPx-kc-gNt" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="124" id="m1Q-um-NBr"/>
+                <constraint firstItem="SPx-kc-gNt" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="133" id="m1Q-um-NBr"/>
                 <constraint firstItem="sq6-X6-2kM" firstAttribute="top" secondItem="qdx-zE-v64" secondAttribute="bottom" constant="20" id="mE5-QO-k9d"/>
-                <constraint firstItem="qdx-zE-v64" firstAttribute="top" secondItem="EAo-x5-bMx" secondAttribute="bottom" constant="22" id="nXl-nJ-sjq"/>
+                <constraint firstItem="qdx-zE-v64" firstAttribute="top" secondItem="EAo-x5-bMx" secondAttribute="bottom" constant="31" id="nXl-nJ-sjq"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

@@ -27,30 +27,52 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="275"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3dH-vB-LNK" customClass="StatRow" customModule="FBS" customModuleProvider="target">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3dH-vB-LNK" customClass="StatRow" customModule="FBS" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="67" width="375" height="45"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="sR6-qS-PfJ"/>
+                    </constraints>
                 </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CnK-XA-MCA" customClass="StatRow" customModule="FBS" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="137" width="375" height="45"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CnK-XA-MCA" customClass="StatRow" customModule="FBS" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="138" width="375" height="45"/>
                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="KAR-ol-UIa"/>
+                    </constraints>
                 </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rl9-NS-7kF" customClass="StatRow" customModule="FBS" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="210" width="375" height="45"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rl9-NS-7kF" customClass="StatRow" customModule="FBS" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="209" width="375" height="45"/>
                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="fKn-Xd-SuI"/>
+                    </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Advanced Statistics" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tyf-QP-GzU">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Advanced Statistics" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tyf-QP-GzU">
                     <rect key="frame" x="8" y="6" width="243" height="46"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="243" id="5Q2-gw-ww5"/>
+                        <constraint firstAttribute="height" constant="46" id="bSj-kx-oL4"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="BreeSerif-Regular" family="Bree Serif" pointSize="23"/>
                     <color key="textColor" red="0.18487665040000001" green="0.3057227548" blue="0.55884440950000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="rl9-NS-7kF" firstAttribute="top" secondItem="CnK-XA-MCA" secondAttribute="bottom" constant="26" id="90n-9y-MYI"/>
+                <constraint firstItem="CnK-XA-MCA" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="AXT-Fb-huu"/>
+                <constraint firstItem="3dH-vB-LNK" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Siu-aD-6MC"/>
+                <constraint firstItem="CnK-XA-MCA" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="UAV-Ua-Zsx"/>
+                <constraint firstItem="3dH-vB-LNK" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="b0X-uP-hPh"/>
+                <constraint firstItem="3dH-vB-LNK" firstAttribute="top" secondItem="Tyf-QP-GzU" secondAttribute="bottom" constant="15" id="eIl-Nc-hPF"/>
+                <constraint firstItem="CnK-XA-MCA" firstAttribute="top" secondItem="3dH-vB-LNK" secondAttribute="bottom" constant="26" id="ecO-Uo-px0"/>
+                <constraint firstItem="rl9-NS-7kF" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="fiq-oO-kOE"/>
+                <constraint firstItem="Tyf-QP-GzU" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="8" id="hyG-U4-9cx"/>
+                <constraint firstItem="Tyf-QP-GzU" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="6" id="xPu-U4-rGC"/>
+                <constraint firstItem="rl9-NS-7kF" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="zPG-JL-RBe"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="53.600000000000001" y="48.125937031484263"/>

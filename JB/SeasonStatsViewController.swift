@@ -491,6 +491,15 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
         transition.type = kCATransitionReveal
         transition.subtype = kCATransitionFromLeft
         self.view.window!.layer.add(transition, forKey: nil)
+        if baseTask.state != .completed || advancedTask.state != .completed {
+            baseTask.cancel()
+            advancedTask.cancel()
+            assignedTask = false
+            if activityIndicator.isAnimating {
+                self.activityIndicator.stopAnimating()
+                self.loadingView.removeFromSuperview()
+            }
+        }
         self.dismiss(animated: false, completion: nil)
     }
     

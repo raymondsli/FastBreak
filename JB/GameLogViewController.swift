@@ -307,6 +307,14 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
         transition.type = kCATransitionReveal
         transition.subtype = kCATransitionFromLeft
         self.view.window!.layer.add(transition, forKey: nil)
+        if getGamesTask.state != .completed {
+            getGamesTask.cancel()
+            assignedTask = false
+            if activityIndicator.isAnimating {
+                self.activityIndicator.stopAnimating()
+                self.loadingView.removeFromSuperview()
+            }
+        }
         self.dismiss(animated: false, completion: nil)
     }
     

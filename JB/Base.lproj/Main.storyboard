@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.3.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="SK2-nT-FZd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="SK2-nT-FZd">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -226,9 +226,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zU6-7A-3rA">
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zU6-7A-3rA">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="deo-Gc-HY7"/>
+                                </constraints>
                                 <color key="barTintColor" red="0.1173284892" green="0.17706105799999999" blue="0.2795971062" alpha="0.81393045770000005" colorSpace="custom" customColorSpace="sRGB"/>
                                 <textAttributes key="titleTextAttributes">
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -268,15 +270,24 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </navigationBar>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P8C-P1-tW6">
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P8C-P1-tW6">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <segue destination="ueM-Fr-cqK" kind="embed" identifier="toTwitterContainer" id="cab-Cx-qwY"/>
                                 </connections>
                             </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="zU6-7A-3rA" firstAttribute="top" secondItem="h7h-dT-O3G" secondAttribute="bottom" id="0YO-eD-zpX"/>
+                            <constraint firstItem="P8C-P1-tW6" firstAttribute="top" secondItem="zU6-7A-3rA" secondAttribute="bottom" id="2vA-vl-8o8"/>
+                            <constraint firstAttribute="trailing" secondItem="P8C-P1-tW6" secondAttribute="trailing" id="3rS-1l-00G"/>
+                            <constraint firstAttribute="bottom" secondItem="P8C-P1-tW6" secondAttribute="bottom" id="7HG-5Y-dAy"/>
+                            <constraint firstItem="P8C-P1-tW6" firstAttribute="leading" secondItem="aEE-ET-awe" secondAttribute="leading" id="9BT-cv-DRm"/>
+                            <constraint firstAttribute="trailing" secondItem="zU6-7A-3rA" secondAttribute="trailing" id="eqg-7I-FWd"/>
+                            <constraint firstItem="zU6-7A-3rA" firstAttribute="leading" secondItem="aEE-ET-awe" secondAttribute="leading" id="peu-fr-XsG"/>
+                            <constraint firstItem="P8C-P1-tW6" firstAttribute="top" secondItem="zU6-7A-3rA" secondAttribute="bottom" id="vYi-Qh-Q8V"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Twitter" image="Twitter" id="xsY-pO-mFk"/>
                     <connections>

@@ -20,19 +20,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="97k-ON-sfz">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="74"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="97k-ON-sfz">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                 <subviews>
-                                    <searchBar contentMode="redraw" fixedFrame="YES" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="MJN-j8-CfI">
-                                        <rect key="frame" x="109" y="18" width="258" height="56"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="MJN-j8-CfI">
+                                        <rect key="frame" x="109" y="39" width="297" height="56"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="56" id="dDf-JZ-ODI"/>
+                                        </constraints>
                                         <textInputTraits key="textInputTraits"/>
                                     </searchBar>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4nj-kK-9GT" customClass="DropMenuButton" customModule="FBS" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="28" width="86" height="35"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4nj-kK-9GT" customClass="DropMenuButton" customModule="FBS" customModuleProvider="target">
+                                        <rect key="frame" x="8" y="49.666666666666657" width="86" height="35"/>
                                         <color key="backgroundColor" red="0.15198446139999999" green="0.235571747" blue="0.2795971062" alpha="0.81393045770000005" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="86" id="Blk-88-qRi"/>
+                                            <constraint firstAttribute="height" constant="35" id="EPV-6F-xzm"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
                                         <state key="normal" title="All Teams">
                                             <color key="titleColor" red="0.64673223350253806" green="0.63542976742238066" blue="0.60326169937391094" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -45,17 +49,24 @@
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.15198446137659291" green="0.23557174701857056" blue="0.27959710622080869" alpha="0.81393045774647887" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="MJN-j8-CfI" secondAttribute="bottom" constant="5" id="0xR-HX-jii"/>
+                                    <constraint firstItem="MJN-j8-CfI" firstAttribute="leading" secondItem="4nj-kK-9GT" secondAttribute="trailing" constant="15" id="CkJ-sd-3Ec"/>
+                                    <constraint firstItem="4nj-kK-9GT" firstAttribute="leading" secondItem="97k-ON-sfz" secondAttribute="leading" constant="8" id="H0p-qQ-VO2"/>
+                                    <constraint firstItem="4nj-kK-9GT" firstAttribute="centerY" secondItem="MJN-j8-CfI" secondAttribute="centerY" id="HnW-bf-NvV"/>
+                                    <constraint firstAttribute="trailing" secondItem="MJN-j8-CfI" secondAttribute="trailing" constant="8" id="Tno-y5-qfZ"/>
+                                    <constraint firstAttribute="height" constant="100" id="lkj-aM-Qgg"/>
+                                </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hHB-Ti-avJ">
-                                <rect key="frame" x="0.0" y="72" width="375" height="595"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hHB-Ti-avJ">
+                                <rect key="frame" x="0.0" y="100" width="414" height="796"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlayerCell" rowHeight="100" id="3ZC-Ms-CIP" customClass="PlayerCell" customModule="FBS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="100"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3ZC-Ms-CIP" id="r5V-JM-aHZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.666666666666671"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="99.666666666666671"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -63,6 +74,15 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="hHB-Ti-avJ" firstAttribute="leading" secondItem="clC-v9-SwW" secondAttribute="leading" id="56F-Aj-LXr"/>
+                            <constraint firstAttribute="bottom" secondItem="hHB-Ti-avJ" secondAttribute="bottom" id="CFc-zi-f9H"/>
+                            <constraint firstItem="hHB-Ti-avJ" firstAttribute="top" secondItem="97k-ON-sfz" secondAttribute="bottom" id="Gso-9v-fom"/>
+                            <constraint firstAttribute="trailing" secondItem="hHB-Ti-avJ" secondAttribute="trailing" id="VjO-30-FCM"/>
+                            <constraint firstItem="97k-ON-sfz" firstAttribute="leading" secondItem="clC-v9-SwW" secondAttribute="leading" id="dKx-VF-Ckp"/>
+                            <constraint firstItem="97k-ON-sfz" firstAttribute="top" secondItem="clC-v9-SwW" secondAttribute="top" id="gOO-Z0-Mg9"/>
+                            <constraint firstAttribute="trailing" secondItem="97k-ON-sfz" secondAttribute="trailing" id="ziU-HR-iHH"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="drop" destination="4nj-kK-9GT" id="cI6-V4-S20"/>

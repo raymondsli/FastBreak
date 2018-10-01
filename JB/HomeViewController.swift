@@ -207,7 +207,7 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate {
     }
     
     func getStatRankings(category: String) {
-        let urlString = "https://stats.nba.com/stats/leagueleaders/?LeagueID=00&Season=2017-18&PerMode=PerGame&SeasonType=Regular+Season&Scope=RS&StatCategory=" + category
+        let urlString = "https://stats.nba.com/stats/leagueleaders/?LeagueID=00&Season=2018-19&PerMode=PerGame&SeasonType=Regular+Season&Scope=RS&StatCategory=" + category
         let url = URL(string: urlString)
         
         URLSession.shared.dataTask(with: url!, completionHandler: {(data, response, error) in

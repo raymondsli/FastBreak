@@ -49,7 +49,7 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
         activityIndicator.startAnimating()
         
         nameLabel.text = ""
-        yearLabel.text = "2017-2018"
+        yearLabel.text = "2018-2019"
         yearLabel.adjustsFontSizeToFitWidth = true
         nameLabel.adjustsFontSizeToFitWidth = true
         
@@ -109,7 +109,7 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
                     
                     let season: NSArray = rowSetTemp[0] as! NSArray
                     
-                    if season[1] as! String != "2017-18" {
+                    if season[1] as! String != "2018-19" {
                         DispatchQueue.main.async(execute: {
                             self.nameLabel.text = self.playerName
                             self.setToNA(type: type)

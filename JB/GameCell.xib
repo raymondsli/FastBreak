@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.3.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,49 +15,86 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="370"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Game 10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x0g-X8-6N6">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game 10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x0g-X8-6N6">
                     <rect key="frame" x="117" y="11" width="141" height="42"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="42" id="D0p-Jw-hj2"/>
+                        <constraint firstAttribute="width" constant="141" id="pNA-C5-imY"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="26"/>
                     <color key="textColor" red="0.18487665040000001" green="0.3057227548" blue="0.55884440950000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="W" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eXC-4s-GBg">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="W" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eXC-4s-GBg">
                     <rect key="frame" x="163" y="79" width="49" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="49" id="GsM-yc-51r"/>
+                        <constraint firstAttribute="height" constant="21" id="IOe-15-rqu"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="15"/>
                     <color key="textColor" red="0.18487665040000001" green="0.3057227548" blue="0.55884440950000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ffg-y0-Inj" customClass="StatRow" customModule="FBS" customModuleProvider="target">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ffg-y0-Inj" customClass="StatRow" customModule="FBS" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="108" width="375" height="45"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="a84-p7-dP8"/>
+                    </constraints>
                 </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Mp-oc-kqS" customClass="StatRow" customModule="FBS" customModuleProvider="target">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Mp-oc-kqS" customClass="StatRow" customModule="FBS" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="174" width="375" height="45"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="J1G-A8-PFh"/>
+                    </constraints>
                 </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e2x-Pz-2KE" customClass="StatRow" customModule="FBS" customModuleProvider="target">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e2x-Pz-2KE" customClass="StatRow" customModule="FBS" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="240" width="375" height="45"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="PVE-fS-pU2"/>
+                    </constraints>
                 </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W58-16-02h" customClass="StatRow" customModule="FBS" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="305" width="375" height="45"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W58-16-02h" customClass="StatRow" customModule="FBS" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="306" width="375" height="45"/>
                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="Mha-UM-JdN"/>
+                    </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="April 10, 2018 @ WAS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5PN-L9-KQx">
-                    <rect key="frame" x="66" y="48" width="242" height="29"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="April 10, 2018 @ WAS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5PN-L9-KQx">
+                    <rect key="frame" x="66.5" y="48" width="242" height="29"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="242" id="8Jq-cf-8T0"/>
+                        <constraint firstAttribute="height" constant="29" id="egK-2X-NBD"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="17"/>
                     <color key="textColor" red="0.18487665038651055" green="0.3057227548163558" blue="0.55884440949949243" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="e2x-Pz-2KE" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="6ZY-J9-cbO"/>
+                <constraint firstItem="7Mp-oc-kqS" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="Jgo-kB-bsw"/>
+                <constraint firstItem="Ffg-y0-Inj" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Kdy-4g-Hfg"/>
+                <constraint firstItem="7Mp-oc-kqS" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="SqC-H8-kHV"/>
+                <constraint firstItem="e2x-Pz-2KE" firstAttribute="top" secondItem="7Mp-oc-kqS" secondAttribute="bottom" constant="21" id="TY3-m8-S0i"/>
+                <constraint firstItem="x0g-X8-6N6" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="VKG-Vc-1Kx"/>
+                <constraint firstItem="W58-16-02h" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="VTO-gh-wl6"/>
+                <constraint firstItem="Ffg-y0-Inj" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="Z0c-vh-rU6"/>
+                <constraint firstItem="5PN-L9-KQx" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="h5M-rs-tqh"/>
+                <constraint firstItem="7Mp-oc-kqS" firstAttribute="top" secondItem="Ffg-y0-Inj" secondAttribute="bottom" constant="21" id="k5L-iU-PQ8"/>
+                <constraint firstItem="eXC-4s-GBg" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="lUJ-u5-hkA"/>
+                <constraint firstItem="x0g-X8-6N6" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="11" id="mjT-bO-tSf"/>
+                <constraint firstItem="Ffg-y0-Inj" firstAttribute="top" secondItem="eXC-4s-GBg" secondAttribute="bottom" constant="8" id="nlC-Yz-8s9"/>
+                <constraint firstItem="5PN-L9-KQx" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="48" id="qS0-4b-haD"/>
+                <constraint firstItem="W58-16-02h" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="u2J-T5-Wzk"/>
+                <constraint firstItem="W58-16-02h" firstAttribute="top" secondItem="e2x-Pz-2KE" secondAttribute="bottom" constant="21" id="vA7-8X-YDK"/>
+                <constraint firstItem="e2x-Pz-2KE" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="xqz-zg-PrP"/>
+                <constraint firstItem="eXC-4s-GBg" firstAttribute="top" secondItem="5PN-L9-KQx" secondAttribute="bottom" constant="2" id="yci-Kr-dAb"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>

@@ -275,7 +275,7 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate {
                     }
                     
                     DispatchQueue.main.async(execute: {
-                        self.rankingsView.numPlayersLabel.text = "\(self.numPlayers) Qualified Players (Need to play over 70% of games to qualify"
+                        self.rankingsView.numPlayersLabel.text = "\(self.numPlayers) Qualified Players \n (Need to play over 70% of games to qualify)"
                     })
                 } catch {
                     print("Could not serialize")

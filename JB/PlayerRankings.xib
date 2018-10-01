@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.3.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -33,76 +33,138 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="475"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rankings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xGI-mr-PfX">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rankings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xGI-mr-PfX">
                     <rect key="frame" x="16" y="20" width="113" height="36"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="113" id="rdL-1e-1lp"/>
+                        <constraint firstAttribute="height" constant="36" id="uP4-HG-Gsn"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="BreeSerif-Regular" family="Bree Serif" pointSize="25"/>
                     <color key="textColor" red="0.18487665040000001" green="0.3057227548" blue="0.55884440950000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Per Game" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfX-Cr-1p9">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Per Game" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfX-Cr-1p9">
                     <rect key="frame" x="155" y="70" width="65" height="27"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="27" id="Kfv-bg-FJS"/>
+                        <constraint firstAttribute="width" constant="65" id="sR5-1L-6bl"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="12"/>
                     <color key="textColor" red="0.15198446139999999" green="0.235571747" blue="0.2795971062" alpha="0.81393045770000005" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eWw-03-h42" customClass="RankingRow" customModule="FBS" customModuleProvider="target">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eWw-03-h42" customClass="RankingRow" customModule="FBS" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="109" width="375" height="35"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="U5K-Sv-AaP"/>
+                    </constraints>
                 </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c42-Q8-lTS" customClass="RankingRow" customModule="FBS" customModuleProvider="target">
-                    <rect key="frame" x="-1" y="152" width="375" height="35"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c42-Q8-lTS" customClass="RankingRow" customModule="FBS" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="152" width="375" height="35"/>
                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="VPa-48-9yS"/>
+                    </constraints>
                 </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9pj-gh-pTU" customClass="RankingRow" customModule="FBS" customModuleProvider="target">
-                    <rect key="frame" x="-1" y="195" width="375" height="35"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9pj-gh-pTU" customClass="RankingRow" customModule="FBS" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="195" width="375" height="35"/>
                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="5n7-kn-AXe"/>
+                    </constraints>
                 </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ndi-Yw-22A" customClass="RankingRow" customModule="FBS" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="238" width="376" height="35"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ndi-Yw-22A" customClass="RankingRow" customModule="FBS" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="238" width="375" height="35"/>
                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="pmm-0e-uNx"/>
+                    </constraints>
                 </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hHD-Fo-fL9" customClass="RankingRow" customModule="FBS" customModuleProvider="target">
-                    <rect key="frame" x="-1" y="281" width="377" height="35"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hHD-Fo-fL9" customClass="RankingRow" customModule="FBS" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="281" width="375" height="35"/>
                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="Kq8-8g-TL9"/>
+                    </constraints>
                 </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qyH-Do-Hu9" customClass="RankingRow" customModule="FBS" customModuleProvider="target">
-                    <rect key="frame" x="-1" y="324" width="378" height="35"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qyH-Do-Hu9" customClass="RankingRow" customModule="FBS" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="324" width="375" height="35"/>
                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="cPy-AF-DeI"/>
+                    </constraints>
                 </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fMG-RT-8fR" customClass="RankingRow" customModule="FBS" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="367" width="377" height="35"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fMG-RT-8fR" customClass="RankingRow" customModule="FBS" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="367" width="375" height="35"/>
                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="Sle-CA-GqR"/>
+                    </constraints>
                 </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s75-q2-FX0" customClass="RankingRow" customModule="FBS" customModuleProvider="target">
-                    <rect key="frame" x="-1" y="410" width="376" height="35"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s75-q2-FX0" customClass="RankingRow" customModule="FBS" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="410" width="375" height="35"/>
                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="OlF-Qh-2hn"/>
+                    </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="259 Qualified Players (Need to play over 70% of games to qualify)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iej-wN-n7A">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="259 Qualified Players (Need to play over 70% of games to qualify)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iej-wN-n7A">
                     <rect key="frame" x="155" y="20" width="190" height="36"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="36" id="k93-Db-wwH"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="12"/>
                     <color key="textColor" red="0.15198446139999999" green="0.235571747" blue="0.2795971062" alpha="0.81393045770000005" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rank" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SEL-gn-wvQ">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rank" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SEL-gn-wvQ">
                     <rect key="frame" x="252" y="70" width="93" height="27"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="27" id="Cty-9P-oKA"/>
+                        <constraint firstAttribute="width" constant="93" id="ml3-rz-SAh"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="12"/>
                     <color key="textColor" red="0.15198446139999999" green="0.235571747" blue="0.2795971062" alpha="0.81393045770000005" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="yfX-Cr-1p9" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="46G-mb-YI9"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="c42-Q8-lTS" secondAttribute="trailing" id="9p3-mI-7ua"/>
+                <constraint firstItem="xGI-mr-PfX" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="20" id="CSf-qh-yY3"/>
+                <constraint firstItem="hHD-Fo-fL9" firstAttribute="top" secondItem="ndi-Yw-22A" secondAttribute="bottom" constant="8" id="Crf-Qd-ag8"/>
+                <constraint firstItem="qyH-Do-Hu9" firstAttribute="top" secondItem="hHD-Fo-fL9" secondAttribute="bottom" constant="8" id="EWF-MO-XFd"/>
+                <constraint firstItem="9pj-gh-pTU" firstAttribute="top" secondItem="c42-Q8-lTS" secondAttribute="bottom" constant="8" id="Ey5-qi-Nfw"/>
+                <constraint firstItem="xGI-mr-PfX" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="Goh-Rv-Dmv"/>
+                <constraint firstItem="Iej-wN-n7A" firstAttribute="centerY" secondItem="xGI-mr-PfX" secondAttribute="centerY" id="IpF-8T-uSe"/>
+                <constraint firstAttribute="trailing" secondItem="qyH-Do-Hu9" secondAttribute="trailing" id="IyU-l8-njv"/>
+                <constraint firstItem="eWw-03-h42" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="JBK-Vc-3vH"/>
+                <constraint firstItem="yfX-Cr-1p9" firstAttribute="top" secondItem="Iej-wN-n7A" secondAttribute="bottom" constant="14" id="JBd-Ny-TIS"/>
+                <constraint firstItem="qyH-Do-Hu9" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="L3X-5D-yeR"/>
+                <constraint firstItem="c42-Q8-lTS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="LFY-nd-jEc"/>
+                <constraint firstItem="eWw-03-h42" firstAttribute="top" secondItem="yfX-Cr-1p9" secondAttribute="bottom" constant="12" id="LiX-uU-YYK"/>
+                <constraint firstItem="s75-q2-FX0" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="NwB-om-dNL"/>
+                <constraint firstItem="fMG-RT-8fR" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="OGb-0y-heV"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="9pj-gh-pTU" secondAttribute="trailing" id="QD4-bq-0aM"/>
+                <constraint firstAttribute="trailing" secondItem="fMG-RT-8fR" secondAttribute="trailing" id="VjI-JN-y1v"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Iej-wN-n7A" secondAttribute="trailing" constant="30" id="WeZ-mU-fwn"/>
+                <constraint firstItem="fMG-RT-8fR" firstAttribute="top" secondItem="qyH-Do-Hu9" secondAttribute="bottom" constant="8" id="bVJ-ao-lqf"/>
+                <constraint firstItem="ndi-Yw-22A" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="d1n-Ql-YwA"/>
+                <constraint firstAttribute="trailing" secondItem="hHD-Fo-fL9" secondAttribute="trailing" id="db0-sj-Boz"/>
+                <constraint firstItem="Iej-wN-n7A" firstAttribute="leading" secondItem="xGI-mr-PfX" secondAttribute="trailing" constant="26" id="eEG-pR-MG3"/>
+                <constraint firstItem="s75-q2-FX0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="hzI-Hu-K6r"/>
+                <constraint firstAttribute="trailing" secondItem="ndi-Yw-22A" secondAttribute="trailing" id="nxo-jj-gUF"/>
+                <constraint firstItem="9pj-gh-pTU" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="o0S-gT-jH9"/>
+                <constraint firstItem="c42-Q8-lTS" firstAttribute="top" secondItem="eWw-03-h42" secondAttribute="bottom" constant="8" id="pyi-JZ-Rpp"/>
+                <constraint firstItem="SEL-gn-wvQ" firstAttribute="leading" secondItem="yfX-Cr-1p9" secondAttribute="trailing" constant="32" id="rPe-Le-cgv"/>
+                <constraint firstItem="s75-q2-FX0" firstAttribute="top" secondItem="fMG-RT-8fR" secondAttribute="bottom" constant="8" id="rfW-aW-4zy"/>
+                <constraint firstItem="SEL-gn-wvQ" firstAttribute="centerY" secondItem="yfX-Cr-1p9" secondAttribute="centerY" id="s2b-tH-EK9"/>
+                <constraint firstItem="hHD-Fo-fL9" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="tdQ-Ct-NZq"/>
+                <constraint firstItem="eWw-03-h42" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="wu1-vr-e4w"/>
+                <constraint firstItem="ndi-Yw-22A" firstAttribute="top" secondItem="9pj-gh-pTU" secondAttribute="bottom" constant="8" id="zwz-Po-nfn"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="53.600000000000001" y="48.125937031484263"/>

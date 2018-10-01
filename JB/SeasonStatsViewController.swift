@@ -29,13 +29,15 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var tabHeight = CGFloat(0)
-        if let tabBarHeight = self.tabBarController?.tabBar.frame.height {
-            tabHeight = tabBarHeight
-        }
-        
         let window = UIApplication.shared.keyWindow!
-        loadingView = UIView(frame: CGRect(x: window.frame.origin.x, y: window.frame.origin.y + 64, width: window.frame.width, height: window.frame.height - tabHeight - 64))
+        
+        var navBarHeight: CGFloat = 40
+        var tabBarHeight: CGFloat = 49
+        if #available(iOS 11.0, *) {
+            navBarHeight += window.safeAreaInsets.top
+            tabBarHeight += window.safeAreaInsets.bottom
+        }
+        loadingView = UIView(frame: CGRect(x: window.frame.origin.x, y: window.frame.origin.y + navBarHeight, width: window.frame.width, height: window.frame.height - navBarHeight - tabBarHeight))
         loadingView.backgroundColor = .white
         
         activityIndicator.center = self.view.center

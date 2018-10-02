@@ -37,8 +37,8 @@ class PlayerOverviewHead: UIView {
         
         headshot.contentMode = .scaleAspectFill
         headshot.backgroundColor = .white
-        headshot.layer.borderWidth=1.0
-        headshot.layer.borderColor = UIColor.white.cgColor
+        headshot.layer.borderWidth = 1.0
+        headshot.layer.borderColor = UIColor.black.cgColor
         headshot.layer.cornerRadius = headshot.frame.size.height/2
         headshot.clipsToBounds = true
 

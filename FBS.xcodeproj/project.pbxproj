@@ -496,7 +496,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = JB/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				"OTHER_CODE_SIGN_FLAGS[sdk=*]" = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rli.fbs;
@@ -521,7 +521,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = JB/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rli.fbs;
 				PRODUCT_NAME = "$(TARGET_NAME)";

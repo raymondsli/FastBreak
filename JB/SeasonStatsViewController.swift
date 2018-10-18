@@ -243,18 +243,18 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
     }
     
     func turnRowSetIntoAdvancedStat(rowSet: NSArray) {
-        let ORAT = convertToString(val: rowSet[10] as! Double)
-        let DRAT = convertToString(val: rowSet[11] as! Double)
-        let NRAT = convertToString(val: rowSet[12] as! Double)
-        let USG = convertToString(val: rowSet[22] as! Double * 100)
-        let EFG = convertToString(val: rowSet[20] as! Double * 100)
-        let TSP = convertToString(val: rowSet[21] as! Double * 100)
-        let ASTP = convertToString(val: rowSet[13] as! Double * 100)
-        let A2T = convertToString(val: rowSet[14] as! Double)
-        let REBP = convertToString(val: rowSet[18] as! Double * 100)
-        let OREBP = convertToString(val: rowSet[16] as! Double * 100)
-        let DREBP = convertToString(val: rowSet[17] as! Double * 100)
-        let PACE = convertToString(val: rowSet[23] as! Double)
+        let ORAT = convertToString(val: rowSet[11] as! Double)
+        let DRAT = convertToString(val: rowSet[14] as! Double)
+        let NRAT = convertToString(val: rowSet[17] as! Double)
+        let USG = convertToString(val: rowSet[28] as! Double * 100)
+        let EFG = convertToString(val: rowSet[26] as! Double * 100)
+        let TSP = convertToString(val: rowSet[27] as! Double * 100)
+        let ASTP = convertToString(val: rowSet[19] as! Double * 100)
+        let A2T = convertToString(val: rowSet[20] as! Double)
+        let REBP = convertToString(val: rowSet[24] as! Double * 100)
+        let OREBP = convertToString(val: rowSet[22] as! Double * 100)
+        let DREBP = convertToString(val: rowSet[23] as! Double * 100)
+        let PACE = convertToString(val: rowSet[30] as! Double)
         
         self.advancedStat = AdvancedStat(ORAT: ORAT, DRAT: DRAT, NRAT: NRAT, USG: USG, EFG: EFG, TSP: TSP, ASTP: ASTP, A2T: A2T, REBP: REBP, OREBP: OREBP, DREBP: DREBP, PACE: PACE)
     }

@@ -51,7 +51,7 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
         
         activityIndicator.startAnimating()
         
-        navStarButton.setImage(UIImage(named: "FilledStar")!, for: .normal)
+        navStarButton.setImage(UIImage(named: "Star")!, for: .normal)
         navStarButton.tintColor = UIColor(red: 0.85, green: 0.65, blue: 0.13, alpha: 1)
         navStarButton.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
         
@@ -347,17 +347,17 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     @IBAction func navStarButtonPressed(_ sender: Any) {
-        if navStarButton.imageView?.image == UIImage(named: "Star")! {
+        if navStarButton.imageView?.image == UIImage(named: "FilledStar")! {
             showGames = games
-            navStarButton.setImage(UIImage(named: "FilledStar")!, for: .normal)
-        } else if navStarButton.imageView?.image == UIImage(named: "FilledStar")!{
+            navStarButton.setImage(UIImage(named: "Star")!, for: .normal)
+        } else if navStarButton.imageView?.image == UIImage(named: "Star")!{
             showGames = []
             for game in games {
                 if favoriteGames.contains(game.date) {
                     showGames.append(game)
                 }
             }
-            navStarButton.setImage(UIImage(named: "Star")!, for: .normal)
+            navStarButton.setImage(UIImage(named: "FilledStar")!, for: .normal)
         }
         tableView.reloadData()
     }

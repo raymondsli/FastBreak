@@ -10,6 +10,8 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
     
     var playerId = 0
     var games = [Game]()
+    var showGames = [Game]()
+    var favoriteGames = Set<String>()
     
     @IBOutlet weak var tableView: UITableView!
 
@@ -147,6 +149,7 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
             
             let game = Game(date: date, opponent: opponent, gameNumber: gameNumber, winLoss: winLoss, MIN: MIN, PTS: PTS, OREB: OREB, DREB: DREB, REB: REB, AST: AST, STL: STL, BLK: BLK, TOV: TOV, PF: PF, PLUSMINUS: PLUSMINUS, FGM: FGM, FGA: FGA, FGP: FGP, FG3M: FG3M, FG3A: FG3A, FG3P: FG3P, FTM: FTM, FTA: FTA, FTP: FTP)
             self.games.append(game)
+            self.showGames.append(game)
             
             i = i + 1
         }
@@ -216,10 +219,30 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
         return decString
     }
     
+    @objc func handleMarkAsFavorite(sender: FavoriteGameButton) {
+        if sender.currentImage == UIImage(named: "Star") {
+            sender.setImage(UIImage(named: "FilledStar")!, for: .normal)
+            favoriteGames.insert(sender.gameDate)
+        } else {
+            sender.setImage(UIImage(named: "Star")!, for: .normal)
+            favoriteGames.remove(sender.gameDate)
+        }
+        
+        var favoriteGamesArray : [String] = []
+        for gameDate in favoriteGames {
+            favoriteGamesArray.append(gameDate)
+        }
+        
+        let userDefaults = UserDefaults.standard
+        let encodedPT: Data = NSKeyedArchiver.archivedData(withRootObject: favoriteGamesArray)
+        userDefaults.set(encodedPT, forKey: "FavoriteGames")
+        userDefaults.synchronize()
+    }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = self.tableView.dequeueReusableCell(withIdentifier: "GameCell") as? GameCell {
-            let game = games[indexPath.row]
+            let game = showGames[indexPath.row]
             
             cell.gameNumber.adjustsFontSizeToFitWidth = true
             cell.gameDetails.adjustsFontSizeToFitWidth = true
@@ -284,10 +307,12 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if games.count == 0 {
             self.tableView.setEmptyMessage("No games played")
+        } else if showGames.count == 0 {
+            self.tableView.setEmptyMessage("No games to show")
         } else {
             self.tableView.restore()
         }
-        return games.count
+        return showGames.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -342,4 +367,8 @@ extension UITableView {
     }
     
     
+}
+
+class FavoriteGameButton : UIButton {
+    var gameDate = ""
 }

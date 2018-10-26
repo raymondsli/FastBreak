@@ -16,6 +16,7 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
     var playerTeams: [String: String] = [:]
     var twitterHandles: [String: String] = [:]
     
+    var favoritePlayers = Set<String>()
     var currentPlayerNames: [String] = []
     var currentTeamFilter: String = "All Teams"
     var currentSearchFilter: String = ""
@@ -254,13 +255,37 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
         return image
     }
     
+    @objc func handleMarkAsFavorite(sender: DisclosureButton) {
+        if sender.currentImage == UIImage(named: "Star") {
+            sender.setImage(UIImage(named: "FilledStar")!, for: .normal)
+            //sender.tintColor = UIColor(red: 0.85, green: 0.65, blue: 0.13, alpha: 1)
+            favoritePlayers.insert(sender.playerName)
+        } else {
+            sender.setImage(UIImage(named: "Star")!, for: .normal)
+            favoritePlayers.remove(sender.playerName)
+        }
+    }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "PlayerCell") as? PlayerCell {
             lastIndex = indexPath.row
             let playerName = currentPlayerNames[indexPath.row]
             
-            cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
+            
+            let starButton = DisclosureButton(type: .system)
+            starButton.playerName = playerName
+            if favoritePlayers.contains(playerName) {
+                starButton.setImage(UIImage(named: "FilledStar")!, for: .normal)
+            } else {
+                starButton.setImage(UIImage(named: "Star")!, for: .normal)
+            }
+            starButton.tintColor = UIColor(red: 0.85, green: 0.65, blue: 0.13, alpha: 1)
+            starButton.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
+            starButton.addTarget(self, action: #selector(handleMarkAsFavorite), for: .touchUpInside)
+            //cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
+            cell.accessoryView = starButton
+            
             cell.headshot.contentMode = .scaleAspectFit
             cell.headshot.backgroundColor = .lightGray
             cell.name.adjustsFontSizeToFitWidth = true
@@ -402,6 +427,16 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
         }
     }
     
+    @IBAction func favButtonTouched(_ sender: Any) {
+        currentPlayerNames = []
+        for player in playerNames {
+            if favoritePlayers.contains(player) {
+                currentPlayerNames.append(player)
+            }
+        }
+        tableView.reloadData()
+    }
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
     }
@@ -424,4 +459,9 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
         searchBar.resignFirstResponder()
         drop.closeItems()
     }
+}
+
+
+class DisclosureButton: UIButton {
+    var playerName = ""
 }

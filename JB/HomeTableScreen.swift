@@ -393,7 +393,7 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
         return 100.0
     }
     
-    func updateCurrentPlayerNames() {
+    func updateCurrentPlayerNamesAndReload() {
         currentPlayerNames = playerNames
         
         if currentTeamFilter != "All Teams" {
@@ -407,50 +407,21 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
         if favButton.imageView?.image == UIImage(named: "FilledStar")! {
             currentPlayerNames = currentPlayerNames.filter { favoritePlayers.contains($0) }
         }
-    }
-    
-    func dropMenuPressed(team: String) {
-        searchBarTextDidEndEditing(searchBar)
-        
-        currentPlayerNames = playerNames
-        currentTeamFilter = "All Teams"
-        
-        if team != "All Teams" {
-            currentPlayerNames = currentPlayerNames.filter { return playerTeams[$0] == team }
-            currentTeamFilter = team
-        }
-        
-        if currentSearchFilter != "" {
-            currentPlayerNames = currentPlayerNames.filter { $0.lowercased().contains(currentSearchFilter) }
-        }
-        
-        if favButton.imageView?.image == UIImage(named: "FilledStar")! {
-            currentPlayerNames = currentPlayerNames.filter { favoritePlayers.contains($0) }
-        }
-        
-        //        if team == "All Teams" {
-        //            if currentSearchFilter == "" {
-        //                currentPlayerNames = playerNames
-        //            } else {
-        //                currentPlayerNames = playerNames.filter { $0.lowercased().contains(currentSearchFilter) }
-        //            }
-        //            currentTeamFilter = "All Teams"
-        //        } else {
-        //            if currentSearchFilter == "" {
-        //                currentPlayerNames = playerNames.filter { return playerTeams[$0] == team }
-        //            } else {
-        //                currentPlayerNames = playerNames.filter {
-        //                    playerTeams[$0] == team && $0.lowercased().contains(currentSearchFilter)
-        //                }
-        //            }
-        //            currentTeamFilter = team
-        //        }
         
         tableView.reloadData()
         
         if currentPlayerNames.count > 0 {
             tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
         }
+    }
+    
+    func dropMenuPressed(team: String) {
+        searchBarTextDidEndEditing(searchBar)
+        
+        currentPlayerNames = playerNames
+        currentTeamFilter = team
+        
+        updateCurrentPlayerNamesAndReload()
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -466,6 +437,8 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
             tableView.reloadData()
             return
         }
+        
+        currentSearchFilter = searchText.lowercased()
         
         if currentTeamFilter == "All Teams" {
             if favButton.imageView?.image == UIImage(named: "FilledStar")! {

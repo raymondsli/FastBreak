@@ -425,64 +425,25 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        guard searchText.isEmpty == false && searchText != "\\" else {
-            currentPlayerNames = playerNames
-            if currentTeamFilter != "All Teams" {
-                currentPlayerNames = currentPlayerNames.filter { playerTeams[$0] == currentTeamFilter }
-            }
-            if favButton.imageView?.image == UIImage(named: "FilledStar")! {
-                currentPlayerNames = currentPlayerNames.filter { favoritePlayers.contains($0) }
-            }
-            
-            tableView.reloadData()
-            return
-        }
-        
-        currentSearchFilter = searchText.lowercased()
-        
-        if currentTeamFilter == "All Teams" {
-            if favButton.imageView?.image == UIImage(named: "FilledStar")! {
-                currentPlayerNames = playerNames.filter { $0.lowercased().contains(searchText.lowercased()) && favoritePlayers.contains($0) }
-            } else {
-                currentPlayerNames = playerNames.filter { $0.lowercased().contains(searchText.lowercased()) }
-            }
+        if searchText.isEmpty || searchText == "\\" {
+            currentSearchFilter = ""
         } else {
-            if favButton.imageView?.image == UIImage(named: "FilledStar")! {
-                currentPlayerNames = playerNames.filter { $0.lowercased().contains(searchText.lowercased()) && playerTeams[$0] == currentTeamFilter && favoritePlayers.contains($0) }
-            } else {
-                currentPlayerNames = playerNames.filter {
-                    $0.lowercased().contains(searchText.lowercased()) && playerTeams[$0] == currentTeamFilter
-                }
-            }
+            currentSearchFilter = searchText.lowercased()
         }
         
-        tableView.reloadData()
-        
-        if currentPlayerNames.count > 0 {
-            tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
-        }
+        updateCurrentPlayerNamesAndReload()
     }
     
     @IBAction func favButtonTouched(_ sender: Any) {
         searchBarTextDidEndEditing(searchBar)
         
         if favButton.imageView?.image == UIImage(named: "FilledStar")! {
-            currentPlayerNames = playerNames
             favButton.setImage(UIImage(named: "Star")!, for: .normal)
-        } else if favButton.imageView?.image == UIImage(named: "Star")!{
-            currentPlayerNames = []
-            for player in playerNames {
-                if favoritePlayers.contains(player) {
-                    currentPlayerNames.append(player)
-                }
-            }
+        } else {
             favButton.setImage(UIImage(named: "FilledStar")!, for: .normal)
         }
-        tableView.reloadData()
         
-        if favoritePlayers.count > 0 {
-            tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
-        }
+        updateCurrentPlayerNamesAndReload()
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -496,10 +457,9 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         
+        currentSearchFilter = ""
         if let text = searchBar.text {
             currentSearchFilter = text.lowercased()
-        } else {
-            currentSearchFilter = ""
         }
     }
     

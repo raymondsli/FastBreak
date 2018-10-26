@@ -53,6 +53,7 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
         
         navStarButton.setImage(UIImage(named: "FilledStar")!, for: .normal)
         navStarButton.tintColor = UIColor(red: 0.85, green: 0.65, blue: 0.13, alpha: 1)
+        navStarButton.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
         
         if let decoded = UserDefaults.standard.object(forKey: String(playerId) + "FavoriteGames") as? Data {
             let favoriteGamesArray = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [String]

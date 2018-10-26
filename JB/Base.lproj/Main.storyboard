@@ -535,10 +535,11 @@
                                                 <action selector="gameLogPressed:" destination="9ea-Xs-TEb" eventType="touchUpInside" id="leR-Hi-WYk"/>
                                             </connections>
                                         </button>
-                                        <barButtonItem key="rightBarButtonItem" style="plain" id="HcZ-Dy-xGj">
+                                        <barButtonItem key="rightBarButtonItem" title="Item" style="plain" id="HcZ-Dy-xGj">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="DHt-V1-CU8">
-                                                <rect key="frame" x="329" y="5" width="30" height="34"/>
+                                                <rect key="frame" x="309" y="0.0" width="50" height="44"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="FilledStar"/>
                                                 <connections>
                                                     <action selector="navStarButtonPressed:" destination="9ea-Xs-TEb" eventType="touchUpInside" id="sEd-uR-YOw"/>
                                                 </connections>
@@ -605,6 +606,7 @@
     <resources>
         <image name="Back" width="50" height="50"/>
         <image name="Basketball" width="25" height="25"/>
+        <image name="FilledStar" width="25" height="25"/>
         <image name="Home" width="25" height="25"/>
         <image name="News" width="25" height="25"/>
         <image name="Twitter" width="25" height="25"/>

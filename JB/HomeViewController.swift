@@ -430,9 +430,9 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate {
         } else {
             school = currentPlayer[7] as? String
         }
-        let draftYear = currentPlayer[26] as! String
-        let draftRound = currentPlayer[27] as! String
-        let draftNumber = currentPlayer[28] as! String
+        let draftYear = currentPlayer[27] as! String
+        let draftRound = currentPlayer[28] as! String
+        let draftNumber = currentPlayer[29] as! String
         
         player = Player(firstName: firstName, lastName: lastName, height: height, weight: weight, position: position, currentTeam: currentTeam, yearsExperience: yearsExperience, birthDate: birthDate, age: age, jerseyNumber: jerseyNumber, school: school!, draftYear: draftYear, draftRound: draftRound, draftNumber: draftNumber)
         

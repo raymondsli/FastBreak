@@ -10,14 +10,15 @@ import UIKit
 
 class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
-    var playerNames: [String] = []
-    var playerIds: [String: Int] = [:]
-    var playerImages: [String: UIImage] = [:]
-    var playerTeams: [String: String] = [:]
-    var twitterHandles: [String: String] = [:]
+    var allPlayerIds: [Int] = []
+    var currentPlayerIds: [Int] = []
+    var playerIdToNames: [Int: String] = [:]
     
-    var favoritePlayers = Set<String>()
-    var currentPlayerNames: [String] = []
+    var playerTeams: [Int: String] = [:]
+    var playerImages: [Int: UIImage] = [:]
+    var twitterHandles: [String: String] = [:] //Same name maps to same handle
+    
+    var favoritePlayers = Set<Int>()
     var currentTeamFilter: String = "All Teams"
     var currentSearchFilter: String = ""
     var lastIndex = 0
@@ -53,9 +54,9 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
         }
         
         if let decoded = UserDefaults.standard.object(forKey: "FavoritePlayers") as? Data {
-            let favoritePlayersArray = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [String]
-            for playerName in favoritePlayersArray {
-                favoritePlayers.insert(playerName)
+            let favoritePlayersArray = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [Int]
+            for playerId in favoritePlayersArray {
+                favoritePlayers.insert(playerId)
             }
         }
         
@@ -192,41 +193,25 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
             let currentPlayer: NSArray = rowSet[i] as! NSArray
             let playerId = currentPlayer[0] as! Int
             let playerName = currentPlayer[2] as! String
-            
-            if playerName == "Justin Jackson" && currentPlayer[4] as! String == "2018" {
-                playerNames.append("Justin Jackson")
-                playerIds["Jackson 2"] = playerId
-                playerTeams["Jackson 2"] = "ORL"
-                playerImages["Jackson 2"] = UIImage(named: "NoHeadshot")!
-                i = i + 1
-                continue
-            }
-            
-            playerNames.append(playerName)
-            playerIds[playerName] = playerId
-            
             var team = currentPlayer[10] as! String
             if team == "" {
                 team = "NA"
             }
             
-            playerTeams[playerName] = team
+            allPlayerIds.append(playerId)
+            playerIdToNames[playerId] = playerName
+            
+            playerTeams[playerId] = team
             
             i = i + 1
         }
         
-        currentPlayerNames = playerNames
+        currentPlayerIds = allPlayerIds
     }
     
     
-    func getPlayerImage(playerName: String) -> UIImage {
-        guard let id = playerIds[playerName] else {
-            return UIImage(named: "NoHeadshot")!
-        }
-        
-        let playerId = String(id)
-        
-        let urlImage = "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/" + playerId + ".png"
+    func getPlayerImage(playerId: Int) -> UIImage {
+        let urlImage = "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/" + String(playerId) + ".png"
         let url = URL(string: urlImage)
     
         let _data = try? Data(contentsOf: url!)
@@ -241,33 +226,32 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
     @objc func handleMarkAsFavorite(sender: DisclosureButton) {
         if sender.currentImage == UIImage(named: "Star") {
             sender.setImage(UIImage(named: "FilledStar")!, for: .normal)
-            favoritePlayers.insert(sender.playerName)
+            favoritePlayers.insert(sender.playerId)
         } else {
             sender.setImage(UIImage(named: "Star")!, for: .normal)
-            favoritePlayers.remove(sender.playerName)
+            favoritePlayers.remove(sender.playerId)
         }
         
-        var favoritePlayersArray : [String] = []
-        for playerName in favoritePlayers {
-            favoritePlayersArray.append(playerName)
+        var favoritePlayersArray : [Int] = []
+        for playerId in favoritePlayers {
+            favoritePlayersArray.append(playerId)
         }
         
-        let userDefaults = UserDefaults.standard
         let encodedPT: Data = NSKeyedArchiver.archivedData(withRootObject: favoritePlayersArray)
-        userDefaults.set(encodedPT, forKey: "FavoritePlayers")
-        userDefaults.synchronize()
+        UserDefaults.standard.set(encodedPT, forKey: "FavoritePlayers")
+        UserDefaults.standard.synchronize()
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "PlayerCell") as? PlayerCell {
             lastIndex = indexPath.row
-            let playerName = currentPlayerNames[indexPath.row]
-            
+            let playerId = currentPlayerIds[indexPath.row]
+            let playerName = playerIdToNames[playerId]!
             
             let starButton = DisclosureButton(type: .system)
-            starButton.playerName = playerName
-            if favoritePlayers.contains(playerName) {
+            starButton.playerId = playerId
+            if favoritePlayers.contains(playerId) {
                 starButton.setImage(UIImage(named: "FilledStar")!, for: .normal)
             } else {
                 starButton.setImage(UIImage(named: "Star")!, for: .normal)
@@ -275,25 +259,17 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
             starButton.tintColor = UIColor(red: 0.85, green: 0.65, blue: 0.13, alpha: 1)
             starButton.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
             starButton.addTarget(self, action: #selector(handleMarkAsFavorite), for: .touchUpInside)
-            //cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
             cell.accessoryView = starButton
             
             cell.headshot.contentMode = .scaleAspectFit
             cell.headshot.backgroundColor = .lightGray
             cell.name.adjustsFontSizeToFitWidth = true
             cell.team.adjustsFontSizeToFitWidth = true
-            
-            if indexPath.row != currentPlayerNames.count - 1 && playerName == "Justin Jackson" && currentPlayerNames[indexPath.row + 1] == "Justin Jackson" {
-                cell.name.text = "Justin Jackson"
-                cell.team.text = playerTeams["Jackson 2"]!
-                cell.headshot.image = playerImages["Jackson 2"]!
-                return cell
-            }
 
             cell.name.text = playerName
-            cell.team.text = playerTeams[playerName]
+            cell.team.text = playerTeams[playerId]
             
-            if let image = playerImages[playerName] {
+            if let image = playerImages[playerId] {
                 cell.headshot.image = image
             } else {
                 cell.headshot.image = UIImage(named: "NoHeadshot")!
@@ -303,21 +279,21 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
                         return
                     }
                     
-                    let urlImage = "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/" + String(self.playerIds[playerName]!) + ".png"
+                    let urlImage = "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/" + String(playerId) + ".png"
                     let url = URL(string: urlImage)
 
                     let _data = try? Data(contentsOf: url!)
                     
                     guard let data = _data, let image = UIImage(data: data) else {
-                        self.playerImages[playerName] = UIImage(named: "NoHeadshot")!
+                        self.playerImages[playerId] = UIImage(named: "NoHeadshot")!
                         return
                     }
                     
                     DispatchQueue.main.async(execute: {
-                        self.playerImages[playerName] = image
+                        self.playerImages[playerId] = image
                         
                         if tableView.cellForRow(at: indexPath) != nil {
-                            cell.headshot.image = self.playerImages[playerName]
+                            cell.headshot.image = self.playerImages[playerId]
                         }
                     })
                 }
@@ -346,35 +322,27 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
             
             let indexPath = self.tableView.indexPathForSelectedRow!
             
-            let playerName = currentPlayerNames[indexPath.row]
+            let playerId = currentPlayerIds[indexPath.row]
+            let playerName = playerIdToNames[playerId]!
             
-            if let image = playerImages[playerName] {
+            if let image = playerImages[playerId] {
                 upcoming.playerImage = image
             } else {
-                upcoming.playerImage = getPlayerImage(playerName: playerName)
+                upcoming.playerImage = getPlayerImage(playerId: playerId)
             }
             
-            upcoming.playerId = playerIds[playerName]!
+            upcoming.playerId = playerId
             upcoming.displayName = playerName
-            if let team = playerTeams[playerName] {
+            if let team = playerTeams[playerId] {
                 upcoming.team = team
             }
             
-            gameLogVC.playerId = playerIds[playerName]!
-            seasonStatsVC.playerId = playerIds[playerName]!
+            gameLogVC.playerId = playerId
+            seasonStatsVC.playerId = playerId
             seasonStatsVC.playerName = playerName
             
             if let twitterHandle = twitterHandles[playerName] {
                 twitterVC.twitterHandle = twitterHandle
-            }
-            
-            if indexPath.row != currentPlayerNames.count - 1 && playerName == "Justin Jackson" && currentPlayerNames[indexPath.row + 1] == "Justin Jackson" {
-                upcoming.playerImage = playerImages["Jackson 2"]!
-                upcoming.playerId = playerIds["Jackson 2"]!
-                upcoming.team = playerTeams["Jackson 2"]!
-                gameLogVC.playerId = playerIds["Jackson 2"]!
-                seasonStatsVC.playerId = playerIds["Jackson 2"]!
-                twitterVC.twitterHandle = "j5t4l_"
             }
 
             self.tableView.deselectRow(at: indexPath, animated: true)
@@ -386,31 +354,31 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return currentPlayerNames.count
+        return currentPlayerIds.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100.0
     }
     
-    func updateCurrentPlayerNamesAndReload() {
-        currentPlayerNames = playerNames
+    func updateCurrentPlayerIdsAndReload() {
+        currentPlayerIds = allPlayerIds
         
         if currentTeamFilter != "All Teams" {
-            currentPlayerNames = currentPlayerNames.filter { playerTeams[$0] == currentTeamFilter }
+            currentPlayerIds = currentPlayerIds.filter { playerTeams[$0] == currentTeamFilter }
         }
         
         if currentSearchFilter != "" {
-            currentPlayerNames = currentPlayerNames.filter { $0.lowercased().contains(currentSearchFilter) }
+            currentPlayerIds = currentPlayerIds.filter { playerIdToNames[$0]!.lowercased().contains(currentSearchFilter) }
         }
         
         if favButton.imageView?.image == UIImage(named: "FilledStar")! {
-            currentPlayerNames = currentPlayerNames.filter { favoritePlayers.contains($0) }
+            currentPlayerIds = currentPlayerIds.filter { favoritePlayers.contains($0) }
         }
         
         tableView.reloadData()
         
-        if currentPlayerNames.count > 0 {
+        if currentPlayerIds.count > 0 {
             tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
         }
     }
@@ -418,10 +386,8 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
     func dropMenuPressed(team: String) {
         searchBarTextDidEndEditing(searchBar)
         
-        currentPlayerNames = playerNames
         currentTeamFilter = team
-        
-        updateCurrentPlayerNamesAndReload()
+        updateCurrentPlayerIdsAndReload()
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -431,7 +397,7 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
             currentSearchFilter = searchText.lowercased()
         }
         
-        updateCurrentPlayerNamesAndReload()
+        updateCurrentPlayerIdsAndReload()
     }
     
     @IBAction func favButtonTouched(_ sender: Any) {
@@ -443,7 +409,7 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
             favButton.setImage(UIImage(named: "FilledStar")!, for: .normal)
         }
         
-        updateCurrentPlayerNamesAndReload()
+        updateCurrentPlayerIdsAndReload()
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -471,5 +437,5 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
 
 
 class DisclosureButton: UIButton {
-    var playerName = ""
+    var playerId: Int = 0
 }

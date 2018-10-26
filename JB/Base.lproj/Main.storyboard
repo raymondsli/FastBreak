@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="SK2-nT-FZd">
-    <device id="retina6_5" orientation="portrait">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -18,21 +18,21 @@
                         <viewControllerLayoutGuide type="bottom" id="Gif-pz-kjj"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="clC-v9-SwW">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="97k-ON-sfz">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                 <subviews>
                                     <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="MJN-j8-CfI">
-                                        <rect key="frame" x="109" y="39" width="297" height="56"/>
+                                        <rect key="frame" x="109" y="39" width="258" height="56"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="56" id="dDf-JZ-ODI"/>
                                         </constraints>
                                         <textInputTraits key="textInputTraits"/>
                                     </searchBar>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4nj-kK-9GT" customClass="DropMenuButton" customModule="FBS" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="49.666666666666657" width="86" height="35"/>
+                                        <rect key="frame" x="8" y="49.5" width="86" height="35"/>
                                         <color key="backgroundColor" red="0.15198446139999999" green="0.235571747" blue="0.2795971062" alpha="0.81393045770000005" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="86" id="Blk-88-qRi"/>
@@ -71,14 +71,14 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hHB-Ti-avJ">
-                                <rect key="frame" x="0.0" y="100" width="414" height="796"/>
+                                <rect key="frame" x="0.0" y="100" width="375" height="567"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlayerCell" rowHeight="100" id="3ZC-Ms-CIP" customClass="PlayerCell" customModule="FBS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="100"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3ZC-Ms-CIP" id="r5V-JM-aHZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="99.666666666666671"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -120,7 +120,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Me-6X-3Vg">
-                                <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="VJz-yd-Cod"/>
                                 </constraints>
@@ -151,7 +151,7 @@
                                 </userDefinedRuntimeAttributes>
                             </navigationBar>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2xm-eN-9qV">
-                                <rect key="frame" x="0.0" y="88" width="375" height="904"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="962"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u74-9P-wGm">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="962"/>
@@ -255,11 +255,11 @@
                         <viewControllerLayoutGuide type="bottom" id="4xM-SG-Rok"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="aEE-ET-awe">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zU6-7A-3rA">
-                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="deo-Gc-HY7"/>
                                 </constraints>
@@ -272,7 +272,7 @@
                                         <nil key="title"/>
                                         <barButtonItem key="leftBarButtonItem" title="Item" style="plain" id="cW4-3h-MHx" userLabel="Bar">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="lCB-su-hGi" userLabel="Back">
-                                                <rect key="frame" x="20" y="0.0" width="50" height="44"/>
+                                                <rect key="frame" x="16" y="0.0" width="50" height="44"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" image="Back">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -284,7 +284,7 @@
                                             </button>
                                         </barButtonItem>
                                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="2fQ-1Q-sFa">
-                                            <rect key="frame" x="132" y="5" width="150" height="34"/>
+                                            <rect key="frame" x="112.5" y="5" width="150" height="34"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
                                             <state key="normal" title="Twitter">
@@ -303,7 +303,7 @@
                                 </userDefinedRuntimeAttributes>
                             </navigationBar>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P8C-P1-tW6">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <connections>
                                     <segue destination="ueM-Fr-cqK" kind="embed" identifier="toTwitterContainer" id="cab-Cx-qwY"/>
                                 </connections>
@@ -339,11 +339,11 @@
                         <viewControllerLayoutGuide type="bottom" id="raJ-3K-qns"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Y4a-WI-C1U">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fV8-v3-iJx">
-                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="4jA-aV-VaR"/>
                                 </constraints>
@@ -355,7 +355,7 @@
                                     <navigationItem title="Season Statistics" id="uci-gn-SKR" userLabel="Player">
                                         <barButtonItem key="leftBarButtonItem" title="Item" style="plain" id="Fxv-qb-s3j" userLabel="Bar">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nZb-vD-TMz" userLabel="Back">
-                                                <rect key="frame" x="20" y="0.0" width="50" height="44"/>
+                                                <rect key="frame" x="16" y="0.0" width="50" height="44"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" image="Back">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -375,16 +375,16 @@
                                 </userDefinedRuntimeAttributes>
                             </navigationBar>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gzd-hF-jA2">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="peY-wS-UMk" userLabel="Bottom View">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="725"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q63-24-GhO" userLabel="Labels View">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="68"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="68"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jaylen Brown" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="COZ-6X-7u2" userLabel="Name Label">
-                                                        <rect key="frame" x="27.666666666666657" y="8" width="359" height="38"/>
+                                                        <rect key="frame" x="8" y="8" width="359" height="38"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="359" id="Uy7-jy-74A"/>
                                                             <constraint firstAttribute="height" constant="38" id="eGi-DB-Pjh"/>
@@ -394,7 +394,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017-2018" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ItU-4D-kxG">
-                                                        <rect key="frame" x="129.66666666666666" y="37" width="154.99999999999997" height="31"/>
+                                                        <rect key="frame" x="110" y="37" width="155" height="31"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="31" id="4Ad-fL-DD0"/>
                                                             <constraint firstAttribute="width" constant="155" id="ard-YC-l5e"/>
@@ -415,11 +415,11 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FaT-RY-QgE" customClass="AdvancedStatView" customModule="FBS" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="448" width="414" height="277"/>
+                                                <rect key="frame" x="0.0" y="448" width="375" height="277"/>
                                                 <color key="backgroundColor" red="0.54676507419999998" green="1" blue="0.36086696109999999" alpha="1" colorSpace="calibratedRGB"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OXY-7L-cIm" customClass="BaseStatView" customModule="FBS" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="82" width="414" height="350"/>
+                                                <rect key="frame" x="0.0" y="82" width="375" height="350"/>
                                                 <color key="backgroundColor" red="0.54676507419999998" green="1" blue="0.36086696109999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="350" id="lUF-Qb-1tO"/>
@@ -484,19 +484,19 @@
                         <viewControllerLayoutGuide type="bottom" id="E7f-pK-xZI"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="QTf-d2-sFU" userLabel="WholeScreen">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="280" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UIs-bR-KSm">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.192494474" green="0.87501032310000004" blue="0.11322397400000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="GC" selectionStyle="default" indentationWidth="10" reuseIdentifier="GameCell" rowHeight="350" id="j3a-Xg-jP9" customClass="GameCell" customModule="FBS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="350"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="350"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="j3a-Xg-jP9" id="PLi-2c-V19">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="349.66666666666669"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="349.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -504,7 +504,7 @@
                                 </prototypes>
                             </tableView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TMg-6h-zPS">
-                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="Aad-r2-5tk"/>
                                 </constraints>
@@ -518,7 +518,7 @@
                                         <nil key="title"/>
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="ajg-dg-EE1">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="PDN-2c-IQ3" userLabel="Back">
-                                                <rect key="frame" x="20" y="0.0" width="50" height="44"/>
+                                                <rect key="frame" x="16" y="0.0" width="50" height="44"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" image="Back"/>
                                                 <connections>
@@ -527,7 +527,7 @@
                                             </button>
                                         </barButtonItem>
                                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="l07-fQ-KCe">
-                                            <rect key="frame" x="132" y="5" width="150" height="34"/>
+                                            <rect key="frame" x="112.5" y="5" width="150" height="34"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
                                             <state key="normal" title="Game Log"/>
@@ -535,6 +535,15 @@
                                                 <action selector="gameLogPressed:" destination="9ea-Xs-TEb" eventType="touchUpInside" id="leR-Hi-WYk"/>
                                             </connections>
                                         </button>
+                                        <barButtonItem key="rightBarButtonItem" style="plain" id="HcZ-Dy-xGj">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="DHt-V1-CU8">
+                                                <rect key="frame" x="329" y="5" width="30" height="34"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <connections>
+                                                    <action selector="navStarButtonPressed:" destination="9ea-Xs-TEb" eventType="touchUpInside" id="sEd-uR-YOw"/>
+                                                </connections>
+                                            </button>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                                 <userDefinedRuntimeAttributes>
@@ -560,6 +569,7 @@
                     <navigationItem key="navigationItem" id="Fbk-yJ-hsg"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="navStarButton" destination="DHt-V1-CU8" id="IGY-Qg-7lh"/>
                         <outlet property="tableView" destination="UIs-bR-KSm" id="vyZ-FT-qXx"/>
                     </connections>
                 </viewController>
@@ -572,15 +582,15 @@
             <objects>
                 <viewController id="ueM-Fr-cqK" customClass="JBTwitterTimeline" customModule="FBS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="xja-9H-ALR">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="FYl-im-isl">
-                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FYl-im-isl" id="iBb-xt-JqP">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -594,9 +604,9 @@
     </scenes>
     <resources>
         <image name="Back" width="50" height="50"/>
-        <image name="Basketball" width="33" height="33"/>
-        <image name="Home" width="33" height="33"/>
-        <image name="News" width="33" height="33"/>
-        <image name="Twitter" width="33" height="33"/>
+        <image name="Basketball" width="25" height="25"/>
+        <image name="Home" width="25" height="25"/>
+        <image name="News" width="25" height="25"/>
+        <image name="Twitter" width="25" height="25"/>
     </resources>
 </document>

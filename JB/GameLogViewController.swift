@@ -13,6 +13,7 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
     var showGames = [Game]()
     var favoriteGames = Set<String>()
     
+    @IBOutlet weak var navStarButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
 
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
@@ -49,6 +50,16 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
         window.addSubview(loadingView)
         
         activityIndicator.startAnimating()
+        
+        navStarButton.setImage(UIImage(named: "FilledStar")!, for: .normal)
+        navStarButton.tintColor = UIColor(red: 0.85, green: 0.65, blue: 0.13, alpha: 1)
+        
+        if let decoded = UserDefaults.standard.object(forKey: String(playerId) + "FavoriteGames") as? Data {
+            let favoriteGamesArray = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [String]
+            for gameDate in favoriteGamesArray {
+                favoriteGames.insert(gameDate)
+            }
+        }
         
         getGameLogJSON()
     }
@@ -235,7 +246,7 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
         
         let userDefaults = UserDefaults.standard
         let encodedPT: Data = NSKeyedArchiver.archivedData(withRootObject: favoriteGamesArray)
-        userDefaults.set(encodedPT, forKey: "FavoriteGames")
+        userDefaults.set(encodedPT, forKey: String(playerId) + "FavoriteGames")
         userDefaults.synchronize()
     }
     
@@ -243,6 +254,15 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = self.tableView.dequeueReusableCell(withIdentifier: "GameCell") as? GameCell {
             let game = showGames[indexPath.row]
+            
+            cell.star.gameDate = game.date
+            if favoriteGames.contains(game.date) {
+                cell.star.setImage(UIImage(named: "FilledStar")!, for: .normal)
+            } else {
+                cell.star.setImage(UIImage(named: "Star")!, for: .normal)
+            }
+            cell.star.tintColor = UIColor(red: 0.85, green: 0.65, blue: 0.13, alpha: 1)
+            cell.star.addTarget(self, action: #selector(handleMarkAsFavorite), for: .touchUpInside)
             
             cell.gameNumber.adjustsFontSizeToFitWidth = true
             cell.gameDetails.adjustsFontSizeToFitWidth = true
@@ -323,6 +343,22 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
         if games.count > 0 {
             tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
         }
+    }
+    
+    @IBAction func navStarButtonPressed(_ sender: Any) {
+        if navStarButton.imageView?.image == UIImage(named: "Star")! {
+            showGames = games
+            navStarButton.setImage(UIImage(named: "FilledStar")!, for: .normal)
+        } else if navStarButton.imageView?.image == UIImage(named: "FilledStar")!{
+            showGames = []
+            for game in games {
+                if favoriteGames.contains(game.date) {
+                    showGames.append(game)
+                }
+            }
+            navStarButton.setImage(UIImage(named: "Star")!, for: .normal)
+        }
+        tableView.reloadData()
     }
     
     @IBAction func backPressed(_ sender: Any) {

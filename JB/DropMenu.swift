@@ -15,7 +15,7 @@ class DropMenuButton: UIButton, UITableViewDelegate, UITableViewDataSource {
     
     var superSuperView = UIView()
     
-    func showItems() {
+    @objc func showItems() {
         fixLayout()
         
         if table.alpha == 0 {

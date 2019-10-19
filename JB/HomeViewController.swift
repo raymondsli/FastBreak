@@ -18,13 +18,30 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate {
     var displayName: String = ""
     var team: String = ""
     var player: Player = Player()
+    var pDHeaders: [String: Int] = [:]
+    var rankingHeaders: [String: Int] = [:]
     
     var numPlayers = 0
+    var currentSeason: String = ""
+    var currentYear: String = ""
     
     var getPlayerTask = URLSessionTask()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let currentDate = Date()
+        let calendar = Calendar.current
+        let curYear = calendar.component(.year, from: currentDate)
+        let curMonth = calendar.component(.month, from: currentDate)
+        
+        currentYear = String(curYear)
+        
+        if curMonth >= 10 {
+            currentSeason = String(curYear) + "-" + String(curYear - 2000 + 1)
+        } else {
+            currentSeason = String(curYear - 1) + "-" + String(curYear - 2000)
+        }
         
         headerView.headshot.image = playerImage
         headerView.name.text = displayName
@@ -75,8 +92,10 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate {
                     let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments) as! [String: Any]
                     let resultSetsTemp: NSArray = json["resultSets"] as! NSArray
                     let resultSets = resultSetsTemp[0] as! [String: Any]
+                    let head = resultSets["headers"] as! NSArray
                     let rowSet: NSArray = resultSets["rowSet"] as! NSArray
-
+                    
+                    self.fillPDHeadersDict(head: head)
                     self.turnRowSetIntoPlayer(rowSet)
                     
                     var birthDetails = self.player.birthDate + " (Age: " + self.player.age + ")"
@@ -149,6 +168,18 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate {
         task.resume()
     }
     
+    func fillPDHeadersDict(head: NSArray) {
+        for i in 0..<head.count {
+            pDHeaders[head[i] as! String] = i
+        }
+    }
+    
+    func fillRankingHeadersDict(head: NSArray) {
+        for i in 0..<head.count {
+            rankingHeaders[head[i] as! String] = i
+        }
+    }
+    
     func getNextGameJSON() {
         guard let pTeam = getTeamName(team: self.team) else {
             self.headerView.gameDate.text = "No Next Game"
@@ -156,7 +187,7 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate {
             return
         }
         
-        let urlString = "http://data.nba.net/data/10s/prod/v1/2018/teams/" + pTeam + "/schedule.json"
+        let urlString = "http://data.nba.net/data/10s/prod/v1/" + currentYear + "/teams/" + pTeam + "/schedule.json"
         let url = URL(string: urlString)
         
         URLSession.shared.dataTask(with: url!, completionHandler: {(data, response, error) in
@@ -207,7 +238,7 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate {
     }
     
     func getStatRankings(category: String) {
-        let urlString = "https://stats.nba.com/stats/leagueleaders/?LeagueID=00&Season=2018-19&PerMode=PerGame&SeasonType=Regular+Season&Scope=RS&StatCategory=" + category
+        let urlString = "https://stats.nba.com/stats/leagueleaders/?LeagueID=00&Season=" + currentSeason + "&PerMode=PerGame&SeasonType=Regular+Season&Scope=RS&StatCategory=" + category
         let url = URL(string: urlString)
         
         URLSession.shared.dataTask(with: url!, completionHandler: {(data, response, error) in
@@ -215,8 +246,10 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate {
                 do {
                     let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments) as! [String: Any]
                     let resultSets = json["resultSet"] as! [String: Any]
+                    let head = resultSets["headers"] as! NSArray
                     let rowSet: NSArray = resultSets["rowSet"] as! NSArray
                     
+                    self.fillRankingHeadersDict(head: head)
                     let rankingArr = self.findRanking(rowSet, category: category)
                     let rank = rankingArr[0]
                     let amount = rankingArr[1]
@@ -290,47 +323,47 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate {
         
         while i < rowSet.count {
             let curPlayer: NSArray = rowSet[i] as! NSArray
-            let curId = curPlayer[0] as! Int
+            let curId = curPlayer[rankingHeaders["PLAYER_ID"]!] as! Int
             
             if curId == playerId {
                 switch category {
                 case "EFF":
-                    let amountFloat = curPlayer[23] as! Double
+                    let amountFloat = curPlayer[rankingHeaders["EFF"]!] as! Double
                     let roundedAmount = Double(round(100 * amountFloat) / 100)
                     let amount = String(roundedAmount)
                     return ["#" + String(i + 1), amount]
                 case "MIN":
-                    let amountFloat = curPlayer[5] as! Double
+                    let amountFloat = curPlayer[rankingHeaders["MIN"]!] as! Double
                     let roundedAmount = Double(round(100 * amountFloat) / 100)
                     let amount = String(roundedAmount)
                     return ["#" + String(i + 1), amount]
                 case "PTS":
-                    let amountFloat = curPlayer[22] as! Double
+                    let amountFloat = curPlayer[rankingHeaders["PTS"]!] as! Double
                     let roundedAmount = Double(round(100 * amountFloat) / 100)
                     let amount = String(roundedAmount)
                     return ["#" + String(i + 1), amount]
                 case "REB":
-                    let amountFloat = curPlayer[17] as! Double
+                    let amountFloat = curPlayer[rankingHeaders["REB"]!] as! Double
                     let roundedAmount = Double(round(100 * amountFloat) / 100)
                     let amount = String(roundedAmount)
                     return ["#" + String(i + 1), amount]
                 case "AST":
-                    let amountFloat = curPlayer[18] as! Double
+                    let amountFloat = curPlayer[rankingHeaders["AST"]!] as! Double
                     let roundedAmount = Double(round(100 * amountFloat) / 100)
                     let amount = String(roundedAmount)
                     return ["#" + String(i + 1), amount]
                 case "STL":
-                    let amountFloat = curPlayer[19] as! Double
+                    let amountFloat = curPlayer[rankingHeaders["STL"]!] as! Double
                     let roundedAmount = Double(round(100 * amountFloat) / 100)
                     let amount = String(roundedAmount)
                     return ["#" + String(i + 1), amount]
                 case "BLK":
-                    let amountFloat = curPlayer[20] as! Double
+                    let amountFloat = curPlayer[rankingHeaders["BLK"]!] as! Double
                     let roundedAmount = Double(round(100 * amountFloat) / 100)
                     let amount = String(roundedAmount)
                     return ["#" + String(i + 1), amount]
                 case "TOV":
-                    let amountFloat = curPlayer[21] as! Double
+                    let amountFloat = curPlayer[rankingHeaders["TOV"]!] as! Double
                     let roundedAmount = Double(round(100 * amountFloat) / 100)
                     let amount = String(roundedAmount)
                     return ["#" + String(i + 1), amount]
@@ -407,32 +440,32 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate {
     }
     
     func turnRowSetIntoPlayer(_ rowSet: NSArray) {
-        let currentPlayer: NSArray = rowSet[0] as! NSArray
-        let firstName = currentPlayer[1] as! String
-        let lastName = currentPlayer[2] as! String
+        let currentPlayer: NSArray = rowSet[pDHeaders["PERSON_ID"]!] as! NSArray
+        let firstName = currentPlayer[pDHeaders["FIRST_NAME"]!] as! String
+        let lastName = currentPlayer[pDHeaders["LAST_NAME"]!] as! String
         
-        let heightString = currentPlayer[10] as! String
+        let heightString = currentPlayer[pDHeaders["HEIGHT"]!] as! String
         let height = convertHeight(height: heightString)
-        let weight = currentPlayer[11] as! String
+        let weight = currentPlayer[pDHeaders["WEIGHT"]!] as! String
         
-        let positionLong = currentPlayer[14] as! String
+        let positionLong = currentPlayer[pDHeaders["POSITION"]!] as! String
         let position = convertPosition(position: positionLong)
-        let currentTeam = currentPlayer[18] as! String
-        let yearsExperience = String(describing: currentPlayer[12])
-        let birthDateString = currentPlayer[6] as! String
+        let currentTeam = currentPlayer[pDHeaders["TEAM_ABBREVIATION"]!] as! String
+        let yearsExperience = String(describing: currentPlayer[pDHeaders["SEASON_EXP"]!])
+        let birthDateString = currentPlayer[pDHeaders["BIRTHDATE"]!] as! String
         let stringArr = convertBirthDate(birthDate: birthDateString)
         let birthDate = stringArr[0]
         let age = stringArr[1]
-        let jerseyNumber = currentPlayer[13] as! String
-        var school = currentPlayer[7] as? String
+        let jerseyNumber = currentPlayer[pDHeaders["JERSEY"]!] as! String
+        var school = currentPlayer[pDHeaders["SCHOOL"]!] as? String
         if school == nil {
             school = "NA"
         } else {
-            school = currentPlayer[7] as? String
+            school = currentPlayer[pDHeaders["SCHOOL"]!] as? String
         }
-        let draftYear = currentPlayer[27] as! String
-        let draftRound = currentPlayer[28] as! String
-        let draftNumber = currentPlayer[29] as! String
+        let draftYear = currentPlayer[pDHeaders["DRAFT_YEAR"]!] as! String
+        let draftRound = currentPlayer[pDHeaders["DRAFT_ROUND"]!] as! String
+        let draftNumber = currentPlayer[pDHeaders["DRAFT_NUMBER"]!] as! String
         
         player = Player(firstName: firstName, lastName: lastName, height: height, weight: weight, position: position, currentTeam: currentTeam, yearsExperience: yearsExperience, birthDate: birthDate, age: age, jerseyNumber: jerseyNumber, school: school!, draftYear: draftYear, draftRound: draftRound, draftNumber: draftNumber)
         
@@ -440,30 +473,26 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate {
     
     func formatGameDate(input: String) -> String {
         let index1 = input.index(input.startIndex, offsetBy: 4)
-        let year: String = input.substring(to: index1)
+        let year: String = String(input[..<index1])
         
         let index2 = input.index(input.startIndex, offsetBy: 5)
         let index3 = input.index(input.startIndex, offsetBy: 7)
-        let range1 = index2..<index3
-        let month: String = input.substring(with: range1)
+        let month: String = String(input[index2..<index3])
         
         let index4 = input.index(input.startIndex, offsetBy: 8)
         let index5 = input.index(input.startIndex, offsetBy: 10)
-        let range2 = index4..<index5
-        let date: String = input.substring(with: range2)
+        let date: String = String(input[index4..<index5])
         return month + "/" + date + "/" + year
     }
     
     func formatGameTime(input: String) -> String {
         let index1 = input.index(input.startIndex, offsetBy: 14)
         let index2 = input.index(input.startIndex, offsetBy: 16)
-        let range1 = index1..<index2
-        let minute = input.substring(with: range1)
+        let minute = String(input[index1..<index2])
         
         let index3 = input.index(input.startIndex, offsetBy: 11)
         let index4 = input.index(input.startIndex, offsetBy: 13)
-        let range2 = index3..<index4
-        let hour1: String = input.substring(with: range2)
+        let hour1: String = String(input[index3..<index4])
         var intHour: Int = Int(hour1)!
         var ampm: String = "AM"
         
@@ -521,10 +550,10 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate {
         
         let yearString = birthDate[yearRange]
         let monthStringNumber = birthDate[monthRange]
-        let monthString = convertMonth(month: monthStringNumber)
+        let monthString = convertMonth(month: String(monthStringNumber))
         let dayString = birthDate[dayRange]
         
-        let age = findAge(dayString: dayString, monthString: monthStringNumber, yearString: yearString)
+        let age = findAge(dayString: String(dayString), monthString: String(monthStringNumber), yearString: String(yearString))
         
         
         return [monthString + " " + dayString + ", " + yearString, age]

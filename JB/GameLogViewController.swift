@@ -12,6 +12,8 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
     var games = [Game]()
     var showGames = [Game]()
     var favoriteGames = Set<String>()
+    var currentSeason: String = ""
+    var headers: [String: Int] = [:]
     
     @IBOutlet weak var navStarButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
@@ -62,6 +64,17 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
             }
         }
         
+        let currentDate = Date()
+        let calendar = Calendar.current
+        let curYear = calendar.component(.year, from: currentDate)
+        let curMonth = calendar.component(.month, from: currentDate)
+        
+        if curMonth >= 10 {
+            currentSeason = String(curYear) + "-" + String(curYear - 2000 + 1)
+        } else {
+            currentSeason = String(curYear - 1) + "-" + String(curYear - 2000)
+        }
+        
         getGameLogJSON()
     }
     
@@ -87,7 +100,7 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func getGameLogJSON() {
-        let url = URL(string: "https://stats.nba.com/stats/playergamelog?DateFrom=&DateTo=&LeagueID=00&SeasonType=Regular+Season&Season=2018-19&PlayerID=" + String(playerId))
+        let url = URL(string: "https://stats.nba.com/stats/playergamelog?DateFrom=&DateTo=&LeagueID=00&SeasonType=Regular+Season&Season=" + currentSeason + "&PlayerID=" + String(playerId))
         
         let sessionConfig = URLSessionConfiguration.default
         sessionConfig.timeoutIntervalForRequest = 5
@@ -100,8 +113,10 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
                     let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments) as! [String: Any]
                     let resultSetsTemp: NSArray = json["resultSets"] as! NSArray
                     let resultSets = resultSetsTemp[0] as! [String: Any]
+                    let head = resultSets["headers"] as! NSArray
                     let rowSet: NSArray = resultSets["rowSet"] as! NSArray
                     
+                    self.fillHeadersDict(head: head)
                     self.turnRowSetIntoGames(rowSet)
                     
                     DispatchQueue.main.async(execute: {
@@ -120,6 +135,12 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
         task.resume()
     }
     
+    func fillHeadersDict(head: NSArray) {
+        for i in 0..<head.count {
+            headers[head[i] as! String] = i
+        }
+    }
+    
     func turnRowSetIntoGames(_ rowSet: NSArray) {
         var i: Int = 0
         
@@ -127,37 +148,37 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
             let currentGame: NSArray = rowSet[i] as! NSArray
             
             let gameNumber = rowSet.count - i
-            let date = currentGame[3] as! String
+            let date = currentGame[headers["GAME_DATE"]!] as! String
             
-            var opponent = currentGame[4] as! String
-            opponent = opponent.substring(from: opponent.index(opponent.startIndex, offsetBy: 4))
+            let oppo = currentGame[headers["MATCHUP"]!] as! String
+            let opponent = String(oppo[oppo.index(oppo.startIndex, offsetBy: 4)...])
             
-            let winLoss = currentGame[5] as! String
+            let winLoss = currentGame[headers["WL"]!] as! String
             
-            let MIN = convertToString(val: currentGame[6] as! Double)
+            let MIN = convertToString(val: currentGame[headers["MIN"]!] as! Double)
             
-            let PTS = convertToString(val: currentGame[24] as! Double)
-            let OREB = convertToString(val: currentGame[16] as! Double)
-            let DREB = convertToString(val: currentGame[17] as! Double)
-            let REB = convertToString(val: currentGame[18] as! Double)
-            let AST = convertToString(val: currentGame[19] as! Double)
-            let STL = convertToString(val: currentGame[20] as! Double)
-            let BLK = convertToString(val: currentGame[21] as! Double)
-            let TOV = convertToString(val: currentGame[22] as! Double)
-            let PF = convertToString(val: currentGame[23] as! Double)
-            let PLUSMINUS = convertToString(val: currentGame[25] as! Double)
+            let PTS = convertToString(val: currentGame[headers["PTS"]!] as! Double)
+            let OREB = convertToString(val: currentGame[headers["OREB"]!] as! Double)
+            let DREB = convertToString(val: currentGame[headers["DREB"]!] as! Double)
+            let REB = convertToString(val: currentGame[headers["REB"]!] as! Double)
+            let AST = convertToString(val: currentGame[headers["AST"]!] as! Double)
+            let STL = convertToString(val: currentGame[headers["STL"]!] as! Double)
+            let BLK = convertToString(val: currentGame[headers["BLK"]!] as! Double)
+            let TOV = convertToString(val: currentGame[headers["TOV"]!] as! Double)
+            let PF = convertToString(val: currentGame[headers["PF"]!] as! Double)
+            let PLUSMINUS = convertToString(val: currentGame[headers["PLUS_MINUS"]!] as! Double)
             
-            let FGM = convertToString(val: currentGame[7] as! Double)
-            let FGA = convertToString(val: currentGame[8] as! Double)
-            let FGP = convertToString(val: currentGame[9] as! Double * 100)
+            let FGM = convertToString(val: currentGame[headers["FGM"]!] as! Double)
+            let FGA = convertToString(val: currentGame[headers["FGA"]!] as! Double)
+            let FGP = convertToString(val: currentGame[headers["FG_PCT"]!] as! Double * 100)
             
-            let FG3M = convertToString(val: currentGame[10] as! Double)
-            let FG3A = convertToString(val: currentGame[11] as! Double)
-            let FG3P = convertToString(val: currentGame[12] as! Double * 100)
+            let FG3M = convertToString(val: currentGame[headers["FG3M"]!] as! Double)
+            let FG3A = convertToString(val: currentGame[headers["FG3A"]!] as! Double)
+            let FG3P = convertToString(val: currentGame[headers["FG3_PCT"]!] as! Double * 100)
             
-            let FTM = convertToString(val: currentGame[13] as! Double)
-            let FTA = convertToString(val: currentGame[14] as! Double)
-            let FTP = convertToString(val: currentGame[15] as! Double * 100)
+            let FTM = convertToString(val: currentGame[headers["FTM"]!] as! Double)
+            let FTA = convertToString(val: currentGame[headers["FTA"]!] as! Double)
+            let FTP = convertToString(val: currentGame[headers["FT_PCT"]!] as! Double * 100)
             
             let game = Game(date: date, opponent: opponent, gameNumber: gameNumber, winLoss: winLoss, MIN: MIN, PTS: PTS, OREB: OREB, DREB: DREB, REB: REB, AST: AST, STL: STL, BLK: BLK, TOV: TOV, PF: PF, PLUSMINUS: PLUSMINUS, FGM: FGM, FGA: FGA, FGP: FGP, FG3M: FG3M, FG3A: FG3A, FG3P: FG3P, FTM: FTM, FTA: FTA, FTP: FTP)
             self.games.append(game)
@@ -254,6 +275,7 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = self.tableView.dequeueReusableCell(withIdentifier: "GameCell") as? GameCell {
+            cell.backgroundColor = .white
             let game = showGames[indexPath.row]
             
             cell.star.gameDate = game.date
@@ -402,8 +424,6 @@ extension UITableView {
         self.backgroundView = nil
         self.separatorStyle = .singleLine
     }
-    
-    
 }
 
 class FavoriteGameButton : UIButton {

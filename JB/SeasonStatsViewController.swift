@@ -18,6 +18,9 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
     var advancedStat: AdvancedStat = AdvancedStat()
     var playerId = 0
     var playerName = ""
+    var currentSeason: String = ""
+    var baseHeaders: [String: Int] = [:]
+    var advancedHeaders: [String: Int] = [:]
     
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     var loadingView: UIView = UIView()
@@ -48,8 +51,20 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
         
         activityIndicator.startAnimating()
         
+        let currentDate = Date()
+        let calendar = Calendar.current
+        let curYear = calendar.component(.year, from: currentDate)
+        let curMonth = calendar.component(.month, from: currentDate)
+        
+        if curMonth >= 10 {
+            currentSeason = String(curYear) + "-" + String(curYear - 2000 + 1)
+            yearLabel.text = String(curYear) + "-" + String(curYear + 1)
+        } else {
+            currentSeason = String(curYear - 1) + "-" + String(curYear - 2000)
+            yearLabel.text = String(curYear - 1) + "-" + String(curYear)
+        }
+        
         nameLabel.text = ""
-        yearLabel.text = "2018-2019"
         yearLabel.adjustsFontSizeToFitWidth = true
         nameLabel.adjustsFontSizeToFitWidth = true
         
@@ -81,7 +96,7 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
     }
     
     func getSeasonJSON(type: String) {
-        let urlString = "https://stats.nba.com/stats/playerdashboardbyyearoveryear?DateFrom=&DateTo=&GameSegment=&LastNGames=0&LeagueID=00&Location=&Month=0&OpponentTeamID=0&Outcome=&PORound=0&PaceAdjust=N&PerMode=PerGame&Period=0&PlusMinus=N&Rank=N&Season=2018-19&SeasonSegment=&SeasonType=Regular+Season&ShotClockRange=&Split=yoy&VsConference=&VsDivision=&MeasureType=" + type + "&PlayerID=" + String(playerId)
+        let urlString = "https://stats.nba.com/stats/playerdashboardbyyearoveryear?DateFrom=&DateTo=&GameSegment=&LastNGames=0&LeagueID=00&Location=&Month=0&OpponentTeamID=0&Outcome=&PORound=0&PaceAdjust=N&PerMode=PerGame&Period=0&PlusMinus=N&Rank=N&Season=" + currentSeason + "&SeasonSegment=&SeasonType=Regular+Season&ShotClockRange=&Split=yoy&VsConference=&VsDivision=&MeasureType=" + type + "&PlayerID=" + String(playerId)
         let url = URL(string: urlString)
         
         let sessionConfig = URLSessionConfiguration.default
@@ -95,6 +110,7 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
                     let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments) as! [String: Any]
                     let resultSetsTemp: NSArray = json["resultSets"] as! NSArray
                     let resultSets = resultSetsTemp[1] as! [String: Any]
+                    let headers: NSArray = resultSets["headers"] as! NSArray
                     let rowSetTemp: NSArray = resultSets["rowSet"] as! NSArray
                     
                     if (rowSetTemp.count == 0) {
@@ -109,7 +125,7 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
                     
                     let season: NSArray = rowSetTemp[0] as! NSArray
                     
-                    if season[1] as! String != "2018-19" {
+                    if season[1] as! String != self.currentSeason {
                         DispatchQueue.main.async(execute: {
                             self.nameLabel.text = self.playerName
                             self.setToNA(type: type)
@@ -120,8 +136,10 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
                     }
                     
                     if type == "Base" {
+                        self.fillBaseHeaderDict(headers: headers)
                         self.turnRowSetIntoBaseStat(rowSet: season)
                     } else if type == "Advanced" {
+                        self.fillAdvancedHeaderDict(headers: headers)
                         self.turnRowSetIntoAdvancedStat(rowSet: season)
                     }
                     
@@ -210,53 +228,65 @@ class SeasonStatsViewController: UIViewController, NSURLConnectionDelegate {
     
     
     func turnRowSetIntoBaseStat(rowSet: NSArray) {
-        let year = rowSet[1] as! String
-        let team = rowSet[3] as! String
+        let year = rowSet[baseHeaders["GROUP_VALUE"]!] as! String
+        let team = rowSet[baseHeaders["TEAM_ABBREVIATION"]!] as! String
         
-        let GP = String(rowSet[5] as! Int)
-        let MIN = convertToString(val: rowSet[9] as! Double)
-        let PF = convertToString(val: rowSet[27] as! Double)
+        let GP = String(rowSet[baseHeaders["GP"]!] as! Int)
+        let MIN = convertToString(val: rowSet[baseHeaders["MIN"]!] as! Double)
+        let PF = convertToString(val: rowSet[baseHeaders["PF"]!] as! Double)
         
-        let FGM = convertToString(val: rowSet[10] as! Double)
-        let FGA = convertToString(val: rowSet[11] as! Double)
-        let FGP = convertToString(val: rowSet[12] as! Double * 100)
+        let FGM = convertToString(val: rowSet[baseHeaders["FGM"]!] as! Double)
+        let FGA = convertToString(val: rowSet[baseHeaders["FGA"]!] as! Double)
+        let FGP = convertToString(val: rowSet[baseHeaders["FG_PCT"]!] as! Double * 100)
         
-        let FG3M = convertToString(val: rowSet[13] as! Double)
-        let FG3A = convertToString(val: rowSet[14] as! Double)
-        let FG3P = convertToString(val: rowSet[15] as! Double * 100)
+        let FG3M = convertToString(val: rowSet[baseHeaders["FG3M"]!] as! Double)
+        let FG3A = convertToString(val: rowSet[baseHeaders["FG3A"]!] as! Double)
+        let FG3P = convertToString(val: rowSet[baseHeaders["FG3_PCT"]!] as! Double * 100)
         
-        let FTM = convertToString(val: rowSet[16] as! Double)
-        let FTA = convertToString(val: rowSet[17] as! Double)
-        let FTP = convertToString(val: rowSet[18] as! Double * 100)
+        let FTM = convertToString(val: rowSet[baseHeaders["FTM"]!] as! Double)
+        let FTA = convertToString(val: rowSet[baseHeaders["FTA"]!] as! Double)
+        let FTP = convertToString(val: rowSet[baseHeaders["FT_PCT"]!] as! Double * 100)
         
-        let OREB = convertToString(val: rowSet[19] as! Double)
-        let DREB = convertToString(val: rowSet[20] as! Double)
-        let TREB = convertToString(val: rowSet[21] as! Double)
+        let OREB = convertToString(val: rowSet[baseHeaders["OREB"]!] as! Double)
+        let DREB = convertToString(val: rowSet[baseHeaders["DREB"]!] as! Double)
+        let TREB = convertToString(val: rowSet[baseHeaders["REB"]!] as! Double)
         
-        let PTS = convertToString(val: rowSet[29] as! Double)
-        let AST = convertToString(val: rowSet[22] as! Double)
-        let STL = convertToString(val: rowSet[24] as! Double)
-        let BLK = convertToString(val: rowSet[25] as! Double)
-        let TOV = convertToString(val: rowSet[23] as! Double)
+        let PTS = convertToString(val: rowSet[baseHeaders["PTS"]!] as! Double)
+        let AST = convertToString(val: rowSet[baseHeaders["AST"]!] as! Double)
+        let STL = convertToString(val: rowSet[baseHeaders["STL"]!] as! Double)
+        let BLK = convertToString(val: rowSet[baseHeaders["BLK"]!] as! Double)
+        let TOV = convertToString(val: rowSet[baseHeaders["TOV"]!] as! Double)
         
         self.baseStat = BaseStat(year: year, team: team, GP: GP, MIN: MIN, PF: PF, FGM: FGM, FGA: FGA, FGP: FGP, FG3M: FG3M, FG3A: FG3A, FG3P: FG3P, FTM: FTM, FTA: FTA, FTP: FTP, OREB: OREB, DREB: DREB, TREB: TREB, PTS: PTS, AST: AST, STL: STL, BLK: BLK, TOV: TOV)
     }
     
     func turnRowSetIntoAdvancedStat(rowSet: NSArray) {
-        let ORAT = convertToString(val: rowSet[11] as! Double)
-        let DRAT = convertToString(val: rowSet[14] as! Double)
-        let NRAT = convertToString(val: rowSet[17] as! Double)
-        let USG = convertToString(val: rowSet[28] as! Double * 100)
-        let EFG = convertToString(val: rowSet[26] as! Double * 100)
-        let TSP = convertToString(val: rowSet[27] as! Double * 100)
-        let ASTP = convertToString(val: rowSet[19] as! Double * 100)
-        let A2T = convertToString(val: rowSet[20] as! Double)
-        let REBP = convertToString(val: rowSet[24] as! Double * 100)
-        let OREBP = convertToString(val: rowSet[22] as! Double * 100)
-        let DREBP = convertToString(val: rowSet[23] as! Double * 100)
-        let PACE = convertToString(val: rowSet[30] as! Double)
+        let ORAT = convertToString(val: rowSet[advancedHeaders["OFF_RATING"]!] as! Double)
+        let DRAT = convertToString(val: rowSet[advancedHeaders["DEF_RATING"]!] as! Double)
+        let NRAT = convertToString(val: rowSet[advancedHeaders["NET_RATING"]!] as! Double)
+        let USG = convertToString(val: rowSet[advancedHeaders["USG_PCT"]!] as! Double * 100)
+        let EFG = convertToString(val: rowSet[advancedHeaders["EFG_PCT"]!] as! Double * 100)
+        let TSP = convertToString(val: rowSet[advancedHeaders["TS_PCT"]!] as! Double * 100)
+        let ASTP = convertToString(val: rowSet[advancedHeaders["AST_PCT"]!] as! Double * 100)
+        let A2T = convertToString(val: rowSet[advancedHeaders["AST_TO"]!] as! Double)
+        let REBP = convertToString(val: rowSet[advancedHeaders["REB_PCT"]!] as! Double * 100)
+        let OREBP = convertToString(val: rowSet[advancedHeaders["OREB_PCT"]!] as! Double * 100)
+        let DREBP = convertToString(val: rowSet[advancedHeaders["DREB_PCT"]!] as! Double * 100)
+        let PACE = convertToString(val: rowSet[advancedHeaders["PACE"]!] as! Double)
         
         self.advancedStat = AdvancedStat(ORAT: ORAT, DRAT: DRAT, NRAT: NRAT, USG: USG, EFG: EFG, TSP: TSP, ASTP: ASTP, A2T: A2T, REBP: REBP, OREBP: OREBP, DREBP: DREBP, PACE: PACE)
+    }
+    
+    func fillBaseHeaderDict(headers: NSArray) {
+        for i in 0..<headers.count {
+            baseHeaders[headers[i] as! String] = i
+        }
+    }
+    
+    func fillAdvancedHeaderDict(headers: NSArray) {
+        for i in 0..<headers.count {
+            advancedHeaders[headers[i] as! String] = i
+        }
     }
     
     func convertToString(val: Double) -> String {

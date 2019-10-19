@@ -245,6 +245,11 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "PlayerCell") as? PlayerCell {
+            cell.backgroundColor = .white
+            let backgroundView = UIView()
+            backgroundView.backgroundColor = UIColor.lightGray
+            cell.selectedBackgroundView = backgroundView
+            
             lastIndex = indexPath.row
             let playerId = currentPlayerIds[indexPath.row]
             let playerName = playerIdToNames[playerId]!

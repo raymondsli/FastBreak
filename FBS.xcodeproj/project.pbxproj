@@ -27,10 +27,10 @@
 		5030539C21240B4F004313AF /* AdvancedStatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5030539B21240B4F004313AF /* AdvancedStatView.xib */; };
 		5030539E21240B7D004313AF /* BaseStatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5030539D21240B7D004313AF /* BaseStatView.swift */; };
 		503053A021240B93004313AF /* AdvancedStatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5030539F21240B93004313AF /* AdvancedStatView.swift */; };
-		503053A221291429004313AF /* twitterJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = 503053A121291429004313AF /* twitterJSON.json */; };
 		504406512123BC2800B7994C /* GameCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 504406502123BC2800B7994C /* GameCell.xib */; };
 		504406532123BDD600B7994C /* StatRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 504406522123BDD600B7994C /* StatRow.xib */; };
 		504406552123BDE900B7994C /* StatRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504406542123BDE900B7994C /* StatRow.swift */; };
+		50B1088B23613E19006DD5FD /* activeTwitters.json in Resources */ = {isa = PBXBuildFile; fileRef = 50B1088A23613E19006DD5FD /* activeTwitters.json */; };
 		50B1A6711FA33C8300BC4A62 /* DropMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1A6701FA33C8300BC4A62 /* DropMenu.swift */; };
 		50CFAB94212295220066F449 /* bree-serif in Resources */ = {isa = PBXBuildFile; fileRef = 50CFAB93212295220066F449 /* bree-serif */; };
 		50CFAB962122C2FE0066F449 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFAB952122C2FE0066F449 /* Game.swift */; };
@@ -68,10 +68,10 @@
 		5030539B21240B4F004313AF /* AdvancedStatView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdvancedStatView.xib; sourceTree = "<group>"; };
 		5030539D21240B7D004313AF /* BaseStatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseStatView.swift; sourceTree = "<group>"; };
 		5030539F21240B93004313AF /* AdvancedStatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedStatView.swift; sourceTree = "<group>"; };
-		503053A121291429004313AF /* twitterJSON.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = twitterJSON.json; sourceTree = "<group>"; };
 		504406502123BC2800B7994C /* GameCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameCell.xib; sourceTree = "<group>"; };
 		504406522123BDD600B7994C /* StatRow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatRow.xib; sourceTree = "<group>"; };
 		504406542123BDE900B7994C /* StatRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatRow.swift; sourceTree = "<group>"; };
+		50B1088A23613E19006DD5FD /* activeTwitters.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = activeTwitters.json; sourceTree = "<group>"; };
 		50B1A6701FA33C8300BC4A62 /* DropMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropMenu.swift; sourceTree = "<group>"; };
 		50CFAB93212295220066F449 /* bree-serif */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "bree-serif"; sourceTree = SOURCE_ROOT; };
 		50CFAB952122C2FE0066F449 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
@@ -157,7 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				50DA740F2120177E00C73019 /* allplayers.json */,
-				503053A121291429004313AF /* twitterJSON.json */,
+				50B1088A23613E19006DD5FD /* activeTwitters.json */,
 				5026C2541D65716B0057D046 /* FBS */,
 				5026C2531D65716B0057D046 /* Products */,
 				50DBBB841DD17523000EE4E4 /* Frameworks */,
@@ -274,7 +274,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				50DA741A212104E300C73019 /* PlayerRankings.xib in Resources */,
-				503053A221291429004313AF /* twitterJSON.json in Resources */,
 				5026C2621D65716B0057D046 /* LaunchScreen.storyboard in Resources */,
 				5030539A21240B26004313AF /* BaseStatView.xib in Resources */,
 				50DA74102120177E00C73019 /* allplayers.json in Resources */,
@@ -286,6 +285,7 @@
 				50DD7DD8211FD1C400D66A85 /* PlayerCell.xib in Resources */,
 				504406532123BDD600B7994C /* StatRow.xib in Resources */,
 				5026C25D1D65716B0057D046 /* Main.storyboard in Resources */,
+				50B1088B23613E19006DD5FD /* activeTwitters.json in Resources */,
 				50DA74122120DD6200C73019 /* PlayerOverviewHead.xib in Resources */,
 				504406512123BC2800B7994C /* GameCell.xib in Resources */,
 			);

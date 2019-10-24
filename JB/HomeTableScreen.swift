@@ -23,6 +23,8 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
     var currentSearchFilter: String = ""
     var lastIndex = 0
     
+    var currentSeason: String = ""
+    
     var getPlayerIdTask = URLSessionDataTask()
     
     @IBOutlet weak var tableView: UITableView!
@@ -45,7 +47,18 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
         let nib = UINib(nibName: "PlayerCell", bundle: nil)
         self.tableView.register(nib, forCellReuseIdentifier: "PlayerCell")
         
-        getPlayerIds(urlAllPlayers: "https://stats.nba.com/stats/commonallplayers/?LeagueID=00&Season=2018-19&IsOnlyCurrentSeason=1")
+        let currentDate = Date()
+        let calendar = Calendar.current
+        let curYear = calendar.component(.year, from: currentDate)
+        let curMonth = calendar.component(.month, from: currentDate)
+        
+        if curMonth >= 10 {
+            currentSeason = String(curYear) + "-" + String(curYear - 2000 + 1)
+        } else {
+            currentSeason = String(curYear - 1) + "-" + String(curYear - 2000)
+        }
+        
+        getPlayerIds(urlAllPlayers: "https://stats.nba.com/stats/commonallplayers/?LeagueID=00&Season=" + currentSeason + "&IsOnlyCurrentSeason=1")
         sleep(1)
         
         if getPlayerIdTask.state != .completed {
@@ -159,11 +172,13 @@ class HomeTableScreen: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     
     func getTwitters() {
-        if let newPath = Bundle.main.path(forResource: "twitterJSON", ofType: "json") {
+        if let newPath = Bundle.main.path(forResource: "activeTwitters", ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: newPath), options:.mappedIfSafe)
-                let json = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves) as! [String: String]
-                self.twitterHandles = json
+                let json = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves) as! [Dictionary<String, String>]
+                for d in json {
+                    self.twitterHandles[d["Player"]!] = d["Twitter"]!
+                }
             } catch {
                 print("Could not parse Twitter JSON")
             }

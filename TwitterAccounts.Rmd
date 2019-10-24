@@ -17,7 +17,7 @@ twitter_players = read.csv("~/Documents/Apps/FBS/TwitterHandles.csv", header = T
 
 ```{r}
 library(rjson)
-rowSet <- fromJSON(file="https://stats.nba.com/stats/commonallplayers/?LeagueID=00&Season=2018-19&IsOnlyCurrentSeason=1")["resultSets"][[1]][[1]]$rowSet
+rowSet <- fromJSON(file="https://stats.nba.com/stats/commonallplayers/?LeagueID=00&Season=2019-20&IsOnlyCurrentSeason=1")["resultSets"][[1]][[1]]$rowSet
 ```
 
 ```{r}
@@ -25,6 +25,11 @@ all_players = c()
 for (i in 1:length(rowSet)) {
   all_players[i] = rowSet[[i]][[3]]
 }
+```
+
+```{r}
+active_players = twitter_players[twitter_players$Player %in% all_players, ]
+write.csv(active_players, "~/Documents/Apps/FBS/ActiveTwitterHandles.csv")
 ```
 
 ```{r}

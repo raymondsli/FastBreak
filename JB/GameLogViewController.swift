@@ -153,7 +153,7 @@ class GameLogViewController: UIViewController, UITableViewDataSource, UITableVie
             let oppo = currentGame[headers["MATCHUP"]!] as! String
             let opponent = String(oppo[oppo.index(oppo.startIndex, offsetBy: 4)...])
             
-            let winLoss = currentGame[headers["WL"]!] as! String
+            let winLoss = currentGame[headers["WL"]!] as? String ?? ""
             
             let MIN = convertToString(val: currentGame[headers["MIN"]!] as! Double)
             
